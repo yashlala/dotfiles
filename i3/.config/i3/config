@@ -1,0 +1,211 @@
+##################################
+# General
+##################################
+set $mod Mod4
+focus_follows_mouse no
+
+
+##################################
+# Look & Feel
+##################################
+font pango:DejaVu Sans Mono 10
+hide_edge_borders both
+smart_gaps on
+gaps inner 7
+gaps outer 0
+#for_window [class="^.*"] border pixel 1
+
+
+##################################
+# Colors
+##################################
+# set colors from .Xresources (with fallback)
+set_from_resource $fg	    color2 #2AA198
+set_from_resource $bg	    color0 #1F2D3A
+set_from_resource $shade    color8 #ffffff
+set_from_resource $light    color5 #ffffff
+set_from_resource $urgent   color1 #ffffff
+
+
+# set window colors	border	backgr.	text	indicator   child_border
+client.focused          $bg     $bg     $fg	$light	    $fg
+client.focused_inactive $bg     $bg     $shade	$light	    $shade
+client.unfocused        $bg	$bg     $shade	$light	    $shade
+client.urgent           $bg     $bg     $shade	$light	    $urgent
+client.placeholder	$bg	$bg	$shade	$light	    $bg
+
+
+##################################
+# Application Keybindings
+##################################
+bindsym $mod+Return             exec i3-sensible-terminal
+bindsym $mod+q                  kill
+bindsym $mod+BackSpace		kill
+bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 5 -separator-style "none" -font "Ubuntu Mono 17"
+bindsym $mod+i                  exec firefox
+bindsym $mod+f                  exec i3-sensible-terminal -e ranger
+
+bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym $mod+Up                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Down               exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+m                  exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+
+bindsym $mod+Left               exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-headphones
+bindsym $mod+Right              exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-speaker
+bindsym $mod+Shift+Left         exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-lineout
+
+bindsym XF86AudioMicMute        exec --no-startup-id amixer -q sset Capture toggle
+bindsym XF86AudioPlay           exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext           exec --no-startup-id playerctl next
+bindsym XF86AudioPrev           exec --no-startup-id playerctl previous
+
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 5
+
+bindsym $mod+bracketright       exec --no-startup-id $HOME/.config/screen-layout/laptop-only.sh
+bindsym $mod+bracketleft        exec --no-startup-id $HOME/.config/screen-layout/external-only.sh
+bindsym $mod+backslash          exec --no-startup-id $HOME/.config/screen-layout/dual-screen.sh
+
+bindsym Pause 			exec --no-startup-id systemctl suspend
+bindsym $mod+Pause		exec systemctl poweroff
+
+bindsym Print			exec --no-startup-id scrot    '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f ~/pictures/'
+bindsym $mod+Print 		exec --no-startup-id scrot -s '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f ~/pictures/'
+
+
+##################################
+# Workspaces
+##################################
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# monitor specific workspaces
+#workspace $workspace10 output HDMI1
+
+#application specific windows
+for_window [class="Gimp"] floating enable 
+#assign [class="Rhythmbox"] $workspace9
+
+##################################
+# Autostart
+##################################
+#exec_always --no-startup-id redshift
+exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
+
+
+##################################
+# Shortcuts
+##################################
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+v split h
+
+# split in vertical orientation
+bindsym $mod+n split v
+
+# enter fullscreen mode for the focused container (conflicts with some apps)
+# bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+d floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+d focus mode_toggle
+
+# focus the parent and child containers
+#bindsym $mod+a focus parent
+#bindsym $mod+d focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec i3-msg exit
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+
+##################################
+# Bar
+##################################
+bar {
+	position top
+ 	status_command i3status
+	font pango:DejaVu Sans Mono 11
+	strip_workspace_numbers yes
+
+	colors {
+		background $bg
+		separator $shade
+		statusline $shade
+
+		# workspace indicators	border	backgr.	text
+		focused_workspace	$bg	$bg	$fg
+		inactive_workspace	$bg	$bg	$shade
+		urgent_workspace	$bg	$bg	$urgent
+	}
+}
