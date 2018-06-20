@@ -11,8 +11,8 @@ focus_follows_mouse no
 font pango:DejaVu Sans Mono 10
 hide_edge_borders both
 smart_gaps on
-gaps inner 7
-gaps outer 0
+gaps inner 10
+gaps outer 5
 #for_window [class="^.*"] border pixel 1
 
 
@@ -123,6 +123,7 @@ for_window [class="Gimp"] floating enable
 ##################################
 #exec_always --no-startup-id redshift
 exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
+exec --no-startup-id ~/.config/i3/fehbg
 
 
 ##################################
