@@ -1,5 +1,4 @@
-My dotfiles for personal use on an Arch install. 
+My Arch Linux dotfiles.
+Please feel free to copy anything you like.
 
-Managed via GNU Stow, a symlink manager. 
-
-More updates coming soon!
+These config files are managed via GNU Stow. 
