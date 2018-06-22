@@ -11,8 +11,8 @@ focus_follows_mouse no
 font pango:DejaVu Sans Mono 10
 hide_edge_borders both
 smart_gaps on
-gaps inner 10
-gaps outer 5
+gaps inner 5
+gaps outer 0
 #for_window [class="^.*"] border pixel 1
 
 
@@ -121,9 +121,14 @@ for_window [class="Gimp"] floating enable
 ##################################
 # Autostart
 ##################################
-#exec_always --no-startup-id redshift
 exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
-exec --no-startup-id ~/.config/i3/fehbg
+# decrease key repeat delay
+exec_always --no-startup-id xset r rate 200 25
+# disable terminal bell
+exec_always --no-startup-id xset -b 
+
+exec --no-startup-id feh --no-fehbg --bg-fill '/home/lala/.config/i3/background.jpg'
+#exec_always --no-startup-id redshift
 
 
 ##################################
