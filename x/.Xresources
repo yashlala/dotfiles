@@ -1,3 +1,6 @@
+URxvt.font: xft:DejaVu Sans Mono:size=12
+
+
 #define base00 #2b303b
 #define base01 #343d46
 #define base02 #4f5b66
