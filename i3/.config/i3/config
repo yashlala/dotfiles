@@ -41,7 +41,7 @@ client.placeholder	$bg	$bg	$shade	$light	    $bg
 bindsym $mod+Return             exec i3-sensible-terminal
 bindsym $mod+q                  kill
 bindsym $mod+BackSpace		kill
-bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 5 -separator-style "none" -font "Ubuntu Mono 17"
+bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 5 -separator-style "none" -font "DejaVu Sans Mono 17"
 bindsym $mod+i                  exec firefox
 bindsym $mod+f                  exec i3-sensible-terminal -e ranger
 
@@ -64,9 +64,9 @@ bindsym XF86AudioPrev           exec --no-startup-id playerctl previous
 bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 5
 
-bindsym $mod+bracketright       exec --no-startup-id $HOME/.config/screen-layout/laptop-only.sh
-bindsym $mod+bracketleft        exec --no-startup-id $HOME/.config/screen-layout/external-only.sh
-bindsym $mod+backslash          exec --no-startup-id $HOME/.config/screen-layout/dual-screen.sh
+bindsym $mod+bracketright       exec --no-startup-id laptop-display
+bindsym $mod+bracketleft        exec --no-startup-id external-display
+bindsym $mod+backslash          exec --no-startup-id dual-display
 
 bindsym Pause 			exec --no-startup-id systemctl suspend
 bindsym $mod+Pause		exec systemctl poweroff
@@ -121,6 +121,7 @@ for_window [class="Gimp"] floating enable
 ##################################
 # Autostart
 ##################################
+# modify keyboard layout
 exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
 # decrease key repeat delay
 exec_always --no-startup-id xset r rate 200 25
@@ -128,8 +129,6 @@ exec_always --no-startup-id xset r rate 200 25
 exec_always --no-startup-id xset -b 
 
 exec --no-startup-id feh --no-fehbg --bg-fill '/home/lala/.config/i3/background.jpg'
-#exec_always --no-startup-id redshift
-
 
 ##################################
 # Shortcuts
@@ -155,12 +154,12 @@ bindsym $mod+v split h
 bindsym $mod+n split v
 
 # enter fullscreen mode for the focused container (conflicts with some apps)
-# bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+t layout tabbed
+bindsym $mod+t layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+d floating toggle

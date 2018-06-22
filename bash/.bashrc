@@ -13,8 +13,12 @@ force_color_prompt=yes
 HISTSIZE=10000
 HISTFILESIZE=10000
 
+# ignore consecutive duplicated entries
+HISTCONTROL=ignoredups
+
 # append to history file, don't overwrite it
 shopt -s histappend
+
 
 #########################################
 # Autostart
