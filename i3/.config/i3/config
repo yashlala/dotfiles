@@ -20,8 +20,8 @@ gaps outer 0
 # Colors
 ##################################
 # set colors from .Xresources (with fallback)
-set_from_resource $fg	    color2 #2AA198
-set_from_resource $bg	    color0 #1F2D3A
+set_from_resource $fg	    color2 #2aa198
+set_from_resource $bg	    color0 #1f2d3a
 set_from_resource $shade    color8 #ffffff
 set_from_resource $light    color5 #ffffff
 set_from_resource $urgent   color1 #ffffff
@@ -121,14 +121,11 @@ for_window [class="Gimp"] floating enable
 ##################################
 # Autostart
 ##################################
-# modify keyboard layout
 exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
-# decrease key repeat delay
 exec_always --no-startup-id xset r rate 200 25
-# disable terminal bell
 exec_always --no-startup-id xset -b 
 
-exec --no-startup-id feh --no-fehbg --bg-fill '/home/lala/.config/i3/background.jpg'
+exec --no-startup-id nitrogen --restore
 
 ##################################
 # Shortcuts
@@ -206,7 +203,7 @@ bar {
 	colors {
 		background $bg
 		separator $shade
-		statusline $shade
+		statusline $light
 
 		# workspace indicators	border	backgr.	text
 		focused_workspace	$bg	$bg	$fg
