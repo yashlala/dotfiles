@@ -9,11 +9,13 @@ focus_follows_mouse no
 # Look & Feel
 ##################################
 font pango:DejaVu Sans Mono 10
-hide_edge_borders both
 smart_gaps on
 gaps inner 5
 gaps outer 0
-#for_window [class="^.*"] border pixel 1
+
+# required for gaps to play nice
+for_window [class="^.*"] border pixel 1
+hide_edge_borders both
 
 
 ##################################
