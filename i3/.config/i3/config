@@ -126,8 +126,7 @@ for_window [class="Gimp"] floating enable
 exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
 exec_always --no-startup-id xset r rate 200 25
 exec_always --no-startup-id xset -b 
-
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id feh --no-fehbg --bg-scale '/home/lala/.config/i3/background.jpg'
 
 ##################################
 # Shortcuts
