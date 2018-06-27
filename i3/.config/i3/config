@@ -43,7 +43,7 @@ client.placeholder	$bg	$bg	$shade	$light	    $bg
 bindsym $mod+Return             exec i3-sensible-terminal
 bindsym $mod+q                  kill
 bindsym $mod+BackSpace		kill
-bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 5 -separator-style "none" -font "DejaVu Sans Mono 17"
+bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 3 -separator-style "none" -font "DejaVu Sans Mono 17"
 bindsym $mod+i                  exec firefox
 bindsym $mod+f                  exec i3-sensible-terminal -e ranger
 
