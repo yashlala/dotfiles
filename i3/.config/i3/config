@@ -43,9 +43,10 @@ client.placeholder	$bg	$bg	$shade	$light	    $bg
 bindsym $mod+Return             exec i3-sensible-terminal
 bindsym $mod+q                  kill
 bindsym $mod+BackSpace		kill
-bindsym $mod+space              exec --no-startup-id rofi -show run -width 400 -lines 3 -separator-style "none" -font "DejaVu Sans Mono 17"
+bindsym $mod+space              exec --no-startup-id rofi -show run
 bindsym $mod+i                  exec firefox
 bindsym $mod+f                  exec i3-sensible-terminal -e ranger
+bindsym $mod+g                  exec --no-startup-id mpd && i3-sensible-terminal -e ncmpcpp
 
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -59,9 +60,9 @@ bindsym $mod+Right              exec --no-startup-id pactl set-sink-port @DEFAUL
 bindsym $mod+Shift+Left         exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-lineout
 
 bindsym XF86AudioMicMute        exec --no-startup-id amixer -q sset Capture toggle
-bindsym XF86AudioPlay           exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext           exec --no-startup-id playerctl next
-bindsym XF86AudioPrev           exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay           exec --no-startup-id mpc toggle
+bindsym XF86AudioNext           exec --no-startup-id mpc next
+bindsym XF86AudioPrev           exec --no-startup-id mpc prev
 
 bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 5
