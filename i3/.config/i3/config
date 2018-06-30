@@ -46,7 +46,7 @@ bindsym $mod+BackSpace		kill
 bindsym $mod+space              exec --no-startup-id rofi -show run
 bindsym $mod+i                  exec firefox
 bindsym $mod+f                  exec i3-sensible-terminal -e ranger
-bindsym $mod+g                  exec --no-startup-id mpd && i3-sensible-terminal -e ncmpcpp
+bindsym $mod+g                  exec i3-sensible-terminal -e ncmpcpp
 
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -64,8 +64,8 @@ bindsym XF86AudioPlay           exec --no-startup-id mpc toggle
 bindsym XF86AudioNext           exec --no-startup-id mpc next
 bindsym XF86AudioPrev           exec --no-startup-id mpc prev
 
-bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 2
+bindsym XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 2
 
 bindsym $mod+bracketright       exec --no-startup-id laptop-display
 bindsym $mod+bracketleft        exec --no-startup-id external-display
