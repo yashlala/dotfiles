@@ -124,10 +124,11 @@ for_window [class="Gimp"] floating enable
 ##################################
 # Autostart
 ##################################
-exec_always --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
-exec_always --no-startup-id xset r rate 200 25
-exec_always --no-startup-id xset -b 
+exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
+exec --no-startup-id xset r rate 200 25
+exec --no-startup-id xset -b 
 exec --no-startup-id feh --no-fehbg --bg-scale '/home/lala/.config/i3/background.jpg'
+exec --no-startup-id redshift
 
 ##################################
 # Shortcuts
