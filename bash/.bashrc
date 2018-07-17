@@ -10,8 +10,8 @@ PS1='[\u@\h \W]\$ '
 color_prompt=yes
 force_color_prompt=yes
 
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # ignore consecutive duplicated entries
 HISTCONTROL=ignoredups
