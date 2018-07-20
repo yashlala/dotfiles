@@ -27,15 +27,20 @@ shopt -s histappend
 #########################################
 # Aliases
 #########################################
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias ls='ls --color=auto'
 alias ll='ls -alFh'
 alias la='ls -A'
+
 alias quit='exit'
 alias lkj='sudo $(history -p \!\!)'
+
+alias h='wikicurses'
+alias hh='wikicurses --wiki arch'
+alias hhh='wikicurses --wiki nethack'
 
 # some useful navigational functions
 function ms () { 
