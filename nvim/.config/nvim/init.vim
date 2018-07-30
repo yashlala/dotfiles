@@ -1,4 +1,5 @@
 set lazyredraw
+set noswapfile
 
 set number relativenumber
 set smartindent
@@ -16,12 +17,9 @@ let mapleader = ','
 let g:mapleader=','
 
 " copy and paste to/from clipboard
-map <Leader>y "*y
-map <Leader>p "*p
+map <leader>y "*y
+map <leader>p "*p
 
-noremap <Leader>w :w<cr>
-noremap <Leader>q :q!<cr>
-noremap <Leader>x :x<cr>
-
-map <Leader>
-map <Leader>
+noremap <leader>w :w<cr>
+noremap <leader>q :q!<cr>
+noremap <leader>x :x<cr>
