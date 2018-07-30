@@ -6,28 +6,34 @@ set smartindent
 set nohlsearch
 set ignorecase
 set smartcase
-set wrap
 
+set wrap
 set linebreak
 set breakindent
 let &showbreak = '↳ '
 
-
 filetype plugin indent on
 syntax on
 
-""""""""""""""""
+"""""""""""""""""""
 " Keybindings  
-""""""""""""""""
+"""""""""""""""""""
+nnoremap <cr> o<esc>
+nnoremap <space> :
+
 let mapleader = ','
-let g:mapleader=','
+let g:mapleader= ','
 
-" copy and paste to/from clipboard
-map <leader>y "*y
-map <leader>p "*p
-map <leader>c "+y
-map <leader>v "+p
+"""""""""""""""""""
+" Leader Commands
+"""""""""""""""""""
+noremap <leader>y "*y
+noremap <leader>p "*p
+noremap <leader>c "+y
+noremap <leader>v "+p
 
-map <leader>w :w<cr>
-map <leader>q :q!<cr>
-map <leader>x :x<cr>
+noremap <leader>p "0p
+
+noremap <leader>w :w<cr>
+noremap <leader>q :q!<cr>
+noremap <leader>x :x<cr>
