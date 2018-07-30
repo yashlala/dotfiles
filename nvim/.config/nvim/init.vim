@@ -1,4 +1,5 @@
 set lazyredraw
+set noswapfile
 
 set number relativenumber
 set smartindent
