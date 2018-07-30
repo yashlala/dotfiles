@@ -35,3 +35,4 @@ noremap <leader>v "+p
 noremap <leader>p "0p
 
 noremap <leader>w :w<cr>
+noremap <leader>qq :q!<cr>
