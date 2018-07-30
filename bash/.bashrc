@@ -40,7 +40,8 @@ alias lkj='sudo $(history -p \!\!)'
 
 alias h='wikicurses'
 alias hh='wikicurses --wiki arch'
-alias hhh='wikicurses --wiki nethack'
+
+alias info='info --vi-keys'
 
 # some useful navigational functions
 function ms () { 

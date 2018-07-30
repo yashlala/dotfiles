@@ -1,6 +1,9 @@
-URxvt.font: xft:DejaVu Sans Mono:size=13
+URxvt.font: xft:DejaVu Sans Mono:size=13,\
+            xft:Unifont:size=13
+
 URxvt.scrollBar: false
 
+         
 
 #define base00 #2b303b
 #define base01 #343d46

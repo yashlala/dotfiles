@@ -76,8 +76,8 @@ bindsym $mod+backslash			exec --no-startup-id dual-display
 bindsym Pause				exec --no-startup-id systemctl suspend
 bindsym $mod+Pause			exec systemctl poweroff
 
-bindsym --release Print			exec --no-startup-id scrot -s '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f ~/pictures/'
-bindsym --release $mod+Print		exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f ~/pictures/'
+bindsym --release Print			exec --no-startup-id scrot -s '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f $HOME/pictures/'
+bindsym --release $mod+Print		exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f $HOME/pictures/'
 
 
 ##################################
@@ -120,7 +120,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 #workspace $workspace10 output HDMI1
 
 #application specific windows
-for_window [class="Gimp"] floating enable 
+#for_window [class="Gimp"] floating enable 
 #assign [class="Rhythmbox"] $workspace9
 
 ##################################
