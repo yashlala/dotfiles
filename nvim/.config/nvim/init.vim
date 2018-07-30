@@ -6,6 +6,12 @@ set smartindent
 set nohlsearch
 set ignorecase
 set smartcase
+set wrap
+
+set linebreak
+set breakindent
+let &showbreak = '↳ '
+
 
 filetype plugin indent on
 syntax on
@@ -25,5 +31,3 @@ map <leader>v "+p
 map <leader>w :w<cr>
 map <leader>q :q!<cr>
 map <leader>x :x<cr>
-
-
