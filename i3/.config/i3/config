@@ -76,8 +76,8 @@ bindsym $mod+backslash			exec --no-startup-id dual-display
 bindsym Pause				exec --no-startup-id systemctl suspend
 bindsym $mod+Pause			exec systemctl poweroff
 
-bindsym --release Print			exec --no-startup-id scrot -s '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f $HOME/pictures/'
-bindsym --release $mod+Print		exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot.jpg' -e 'mv $f $HOME/pictures/'
+bindsym --release Print			exec --no-startup-id scrot -s '/home/lala/pictures/%Y-%m-%d-%s_screenshot.jpg' 
+bindsym --release $mod+Print		exec --no-startup-id scrot    '/home/lala/pictures/%Y-%m-%d-%s_screenshot.jpg'
 
 
 ##################################
