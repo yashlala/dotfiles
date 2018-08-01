@@ -57,7 +57,7 @@ let g:mapleader= ','
 """""""""""""""""""
 xmap <leader>a <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
-nnoremap <leader>c gc
+nmap <leader>c gc
 
 nnoremap <leader>g :Goyo<cr>
 
