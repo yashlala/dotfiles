@@ -50,7 +50,7 @@ set noshowmode
 """""""""""""""""""
 " Key Rebindings  
 """""""""""""""""""
-nnoremap <cr> o<esc>
+nnoremap <cr> o<esc>^D
 nnoremap <space> :
 
 xmap ga <Plug>(EasyAlign)
