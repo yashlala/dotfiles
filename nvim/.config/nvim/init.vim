@@ -25,11 +25,14 @@ syntax on
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'junegunn/seoul256.vim'
+" is lightline useful? replace with airline for vcs? got to reconfigure this
+" for sure; it's awfully bloaty for my taste
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
-"Plug 'easymotion/vim-easymotion'
-"Plug 'tpope/vim-repeat'
+" registered but not loaded
+Plug 'easymotion/vim-easymotion' , { 'on': [] }
 
 call plug#end()
 
@@ -39,15 +42,20 @@ call plug#end()
 colorscheme seoul256
 let g:seoul256_srgb = 1
 
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
+set noshowmode
+
 """""""""""""""""""
 " Key Rebindings  
 """""""""""""""""""
 nnoremap <cr> o<esc>
 nnoremap <space> :
 
-"gc is vim-commentary
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+" gc = vim-commentary
 
 let mapleader = ','
 let g:mapleader= ','
@@ -55,15 +63,17 @@ let g:mapleader= ','
 """""""""""""""""""
 " Leader Commands
 """""""""""""""""""
-xmap <leader>a <Plug>(EasyAlign)
-nmap <leader>a <Plug>(EasyAlign)
-nmap <leader>c gc
+xmap     <leader>a <Plug>(EasyAlign)
+nmap     <leader>a <Plug>(EasyAlign)
+
+" gc = vim-commentary
+nmap     <leader>c gc
 
 nnoremap <leader>g :Goyo<cr>
 
-noremap <leader>y "+y
-noremap <leader>p "+p
-noremap <leader>P "0p
+noremap  <leader>y "+y
+noremap  <leader>p "+p
+noremap  <leader>P "0p
 
-noremap <leader>w :w<cr>
-noremap <leader>qq :q!<cr>
+noremap  <leader>w :w<cr>
+noremap  <leader>qq :q!<cr>
