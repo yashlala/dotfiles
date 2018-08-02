@@ -32,7 +32,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias ls='ls --color=auto'
-alias ll='ls -alFh'
+alias ll='ls -lFh'
+alias lal='ls -AlFh'
 alias la='ls -A'
 
 alias quit='exit'
