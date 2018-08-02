@@ -5,7 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
+PS1='\[\e[33m\][\u \W]\$ \[\e[00m\]'
+
 
 color_prompt=yes
 force_color_prompt=yes
