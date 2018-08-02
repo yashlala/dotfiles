@@ -21,9 +21,9 @@ hide_edge_borders both
 ##################################
 # Colors
 ##################################
-set $fg 	#83be8c
+set $fg 	#a3deac
 set $bg 	#2b303b
-set $shade 	#65737e
+set $shade 	#85939e
 set $light 	#b48ead
 set $urgent 	#bf616a
 
@@ -67,10 +67,6 @@ bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 3
 bindsym XF86MonBrightnessDown		exec --no-startup-id xbacklight -dec 3
 bindsym Shift+XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 1
 bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 1
-
-bindsym $mod+bracketright		exec --no-startup-id laptop-display
-bindsym $mod+bracketleft		exec --no-startup-id external-display
-bindsym $mod+backslash			exec --no-startup-id dual-display
 
 bindsym Pause				exec --no-startup-id systemctl suspend
 bindsym $mod+Pause			exec systemctl poweroff
@@ -201,7 +197,7 @@ bindsym $mod+r mode "resize"
 bar {
 	position top
  	status_command i3status
-	font pango:DejaVu Sans Mono 11
+	font pango:DejaVu Sans Mono 12
 	strip_workspace_numbers yes
 
 	colors {
@@ -212,6 +208,6 @@ bar {
 		# workspace indicators	border	backgr.	text
 		focused_workspace	$bg	$bg	$fg
 		inactive_workspace	$bg	$bg	$shade
-		urgent_workspace	$bg	$bg	$light
+		urgent_workspace	$bg	$bg	$urgent
 	}
 }
