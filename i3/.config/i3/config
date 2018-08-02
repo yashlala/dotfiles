@@ -21,12 +21,11 @@ hide_edge_borders both
 ##################################
 # Colors
 ##################################
-# set colors from .Xresources (with fallback)
-set_from_resource $fg	    color2 #2aa198
-set_from_resource $bg	    color0 #1f2d3a
-set_from_resource $shade    color8 #ffffff
-set_from_resource $light    color5 #ffffff
-set_from_resource $urgent   color1 #ffffff
+set $fg 	#83be8c
+set $bg 	#2b303b
+set $shade 	#65737e
+set $light 	#b48ead
+set $urgent 	#bf616a
 
 
 # set window colors	border	backgr.	text	indicator   child_border
@@ -121,7 +120,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 #application specific windows
 #for_window [class="Gimp"] floating enable 
-#assign [class="Rhythmbox"] $workspace9
+assign [class="Hexchat"] $workspace9
 
 ##################################
 # Autostart
@@ -213,6 +212,6 @@ bar {
 		# workspace indicators	border	backgr.	text
 		focused_workspace	$bg	$bg	$fg
 		inactive_workspace	$bg	$bg	$shade
-		urgent_workspace	$bg	$bg	$urgent
+		urgent_workspace	$bg	$bg	$light
 	}
 }
