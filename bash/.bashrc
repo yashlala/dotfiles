@@ -14,8 +14,8 @@ force_color_prompt=yes
 HISTSIZE=-1
 HISTFILESIZE=-1
 
-# ignore consecutive duplicated entries
-HISTCONTROL=ignoredups
+# ignore consecutive duplicated entries and lines with a leading space
+HISTCONTROL=ignoreboth
 
 # append to history file, don't overwrite it
 shopt -s histappend
