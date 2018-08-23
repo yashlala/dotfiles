@@ -5,6 +5,9 @@
 PATH=$PATH:~/code/bin
 export EDITOR=nvim
 
+setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
+xset r rate 200 25
+xset -b
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
