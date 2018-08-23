@@ -13,6 +13,7 @@ mpd/.config/mpd/sticker.sql
 nvim/.config/nvim/.netrwhist
 bash/.bash_history
 
-.Xauthority
+x/.Xauthority
+x/.dmrc
 
 *.swp

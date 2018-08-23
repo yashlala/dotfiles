@@ -24,15 +24,15 @@ syntax on
 """""""""""""""""""
 call plug#begin('~/.local/share/nvim/plugged')
 
+" loaded plugins
 Plug 'junegunn/seoul256.vim'
-" is lightline useful? replace with airline for vcs? got to reconfigure this
-" for sure; it's awfully bloaty for my taste
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 " registered but not loaded
 Plug 'easymotion/vim-easymotion' , { 'on': [] }
+Plug 'Shougo/deoplete.nvim' , { 'on': [] } 
 
 call plug#end()
 
@@ -79,3 +79,8 @@ noremap  <leader>P "0p
 
 noremap  <leader>w :w<cr>
 noremap  <leader>qq :q!<cr>
+
+"""""""""""""""""""
+" Commands
+"""""""""""""""""""
+
