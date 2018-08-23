@@ -33,7 +33,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias ls='ls --color=auto'
-alias ll='ls -lFh'
+alias ll='ls -lh'
 alias lal='ls -AlFh'
 alias la='ls -A'
 
@@ -44,6 +44,7 @@ alias h='wikicurses'
 alias hh='wikicurses --wiki arch'
 
 alias info='info --vi-keys'
+alias calcurse='calcurse --directory ~/.config/calcurse'
 
 # some useful navigational functions
 function ms () { 

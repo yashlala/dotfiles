@@ -1,11 +1,18 @@
 ranger/.config/ranger/bookmarks
 ranger/.config/ranger/history
+
+calcurse/.config/calcurse/notes
+calcurse/.config/calcurse/apts
+calcurse/.config/calcurse/todo
+
 mpd/.config/mpd/playlists
 mpd/.config/mpd/database
 mpd/.config/mpd/pid
 mpd/.config/mpd/sticker.sql
+
 nvim/.config/nvim/.netrwhist
 bash/.bash_history
+
 .Xauthority
 
 *.swp
