@@ -71,8 +71,7 @@ bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 1
 bindsym Pause				exec --no-startup-id systemctl suspend
 bindsym $mod+Pause			exec systemctl poweroff
 
-bindsym --release Print			exec --no-startup-id scrot -s '/home/lala/pictures/%Y-%m-%d-%s_screenshot.jpg' 
-bindsym --release $mod+Print		exec --no-startup-id scrot    '/home/lala/pictures/%Y-%m-%d-%s_screenshot.jpg'
+bindsym --release Print			exec --no-startup-id maim -q -s `xdg-user-dir PICTURES`/`date +%F+%T`.png 
 
 
 ##################################
@@ -122,8 +121,7 @@ assign [class="Hexchat"] $workspace9
 # Autostart
 ##################################
 exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin
-exec --no-startup-id xset r rate 200 25
-exec --no-startup-id xset -b 
+exec --no-startup-id xset b off r rate 200 25
 exec --no-startup-id feh --no-fehbg --bg-scale '/home/lala/.config/i3/background.jpg'
 exec --no-startup-id redshift &> /dev/null 
 exec --no-startup-id xbanish
