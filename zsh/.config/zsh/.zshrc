@@ -7,16 +7,13 @@
 
 PS1='%F{yellow}[%c %#]%f '
 
-
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
 SAVEHIST=5000
-setopt appendhistory autocd extendedglob
-setopt nobeep
-bindkey -v
-# End of lines configured by zsh-newuser-install
+setopt appendhistory histignoredups histignorespace 
 
+setopt nobeep autocd extendedglob
+bindkey -v
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
@@ -24,7 +21,6 @@ zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
 
 #########################################
 # Aliases
@@ -54,5 +50,3 @@ function ms () {
 function ma () { 
 	cd "$@" && ls -A 
 }
-
-
