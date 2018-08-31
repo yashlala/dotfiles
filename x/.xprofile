@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+# [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 PATH=$PATH:~/code/bin
 export EDITOR=nvim

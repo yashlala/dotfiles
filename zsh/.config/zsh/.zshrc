@@ -1,24 +1,30 @@
-#
-# ~/.bashrc
+# 
+# ~/.config/zsh/.zshrc
 #
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1=$'\[\e[33m\][\u \W]\$ \[\e[00m\]'
+PS1='%F{yellow}[%c %#]%f '
 
 
-color_prompt=yes
-force_color_prompt=yes
-
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
-HISTFILESIZE=5000
+SAVEHIST=5000
+setopt appendhistory autocd extendedglob
+setopt nobeep
+bindkey -v
+# End of lines configured by zsh-newuser-install
 
-# ignore consecutive duplicated entries and lines with a leading space
-HISTCONTROL=ignoreboth
 
-# append to history file, don't overwrite it
-shopt -s histappend
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 
 #########################################
 # Aliases
@@ -48,3 +54,5 @@ function ms () {
 function ma () { 
 	cd "$@" && ls -A 
 }
+
+
