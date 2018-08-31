@@ -1,13 +1,11 @@
 #!/bin/sh
 
-# [[ -f ~/.bashrc ]] && . ~/.bashrc
-
 PATH=$PATH:~/code/bin
 export EDITOR=nvim
 
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
+userresources=$HOME/.config/x/xresources
+usermodmap=$HOME/.config/x/xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
