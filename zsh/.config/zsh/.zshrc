@@ -25,6 +25,17 @@ compinit
 #########################################
 # Aliases
 #########################################
+alias quit='exit'
+alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
+ms() { cd "$@" && ls; }
+ma() { cd "$@" && ls -A; }
+
+alias info='info --vi-keys'
+alias calcurse='calcurse --directory ~/.config/calcurse'
+
+alias h='wikicurses'
+alias hh='wikicurses --wiki arch'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -33,20 +44,3 @@ alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias lal='ls -AlFh'
 alias la='ls -A'
-
-alias quit='exit'
-alias lkj='sudo $(history -p \!\!)'
-
-alias h='wikicurses'
-alias hh='wikicurses --wiki arch'
-
-alias info='info --vi-keys'
-alias calcurse='calcurse --directory ~/.config/calcurse'
-
-# some useful navigational functions
-function ms () { 
-	cd "$@" && ls 
-}
-function ma () { 
-	cd "$@" && ls -A 
-}
