@@ -1,8 +1,7 @@
-/* urxvt */
-
 URxvt.font:         xft:DejaVu Sans Mono:size=13,\
                     xft:Unifont:size=13
 URxvt.scrollBar:    false
+URxvt.fading:       10
 
 *background:   #3a3a3a
 *foreground:   #d0d0d0
@@ -25,3 +24,5 @@ URxvt.scrollBar:    false
 *color13:      #ffafaf
 *color14:      #87d7d7
 *color15:      #e4e4e4
+
+# vim: ft=xdefaults

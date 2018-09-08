@@ -31,7 +31,7 @@ set $urgent 	#bf616a
 # set window colors	border	backgr.	text	indicator   child_border
 client.focused          $bg     $bg     $fg	$light	    $fg
 client.focused_inactive $bg     $bg     $shade	$light	    $shade
-client.unfocused        $bg	$bg     $shade	$light	    $shade
+client.unfocused        $bg	$bg     $shade	$light	    $bg
 client.urgent           $bg     $bg     $shade	$light	    $urgent
 client.placeholder	$bg	$bg	$shade	$light	    $bg
 
@@ -45,7 +45,6 @@ bindsym $mod+BackSpace			kill
 bindsym $mod+space			exec --no-startup-id rofi -show run
 bindsym $mod+i				exec firefox
 bindsym $mod+f				exec i3-sensible-terminal -e ranger
-bindsym $mod+g				exec i3-sensible-terminal -e ncmpcpp
 
 bindsym XF86AudioRaiseVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
