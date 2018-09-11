@@ -27,8 +27,6 @@ compinit
 #########################################
 alias quit='exit'
 alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
-ms() { cd "$@" && ls; }
-ma() { cd "$@" && ls -A; }
 
 alias info='info --vi-keys'
 alias calcurse='calcurse --directory ~/.config/calcurse'
@@ -44,3 +42,6 @@ alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias lal='ls -AlFh'
 alias la='ls -A'
+
+ms() { cd "$@" && ls; }
+ma() { cd "$@" && ls -A; }

@@ -113,7 +113,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 #workspace $workspace10 output HDMI1
 
 #application specific windows
-#for_window [class="Gimp"] floating enable 
+for_window [class="GrafX2"] floating enable 
 assign [class="Hexchat"] $workspace9
 
 ##################################
