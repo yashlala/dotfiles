@@ -3,6 +3,9 @@ URxvt.font:         xft:DejaVu Sans Mono:size=13,\
 URxvt.scrollBar:    false
 URxvt.fading:       10
 
+Urxvt.perl-ext:
+Urxvt.perl-ext-common:
+
 *background:   #3a3a3a
 *foreground:   #d0d0d0
 *cursorColor:  #d0d0d0

@@ -15,12 +15,16 @@ setopt appendhistory histignoredups histignorespace
 setopt nobeep autocd extendedglob
 bindkey -v
 
-# The following lines were added by compinstall
+# The following line was added by compinstall
 zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+
+autoload -Uz run-help
+autoload -Uz run-help-git
+unalias run-help
+alias help=run-help
 
 #########################################
 # Aliases
