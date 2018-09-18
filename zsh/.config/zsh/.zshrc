@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='%F{yellow}[%c %#]%f '
+PS1='%F{yellow}[%c %(?..%F{green}) %#%F{yellow}]%f '
 
 HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
@@ -13,14 +13,20 @@ SAVEHIST=5000
 setopt appendhistory histignoredups histignorespace 
 
 setopt nobeep autocd extendedglob
+# Enable vi keys
 bindkey -v
 
 # The following line was added by compinstall
 zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
 
+#########################################
+# Modules
+#########################################
+# Enable completions
 autoload -Uz compinit
 compinit
 
+# Enable help
 autoload -Uz run-help
 autoload -Uz run-help-git
 unalias run-help
