@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='%F{yellow}[%c %(?..%F{green}) %#%F{yellow}]%f '
+PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
 
 HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
@@ -40,6 +40,7 @@ alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
 
 alias info='info --vi-keys'
 alias calcurse='calcurse --directory ~/.config/calcurse'
+alias fortune='fortune -a'
 
 alias h='wikicurses'
 alias hh='wikicurses --wiki arch'
