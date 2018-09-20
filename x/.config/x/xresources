@@ -1,5 +1,4 @@
-URxvt.font:         xft:DejaVu Sans Mono:size=13,\
-                    xft:Unifont:size=13
+URxvt.font:         xft:DejaVu Sans Mono:size=13
 URxvt.scrollBar:    false
 URxvt.fading:       10
 
