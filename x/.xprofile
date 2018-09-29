@@ -2,6 +2,7 @@
 
 PATH=$PATH:~/code/bin
 export EDITOR=nvim
+export BC_ENV_ARGS="-q -l "
 
 
 userresources=$HOME/.config/x/xresources
