@@ -45,6 +45,8 @@ bindsym $mod+BackSpace			kill
 bindsym $mod+space			exec --no-startup-id rofi -show run
 bindsym $mod+i				exec firefox
 bindsym $mod+f				exec urxvt -e ranger
+bindsym $mod+g				exec --no-startup-id gaana
+bindsym $mod+Shift+g 			exec --no-startup-id gaana-bandh
 
 bindsym XF86AudioRaiseVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
