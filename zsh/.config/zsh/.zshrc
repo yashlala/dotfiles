@@ -42,9 +42,6 @@ alias info='info --vi-keys'
 alias calcurse='calcurse --directory ~/.config/calcurse'
 alias fortune='fortune -a'
 
-alias h='wikicurses'
-alias hh='wikicurses --wiki arch'
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
