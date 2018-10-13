@@ -2,7 +2,10 @@
 
 PATH=$PATH:~/code/bin
 export EDITOR=nvim
+#suppress bc copyright notice
 export BC_ENV_ARGS="-q -l "
+#speed up zsh vi mode
+export KEYTIMEOUT=2
 
 
 userresources=$HOME/.config/x/xresources
