@@ -30,6 +30,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
 " registered but not loaded
 Plug 'easymotion/vim-easymotion' , { 'on': [] }
 Plug 'Shougo/deoplete.nvim' , { 'on': [] } 
