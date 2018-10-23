@@ -27,4 +27,4 @@ Urxvt.perl-ext-common:
 *color14:      #87d7d7
 *color15:      #e4e4e4
 
-/* vim: ft=xdefaults */
+# vim: ft=xdefaults 
