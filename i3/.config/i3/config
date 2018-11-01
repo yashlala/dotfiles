@@ -8,7 +8,7 @@ focus_follows_mouse no
 ##################################
 # Look & Feel
 ##################################
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 19
 smart_gaps on
 gaps inner 5
 gaps outer 0
@@ -63,10 +63,8 @@ bindsym XF86AudioPlay			exec --no-startup-id mpc toggle
 bindsym XF86AudioNext			exec --no-startup-id mpc next
 bindsym XF86AudioPrev			exec --no-startup-id mpc prev
 
-bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 3
-bindsym XF86MonBrightnessDown		exec --no-startup-id xbacklight -dec 3
-bindsym Shift+XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 1
-bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 1
+bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown		exec --no-startup-id xbacklight -dec 10
 
 bindsym Pause				exec --no-startup-id systemctl suspend
 
@@ -119,8 +117,13 @@ assign [class="Hexchat"] $workspace9
 ##################################
 # Autostart
 ##################################
+
+# TODO: Replace following lines with drop-in files in /etc/X11/xorg.conf.d/
 exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
 exec --no-startup-id xset b off r rate 200 25
+exec --no-startup-id xinput --set-prop 13 'libinput Accel Speed' 0.5
+#exec --no-startup-id xinput --set-prop 13 'libinput Tapping Enabled' 1
+
 exec --no-startup-id feh --no-fehbg --bg-scale '/home/lala/.config/i3/background.jpg'
 exec --no-startup-id redshift &> /dev/null 
 exec --no-startup-id xbanish
@@ -200,7 +203,7 @@ bindsym $mod+r mode "resize"
 bar {
 	position top
  	status_command i3status
-	font pango:DejaVu Sans Mono 12
+	font pango:DejaVu Sans Mono 18
 	strip_workspace_numbers yes
 
 	colors {

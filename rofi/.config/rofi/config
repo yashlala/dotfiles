@@ -1,11 +1,11 @@
 ! General
-rofi.font: DejaVu Sans Mono 17
+rofi.font: DejaVu Sans Mono 30
 rofi.hide-scrollbar:      true
 
 ! Layout
-rofi.width:              400
+rofi.width:              800
 rofi.lines:              4
-rofi.separator-style:    none
+!rofi.separator-style:    none
 
 ! Enable the extended coloring options
 rofi.color-enabled: true
