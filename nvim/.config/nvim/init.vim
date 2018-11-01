@@ -2,10 +2,8 @@
 " Config
 """""""""""""""""""
 set lazyredraw
-set noswapfile
 
 set number relativenumber
-set smartindent
 set ignorecase
 set smartcase
 set nohlsearch
@@ -52,8 +50,10 @@ set noshowmode
 " Key Rebindings  
 """""""""""""""""""
 nnoremap <cr> o<esc>^D
-nnoremap <space> :
 nnoremap Y y$
+
+nnoremap <space> :
+vnoremap <space> :
 
 nnoremap gs y:%s//g<left><left>
 xmap ga <Plug>(EasyAlign)
@@ -74,9 +74,9 @@ nmap     <leader>c gc
 
 nnoremap <leader>g :Goyo<cr>
 
-noremap  <leader>y "+y
-noremap  <leader>p "+p
-noremap  <leader>P "0p
+noremap  <leader>Y "+y
+noremap  <leader>P "+p
+noremap  <leader>p "0p
 
 noremap  <leader>w :w<cr>
 noremap  <leader>qq :q!<cr>
