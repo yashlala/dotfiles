@@ -3,11 +3,12 @@ general {
 	interval = 5
 	colors = true
 	color_good = "#a3be8c"
-	color_degraded = "#d08770"
+	color_degraded = "#75838e"
 	color_bad = "#bf616a"
 }
 
 order += "volume master"
+order += "battery builtin"
 order += "tztime local"
 
 
@@ -19,6 +20,14 @@ volume master {
 	mixer_idx = 0
 }
 
+battery builtin {
+	format = " %percentage "
+	last_full_capacity = true
+	integer_battery_capacity = true
+	low_threshold = 10
+	threshold_type = percentage
+	path = /sys/class/power_supply/BAT0/uevent
+}
 
 
 tztime local {
