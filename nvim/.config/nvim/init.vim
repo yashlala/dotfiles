@@ -7,6 +7,7 @@ set number relativenumber
 set ignorecase
 set smartcase
 set nohlsearch
+set nojoinspaces
 
 set wrap
 set linebreak
