@@ -1,0 +1,14 @@
+OPTIONS=!legacy,toptenwin
+OPTIONS=autodescribe,boulder:0,hilite_pet,hilite_pile,force_invmenu,lit_corridor
+OPTIONS=menustyle:f,msg_window:f,standout,time,color,wraptext
+OPTIONS=disclose:+i -a -v -g -c -o,sortloot:loot
+
+MSGTYPE=hide "You swap places with *"
+MSGTYPE=hide "You displace *"
+# bottom regex is invalid for some reason
+#MENUCOLOR="* blessed *"=green
+#MENUCOLOR="* cursed *"=red
+
+OPTIONS=autodig,autoquiver,autopickup,menucolors
+OPTIONS=pickup_types:$
+#OPTIONS=menu_colors:
