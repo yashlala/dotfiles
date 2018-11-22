@@ -39,12 +39,10 @@ alias quit='exit'
 alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
 
 alias info='info --vi-keys'
-alias calcurse='calcurse --directory ~/.config/calcurse'
 alias fortune='fortune -a'
 
-alias grep='grep --color=auto'
+alias grep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 alias ls='ls --color=auto'
 alias ll='ls -lh'
