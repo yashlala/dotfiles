@@ -63,8 +63,12 @@ bindsym XF86AudioPlay			exec --no-startup-id mpc toggle
 bindsym XF86AudioNext			exec --no-startup-id mpc next
 bindsym XF86AudioPrev			exec --no-startup-id mpc prev
 
+bindsym XF86AudioMicMute		exec --no-startup-id amixer -q sset Capture toggle
+
 bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown		exec --no-startup-id xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 3
+bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 3
 
 bindsym Pause				exec --no-startup-id systemctl suspend
 
