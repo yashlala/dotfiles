@@ -3,8 +3,10 @@
 PATH=$PATH:$HOME/code/bin
 export EDITOR=nvim
 export KEYTIMEOUT=2 #speed up zsh vi mode
-export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc #set nethack config file
 export QT_AUTO_SCREEN_SCALE_FACTOR=1 #scale up firefox ui
+
+export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc 
+export GNUPGHOME=$HOME/.local/share/gnupg 
 
 userresources=$HOME/.config/x/xresources
 usermodmap=$HOME/.config/x/xmodmap

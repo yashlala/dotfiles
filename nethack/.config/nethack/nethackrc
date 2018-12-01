@@ -1,14 +1,246 @@
-OPTIONS=!legacy,toptenwin
-OPTIONS=autodescribe,boulder:0,hilite_pet,hilite_pile,force_invmenu,lit_corridor
-OPTIONS=menustyle:f,msg_window:f,standout,time,color,wraptext
-OPTIONS=disclose:+i -a -v -g -c -o,sortloot:loot
+# Sourced from https://github.com/majutsushi/etc/blob/master/nethackrc
 
-MSGTYPE=hide "You swap places with *"
-MSGTYPE=hide "You displace *"
-# bottom regex is invalid for some reason
-#MENUCOLOR="* blessed *"=green
-#MENUCOLOR="* cursed *"=red
+#
+# Key rebinds
+#
+BIND=z:cast
+BIND=Z:zap
+BIND=I:kick
+BIND=v:nothing #change into something later
 
-OPTIONS=autodig,autoquiver,autopickup,menucolors
+#
+# Gameplay
+#
+OPTIONS=autopickup
 OPTIONS=pickup_types:$
-#OPTIONS=menu_colors:
+OPTIONS=pickup_thrown
+OPTIONS=autoquiver
+OPTIONS=autodig
+OPTIONS=pushweapon
+
+#
+# Interface
+#
+# bold,inverse,underline
+OPTIONS=menu_headings:bold
+OPTIONS=disclose:+i -a -v -g -c -o
+# traditional,combination,partial,full
+OPTIONS=menustyle:full
+OPTIONS=msghistory:60
+# single,combination,full,reversed
+OPTIONS=msg_window:reversed
+OPTIONS=sortloot:loot
+OPTIONS=showexp
+OPTIONS=time
+OPTIONS=autodescribe
+OPTIONS=boulder:0
+OPTIONS=hilite_pet
+OPTIONS=hilite_pile
+OPTIONS=force_invmenu
+OPTIONS=lit_corridor
+
+#
+# Character
+#
+OPTIONS=catname:Cat
+OPTIONS=dogname:Dog
+OPTIONS=horsename:Horse
+
+#
+# General
+#
+OPTIONS=!legacy
+OPTIONS=toptenwin
+
+#
+# Technical
+#
+OPTIONS=preload_tiles
+
+#
+# Colors
+#
+OPTIONS=color
+OPTIONS=menucolors
+#########
+# B/U/C #
+#########
+MENUCOLOR=" blessed"=cyan
+MENUCOLOR=" blessed .* \(weapon in hands?\)"=cyan&bold
+MENUCOLOR=" blessed .* \(wielded.*\)"=cyan&bold
+MENUCOLOR=" blessed .* \(being worn\)"=cyan&bold
+MENUCOLOR=" blessed .* \(in quiver\)"=cyan&bold
+MENUCOLOR=" !b"=cyan
+MENUCOLOR=" !b \(weapon in hands?\)"=cyan&bold
+MENUCOLOR=" !b \(wielded.*\)"=cyan&bold
+MENUCOLOR=" !b \(being worn\)"=cyan&bold
+MENUCOLOR=" !b \(in quiver\)"=cyan&bold
+
+MENUCOLOR=" cursed"=red
+MENUCOLOR=" cursed .* \(weapon in hand?\)"=orange
+MENUCOLOR=" cursed .* \(wielded.*\)"=orange
+MENUCOLOR=" cursed .* \(being worn\)"=orange
+MENUCOLOR=" cursed .* \(in quiver\)"=orange
+MENUCOLOR=" !c"=red
+MENUCOLOR=" !c \(weapon in hands?\)"=orange
+MENUCOLOR=" !c \(wielded.*\)"=orange
+MENUCOLOR=" !c \(being worn\)"=orange
+MENUCOLOR=" !c \(in quiver\)"=orange
+
+#################
+## WATER SPORTS #
+#################
+MENUCOLOR=" holy water"=cyan
+MENUCOLOR=" blessed clear potion"=cyan
+MENUCOLOR=" blessed potions? called water"=cyan
+MENUCOLOR=" potions? of water named blessed"=cyan
+MENUCOLOR=" potions? called water named blessed"=cyan
+MENUCOLOR=" unholy water"=orange
+MENUCOLOR=" cursed clear potion"=orange
+MENUCOLOR=" cursed potions? called water"=orange
+MENUCOLOR=" potions? called water named cursed"=orange
+
+##################
+## MISCELLANEOUS #
+##################
+MENUCOLOR=" \(lit\)"=lightgreen
+
+############
+## GOODIES #
+############
+#MENUCOLOR=" bag .* holding"=magenta
+#MENUCOLOR=" luckstone"=magenta
+#MENUCOLOR=" wand .* wishing"= magenta
+#MENUCOLOR=" magic marker"=magenta
+#MENUCOLOR=" magic lamp$"=magenta
+#MENUCOLOR=" magic lamp \(lit\)"=lightmagenta
+#MENUCOLOR=" unicorn horn[^[]*$"=magenta #this doesn't color the #enhance unicorn horn skill
+#MENUCOLOR=" tinning kit"=magenta
+#MENUCOLOR=" lamp .* magic$"=magenta
+#MENUCOLOR=" lamp .* magic \(lit\)"=lightmagenta
+#MENUCOLOR=" ring .* regeneration"=magenta
+#MENUCOLOR=" ring .* slow digestion"=magenta
+#MENUCOLOR=" amulet .* life saving"=magenta
+
+#############
+# ARTIFACTS #
+#############
+
+#invocation items
+MENUCOLOR=" \(Bell of Opening\|silver bell\|Candelabrum of Invocation\|candelabrum\|Book of the Dead\|papyrus spellbook\)"=white&bold
+
+#raison d'etre
+MENUCOLOR=" Amulet of Yendor named"=white&bold
+
+#############
+# BAD STUFF #
+#############
+MENUCOLOR=" loadstone"=red
+MENUCOLOR=" cursed .* luckstone"=orange
+
+################
+# SHINY THINGS #
+################
+MENUCOLOR=" gold piece"=yellow
+MENUCOLOR=" valuable"=brown
+MENUCOLOR=" gems? .* hard"=yellow
+
+##soft gems
+#MENUCOLOR=" \([0-9]+\|an?\|gems? .*\) \(uncursed \|cursed \|blessed \)?\(dilithium\|opal\|garnet\|jasper\|agate\|jet\|obsidian\|jade\|citrine\|chrysoberyl\|amber\|amethyst\|fluorite\|turquoise\)\(e?s\)?\( stones?\| gems?\| crystals?\)?\( named .*\)?$"=brown
+
+##hard gems
+#MENUCOLOR=" \([0-9]+\|an?\|gems?.*\) \(uncursed \|cursed \|blessed \)?\(diamond\|rub\(y\|ies\)\|jacinth\|sapphire\|black opal\|emerald\|topaz\|aquamarine\)\(e?s\)?\( stones?\| gems?\)?\( named .*\)?$"=yellow
+
+####################
+## FORGOTTEN SPELL #  
+####################
+#MENUCOLOR="[a-zA-Z] - [a-zA-Z ]+ [0-9]\*   [a-z]+ +[0-9]+%"=magenta
+
+#############
+## #ENHANCE #
+#############
+#MENUCOLOR="^ +[a-z -]+ +\[\(Unskilled\|Basic\|Skilled\|Expert\|Master\|Grand Master\)\]$"=none           # normal
+#MENUCOLOR="^ *[a-z] - +[a-z -]+ +\[\(Unskilled\|Basic\|Skilled\|Expert\|Master\|Grand Master\)\]$"=white # ready to enhance
+#MENUCOLOR="^ +\* +[a-z -]+ +\[\(Unskilled\|Basic\|Skilled\|Expert\|Master\|Grand Master\)\]$"=white      # enhanceable if more skill slots
+#MENUCOLOR="^ +# +[a-z -]+ +\[\(Unskilled\|Basic\|Skilled\|Expert\|Master\|Grand Master\)\]$"=none        # enhanceable if more potential
+
+#################
+## FORCE COLORS #
+#################
+
+#MENUCOLOR="\{L\}"=black
+#MENUCOLOR="\{r\}"=red
+#MENUCOLOR="\{R\}"=orange
+#MENUCOLOR="\{g\}"=green
+#MENUCOLOR="\{G\}"=lightgreen
+#MENUCOLOR="\{y\}"=brown
+#MENUCOLOR="\{Y\}"=yellow
+#MENUCOLOR="\{b\}"=blue
+#MENUCOLOR="\{B\}"=lightblue
+#MENUCOLOR="\{m\}"=magenta
+#MENUCOLOR="\{M\}"=lightmagenta
+#MENUCOLOR="\{c\}"=cyan
+#MENUCOLOR="\{C\}"=lightcyan
+#MENUCOLOR="\{w\}"=gray
+#MENUCOLOR="\{W\}"=white
+
+#MENUCOLOR="\{N\}"=none
+#MENUCOLOR="\{X\}"=bold
+#MENUCOLOR="\{x\}"=dim
+#MENUCOLOR="\{U\}"=underline
+#MENUCOLOR="\{I\}"=inverse
+#MENUCOLOR="\{K\}"=blink
+#MENUCOLOR="\{R\}\{U\}"=red&underline
+#MENUCOLOR="\{RU\}"=red&underline
+
+#########################
+## LOOT/APPLY CONTAINER #
+#########################
+#MENUCOLOR=" is empty. Do what?"=none
+#MENUCOLOR="Put something into .*"=none
+#MENUCOLOR="Take something out of .*"=none
+
+#MENUCOLOR="cancellation"=orange
+#MENUCOLOR="bag"=magenta&underline
+
+#MENUCOLOR="wand$"=magenta&underline
+#MENUCOLOR="wand named"=magenta&underline
+#MENUCOLOR="wand called"=lightmagenta&underline
+
+###############################
+## WATCH OUT, BAG OF HOLDING! #
+###############################
+#MENUCOLOR=" bag .* tricks"=orange
+#MENUCOLOR=" wand .* cancel"=orange
+
+# delayed instadeaths, credits to stth
+MSGTYPE=stop "^The couatl swings itself around you!$"
+MSGTYPE=stop "^The electric eel swings itself around you!$"
+MSGTYPE=stop "^The giant eel swings itself around you!$"
+MSGTYPE=stop "^The kraken swings itself around you!$"
+MSGTYPE=stop "^The python grabs you!$"
+MSGTYPE=stop "^You don't feel very well.$"
+MSGTYPE=stop "^You are turning a little green.$"
+MSGTYPE=stop "^Your limbs are getting oozy.$"
+MSGTYPE=stop "^Your skin begins to peel away.$"
+MSGTYPE=stop "^You are turning into a green slime.$"
+MSGTYPE=stop "^You are slowing down.$"
+MSGTYPE=stop "^Your limbs are stiffening.$"
+MSGTYPE=stop "^It constricts your throat!$"
+MSGTYPE=stop "^You find it hard to breathe.$"
+MSGTYPE=stop "^You're gasping for air.$"
+MSGTYPE=stop "^Your blood is having trouble reaching your brain.$"
+MSGTYPE=stop "^You can no longer breathe.$"
+MSGTYPE=stop "^You're turning blue.$"
+MSGTYPE=stop "^Your consciousness is fading.$"
+MSGTYPE=stop "^You feel deathly sick.$"
+MSGTYPE=stop "^You feel much worse.$"
+
+# vibrating square
+MSGTYPE=stop "^You feel a strange vibration under your "
+MSGTYPE=stop "^You feel a strange vibration beneath you\.$"
+
+MSGTYPE=hide "^You displaced"
+MSGTYPE=hide "^You swap places with"
+
+## vim: filetype=conf
