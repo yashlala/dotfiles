@@ -5,8 +5,7 @@
 #
 BIND=z:cast
 BIND=Z:zap
-BIND=I:kick
-BIND=v:nothing #change into something later
+BIND=v:kick
 
 #
 # Gameplay
