@@ -52,11 +52,13 @@ set noshowmode
 """""""""""""""""""
 nnoremap <cr> o<esc>^D
 nnoremap Y y$
+vnoremap Y y$
 
 nnoremap <space> :
 vnoremap <space> :
 
 nnoremap gs y:%s//g<left><left>
+vnoremap gs y:%s//g<left><left>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " gc = vim-commentary
