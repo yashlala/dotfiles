@@ -56,6 +56,8 @@ vnoremap Y y$
 
 nnoremap <space> :
 vnoremap <space> :
+nnoremap : ,
+vnoremap : ,
 
 nnoremap gs y:%s//g<left><left>
 vnoremap gs y:%s//g<left><left>
