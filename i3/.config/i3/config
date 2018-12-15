@@ -125,11 +125,10 @@ assign [class="Hexchat"] $workspace9
 # TODO: Replace following lines with drop-in files in /etc/X11/xorg.conf.d/
 exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
 exec --no-startup-id xset b off r rate 200 25
-exec --no-startup-id xinput --set-prop 13 'libinput Accel Speed' 0.5
-#exec --no-startup-id xinput --set-prop 13 'libinput Tapping Enabled' 1
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
 
 exec --no-startup-id feh --no-fehbg --bg-scale '/home/lala/.config/i3/background.jpg'
-exec --no-startup-id redshift &> /dev/null 
+exec --no-startup-id redshift
 exec --no-startup-id xbanish
 
 ##################################
