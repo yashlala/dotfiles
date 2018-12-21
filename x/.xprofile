@@ -1,14 +1,9 @@
 #!/bin/sh
 
-export PATH=$PATH:$HOME/code/bin/
-export EDITOR=nvim
-export VISUAL=nvim
-export KEYTIMEOUT=2 #speed up zsh vi mode
-export QT_SCALE_FACTOR=2 #scale up ui for hdpi screens
-
-export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc 
-export GNUPGHOME=$HOME/.local/share/gnupg/
-export WEECHAT_HOME=$HOME/.config/weechat/
+# scale up ui for hdpi screens
+export QT_SCALE_FACTOR=2 
+export GDK_SCALE=1.5
+export GDK_DPI_SCALE=-1 
 
 userresources=$HOME/.config/x/xresources
 usermodmap=$HOME/.config/x/xmodmap

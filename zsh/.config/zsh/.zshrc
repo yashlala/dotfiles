@@ -12,7 +12,7 @@ HISTSIZE=5000
 SAVEHIST=5000
 setopt appendhistory histignoredups histignorespace 
 
-setopt nobeep autocd extendedglob
+setopt nobeep extendedglob
 # Enable vi keys
 bindkey -v
 
@@ -37,6 +37,7 @@ alias help=run-help
 #########################################
 alias quit='exit'
 alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
+alias hibernate='systemctl hibernate' 
 
 alias info='info --vi-keys'
 alias fortune='fortune -a'
@@ -46,9 +47,9 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias ls='ls --color=auto'
-alias ll='ls -lh'
-alias lal='ls -AlFh'
 alias la='ls -A'
+alias ll='ls -lh'
+alias lal='ls -AlhF'
 
 ms() { cd "$@" && ls; }
 ma() { cd "$@" && ls -A; }
