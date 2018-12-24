@@ -5,7 +5,10 @@
 #
 BIND=z:cast
 BIND=Z:zap
-BIND=v:kick
+BIND=c:kick
+BIND=O:close
+BIND=v:travel
+BIND=V:loot
 
 #
 # Gameplay
