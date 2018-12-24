@@ -1,5 +1,7 @@
 # set core environment variables
 export PATH=$PATH:$HOME/code/bin
+export EDITOR=nvim
+export VISUAL=nvim
 
 # speed up zsh vi mode
 export KEYTIMEOUT=2 
