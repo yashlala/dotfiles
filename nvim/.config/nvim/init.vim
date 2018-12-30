@@ -27,11 +27,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
+
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+
+Plug 'easymotion/vim-easymotion' 
+
 " registered but not loaded
-Plug 'easymotion/vim-easymotion' , { 'on': [] }
 Plug 'Shougo/deoplete.nvim' , { 'on': [] } 
 
 call plug#end()
@@ -47,35 +54,30 @@ let g:lightline = {
       \ }
 set noshowmode
 
+let g:EasyMotion_smartcase = 1
+
 """""""""""""""""""
 " Key Rebindings  
 """""""""""""""""""
+noremap Y y$
+noremap \ :
+
 nnoremap <cr> o<esc>^D
-nnoremap Y y$
-vnoremap Y y$
 
-nnoremap <space> :
-vnoremap <space> :
-nnoremap : ,
-vnoremap : ,
+map <space> <Plug>(easymotion-prefix)
+map f <Plug>(easymotion-fl)
+map F <Plug>(easymotion-Fl)
+map t <Plug>(easymotion-tl)
+map T <Plug>(easymotion-Tl)
 
-nnoremap gs y:%s//g<left><left>
-vnoremap gs y:%s//g<left><left>
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-" gc = vim-commentary
-
-let mapleader = ','
-let g:mapleader= ','
+noremap gs y:%s//g<left><left>
+noremap ga <Plug>(EasyAlign)
 
 """""""""""""""""""
 " Leader Commands
 """""""""""""""""""
-xmap     <leader>a <Plug>(EasyAlign)
-nmap     <leader>a <Plug>(EasyAlign)
-
-" gc = vim-commentary
-nmap     <leader>c gc
+let mapleader = ','
+let g:mapleader= ','
 
 nnoremap <leader>g :Goyo<cr>
 
@@ -83,10 +85,5 @@ noremap  <leader>Y "+y
 noremap  <leader>P "+p
 noremap  <leader>p "0p
 
-noremap  <leader>w :w<cr>
-noremap  <leader>qq :q!<cr>
-
-"""""""""""""""""""
-" Commands
-"""""""""""""""""""
-
+nnoremap  <leader>w :w<cr>
+nnoremap  <leader>qq :q!<cr>
