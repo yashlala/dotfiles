@@ -3,12 +3,18 @@
 #
 # Key rebinds
 #
+BIND=o:loot
+BIND=O:close
+BIND=p:puton
+BIND=P:pay
+BIND=w:wear
+BIND=W:wield
 BIND=z:cast
 BIND=Z:zap
-BIND=c:kick
-BIND=O:close
 BIND=v:travel
-BIND=V:loot
+BIND=V:untrap
+BIND=A:adjust
+BIND=c:kick
 
 #
 # Gameplay
@@ -16,6 +22,7 @@ BIND=V:loot
 OPTIONS=autopickup
 OPTIONS=pickup_types:$
 OPTIONS=pickup_thrown
+OPTIONS=pickup_burden:S
 OPTIONS=autoquiver
 OPTIONS=autodig
 OPTIONS=pushweapon
