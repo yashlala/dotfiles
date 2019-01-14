@@ -3,7 +3,6 @@
 """""""""""""""""""
 set lazyredraw
 
-set number relativenumber
 set ignorecase
 set smartcase
 set nohlsearch
@@ -59,8 +58,8 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 " Key Rebindings  
 """""""""""""""""""
-noremap Y y$
-noremap \ :
+map Y y$
+map \ :
 
 nnoremap <cr> o<esc>^D
 
@@ -70,8 +69,8 @@ map F <Plug>(easymotion-Fl)
 map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
-noremap gs y:%s//g<left><left>
-noremap ga <Plug>(EasyAlign)
+map S y:%s//g<left><left>
+map ga <Plug>(EasyAlign)
 
 """""""""""""""""""
 " Leader Commands
