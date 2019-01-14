@@ -1,5 +1,5 @@
 # set core environment variables
-export PATH=$PATH:$HOME/code/bin
+export PATH=$HOME/code/bin:$PATH
 export EDITOR=nvim
 export VISUAL=nvim
 
