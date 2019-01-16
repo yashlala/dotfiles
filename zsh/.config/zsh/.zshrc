@@ -36,13 +36,14 @@ alias help=run-help
 # Aliases
 #########################################
 alias quit='exit'
-alias lkj='echo `fc -ln -1` && sudo `fc -ln -1`'
+alias lkj='echo sudo `fc -ln -1` && sudo `fc -ln -1`'
 alias hibernate='systemctl hibernate' 
 
 alias info='info --vi-keys'
 alias fortune='fortune -a'
 
 alias grep='grep --color=auto'
+alias grepi='grep -i --color=auto' 
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 

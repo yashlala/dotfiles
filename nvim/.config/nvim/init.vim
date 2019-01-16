@@ -59,7 +59,7 @@ let g:EasyMotion_smartcase = 1
 " Key Rebindings  
 """""""""""""""""""
 map Y y$
-map \ :
+map ; :
 
 nnoremap <cr> o<esc>^D
 
