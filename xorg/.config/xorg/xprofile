@@ -5,6 +5,11 @@ export QT_SCALE_FACTOR=2
 export GDK_SCALE=2
 export GDK_DPI_SCALE=-1 
 
+export XCOMPOSEFILE=$HOME/.config/xorg/xcompose
+export XCOMPOSECACHE=$HOME/.local/share/xorg/compose-cache
+export GTK_IM_MODULE=xim
+export XMODIFIERS="@im=none"
+
 userresources=$HOME/.config/xorg/xresources
 usermodmap=$HOME/.config/xorg/xmodmap
 sysresources=/etc/X11/xinit/.Xresources
