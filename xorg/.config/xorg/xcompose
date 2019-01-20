@@ -21,7 +21,7 @@ include "%L"
 <Multi_key> <l> <a> : "λ" U03BB # GREEK SMALL LETTER LAMBDA
 
 # Symbols 
-<Multi_key> <Right> <Left>  : "↔" U2194 # LEFT RIGHT ARROW
+<Multi_key> <Left>  <Right> : "↔" U2194 # LEFT RIGHT ARROW
 <Multi_key> <Left>  <Left>  : "←" U2190 # LEFTWARDS  ARROW
 <Multi_key> <Right> <Right> : "→" U2192 # RIGHTWARDS ARROW
 <Multi_key> <Up>    <Up>    : "↑" U2191 # UPWARDS    ARROW
