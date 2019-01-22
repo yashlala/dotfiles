@@ -26,11 +26,8 @@ zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
 autoload -Uz compinit
 compinit
 
-# Enable help
-autoload -Uz run-help
-autoload -Uz run-help-git
-unalias run-help
-alias help=run-help
+# Enable Calculator
+autoload -Uz zcalc
 
 #########################################
 # Aliases

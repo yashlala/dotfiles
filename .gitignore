@@ -16,5 +16,6 @@ x/.Xauthority
 x/.dmrc
 
 zsh/.config/zsh/.zcompdump
+zsh/.config/zsh/.zcalc_history
 
 *.swp
