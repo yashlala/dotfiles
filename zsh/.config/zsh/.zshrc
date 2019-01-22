@@ -38,6 +38,7 @@ alias help=run-help
 alias quit='exit'
 alias lkj='echo sudo `fc -ln -1` && sudo `fc -ln -1`'
 alias hibernate='systemctl hibernate' 
+alias connect='sudo netctl-auto switch-to' 
 
 alias info='info --vi-keys'
 alias fortune='fortune -a'
