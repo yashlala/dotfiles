@@ -10,6 +10,10 @@ set nojoinspaces
 
 set clipboard=unnamedplus
 
+set foldmethod=syntax
+set foldnestmax=1
+set nofoldenable
+set foldlevel=1
 
 set wrap
 set linebreak
