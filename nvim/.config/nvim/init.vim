@@ -86,5 +86,4 @@ nnoremap <leader>g :Goyo<cr>
 noremap  <leader>p "0p
 noremap  <leader>P "0P
 
-nnoremap  <leader>w :w<cr>
-nnoremap  <leader>qq :q!<cr>
+nnoremap  <leader>q :q!<cr>
