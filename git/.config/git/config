@@ -1,0 +1,14 @@
+[user]
+	name = yashlala
+	email = lala@graphite
+	signingkey = 9EAFF34C04A8BFD4
+[interactive]
+	singleKey = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[diff]
+	tool = vimdiff
+[mergetool]
+	keepBackup = false
+	prompt = false
