@@ -8,6 +8,9 @@ set smartcase
 set nohlsearch
 set nojoinspaces
 
+set clipboard=unnamedplus
+
+
 set wrap
 set linebreak
 set breakindent
@@ -80,9 +83,8 @@ let g:mapleader= ','
 
 nnoremap <leader>g :Goyo<cr>
 
-noremap  <leader>Y "+y
-noremap  <leader>P "+p
 noremap  <leader>p "0p
+noremap  <leader>P "0P
 
 nnoremap  <leader>w :w<cr>
 nnoremap  <leader>qq :q!<cr>
