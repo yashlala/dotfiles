@@ -65,10 +65,19 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 " Key Rebindings  
 """""""""""""""""""
-map Y y$
-map ; :
-
+noremap Y y$
+noremap ; :
+noremap U <c-r>
 nnoremap <cr> o<esc>^D
+
+" learn to use tabs and buffers so you can use all this free real estate
+" the block below is crap
+nnoremap <bs> g;
+nnoremap <tab> g,
+" nnoremap <up> :tabr<cr>
+" nnoremap <down> :tabl<cr>
+" nnoremap <left> :tabp<cr>
+" nnoremap <right> :tabn<cr>
 
 map <space> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
@@ -76,8 +85,8 @@ map F <Plug>(easymotion-Fl)
 map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
-map S y:%s//g<left><left>
-map ga <Plug>(EasyAlign)
+noremap gs y:%s//g<left><left>
+noremap ga <Plug>(EasyAlign)
 
 """""""""""""""""""
 " Leader Commands
