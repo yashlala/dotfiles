@@ -1,21 +1,7 @@
-calcurse/.config/calcurse/notes
-calcurse/.config/calcurse/apts
-calcurse/.config/calcurse/todo
-
-mpd/.config/mpd/playlists
-mpd/.config/mpd/database
-mpd/.config/mpd/pid
-mpd/.config/mpd/sticker.sql
-
-nvim/.config/nvim/.netrwhist
-
-ranger/.config/ranger/bookmarks
-ranger/.config/ranger/history
-
-x/.Xauthority
-x/.dmrc
-
-zsh/.config/zsh/.zcompdump
-zsh/.config/zsh/.zcalc_history
+# Aside from a few general rules, all ignored patterns are set via a .gitignore
+# in the local application directories themselves. 
+# 
+# For example, the 'nvim' package ignores its own 'netwhistory' file via a
+# './nvim/.config/nvim/.gitignore'.  
 
 *.swp
