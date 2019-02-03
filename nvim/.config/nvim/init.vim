@@ -85,7 +85,7 @@ map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
 noremap gs y:%s//g<left><left>
-noremap ga <Plug>(EasyAlign)
+map ga <Plug>(EasyAlign)
 
 """""""""""""""""""
 " Leader Commands
