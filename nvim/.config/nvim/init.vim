@@ -70,14 +70,13 @@ noremap ; :
 noremap U <c-r>
 nnoremap <cr> o<esc>^D
 
-" learn to use tabs and buffers so you can use all this free real estate
-" the block below is crap
-nnoremap <bs> g;
-nnoremap <tab> g,
-" nnoremap <up> :tabr<cr>
-" nnoremap <down> :tabl<cr>
-" nnoremap <left> :tabp<cr>
-" nnoremap <right> :tabn<cr>
+" learn to use tabs and buffers so you can use all these free keys
+nnoremap <bs> 
+nnoremap <tab> 
+nnoremap <up> 
+nnoremap <down> 
+nnoremap <left> g;
+nnoremap <right> g,
 
 map <space> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
