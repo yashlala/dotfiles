@@ -4,6 +4,11 @@ export CDPATH=.:$HOME
 export EDITOR=nvim
 export VISUAL=nvim
 
+# set shell environment variables
+HISTFILE=~/.local/share/zsh/histfile
+HISTSIZE=5000
+SAVEHIST=5000
+
 # speed up zsh vi mode
 export KEYTIMEOUT=2 
 

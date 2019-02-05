@@ -2,38 +2,29 @@
 # ~/.config/zsh/.zshrc
 #
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
 
-HISTFILE=~/.local/share/zsh/histfile
-HISTSIZE=5000
-SAVEHIST=5000
+# configure history
 setopt appendhistory histignoredups histignorespace 
 
+# configure interface
+PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
 setopt nobeep extendedglob
-# Enable vi keys
 bindkey -v
 
-# The following line was added by compinstall
+# enable and configure completion module
 zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
-
-#########################################
-# Modules
-#########################################
-# Enable completions
 autoload -Uz compinit
 compinit
 setopt COMPLETE_ALIASES
 
-# Enable Calculator
+# enable calculator module
 autoload -Uz zcalc
 
-#########################################
-# Aliases
-#########################################
-alias lkj='echo sudo `fc -ln -1` && sudo `fc -ln -1`'
+
+# aliases and functions
 
 alias quit='exit'
 alias hibernate='systemctl hibernate' 
