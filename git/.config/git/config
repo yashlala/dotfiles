@@ -14,9 +14,15 @@
 	tool = vimdiff
 [alias]
 	ad = add
+	adp = add -p
 	br = branch
 	ch = checkout
 	co = commit
-	di = diff
+	coam = commit --amend
+	di = diff --ignore-space-at-eol
+	div = difftool
 	lo = log --pretty=short
 	st = status
+	us = reset HEAD
+[apply]
+	whitespace = nowarn
