@@ -1,34 +1,40 @@
 general {
-	output_format = "i3bar"
-	interval = 5
-	colors = true
-	color_good = "#a3be8c"
+	output_format  = "i3bar"
+	interval       = 15
+	colors         = true
+	color_good     = "#a3be8c"
 	color_degraded = "#75838e"
-	color_bad = "#bf616a"
+	color_bad      = "#bf616a"
 }
 
 order += "volume master"
 order += "battery builtin"
+order += "wireless wlp4s0"
 order += "tztime local"
 
 
 volume master {
-	format = " %volume "
+	format       = " %volume "
         format_muted = " -- "
-        device = "default"
-        mixer = "Master"
-	mixer_idx = 0
+        device       = "default"
+        mixer        = "Master"
+	mixer_idx    = 0
 }
 
 battery builtin {
-	format = " %percentage "
-	last_full_capacity = true
+	format                   = " %percentage "
+	last_full_capacity       = true
 	integer_battery_capacity = true
-	low_threshold = 10
-	threshold_type = percentage
-	path = /sys/class/power_supply/BAT0/uevent
+	low_threshold            = 10
+	threshold_type           = percentage
+	path                     = /sys/class/power_supply/BAT0/uevent
 }
 
+wireless wlp4s0 {
+	color_good  = "#b48ead"
+	format_up   = " U "
+	format_down = " D "
+}
 
 tztime local {
 	format = " %a %Y-%m-%d %l:%M %p"
