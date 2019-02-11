@@ -1,0 +1,9 @@
+[Unit]
+Description=Symlinks ~/io to a temporary directory in /tmp.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh /home/lala/.local/scripts/make-io-a-tmpdir.sh
+
+[Install]
+WantedBy=default.target
