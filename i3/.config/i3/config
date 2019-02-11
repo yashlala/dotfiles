@@ -127,7 +127,7 @@ exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_
 exec --no-startup-id xset b off r rate 200 25
 exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
 
-exec --no-startup-id /home/lala/.local/share/backgrounds/set-background.sh
+exec --no-startup-id /home/lala/.local/scripts/set-desktop-background.sh
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
 
