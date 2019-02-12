@@ -26,3 +26,5 @@
 	us = reset HEAD
 [apply]
 	whitespace = nowarn
+[core]
+	whitespace = -trailing-space
