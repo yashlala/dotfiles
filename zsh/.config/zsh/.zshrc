@@ -28,11 +28,11 @@ autoload -Uz zcalc
 
 alias quit='exit'
 alias hibernate='systemctl hibernate' 
-alias connect='sudo netctl-auto switch-to' 
+alias connect-to='sudo netctl-auto switch-to' 
 alias battery='acpi -b'
 
 alias info='info --vi-keys'
-alias fortune='fortune -a'
+alias gdb='gdb -q'
 
 alias unstow='stow -D'
 
