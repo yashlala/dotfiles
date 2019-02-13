@@ -46,5 +46,9 @@ alias la='ls -A'
 alias ll='ls -lh'
 alias lal='ls -AlhF'
 
+lkj() { 
+	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
+	eval sudo "$(fc -ln -1)"
+}
 ms() { cd "$@" && ls; }
 ma() { cd "$@" && ls -A; }
