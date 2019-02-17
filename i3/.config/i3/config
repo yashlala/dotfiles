@@ -72,7 +72,7 @@ bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 2
 
 bindsym Pause				exec --no-startup-id systemctl suspend
 
-bindsym --release Print			exec --no-startup-id maim -q -s `xdg-user-dir PICTURES`/`date +%F+%T`.png 
+bindsym --release Print			exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png 
 
 
 ##################################
