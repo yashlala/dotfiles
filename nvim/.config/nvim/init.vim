@@ -68,7 +68,7 @@ let g:EasyMotion_smartcase = 1
 noremap Y y$
 noremap ; :
 noremap U <c-r>
-nnoremap <cr> o<esc>^D
+nnoremap <cr> o<esc>
 
 " learn to use tabs and buffers so you can use all these free keys
 nnoremap <bs> 
@@ -78,6 +78,7 @@ nnoremap <down> 
 nnoremap <left> g;
 nnoremap <right> g,
 
+" plugin bindings
 map <space> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
 map F <Plug>(easymotion-Fl)
