@@ -88,6 +88,24 @@ map T <Plug>(easymotion-Tl)
 noremap gs y:%s//g<left><left>
 map ga <Plug>(EasyAlign)
 
+" swap 'uncountably high' numbers with their symbols
+noremap 4 $
+noremap 5 %
+noremap 6 ^
+noremap 7 &
+noremap 8 *
+noremap 9 (
+noremap 0 )
+
+noremap $ 4
+noremap % 5
+noremap ^ 6
+noremap & 7
+noremap * 8
+noremap ( 9
+noremap ) 0
+noremap - 0
+
 """""""""""""""""""
 " Leader Commands
 """""""""""""""""""
