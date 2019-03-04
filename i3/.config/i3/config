@@ -39,40 +39,37 @@ client.placeholder	$bg	$bg	$shade	$light	    $bg
 ##################################
 # Application Keybindings
 ##################################
-bindsym $mod+Return			exec urxvt
-bindsym $mod+q				kill
-bindsym $mod+BackSpace			kill
-bindsym $mod+space			exec --no-startup-id rofi -show run
-bindsym $mod+i				exec env GDK_SCALE=1.5 firefox
-bindsym $mod+f				exec env EDITOR=nvim urxvt -e ranger
-bindsym $mod+g				exec --no-startup-id gaana
-bindsym $mod+Shift+g 			exec --no-startup-id gaana-bandh
+bindsym $mod+Return                   exec urxvt
+bindsym $mod+q                        kill
+bindsym $mod+BackSpace                kill
+bindsym $mod+space                    exec --no-startup-id rofi -show run
+bindsym $mod+i                        exec env GDK_SCALE=1.5 firefox
+bindsym $mod+f                        exec env RANGER_LOAD_DEFAULT_RC=FALSE EDITOR=nvim urxvt -e ranger
 
-bindsym XF86AudioRaiseVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
-bindsym $mod+Up				exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym $mod+Down			exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+m				exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-bindsym $mod+Left			exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-headphones
-bindsym $mod+Right			exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-speaker
-bindsym $mod+Shift+Left			exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-lineout
+bindsym $mod+Left                     exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-headphones
+bindsym $mod+Right                    exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-speaker
+bindsym $mod+Shift+Left               exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-lineout
 
-bindsym XF86AudioPlay			exec --no-startup-id mpc toggle
-bindsym XF86AudioNext			exec --no-startup-id mpc next
-bindsym XF86AudioPrev			exec --no-startup-id mpc prev
+bindsym XF86AudioPlay                 exec --no-startup-id mpc toggle
+bindsym XF86AudioNext                 exec --no-startup-id mpc next
+bindsym XF86AudioPrev                 exec --no-startup-id mpc prev
 
-bindsym XF86AudioMicMute		exec --no-startup-id amixer -q sset Capture toggle
+bindsym XF86AudioMicMute              exec --no-startup-id amixer -q sset Capture toggle
 
-bindsym XF86MonBrightnessUp		exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown		exec --no-startup-id xbacklight -dec 10
-bindsym Shift+XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 2
-bindsym Shift+XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 2
+bindsym XF86MonBrightnessUp           exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown         exec --no-startup-id xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 2
+bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 2
 
-bindsym Pause				exec --no-startup-id systemctl suspend
+bindsym Pause                         exec --no-startup-id systemctl suspend
 
-bindsym --release Print			exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png 
+bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 
 
 ##################################
@@ -111,25 +108,24 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# monitor specific workspaces
-#workspace $workspace10 output HDMI1
-
 #application specific windows
 for_window [class="GrafX2"] floating enable 
-assign [class="Hexchat"] $workspace9
+
 
 ##################################
 # Autostart
 ##################################
 
-# TODO: Replace following lines with drop-in files in /etc/X11/xorg.conf.d/
 exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
 exec --no-startup-id xset b off r rate 200 25
 exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
+exec --no-startup-id xinput --disable 'ELAN Touchscreen'
 
 exec --no-startup-id /home/lala/.local/scripts/set-desktop-background.sh
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
+exec --no-startup-id safeeyes
+
 
 ##################################
 # Shortcuts
@@ -154,23 +150,14 @@ bindsym $mod+v split h
 # split in vertical orientation
 bindsym $mod+n split v
 
-# enter fullscreen mode for the focused container (conflicts with some apps)
-#bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+t layout tabbed
-bindsym $mod+t layout toggle split
+bindsym $mod+b layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+d floating toggle
+bindsym $mod+d floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+d focus mode_toggle
-
-# focus the parent and child containers
-#bindsym $mod+a focus parent
-#bindsym $mod+d focus child
+bindsym $mod+g focus mode_toggle
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
