@@ -8,9 +8,9 @@ export VISUAL=nvim
 HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
 SAVEHIST=5000
+KEYTIMEOUT=2 # speed up zsh vi mode
 
-# speed up zsh vi mode
-KEYTIMEOUT=2 
+# set application environment variables
 
 # change application config and data locations
 export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc 

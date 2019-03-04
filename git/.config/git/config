@@ -36,3 +36,5 @@
 	whitespace = nowarn
 [core]
 	whitespace = -trailing-space
+[gui]
+	fontui = -family \"DejaVu Sans\" -size 18 -weight normal -slant roman -underline 0 -overstrike 0
