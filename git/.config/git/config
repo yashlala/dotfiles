@@ -3,7 +3,7 @@
 	email = lala@graphite
 	signingkey = 9EAFF34C04A8BFD4
 [interactive]
-	singleKey = true
+	singlekey = true
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
@@ -14,17 +14,24 @@
 	tool = vimdiff
 [alias]
 	ad = add
-	adp = add -p
+	adp = add --patch
 	br = branch
 	ch = checkout
+	chp = checkout --patch
 	co = commit
-	coam = commit --amend
+	coa = commit --amend
 	di = diff --ignore-space-at-eol
 	dis = diff --ignore-space-at-eol --staged
-	div = difftool
-	lo = log --pretty=short
+	dit = difftool
+	lo = log --abbrev-commit --pretty=oneline
+	loa = log --abbrev-commit --pretty=oneline --all
+	lol = log --abbrev-commit
+	lola = log --abbrev-commit --all
+	met = mergetool
 	st = status
+	ta = tag
 	us = reset HEAD
+	usp = reset --patch HEAD
 [apply]
 	whitespace = nowarn
 [core]
