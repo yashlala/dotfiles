@@ -67,6 +67,7 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 noremap Y y$
 noremap ; :
+noremap ` ~
 noremap U <c-r>
 nnoremap <cr> o<esc>
 

@@ -33,6 +33,7 @@ alias battery='acpi -b'
 
 alias info='info --vi-keys'
 alias gdb='gdb -q'
+alias cgdb='cgdb -q'
 
 alias unstow='stow -D'
 
@@ -42,13 +43,15 @@ alias fgrep='fgrep --color=auto'
 alias grepi='grep -i --color=auto' 
 
 alias ls='ls --color=auto'
-alias la='ls -A'
-alias ll='ls -lh'
-alias lal='ls -AlhF'
+alias la='ls --color=auto -A'
+alias ll='ls --color=auto -lh'
+alias lal='ls --color=auto -AlhF'
+
+alias cl='echo -ne '\''\033c'\'''
 
 lkj() { 
 	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
 	eval sudo "$(fc -ln -1)"
 }
-ms() { cd "$@" && ls; }
-ma() { cd "$@" && ls -A; }
+ms() { cd "$@" >/dev/stdout && ls; }
+ma() { cd "$@" >/dev/stdout && ls -A; }
