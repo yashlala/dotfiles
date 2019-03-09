@@ -9,6 +9,7 @@ set nohlsearch
 set nojoinspaces
 
 set clipboard=unnamedplus
+set keywordprg=search
 
 set foldmethod=syntax
 set foldnestmax=1
