@@ -33,7 +33,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " loaded plugins
 Plug 'junegunn/seoul256.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
