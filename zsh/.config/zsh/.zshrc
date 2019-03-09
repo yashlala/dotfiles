@@ -1,4 +1,4 @@
-# 
+#
 # ~/.config/zsh/.zshrc
 #
 
@@ -7,7 +7,7 @@
 
 
 # configure history
-setopt appendhistory histignoredups histignorespace 
+setopt appendhistory histignoredups histignorespace
 
 # configure interface
 PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
@@ -15,10 +15,9 @@ setopt nobeep extendedglob
 bindkey -v
 
 # enable and configure completion module
-zstyle :compinstall filename '/home/lala/.config/zsh/.zshrc'
 autoload -Uz compinit
 compinit
-setopt COMPLETE_ALIASES
+setopt nocomplete_aliases
 
 # enable calculator module
 autoload -Uz zcalc
@@ -27,8 +26,8 @@ autoload -Uz zcalc
 # aliases and functions
 
 alias quit='exit'
-alias hibernate='systemctl hibernate' 
-alias connect-to='sudo netctl-auto switch-to' 
+alias hibernate='systemctl hibernate'
+alias connect-to='sudo netctl-auto switch-to'
 alias battery='acpi -b'
 
 alias info='info --vi-keys'
@@ -40,7 +39,7 @@ alias unstow='stow -D'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias grepi='grep -i --color=auto' 
+alias grepi='grep -i --color=auto'
 
 alias ls='ls --color=auto'
 alias la='ls --color=auto -A'
