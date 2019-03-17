@@ -19,9 +19,10 @@ autoload -Uz compinit
 compinit
 setopt nocomplete_aliases
 
-# enable calculator module
-autoload -Uz zcalc
-
+# enable and configure help module
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
 
 # aliases and functions
 
