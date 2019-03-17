@@ -1,3 +1,6 @@
+# later, copy from: 
+# https://github.com/GitAlias/gitalias/blob/master/gitalias.txt
+
 [user]
 	name = yashlala
 	email = lala@graphite
@@ -14,27 +17,52 @@
 	tool = vimdiff
 [alias]
 	ad = add
+	ada = add --all
 	adp = add --patch
+	adi = add --interactive
 	br = branch
+	bre = branch --edit-description
 	ch = checkout
+	chb = checkout -b
 	chp = checkout --patch
 	co = commit
 	coa = commit --amend
+	cp = cherry-pick
+	coi = commit --interactive
 	di = diff --ignore-space-at-eol
+	diw = diff --ignore-space-at-eol --word-diff
 	dis = diff --ignore-space-at-eol --staged
+	diws = diff --ignore-space-at-eol --word-diff --staged
 	dit = difftool
+	fe = fetch
+	fep = fetch --prune
+	gr = grep
 	lo = log --abbrev-commit --pretty=oneline
 	loa = log --abbrev-commit --pretty=oneline --all
 	lol = log --abbrev-commit
 	lola = log --abbrev-commit --all
+	la = "!git config -l | grep alias | cut -c 7-" # list aliases
+	me = merge
 	met = mergetool
+	pu = pull
+	pum = pull # pull-merge; default pull behavior
+	pur = pull --rebase
+	pump = pull --prune
+	purp = pull --rebase --prune
+	re = remote
+	sh = show
 	st = status
 	ta = tag
+	tad = tag --delete
 	us = reset HEAD
 	usp = reset --patch HEAD
 [apply]
 	whitespace = nowarn
 [core]
 	whitespace = -trailing-space
+	editor = vim
 [gui]
 	fontui = -family \"DejaVu Sans\" -size 18 -weight normal -slant roman -underline 0 -overstrike 0
+[advice]
+	statusHints = false
+	detachedHead = false
