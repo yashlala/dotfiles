@@ -32,7 +32,7 @@ battery builtin {
 
 wireless wlp4s0 {
 	color_good  = "#b48ead"
-	format_up   = " U "
+	format_up   = " C "
 	format_down = " D "
 }
 
