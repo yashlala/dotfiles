@@ -8,7 +8,6 @@ export VISUAL=vim
 HISTFILE=~/.local/share/zsh/histfile
 HISTSIZE=5000
 SAVEHIST=5000
-KEYTIMEOUT=2 # speed up zsh vi mode
 
 # set application environment variables
 
