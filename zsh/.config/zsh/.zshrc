@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # configure prompt
-PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
+PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 
 # configure history
 setopt appendhistory histignoredups histignorespace
@@ -34,3 +34,7 @@ source $HOME/.config/zsh/zshaliases
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# source and configure highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.config/zsh/zshhighlighting

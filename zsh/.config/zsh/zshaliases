@@ -1,4 +1,8 @@
-# aliases and functions
+#
+# ~/.config/zsh/zshaliases
+#
+
+# aliases 
 
 alias quit='exit'
 alias hibernate='systemctl hibernate'
@@ -21,9 +25,11 @@ alias la='ls --color=auto -A'
 alias ll='ls --color=auto -lh'
 alias lal='ls --color=auto -AlhF'
 
-lkj() { 
+# functions
+
+lkj () { 
 	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
 	eval sudo "$(fc -ln -1)"
 }
-ms() { cd "$@" >/dev/stdout && ls; }
-ma() { cd "$@" >/dev/stdout && ls -A; }
+ms () { cd "$@" >/dev/stdout && ls; }
+ma () { cd "$@" >/dev/stdout && ls -A; }
