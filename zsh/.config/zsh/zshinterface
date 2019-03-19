@@ -5,29 +5,48 @@
 # configure prompt
 PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
 
-# configure key bindings 
+# ============ 
+# key bindings 
+# ============ 
 bindkey -v
 KEYTIMEOUT=1 
-bindkey -M vicmd '' autosuggest-execute
+
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins '^[[3~' delete-char
-bindkey -M viins '' accept-line
+bindkey -M viins '^M' accept-line
+bindkey -M main '^L' clear-screen
+bindkey -M viins '^L' clear-screen
+bindkey -M vicmd '^L' clear-screen
+
+bindkey -M vicmd '^M' autosuggest-execute
+
+# ============== 
+# custom widgets 
+# ============== 
 
 # change cursor style depending on mode
 zle-keymap-select () {
   case $KEYMAP in
-    vicmd)      echo -ne "\e[2 q";; # block cursor
-    viins|main) echo -ne "\e[6 q";; # line cursor
+    vicmd)      echo -ne '\033[2 q';; # block cursor
+    viins|main) echo -ne '\033[6 q';; # line cursor
   esac
 }
 zle-line-init () {
-  echo -ne "\e[6 q" # line cursor
+  echo -ne '\033[6 q' # line cursor
 }
 accept-line () {
-  echo -ne "\e[2 q" # block cursor
+  echo -ne '\033[2 q' # block cursor
   zle .accept-line
 }
 
+# clear scrollback buffer as well
+clear-screen () {
+  echo -ne '\033c'
+  zle .clear-screen
+}
+
+# load custom widgets
 zle -N zle-keymap-select
 zle -N zle-line-init
 zle -N accept-line
+zle -N clear-screen

@@ -21,8 +21,6 @@ alias la='ls --color=auto -A'
 alias ll='ls --color=auto -lh'
 alias lal='ls --color=auto -AlhF'
 
-alias cl='echo -ne '\''\033c'\'''
-
 lkj() { 
 	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
 	eval sudo "$(fc -ln -1)"
