@@ -5,6 +5,9 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# configure prompt
+PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
+
 # configure history
 setopt appendhistory histignoredups histignorespace
 
@@ -22,7 +25,7 @@ unalias run-help
 alias help=run-help
 
 # source key bindings 
-source $HOME/.config/zsh/zshinterface
+source $HOME/.config/zsh/zshkeybinds
 
 # source aliases
 source $HOME/.config/zsh/zshaliases

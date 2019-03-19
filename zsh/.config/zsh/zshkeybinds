@@ -2,9 +2,6 @@
 # ~/.config/zsh/zshinterface
 #
 
-# configure prompt
-PS1='%F{yellow}[%c %(?..%F{green})%#%F{yellow}]%f '
-
 # ============ 
 # key bindings 
 # ============ 
