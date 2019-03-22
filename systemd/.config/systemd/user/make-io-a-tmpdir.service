@@ -1,5 +1,5 @@
 [Unit]
-Description=Symlinks ~/io to a temporary directory in /tmp.
+Description=Symlink '~/io' to a temporary directory in '/tmp'.
 
 [Service]
 Type=oneshot
