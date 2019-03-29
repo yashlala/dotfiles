@@ -1,20 +1,31 @@
-# Sourced from https://github.com/majutsushi/etc/blob/master/nethackrc
-
 #
 # Key rebinds
 #
-BIND=o:loot
-BIND=O:close
+
+# case swaps
 BIND=p:puton
 BIND=P:pay
 BIND=w:wear
 BIND=W:wield
 BIND=z:cast
 BIND=Z:zap
+bind=r:remove
+bind=R:read
+BIND=t:takeoff
+BIND=T:throw
+
+# general rebinds
+BIND=o:loot
+BIND=O:close
+BIND=.:force
+BIND=`:known
+BIND=\:overview
+BIND=[:dip
+BIND=I:chat
+BIND=c:kick
+BIND=A:adjust
 BIND=v:travel
 BIND=V:untrap
-BIND=A:adjust
-BIND=c:kick
 
 #
 # Gameplay
@@ -59,6 +70,7 @@ OPTIONS=horsename:Horse
 # General
 #
 OPTIONS=!legacy
+OPTIONS=!cmdassist
 OPTIONS=toptenwin
 
 #
@@ -249,7 +261,10 @@ MSGTYPE=stop "^You feel much worse.$"
 MSGTYPE=stop "^You feel a strange vibration under your "
 MSGTYPE=stop "^You feel a strange vibration beneath you\.$"
 
+# pets
 MSGTYPE=hide "^You displaced"
 MSGTYPE=hide "^You swap places with"
+
+# Sourced from https://github.com/majutsushi/etc/blob/master/nethackrc
 
 ## vim: filetype=conf
