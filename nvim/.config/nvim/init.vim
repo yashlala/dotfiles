@@ -45,9 +45,6 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'easymotion/vim-easymotion' 
 
-" registered but not loaded
-Plug 'Shougo/deoplete.nvim' , { 'on': [] } 
-
 call plug#end()
 
 """""""""""""""""""
