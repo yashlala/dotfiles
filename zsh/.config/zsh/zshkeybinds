@@ -15,7 +15,7 @@ bindkey -M main '^L' clear-screen
 bindkey -M viins '^L' clear-screen
 bindkey -M vicmd '^L' clear-screen
 
-bindkey -M vicmd '^M' autosuggest-execute
+bindkey -M vicmd '^I' autosuggest-execute
 
 # ============== 
 # custom widgets 
