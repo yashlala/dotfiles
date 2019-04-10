@@ -5,10 +5,10 @@ export EDITOR=vim
 export VISUAL=vim
 
 # set shell environment variables
-fpath=($HOME/.local/share/zsh/completions $fpath)
-HISTFILE=$HOME/.local/share/zsh/histfile
-HISTSIZE=5000
-SAVEHIST=5000
+export fpath=($HOME/.local/share/zsh/completions $fpath)
+export HISTFILE=$HOME/.local/share/zsh/histfile
+export HISTSIZE=5000
+export SAVEHIST=5000
 
 # set application environment variables
 
