@@ -12,7 +12,7 @@ PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 setopt appendhistory histignoredups histignorespace
 
 # configure interface
-setopt nobeep extendedglob
+setopt nobeep extendedglob interactivecomments
 
 # enable and configure completion module
 autoload -Uz compinit
