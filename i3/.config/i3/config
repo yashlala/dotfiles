@@ -51,6 +51,8 @@ bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+i                        exec env GDK_SCALE=1.5 firefox
 bindsym $mod+f                        exec env RANGER_LOAD_DEFAULT_RC=FALSE EDITOR=nvim urxvt -e ranger
 
+bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
+
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
