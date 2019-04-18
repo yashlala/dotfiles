@@ -1,6 +1,7 @@
 ##################################
 # General
 ##################################
+
 set $mod Mod4
 focus_follows_mouse no
 
@@ -8,6 +9,7 @@ focus_follows_mouse no
 ##################################
 # Look & Feel
 ##################################
+
 font pango:DejaVu Sans Mono 19
 smart_gaps on
 gaps inner 5
@@ -21,6 +23,7 @@ hide_edge_borders both
 ##################################
 # Colors
 ##################################
+
 set $fg 	#a3deac
 set $bg 	#2b303b
 set $shade 	#85939e
@@ -39,10 +42,12 @@ client.placeholder	$bg	$bg	$shade	$light	    $bg
 ##################################
 # Application Keybindings
 ##################################
+
 bindsym $mod+Return                   exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+space                    exec --no-startup-id rofi -show run
+bindsym $mod+s                        exec --no-startup-id rofi -show ssh 
 bindsym $mod+i                        exec env GDK_SCALE=1.5 firefox
 bindsym $mod+f                        exec env RANGER_LOAD_DEFAULT_RC=FALSE EDITOR=nvim urxvt -e ranger
 
@@ -51,15 +56,6 @@ bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @
 bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-bindsym $mod+Left                     exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-headphones
-bindsym $mod+Right                    exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-speaker
-bindsym $mod+Shift+Left               exec --no-startup-id pactl set-sink-port @DEFAULT_SINK@ analog-output-lineout
-
-bindsym XF86AudioPlay                 exec --no-startup-id mpc toggle
-bindsym XF86AudioNext                 exec --no-startup-id mpc next
-bindsym XF86AudioPrev                 exec --no-startup-id mpc prev
-
 bindsym XF86AudioMicMute              exec --no-startup-id amixer -q sset Capture toggle
 
 bindsym XF86MonBrightnessUp           exec --no-startup-id xbacklight -inc 10
@@ -67,14 +63,11 @@ bindsym XF86MonBrightnessDown         exec --no-startup-id xbacklight -dec 10
 bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 2
 bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 2
 
-bindsym Pause                         exec --no-startup-id systemctl suspend
-
-bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
-
 
 ##################################
 # Workspaces
 ##################################
+
 set $workspace1 "1"
 set $workspace2 "2"
 set $workspace3 "3"
@@ -129,6 +122,7 @@ exec --no-startup-id xbanish
 ##################################
 # Shortcuts
 ##################################
+
 floating_modifier $mod
 
 # change focus
@@ -183,7 +177,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
 
 
 ##################################
