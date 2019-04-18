@@ -4,7 +4,7 @@ tmpdir=$HOME/io
 # figure out later how to remove code redundancy with these bullshit
 # escaping rules
 
-if [ ! -e $tmpdir ] ; then
+if [ ! -e "$tmpdir" ] ; then
 	ln -sfn $(mktemp -d /tmp/io.XXX) $tmpdir
 	exit
 fi 
