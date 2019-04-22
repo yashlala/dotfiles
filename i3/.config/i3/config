@@ -3,7 +3,7 @@
 ##################################
 
 set $mod Mod4
-focus_follows_mouse no
+focus_follows_mouse yes
 
 
 ##################################
@@ -16,7 +16,7 @@ gaps inner 5
 gaps outer 0
 
 # required for gaps to play nice
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 
 
@@ -117,9 +117,11 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Sp
 exec --no-startup-id xinput disable 'ELAN Touchscreen'
 
 exec --no-startup-id /home/lala/.local/scripts/set-desktop-background.sh
+# exec --no-startup-id wal 
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
-exec --no-startup-id compton -b
+exec --no-startup-id compton --daemon
+# exec --no-startup-id conky 
 
 
 ##################################
@@ -164,20 +166,20 @@ bindsym $mod+Shift+e exec i3-msg exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Shift+h resize shrink width 5 px or 5 ppt
-        bindsym Shift+j resize grow height 5 px or 5 ppt
-        bindsym Shift+k resize shrink height 5 px or 5 ppt
-        bindsym Shift+l resize grow width 5 px or 5 ppt
+    bindsym Shift+h resize shrink width 5 px or 5 ppt
+    bindsym Shift+j resize grow height 5 px or 5 ppt
+    bindsym Shift+k resize shrink height 5 px or 5 ppt
+    bindsym Shift+l resize grow width 5 px or 5 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -186,19 +188,19 @@ bindsym $mod+r mode "resize"
 # Bar
 ##################################
 bar {
-	position top
- 	status_command i3status
-	font pango:DejaVu Sans Mono 18
-	strip_workspace_numbers yes
+    position top
+    status_command i3status
+    font pango:DejaVu Sans Mono 18
+    strip_workspace_numbers yes
 
-	colors {
-		background $bg
-		separator $shade
-		statusline $light
+    colors {
+        background $bg 
+        separator $shade 
+        statusline $light
 
-		# workspace indicators	border	backgr.	text
-		focused_workspace	$bg	$bg	$fg
-		inactive_workspace	$bg	$bg	$shade
-		urgent_workspace	$bg	$bg	$urgent
-	}
+        # workspace indicators	border	backgr.	text
+        focused_workspace	$bg	$bg	$fg
+        inactive_workspace	$bg	$bg	$shade
+        urgent_workspace	$bg	$bg	$urgent
+    }
 }

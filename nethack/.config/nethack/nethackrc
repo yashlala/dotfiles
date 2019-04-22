@@ -5,14 +5,11 @@
 # case swaps
 BIND=p:puton
 BIND=P:pay
-BIND=w:wear
-BIND=W:wield
+BIND=w:wield
 BIND=z:cast
 BIND=Z:zap
 bind=r:remove
 bind=R:read
-BIND=t:takeoff
-BIND=T:throw
 
 # general rebinds
 BIND=o:loot

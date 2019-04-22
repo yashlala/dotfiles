@@ -59,9 +59,7 @@ call plug#end()
 colorscheme seoul256
 let g:seoul256_srgb = 1
 
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ }
+let g:lightline = {'colorscheme': 'seoul256'}
 set noshowmode
 
 let g:EasyMotion_smartcase = 1
