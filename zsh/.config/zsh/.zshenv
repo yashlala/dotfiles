@@ -13,6 +13,7 @@ export SAVEHIST=5000
 # set application environment variables
 
 # change application config and data locations
+export PYTHONSTARTUP=$HOME/.config/python/pythonrc
 export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc 
 export GNUPGHOME=$HOME/.local/share/gnupg
 export WEECHAT_HOME=$HOME/.config/weechat
