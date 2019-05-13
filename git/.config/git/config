@@ -9,7 +9,6 @@
 	singlekey = true
 [merge]
 	tool = vimdiff
-	conflictstyle = diff3
 [mergetool]
 	keepBackup = false
 	prompt = false
@@ -21,6 +20,7 @@
 	adp = add --patch
 	adi = add --interactive
 	br = branch
+	brm = branch --move
 	bre = branch --edit-description
 	ch = checkout
 	chb = checkout -b
@@ -45,9 +45,10 @@
 	me = merge
 	met = mergetool
 	pu = pull
-	pum = pull # pull-merge; default pull behavior
+	pum = pull --merge # pull-merge; default pull behavior
 	pur = pull --rebase
-	pump = pull --prune
+	pup = pull --prune
+	pump = pull --merge --prune
 	purp = pull --rebase --prune
 	re = remote
 	sh = show

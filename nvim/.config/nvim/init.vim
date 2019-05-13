@@ -74,12 +74,12 @@ noremap U <c-r>
 nnoremap <cr> o<esc>
 
 " learn to use tabs and buffers so you can use all these free keys
-nnoremap <bs> 
-nnoremap <tab> 
-nnoremap <up> 
-nnoremap <down> 
-nnoremap <left> g;
-nnoremap <right> g,
+noremap <bs> 
+noremap <tab> 
+noremap <up> 
+noremap <down> 
+noremap <left> g;
+noremap <right> g,
 
 " plugin bindings
 map <space> <Plug>(easymotion-prefix)
