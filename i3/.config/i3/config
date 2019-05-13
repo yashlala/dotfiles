@@ -114,7 +114,7 @@ for_window [class="GrafX2"] floating enable
 exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
 exec --no-startup-id xset b off r rate 200 25
 exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
-exec --no-startup-id xinput disable 'ELAN Touchscreen'
+exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
 
 exec --no-startup-id /home/lala/.local/scripts/set-desktop-background.sh
 # exec --no-startup-id wal 
