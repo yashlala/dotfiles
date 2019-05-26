@@ -115,6 +115,8 @@ noremap - 0
 let mapleader = ','
 let g:mapleader= ','
 
+nnoremap <leader>d :r !date --iso-8601<cr>
+
 nnoremap <leader>g :Goyo<cr>
 
 noremap  <leader>p "0p
