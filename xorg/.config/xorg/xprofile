@@ -1,12 +1,15 @@
 #!/bin/sh
 
 # scale up ui for hdpi screens
-export QT_SCALE_FACTOR=2 
+export QT_SCALE_FACTOR=2
 export GDK_SCALE=2
-export GDK_DPI_SCALE=-1 
+export GDK_DPI_SCALE=-1
+
+# allow foreign access to the running xorg server
+xhost +local:
 
 export XCOMPOSEFILE=$HOME/.config/xorg/xcompose
-export XCOMPOSECACHE=$HOME/.local/share/xorg/compose-cache
+export XCOMPOSECACHE=$HOME/.cache/xorg/compose-cache
 export GTK_IM_MODULE=xim
 export XMODIFIERS="@im=none"
 
