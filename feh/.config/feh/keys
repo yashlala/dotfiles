@@ -1,0 +1,38 @@
+# ~/.config/feh/keys
+
+# NOTE: Key configuration file entries are of the form: 
+#
+#     action [key1 [key2 [key3]]]
+#
+# Actions must be 'unbound' before they can be rebound; 
+# this is done by specifying the action without any keys. 
+# 
+# For more information, consult `man feh`. 
+
+# UNBIND KEYS: 
+next_img
+prev_img
+save_filelist
+scroll_down
+scroll_left
+scroll_right
+scroll_up
+toggle_actions
+toggle_aliasing
+toggle_keep_vp
+toggle_pause
+zoom_in
+zoom_out
+
+# REBIND KEYS: 
+prev_img h Left
+next_img l Right
+zoom_in k Up
+zoom_out j Down
+scroll_up K
+scroll_down J
+scroll_left H
+scroll_right L
+toggle_aliasing a
+
+# vim: ft=conf
