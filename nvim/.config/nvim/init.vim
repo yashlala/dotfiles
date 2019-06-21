@@ -22,6 +22,7 @@ set breakindent
 let &showbreak = '↳ '
 
 set modeline
+set autoindent
 filetype plugin indent on
 syntax on
 
@@ -69,9 +70,12 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 noremap Y y$
 noremap ; :
+noremap : K
+noremap K kJ
 noremap ` ~
 noremap U <c-r>
 nnoremap <cr> o<esc>
+noremap Q @@
 
 " learn to use tabs and buffers so you can use all these free keys
 noremap <bs> 
@@ -89,7 +93,7 @@ map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
 noremap gs y:%s//g<left><left>
-map ga <Plug>(EasyAlign)
+noremap ga <Plug>(EasyAlign)
 
 " swap 'uncountably high' numbers with their symbols
 noremap 4 $
@@ -116,6 +120,7 @@ let mapleader = ','
 let g:mapleader= ','
 
 nnoremap <leader>d :r !date --iso-8601<cr>
+nnoremap <leader>m Go<!--<cr>vim: ft=markdown<cr>--><esc>''
 
 nnoremap <leader>g :Goyo<cr>
 
