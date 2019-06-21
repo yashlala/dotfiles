@@ -14,10 +14,6 @@ setopt appendhistory histignoredups histignorespace
 # configure interface
 setopt nobeep extendedglob interactivecomments ignore_eof
 
-# enable and configure completion module
-autoload -Uz compinit
-compinit
-setopt nocomplete_aliases
 
 # enable and configure help module
 autoload -Uz run-help
@@ -38,3 +34,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source and configure highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.config/zsh/zshhighlighting
+
+# *lastly*, enable and configure completion module
+autoload -Uz compinit
+compinit
+setopt nocomplete_aliases
