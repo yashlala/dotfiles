@@ -1,6 +1,5 @@
 # set core environment variables
 export PATH=$HOME/code/bin:$PATH
-export CDPATH=.:$HOME
 export EDITOR=vim
 export VISUAL=vim
 
