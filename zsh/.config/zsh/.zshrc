@@ -14,6 +14,8 @@ setopt appendhistory histignoredups histignorespace
 # configure interface
 setopt nobeep extendedglob interactivecomments ignore_eof
 
+eval $(keychain --noask --quiet --quick --absolute \
+  --dir "${HOME}/.cache/keychain" --eval id_rsa)
 
 # enable and configure help module
 autoload -Uz run-help
