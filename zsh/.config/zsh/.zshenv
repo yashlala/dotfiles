@@ -16,4 +16,4 @@ export PYTHONSTARTUP=$HOME/.config/python/pythonrc
 export NETHACKOPTIONS=$HOME/.config/nethack/nethackrc 
 export GNUPGHOME=$HOME/.local/share/gnupg
 export WEECHAT_HOME=$HOME/.config/weechat
-export PASSWORD_STORE_DIR=$HOME/.local/share/pass
+export PASSWORD_STORE_DIR=$HOME/.local/passwords
