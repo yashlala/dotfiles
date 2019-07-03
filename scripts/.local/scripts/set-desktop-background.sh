@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill --randomize /home/lala/.local/backgrounds
+exec feh --no-fehbg --bg-fill --randomize /home/lala/.local/backgrounds

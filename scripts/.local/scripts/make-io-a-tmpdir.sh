@@ -5,12 +5,12 @@ tmpdir=$HOME/io
 # escaping rules
 
 if [ ! -e "$tmpdir" ] ; then
-	ln -sfn $(mktemp -d /tmp/io.XXX) $tmpdir
+	ln -sfn "$(mktemp -d /tmp/io.XXX)" "$tmpdir"
 	exit
 fi 
 
-if [ -L "$tmpdir" -a ! -e "$tmpdir" ] ; then
-	ln -sfn $(mktemp -d /tmp/io.XXX) $tmpdir
+if [ -L "$tmpdir" ] && [ ! -e "$tmpdir" ] ; then
+	ln -sfn "$(mktemp -d /tmp/io.XXX)" "$tmpdir"
 	exit
 fi
 
