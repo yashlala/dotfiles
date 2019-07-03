@@ -5,6 +5,7 @@
 # aliases 
 
 alias quit='exit'
+alias q='exit'
 alias hibernate='systemctl hibernate'
 alias connect-to='sudo netctl-auto switch-to'
 alias battery='acpi -b'
