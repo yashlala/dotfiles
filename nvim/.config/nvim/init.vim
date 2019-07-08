@@ -76,6 +76,7 @@ noremap ` ~
 noremap U <c-r>
 nnoremap <cr> o<esc>
 noremap Q @@
+noremap q; q:
 
 " learn to use tabs and buffers so you can use all these free keys
 noremap <bs> 
