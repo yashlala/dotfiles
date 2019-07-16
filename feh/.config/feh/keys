@@ -25,10 +25,10 @@ zoom_in
 zoom_out
 
 # REBIND KEYS: 
-prev_img h Left
-next_img l Right
-zoom_in k Up
-zoom_out j Down
+prev_img k Left
+next_img j Right
+zoom_in l Up
+zoom_out h Down
 scroll_up K
 scroll_down J
 scroll_left H
