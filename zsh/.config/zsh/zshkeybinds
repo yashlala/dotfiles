@@ -5,6 +5,7 @@
 # ============ 
 # key bindings 
 # ============ 
+
 bindkey -v
 KEYTIMEOUT=1 
 
@@ -21,9 +22,12 @@ bindkey -M vicmd '^L' clear-screen
 # misc keybindings
 bindkey -M vicmd '^I' autosuggest-execute
 
-# ============== 
-# custom widgets 
-# ============== 
+# =================================
+# custom widgets and behaviors
+# =================================
+
+# don't eat trailing spaces after autocompleting
+export ZLE_REMOVE_SUFFIX_CHARS=''
 
 # change cursor style depending on mode
 zle-keymap-select () {
@@ -46,7 +50,7 @@ clear-screen () {
   zle .clear-screen
 }
 
-# load custom widgets
+# load previously-defined custom widgets
 zle -N zle-keymap-select
 zle -N zle-line-init
 zle -N accept-line
