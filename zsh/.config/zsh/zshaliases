@@ -33,8 +33,11 @@ lkj () {
 	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
 	eval sudo "$(fc -ln -1)"
 }
+
 ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
+
+md () { mkdir "$1" && cd "$1"; }
 
 # source and configure 'z'
 

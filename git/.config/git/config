@@ -50,7 +50,8 @@
 	pup = pull --prune
 	pump = pull --merge --prune
 	purp = pull --rebase --prune
-	re = remote
+	re = rebase
+	rei = rebase --interactive
 	sh = show
 	st = status
 	ta = tag
