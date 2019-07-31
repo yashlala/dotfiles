@@ -2,10 +2,10 @@
 rofi.modi:             run,ssh
 
 ! Layout
-rofi.font:             DejaVu Sans Mono 30
+rofi.font:             DejaVu Sans Mono 35
 rofi.hide-scrollbar:   true
 rofi.width:            800
-rofi.lines:            4
+rofi.lines:            3
 !rofi.separator-style: none
 
 ! Enable the extended coloring options
@@ -20,3 +20,5 @@ rofi.theme: /usr/share/rofi/themes/solarized.rasi
 !rofi.color-normal: argb:D93c3836, #d5c4a1, #3c3836, #3c3836, #fbf1c7
 !rofi.color-active: argb:D93c3836, #83a598, #3c3836, #3c3836, #83a598
 !rofi.color-urgent: #3c3836,       #fb4934, #3c3836, #3c3836, #fb4934
+
+! vim: ft=xdefaults

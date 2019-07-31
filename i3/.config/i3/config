@@ -10,9 +10,9 @@ focus_follows_mouse yes
 # Look & Feel
 ##################################
 
-font pango:DejaVu Sans Mono 19
+font pango:DejaVu Sans Mono 10
 smart_gaps on
-gaps inner 5
+gaps inner 3
 gaps outer 0
 
 # required for gaps to play nice
@@ -190,7 +190,7 @@ bindsym $mod+r mode "resize"
 bar {
     position top
     status_command i3status
-    font pango:DejaVu Sans Mono 18
+    font pango:DejaVu Sans Mono 9
     strip_workspace_numbers yes
 
     colors {
