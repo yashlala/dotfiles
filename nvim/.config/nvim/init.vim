@@ -73,10 +73,12 @@ noremap ; :
 noremap : K
 noremap K kJ
 noremap ` ~
-noremap U <c-r>
+
+nnoremap U <c-r>
 nnoremap <cr> o<esc>
-noremap Q @@
-noremap q; q:
+nnoremap Q @@
+nnoremap q; q:
+nnoremap \ "
 
 " learn to use tabs and buffers so you can use all these free keys
 noremap <bs> 
