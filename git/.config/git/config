@@ -68,3 +68,5 @@
 [advice]
 	statusHints = false
 	detachedHead = false
+[init]
+	templatedir = ~/.config/git/templates
