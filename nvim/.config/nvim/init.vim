@@ -31,7 +31,7 @@ syntax on
 autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf
   \ autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" return to last edit position when opening files 
+" return to last edit position when opening files
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
@@ -55,7 +55,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 
-Plug 'easymotion/vim-easymotion' 
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
@@ -71,7 +71,7 @@ set noshowmode
 let g:EasyMotion_smartcase = 1
 
 """""""""""""""""""
-" Key Rebindings  
+" Key Rebindings
 """""""""""""""""""
 noremap Y y$
 noremap ; :

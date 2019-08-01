@@ -2,25 +2,25 @@
 
 include "%L"
 
-# The following entries define new compose key mappings. 
+# The following entries define new compose key mappings.
 #
-# Entries are given in the form of: 
+# Entries are given in the form of:
 #
-#	 <key1> ... <keyN> : "glyph" 
+#	 <key1> ... <keyN> : "glyph"
 #
-# The UTF code point of the glyph can be optionally appended to the entry. 
+# The UTF code point of the glyph can be optionally appended to the entry.
 # Any entry that overwrites another entry will, by convention, have an asterisk
-# before their description. 
+# before their description.
 #
-# Make sure to check new entries for conflicts! 
+# Make sure to check new entries for conflicts!
 
 # Greek Letters
-<Multi_key> <a> <l> : "α" U03B1 # GREEK SMALL LETTER ALPHA 
+<Multi_key> <a> <l> : "α" U03B1 # GREEK SMALL LETTER ALPHA
 <Multi_key> <b> <e> : "β" U03B2 #*GREEK SMALL LETTER BETA
-<Multi_key> <p> <i> : "π" U03C0 # GREEK SMALL LETTER PI 
+<Multi_key> <p> <i> : "π" U03C0 # GREEK SMALL LETTER PI
 <Multi_key> <l> <a> : "λ" U03BB # GREEK SMALL LETTER LAMBDA
 
-# Symbols 
+# Symbols
 <Multi_key> <Left>  <Left>  : "←" U2190 # LEFTWARDS  ARROW
 <Multi_key> <Right> <Right> : "→" U2192 # RIGHTWARDS ARROW
 <Multi_key> <Up>    <Up>    : "↑" U2191 # UPWARDS    ARROW
@@ -32,4 +32,4 @@ include "%L"
 <Multi_key> <Down>  <Up>    : "↕" U2195 # UP DOWN ARROW
 
 # Multi-key sequences
-<Multi_key> <s>     <h>     : "¯\\_(ツ)_/¯" 
+<Multi_key> <s>     <h>     : "¯\\_(ツ)_/¯"

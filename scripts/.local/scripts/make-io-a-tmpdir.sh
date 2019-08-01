@@ -7,7 +7,7 @@ tmpdir=$HOME/io
 if [ ! -e "$tmpdir" ] ; then
 	ln -sfn "$(mktemp -d /tmp/io.XXX)" "$tmpdir"
 	exit
-fi 
+fi
 
 if [ -L "$tmpdir" ] && [ ! -e "$tmpdir" ] ; then
 	ln -sfn "$(mktemp -d /tmp/io.XXX)" "$tmpdir"

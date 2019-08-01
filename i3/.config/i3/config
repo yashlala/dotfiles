@@ -47,7 +47,7 @@ bindsym $mod+Return                   exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+space                    exec --no-startup-id rofi -show run
-bindsym $mod+s                        exec --no-startup-id rofi -show ssh 
+bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+i                        exec env GDK_SCALE=1.5 firefox
 bindsym $mod+f                        exec env RANGER_LOAD_DEFAULT_RC=FALSE EDITOR=nvim urxvt -e ranger
 
@@ -104,7 +104,7 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 #application specific windows
-for_window [class="GrafX2"] floating enable 
+for_window [class="GrafX2"] floating enable
 
 
 ##################################
@@ -117,11 +117,11 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Sp
 exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
 
 exec --no-startup-id /home/lala/.local/scripts/set-desktop-background.sh
-# exec --no-startup-id wal 
+# exec --no-startup-id wal
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
 exec --no-startup-id compton --daemon
-# exec --no-startup-id conky 
+# exec --no-startup-id conky
 
 
 ##################################
@@ -194,8 +194,8 @@ bar {
     strip_workspace_numbers yes
 
     colors {
-        background $bg 
-        separator $shade 
+        background $bg
+        separator $shade
         statusline $light
 
         # workspace indicators	border	backgr.	text

@@ -170,7 +170,7 @@ MENUCOLOR=" gems? .* hard"=yellow
 #MENUCOLOR=" \([0-9]+\|an?\|gems?.*\) \(uncursed \|cursed \|blessed \)?\(diamond\|rub\(y\|ies\)\|jacinth\|sapphire\|black opal\|emerald\|topaz\|aquamarine\)\(e?s\)?\( stones?\| gems?\)?\( named .*\)?$"=yellow
 
 ####################
-## FORGOTTEN SPELL #  
+## FORGOTTEN SPELL #
 ####################
 #MENUCOLOR="[a-zA-Z] - [a-zA-Z ]+ [0-9]\*   [a-z]+ +[0-9]+%"=magenta
 

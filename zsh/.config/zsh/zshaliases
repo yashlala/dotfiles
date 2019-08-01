@@ -2,7 +2,7 @@
 # ~/.config/zsh/zshaliases
 #
 
-# aliases 
+# aliases
 
 alias quit='exit'
 alias q='exit'
@@ -29,7 +29,7 @@ alias lal='ls --color=auto -AlhF'
 
 # functions
 
-lkj () { 
+lkj () {
 	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
 	eval sudo "$(fc -ln -1)"
 }

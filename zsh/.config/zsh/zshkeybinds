@@ -2,12 +2,12 @@
 # ~/.config/zsh/zshinterface
 #
 
-# ============ 
-# key bindings 
-# ============ 
+# ============
+# key bindings
+# ============
 
 bindkey -v
-KEYTIMEOUT=1 
+KEYTIMEOUT=1
 
 # vim keybindings
 bindkey -M viins '^?' backward-delete-char
