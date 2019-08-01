@@ -22,25 +22,25 @@ autoload -Uz run-help
 unalias run-help
 alias help=run-help
 
-# source key bindings 
+# source zle key bindings
 source $HOME/.config/zsh/zshkeybinds
 
 # source aliases
 source $HOME/.config/zsh/zshaliases
 
-# source and configure autosuggestions
 # source 'z' movement utility
 test -r '/usr/share/z/z.sh' && source /usr/share/z/z.sh
 
+# source and configure zsh autosuggestions
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# source and configure highlighting
+# source and configure zsh syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.config/zsh/zshhighlighting
 
-# *lastly*, enable and configure completion module
+# *lastly*, enable and configure zsh completion module
 autoload -Uz compinit
 compinit
 setopt nocomplete_aliases
