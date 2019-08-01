@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 # configure prompt
-PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
+export PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 
 # configure history
 setopt appendhistory histignoredups histignorespace
@@ -29,11 +29,11 @@ source $HOME/.config/zsh/zshkeybinds
 source $HOME/.config/zsh/zshaliases
 
 # source and configure autosuggestions
-ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # source 'z' movement utility
 test -r '/usr/share/z/z.sh' && source /usr/share/z/z.sh
 
+export ZSH_AUTOSUGGEST_USE_ASYNC=true
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # source and configure highlighting
