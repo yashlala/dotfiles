@@ -27,6 +27,10 @@ filetype plugin indent on
 set formatoptions+=crn formatoptions-=o
 syntax on
 
+" remove trailing whitespace for certain filetypes
+autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf
+  \ autocmd BufWritePre <buffer> %s/\s\+$//e
+
 " return to last edit position when opening files 
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
