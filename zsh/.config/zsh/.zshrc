@@ -31,6 +31,9 @@ source $HOME/.config/zsh/zshaliases
 # source and configure autosuggestions
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+# source 'z' movement utility
+test -r '/usr/share/z/z.sh' && source /usr/share/z/z.sh
+
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # source and configure highlighting

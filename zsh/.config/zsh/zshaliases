@@ -38,10 +38,3 @@ ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir "$1" && cd "$1"; }
-
-# source and configure 'z'
-
-export _Z_DATA=$HOME/.cache/z-cache
-export _Z_CMD='f'
-export _Z_EXCLUDE_DIRS=('/tmp')
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
