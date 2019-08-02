@@ -45,7 +45,7 @@
 	me = merge
 	met = mergetool
 	pu = pull
-	pum = pull --merge # pull-merge; default pull behavior
+	pum = pull --merge # pull-merge; *usually* default pull behavior
 	pur = pull --rebase
 	pup = pull --prune
 	pump = pull --merge --prune
@@ -70,3 +70,5 @@
 	detachedHead = false
 [init]
 	templatedir = ~/.config/git/templates
+[branch]
+	autosetuprebase = always
