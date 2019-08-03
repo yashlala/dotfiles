@@ -14,6 +14,7 @@ setopt appendhistory histignoredups histignorespace
 # configure interface
 setopt nobeep extendedglob interactivecomments ignore_eof
 
+# set up ssh-agent and gpg-agent inheritance
 eval $(keychain --noask --quiet --quick --absolute \
   --dir "${HOME}/.cache/keychain" --eval id_rsa)
 

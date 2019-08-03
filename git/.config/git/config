@@ -4,7 +4,7 @@
 [user]
 	name = yashlala
 	email = lala@graphite
-	signingkey = 9EAFF34C04A8BFD4
+	signingkey = lala@graphite
 [interactive]
 	singlekey = true
 [merge]
@@ -72,3 +72,5 @@
 	templatedir = ~/.config/git/templates
 [branch]
 	autosetuprebase = always
+[commit]
+	gpgsign = true
