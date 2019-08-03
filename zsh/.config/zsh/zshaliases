@@ -13,7 +13,8 @@ alias battery='acpi -b'
 alias info='info --vi-keys'
 alias gdb='gdb -q'
 alias cgdb='cgdb -q'
-alias python='python -q'
+alias py='python -q'
+alias bpy='bpython -q'
 
 alias unstow='stow -D'
 
