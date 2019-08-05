@@ -3,8 +3,8 @@
 
 [user]
 	name = yashlala
-	email = lala@graphite
-	signingkey = lala@graphite
+	email = lala@lala
+	signingkey = lala@lala
 [interactive]
 	singlekey = true
 [merge]
