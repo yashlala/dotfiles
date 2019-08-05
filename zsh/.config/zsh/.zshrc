@@ -9,10 +9,13 @@
 export PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 
 # configure history
-setopt appendhistory histignoredups histignorespace
+setopt appendhistory histignoredups histignorespace share_history
 
 # configure interface
 setopt nobeep extendedglob interactivecomments ignore_eof
+
+# configure jobs
+setopt notify longlistjobs
 
 # set up ssh-agent and gpg-agent inheritance
 eval $(keychain --noask --quiet --quick --absolute \
