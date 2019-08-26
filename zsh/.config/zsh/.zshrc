@@ -11,8 +11,11 @@ export PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 # configure history
 setopt appendhistory histignoredups histignorespace share_history
 
-# configure interface
-setopt nobeep extendedglob interactivecomments ignore_eof
+# configure user interface
+setopt nobeep ignore_eof completeinword
+
+# configure shell syntax
+setopt extendedglob
 
 # configure jobs
 setopt notify longlistjobs nohup
