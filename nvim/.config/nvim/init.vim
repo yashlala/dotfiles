@@ -26,7 +26,10 @@ set autoindent
 filetype plugin indent on
 syntax on
 
-" remove trailing whitespace for certain filetypes
+"""""""""""""""""""
+" Autocommands
+"""""""""""""""""""
+" trim trailing whitespace for certain filetypes
 autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf
   \ autocmd BufWritePre <buffer> %s/\s\+$//e
 
@@ -84,11 +87,10 @@ nnoremap Q @@
 nnoremap q; q:
 nnoremap \ "
 
-" learn to use tabs and buffers so you can use all these free keys
-noremap <bs> 
-noremap <tab> 
-noremap <up> 
-noremap <down> 
+noremap <bs> <c-u>
+noremap <tab> <c-d>
+noremap <up> <c-u>
+noremap <down> <c-d>
 noremap <left> g;
 noremap <right> g,
 
