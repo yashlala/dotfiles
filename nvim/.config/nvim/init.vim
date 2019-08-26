@@ -24,7 +24,6 @@ let &showbreak = '↳ '
 set modeline
 set autoindent
 filetype plugin indent on
-set formatoptions+=crn formatoptions-=o
 syntax on
 
 " remove trailing whitespace for certain filetypes
