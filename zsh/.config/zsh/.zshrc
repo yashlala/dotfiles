@@ -15,7 +15,7 @@ setopt appendhistory histignoredups histignorespace share_history
 setopt nobeep extendedglob interactivecomments ignore_eof
 
 # configure jobs
-setopt notify longlistjobs
+setopt notify longlistjobs nohup
 
 # set up ssh-agent and gpg-agent inheritance
 eval $(keychain --noask --quiet --quick --absolute \
