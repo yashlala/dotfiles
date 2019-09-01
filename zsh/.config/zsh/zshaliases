@@ -25,14 +25,14 @@ alias igrep='grep -i --color=auto'
 
 alias ls='ls --color=auto'
 alias la='ls --color=auto -A'
-alias ll='ls --color=auto -lhF'
-alias lal='ls --color=auto -AlhF'
+alias ll='ls --color=auto -lh'
+alias lal='ls --color=auto -Alh'
 
 # functions
 
 lkj () {
-	echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
-	eval sudo "$(fc -ln -1)"
+  echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
+  eval sudo "$(fc -ln -1)"
 }
 
 ms () { cd "$@" >/dev/stdout && ls; }
