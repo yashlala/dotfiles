@@ -6,13 +6,19 @@
 [[ $- != *i* ]] && return
 
 # configure prompt
-export PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
+PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 
 # configure history
+HISTFILE=$HOME/.local/share/zsh/histfile
+HISTSIZE=5000
+SAVEHIST=5000
 setopt appendhistory histignoredups histignorespace share_history
 
 # configure user interface
 setopt nobeep ignore_eof completeinword
+
+# configure completions
+fpath=($HOME/.local/share/zsh/completions $fpath)
 
 # configure shell syntax
 setopt extendedglob
@@ -39,8 +45,8 @@ source $HOME/.config/zsh/zshaliases
 test -r '/usr/share/z/z.sh' && source /usr/share/z/z.sh
 
 # source and configure zsh autosuggestions
-export ZSH_AUTOSUGGEST_USE_ASYNC=true
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # source and configure zsh syntax highlighting

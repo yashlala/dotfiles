@@ -3,12 +3,6 @@ export PATH=$HOME/code/bin:$PATH
 export EDITOR=vim
 export VISUAL=vim
 
-# set shell environment variables
-export fpath=($HOME/.local/share/zsh/completions $fpath)
-export HISTFILE=$HOME/.local/share/zsh/histfile
-export HISTSIZE=5000
-export SAVEHIST=5000
-
 # set application environment variables
 export _Z_CMD='f'
 export _Z_EXCLUDE_DIRS=('/tmp')
