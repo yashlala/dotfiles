@@ -72,5 +72,3 @@
 	templatedir = ~/.config/git/templates
 [branch]
 	autosetuprebase = always
-[commit]
-	gpgsign = true
