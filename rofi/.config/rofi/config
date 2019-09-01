@@ -4,8 +4,8 @@ rofi.modi:             run,ssh
 ! Layout
 rofi.font:             DejaVu Sans Mono 35
 rofi.hide-scrollbar:   true
-rofi.width:            800
-rofi.lines:            3
+rofi.width:            900
+rofi.lines:            6
 !rofi.separator-style: none
 
 ! Enable the extended coloring options
