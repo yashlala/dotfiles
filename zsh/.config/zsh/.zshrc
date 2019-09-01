@@ -15,10 +15,12 @@ SAVEHIST=5000
 setopt appendhistory histignoredups histignorespace share_history
 
 # configure user interface
-setopt nobeep ignore_eof completeinword
+setopt nobeep ignore_eof
 
 # configure completions
 fpath=($HOME/.local/share/zsh/completions $fpath)
+setopt nocomplete_aliases completeinword
+zstyle ':completion:*' menu select
 
 # configure shell syntax
 setopt extendedglob
@@ -56,4 +58,3 @@ source $HOME/.config/zsh/zshhighlighting
 # *lastly*, enable and configure zsh completion module
 autoload -Uz compinit
 compinit
-setopt nocomplete_aliases
