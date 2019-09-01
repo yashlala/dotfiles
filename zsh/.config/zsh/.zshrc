@@ -12,6 +12,7 @@ PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 HISTFILE=$HOME/.local/share/zsh/histfile
 HISTSIZE=5000
 SAVEHIST=5000
+HISTORY_IGNORE='(q(uit)?|l[sal]( +[^|]*)?|lkj|git st)'
 setopt appendhistory histignoredups histignorespace share_history
 
 # configure user interface
