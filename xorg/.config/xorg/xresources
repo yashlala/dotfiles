@@ -3,7 +3,8 @@ Xft.dpi: 210
 URxvt.font:         xft:DejaVu Sans Mono:size=11
 URxvt.scrollBar:    false
 URxvt.fading:       10
-
+URxvt.iso14755:     false
+URxvt.iso14755_52:  false
 Urxvt.perl-ext:
 Urxvt.perl-ext-common:
 
