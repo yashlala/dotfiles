@@ -77,16 +77,16 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 noremap Y y$
 noremap ; :
-noremap : K
-noremap K kJ
-noremap ` ~
 noremap ' `
+noremap \ "
 
 nnoremap U <c-r>
 nnoremap <cr> o<esc>
+nnoremap K kJ
+nnoremap ` ~
 nnoremap Q @@
-nnoremap q; q:
-nnoremap \ "
+nnoremap \| K
+nnoremap : q:
 
 noremap <bs> <c-u>
 noremap <tab> <c-d>
@@ -109,8 +109,8 @@ noremap ga <Plug>(EasyAlign)
 noremap 4 $
 noremap 5 %
 noremap 6 ^
-noremap 7 &
-noremap 8 *
+noremap 7 :&&<cr>
+noremap 8 @
 noremap 9 (
 noremap 0 )
 
