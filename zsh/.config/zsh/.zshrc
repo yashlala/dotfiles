@@ -12,7 +12,7 @@ PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 HISTFILE=$HOME/.local/share/zsh/histfile
 HISTSIZE=6000
 SAVEHIST=5000
-HISTORY_IGNORE='(q(uit)?|l[sal]( +[^|]*)?|lkj|git st)'
+HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|git (st|lo|di|dis|show)( #| ##[^|]#)|man ##*)'
 setopt histignoredups histignorespace
 setopt appendhistory share_history histexpiredupsfirst
 
