@@ -29,10 +29,6 @@ setopt extendedglob
 # configure jobs
 setopt notify longlistjobs nohup
 
-# set up ssh-agent and gpg-agent inheritance
-eval $(keychain --noask --quiet --quick --absolute \
-  --dir "${HOME}/.cache/keychain" --eval id_rsa)
-
 # enable and configure help module
 autoload -Uz run-help
 unalias run-help
