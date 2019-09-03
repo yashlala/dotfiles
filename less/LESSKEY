@@ -1,0 +1,10 @@
+#env
+LESS=-i -R -M
+LESSHISTFILE=/dev/null
+LESS_TERMCAP_mb=[5m
+LESS_TERMCAP_md=[1m
+LESS_TERMCAP_me=[m(B
+LESS_TERMCAP_so=[7m
+LESS_TERMCAP_se=[27m
+LESS_TERMCAP_us=[4m
+LESS_TERMCAP_ue=[24m

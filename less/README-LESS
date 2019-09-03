@@ -1,0 +1,12 @@
+Note: The 'less' utility, for whatever reason, needs its
+configuration files to be compiled with the 'lesskey'
+program. The 'lesskey' program will compile '~/.lesskey'
+into '~/.less'.
+
+As such, you will have to manually  convert the LESS file in
+this directory into a compiled '~/.less' file. This file is
+the only permitted user-specific less configuration file. 
+
+As less doesn't support alternate configuration file
+locations, you can then copy the generated '~/.less' file
+into '/etc/sysless'
