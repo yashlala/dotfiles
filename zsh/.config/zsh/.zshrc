@@ -27,7 +27,7 @@ zstyle ':completion:*' menu select
 setopt extendedglob
 
 # configure jobs
-setopt notify longlistjobs nohup
+setopt notify longlistjobs
 
 # enable and configure help module
 autoload -Uz run-help
