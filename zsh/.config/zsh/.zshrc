@@ -10,10 +10,11 @@ PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
 
 # configure history
 HISTFILE=$HOME/.local/share/zsh/histfile
-HISTSIZE=5000
+HISTSIZE=6000
 SAVEHIST=5000
 HISTORY_IGNORE='(q(uit)?|l[sal]( +[^|]*)?|lkj|git st)'
-setopt appendhistory histignoredups histignorespace share_history
+setopt histignoredups histignorespace
+setopt appendhistory share_history histexpiredupsfirst
 
 # configure user interface
 setopt nobeep ignore_eof
