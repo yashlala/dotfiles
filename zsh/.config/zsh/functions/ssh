@@ -1,0 +1,10 @@
+# runs 'ssh', automatically starting 'ssh-agent' as needed.
+
+eval $(keychain --noask --quiet --quick --absolute \
+  --dir "${HOME}/.cache/keychain" --eval id_rsa)
+
+# run the *external* ssh command instead of aliases to avoid
+# recursion problems
+command ssh "$@"
+
+# vim: ft=zsh

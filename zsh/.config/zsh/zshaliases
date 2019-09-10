@@ -40,10 +40,3 @@ ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir "$1" && cd "$1"; }
-
-# run 'ssh', automatically starting ssh-agent as needed.
-ssh () {
-  eval $(keychain --noask --quiet --quick --absolute \
-    --dir "${HOME}/.cache/keychain" --eval id_rsa)
-  command ssh "$@"
-}

@@ -36,12 +36,16 @@ alias help=run-help
 source "$zshconfigdir/zshzle"
 
 # source zsh aliases, functions, and function definitions
-fpath=("$zshconfigdir/functions" $fpath)
 source "$zshconfigdir/zshaliases"
+fpath=("$zshconfigdir/functions" $fpath)
+for file in "$zshconfigdir/functions/"*; do
+  autoload -Uz $(basename "$file")
+done
 
-# source all entries in drop-in directory. remember to use
-# the predefined convenience variables; they'll make it
-# easier to keep all shell files consolidated.
+
+# source all entries in the drop-in directory.
+# all entries should use the convenience variables provided
+# above ($zshconfigdir, etc) when required.
 for file in "$zshconfigdir/zshrc.d/"*; do
   source "$file"
 done
