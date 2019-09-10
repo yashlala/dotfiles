@@ -23,7 +23,7 @@ bindkey -M vicmd '^I' autosuggest-execute
 # =================================
 
 # don't eat trailing spaces after autocompleting
-export ZLE_REMOVE_SUFFIX_CHARS=''
+ZLE_REMOVE_SUFFIX_CHARS=''
 
 # change cursor style depending on mode
 zle-keymap-select () {
