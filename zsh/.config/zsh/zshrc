@@ -1,0 +1,56 @@
+# if not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# convenience variables, for internal use
+zshconfigdir="$HOME/.config/zsh"
+zshdatadir="$HOME/.local/share/zsh"
+
+# configure prompt
+PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
+
+# configure history
+HISTFILE="$zshdatadir/histfile"
+HISTSIZE=6000
+SAVEHIST=5000
+HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|git (st|lo|di|dis|show)( #| ##[^|]#)|man ##*)'
+setopt histignoredups histignorespace
+setopt appendhistory share_history histexpiredupsfirst
+
+# configure user interface
+setopt nobeep ignore_eof
+
+# configure completions
+fpath=("$zshdatadir/completions" $fpath)
+setopt nocomplete_aliases completeinword
+zstyle ':completion:*' menu select
+
+# configure shell syntax
+setopt extendedglob
+
+# configure jobs
+setopt notify longlistjobs
+
+# enable and configure help module
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
+
+# source zle configuration
+source "$zshconfigdir/zshzle"
+
+# source zsh aliases, functions, and function definitions
+fpath=("$zshconfigdir/functions" $fpath)
+source "$zshconfigdir/zshaliases"
+
+# source all entries in drop-in directory. remember to use
+# the predefined convenience variables; they'll make it
+# easier to keep all shell files consolidated.
+source "$zshconfigdir/zshrc.d/"*
+
+# *lastly*, enable and configure zsh completion module
+autoload -Uz compinit
+compinit
+
+# unset convenience variables
+unset zshconfigdir
+unset zshdatadir
