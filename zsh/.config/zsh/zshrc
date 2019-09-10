@@ -42,7 +42,9 @@ source "$zshconfigdir/zshaliases"
 # source all entries in drop-in directory. remember to use
 # the predefined convenience variables; they'll make it
 # easier to keep all shell files consolidated.
-source "$zshconfigdir/zshrc.d/"*
+for file in "$zshconfigdir/zshrc.d/"*; do
+  source "$file"
+done
 
 # *lastly*, enable and configure zsh completion module
 autoload -Uz compinit
