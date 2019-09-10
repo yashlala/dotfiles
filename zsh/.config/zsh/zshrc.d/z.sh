@@ -1,5 +1,4 @@
-# This file sources and configures the 'z' movement utility.
-
+# source and configure the 'z' movement utility.
 if [ -r '/usr/share/z/z.sh' ]; then
   _Z_CMD='f'
   _Z_EXCLUDE_DIRS=('/tmp')

@@ -42,9 +42,8 @@ for file in "$zshconfigdir/functions/"*; do
   autoload -Uz $(basename "$file")
 done
 
-
-# source all entries in the drop-in directory.
-# all entries should use the convenience variables provided
+# source all drop-in config files.
+# all files should use the convenience variables provided
 # above ($zshconfigdir, etc) when required.
 for file in "$zshconfigdir/zshrc.d/"*; do
   source "$file"
