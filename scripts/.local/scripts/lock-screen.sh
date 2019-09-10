@@ -13,7 +13,7 @@
 i3lock_command="$HOME/.local/scripts/i3lock.sh"
 
 # Options to pass to i3lock
-i3lock_options=''
+i3lock_options='--ignore-empty-password --pass-media-keys'
 
 # Run before starting the locker
 pre_lock() {

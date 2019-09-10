@@ -1,33 +1,44 @@
 Xft.dpi: 210
 
-URxvt.font:         xft:DejaVu Sans Mono:size=11
-URxvt.scrollBar:    false
-URxvt.fading:       10
-URxvt.iso14755:     false
-URxvt.iso14755_52:  false
+URxvt.font:            xft:DejaVu Sans Mono:size=11
+URxvt.scrollBar:       false
+URxvt.fading:          10
+URxvt.iso14755:        false
+URxvt.iso14755_52:     false
+URxvt.scrollTtyOutput: false
 Urxvt.perl-ext:
 Urxvt.perl-ext-common:
+
+URxvt.print-pipe: "$HOME/.local/scripts/save-scrollback-buffer.sh"
 
 *background:   #3a3a3a
 *foreground:   #d0d0d0
 *cursorColor:  #d0d0d0
 *cursorColor2: #3a3a3a
 *colorBD:      #e4e4e4
+! black
 *color0:       #4e4e4e
-*color1:       #d68787
-*color2:       #5f865f
-*color3:       #d8af5f
-*color4:       #85add4
-*color5:       #d7afaf
-*color6:       #87afaf
-*color7:       #d0d0d0
 *color8:       #626262
+! red
+*color1:       #d68787
 *color9:       #d75f87
+! green
+*color2:       #5f865f
 *color10:      #87af87
+! yellow
+*color3:       #d8af5f
 *color11:      #ffd787
+! blue
+*color4:       #85add4
 *color12:      #add4fb
+! purple
+*color5:       #d7afaf
 *color13:      #ffafaf
+! cyan
+*color6:       #87afaf
 *color14:      #87d7d7
+! white
+*color7:       #d0d0d0
 *color15:      #e4e4e4
 
 ! vim: ft=xdefaults
