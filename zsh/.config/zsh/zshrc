@@ -13,8 +13,8 @@ HISTFILE="$zshdatadir/histfile"
 HISTSIZE=6000
 SAVEHIST=5000
 HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|git (st|lo|di|dis|show)( #| ##[^|]#)|man ##*)'
-setopt histignoredups histignorespace
-setopt appendhistory share_history histexpiredupsfirst
+setopt histignoredups histignorespace histfindnodups
+setopt appendhistory sharehistory histexpiredupsfirst
 
 # configure user interface
 setopt nobeep ignore_eof
@@ -24,13 +24,10 @@ fpath=("$zshdatadir/completions" $fpath)
 setopt nocomplete_aliases completeinword
 zstyle ':completion:*' menu select
 
-# configure shell syntax
-setopt extendedglob
-
 # configure jobs
 setopt notify longlistjobs
 
-# enable and configure help module
+# configure help module
 autoload -Uz run-help
 unalias run-help
 alias help=run-help

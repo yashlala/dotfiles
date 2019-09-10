@@ -30,6 +30,7 @@ alias lal='ls --color=auto -Alh'
 
 # functions
 
+# run the last command with sudo
 lkj () {
   echo ${$(tput bold)}sudo $(fc -ln -1) ${$(tput sgr0)}
   eval sudo "$(fc -ln -1)"
