@@ -15,49 +15,49 @@
 [diff]
 	tool = vimdiff
 [alias]
-	ad = add
 	ada = add --all
-	adp = add --patch
+	ad = add
 	adi = add --interactive
+	adp = add --patch
 	br = branch
-	brm = branch --move
 	bre = branch --edit-description
-	ch = checkout
+	brm = branch --move
 	chb = checkout -b
+	ch = checkout
 	chp = checkout --patch
-	co = commit
 	coa = commit --amend
-	cp = cherry-pick
+	co = commit
 	coi = commit --interactive
+	cp = cherry-pick
 	di = diff --ignore-space-at-eol
-	diw = diff --ignore-space-at-eol --word-diff
 	dis = diff --ignore-space-at-eol --staged
-	diws = diff --ignore-space-at-eol --word-diff --staged
 	dit = difftool
+	diw = diff --ignore-space-at-eol --word-diff
+	diws = diff --ignore-space-at-eol --word-diff --staged
 	fe = fetch
 	fep = fetch --prune
 	gr = grep
-	lo = log --abbrev-commit --pretty=oneline
-	loa = log --abbrev-commit --pretty=oneline --all
-	lol = log --abbrev-commit
-	lola = log --abbrev-commit --all
 	la = "!git config -l | grep alias | cut -c 7-" # list aliases
+	loa = log --abbrev-commit --pretty=oneline --all
+	lola = log --abbrev-commit --all
+	lol = log --abbrev-commit
+	lo = log --abbrev-commit --pretty=oneline
 	me = merge
 	met = mergetool
-	pu = pull
-	pum = pull --merge # pull-merge; *usually* default pull behavior
-	pur = pull --rebase
-	pup = pull --prune
 	pump = pull --merge --prune
+	pum = pull --merge # pull-merge; *usually* default pull behavior
+	pup = pull --prune
+	pu = pull
 	purp = pull --rebase --prune
-	re = rebase
+	pur = pull --rebase
 	rei = rebase --interactive
+	re = rebase
 	sh = show
 	st = status
-	ta = tag
 	tad = tag --delete
-	us = reset HEAD
+	ta = tag
 	usp = reset --patch HEAD
+	us = reset HEAD
 [apply]
 	whitespace = nowarn
 [core]

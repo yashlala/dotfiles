@@ -1,35 +1,36 @@
+# i3 window manager configuration file (see `man i3`)
+
 ##################################
 # General
-##################################
-
-set $mod Mod4
-focus_follows_mouse yes
-
-
-##################################
-# Look & Feel
 ##################################
 
 font pango:DejaVu Sans Mono 10
 smart_gaps on
 gaps inner 3
 gaps outer 0
-
+focus_follows_mouse yes
 # required for gaps to play nice
 for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 
-
-##################################
-# Colors
-##################################
-
+# colors
 set $fg 	#a3deac
 set $bg 	#2b303b
 set $shade 	#85939e
 set $light 	#b48ead
 set $urgent 	#bf616a
 
+# workspaces
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 # set window colors	border	backgr.	text	indicator   child_border
 client.focused          $bg     $bg     $fg	$light	    $fg
@@ -37,12 +38,18 @@ client.focused_inactive $bg     $bg     $shade	$light	    $shade
 client.unfocused        $bg	$bg     $shade	$light	    $bg
 client.urgent           $bg     $bg     $shade	$light	    $urgent
 client.placeholder	$bg	$bg	$shade	$light	    $bg
+# application-specific configuration
+for_window [class="GrafX2"] floating enable
 
 
 ##################################
-# Application Keybindings
+# Keybindings
 ##################################
 
+set $mod Mod4
+floating_modifier $mod
+
+# application keybindings
 bindsym $mod+Return                   exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
@@ -65,23 +72,7 @@ bindsym XF86MonBrightnessDown         exec --no-startup-id xbacklight -dec 10
 bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 2
 bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 2
 
-
-##################################
-# Workspaces
-##################################
-
-set $workspace1 "1"
-set $workspace2 "2"
-set $workspace3 "3"
-set $workspace4 "4"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7"
-set $workspace8 "8"
-set $workspace9 "9"
-set $workspace10 "10"
-
-# switch to workspace
+# workspace keybindings
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -103,68 +94,31 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
-#application specific windows
-for_window [class="GrafX2"] floating enable
-
-
-##################################
-# Autostart
-##################################
-
-exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
-exec --no-startup-id xset b off r rate 200 25 s on s 600
-exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
-exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
-
-exec --no-startup-id ~/.local/scripts/set-desktop-background.sh
-exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.sh
-exec --no-startup-id redshift
-exec --no-startup-id xbanish
-exec --no-startup-id compton --daemon
-# exec --no-startup-id conky
-
-
-##################################
-# Shortcuts
-##################################
-
-floating_modifier $mod
-
-# change focus
+# focused window keybindings
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in horizontal orientation
+# split window keybindings
 bindsym $mod+v split h
-
-# split in vertical orientation
 bindsym $mod+n split v
-
-# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+b layout toggle split
 
-# toggle tiling / floating
+# floating window keybindings
 bindsym $mod+d floating toggle
-
-# change focus between tiling / floating windows
 bindsym $mod+g focus mode_toggle
 
-# reload the configuration file
+# i3 server keybindings
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exit
 
-# resize window (you can also use the mouse for that)
+# resize mode keybindings
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
     bindsym h resize shrink width 10 px or 10 ppt
@@ -185,6 +139,22 @@ bindsym $mod+r mode "resize"
 
 
 ##################################
+# Autostart
+##################################
+
+exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
+exec --no-startup-id xset b off r rate 200 25 s on s 600
+exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
+exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
+
+exec --no-startup-id ~/.local/scripts/set-desktop-background.sh
+exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.sh
+exec --no-startup-id redshift
+exec --no-startup-id xbanish
+exec --no-startup-id compton --daemon
+
+
+##################################
 # Bar
 ##################################
 bar {
@@ -199,8 +169,10 @@ bar {
         statusline $light
 
         # workspace indicators	border	backgr.	text
-        focused_workspace	$bg	$bg	$fg
         inactive_workspace	$bg	$bg	$shade
+        focused_workspace	$bg	$bg	$fg
         urgent_workspace	$bg	$bg	$urgent
     }
 }
+
+# vim:ft=conf:set expandtab:

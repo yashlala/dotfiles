@@ -4,17 +4,17 @@
 
 # aliases
 
-alias quit='exit'
-alias q='exit'
-alias hibernate='systemctl hibernate'
-alias connect-to='sudo netctl-auto switch-to'
 alias battery='acpi -b'
+alias connect-to='sudo netctl-auto switch-to'
+alias hibernate='systemctl hibernate'
+alias q='exit'
+alias quit='exit'
 
-alias info='info --vi-keys'
-alias gdb='gdb -q'
-alias cgdb='cgdb -q'
-alias py='python -q'
 alias bpy='bpython -q'
+alias cgdb='cgdb -q'
+alias gdb='gdb -q'
+alias info='info --vi-keys'
+alias py='python -q'
 
 alias unstow='stow -D'
 
