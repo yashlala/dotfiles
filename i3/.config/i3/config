@@ -18,7 +18,7 @@ set $fg 	#a3deac
 set $bg 	#2b303b
 set $shade 	#85939e
 set $light 	#b48ead
-set $urgent 	#bf616a
+set $urgent 	#ffffff
 
 # workspaces
 set $workspace1 "1"
@@ -32,12 +32,6 @@ set $workspace8 "8"
 set $workspace9 "9"
 set $workspace10 "10"
 
-# set window colors	border	backgr.	text	indicator   child_border
-client.focused          $bg     $bg     $fg	$light	    $fg
-client.focused_inactive $bg     $bg     $shade	$light	    $shade
-client.unfocused        $bg	$bg     $shade	$light	    $bg
-client.urgent           $bg     $bg     $shade	$light	    $urgent
-client.placeholder	$bg	$bg	$shade	$light	    $bg
 # application-specific configuration
 for_window [class="GrafX2"] floating enable
 
