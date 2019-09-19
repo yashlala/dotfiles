@@ -49,8 +49,8 @@ bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+space                    exec --no-startup-id rofi -show run
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
-bindsym $mod+i                        exec env GDK_SCALE=1.5 firefox
-bindsym $mod+f                        exec env RANGER_LOAD_DEFAULT_RC=FALSE EDITOR=nvim urxvt -e ranger
+bindsym $mod+i                        exec firefox
+bindsym $mod+f                        exec urxvt -e ranger
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 
