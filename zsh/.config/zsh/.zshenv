@@ -5,6 +5,8 @@ export VISUAL=vim
 
 # set application environment variables
 
+export RANGER_LOAD_DEFAULT_RC="FALSE"
+
 # change application config and data locations
 
 export GNUPGHOME="$HOME/.local/share/gnupg"
