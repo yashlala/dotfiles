@@ -146,6 +146,7 @@ exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.sh
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
 exec --no-startup-id compton --daemon
+exec --no-startup-id dunst
 
 
 ##################################
