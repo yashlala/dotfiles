@@ -102,7 +102,7 @@ map F <Plug>(easymotion-Fl)
 map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
-noremap gs y:%s//g<left><left>
+noremap gs :%s//g<left><left>
 map ga <Plug>(EasyAlign)
 
 " swap 'uncountably high' numbers with their symbols
