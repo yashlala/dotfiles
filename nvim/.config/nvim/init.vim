@@ -80,6 +80,8 @@ noremap ; :
 noremap ' `
 noremap \ "
 
+nnoremap V v
+nnoremap v V
 nnoremap U <c-r>
 nnoremap <cr> o<esc>
 nnoremap K kJ

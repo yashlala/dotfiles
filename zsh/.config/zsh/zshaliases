@@ -7,16 +7,21 @@
 alias battery='acpi -b'
 alias connect-to='sudo netctl-auto switch-to'
 alias hibernate='systemctl hibernate'
-alias q='exit'
 alias quit='exit'
+alias unstow='stow -D'
 
+alias g='git'
+alias o='rifle'
+alias q='exit'
+alias py='python -q'
 alias bpy='bpython -q'
+
+alias bpython='bpython -q'
 alias cgdb='cgdb -q'
 alias gdb='gdb -q'
 alias info='info --vi-keys'
-alias py='python -q'
-
-alias unstow='stow -D'
+alias mv='mv -i'
+alias python='python -q'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'

@@ -19,6 +19,7 @@
 	ad = add
 	adi = add --interactive
 	adp = add --patch
+	bl = blame -s
 	br = branch
 	bre = branch --edit-description
 	brm = branch --move

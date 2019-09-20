@@ -53,6 +53,8 @@ bindsym $mod+i                        exec firefox
 bindsym $mod+f                        exec urxvt -e ranger
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
+bindsym --release XF86Tools           exec urxvt -cd ~/.config
+bindsym --release Shift+XF86Tools     exec urxvt -cd ~/.dotfiles
 
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ +5%
