@@ -1,5 +1,12 @@
 # set core environment variables
-export PATH="$HOME/code/bin:$PATH"
+
+# add ~/code/bin to PATH if it's not there already
+if ! echo "$PATH" \
+  | /bin/grep -Eq "(^|:)$HOME/code/bin($|:)"
+then
+  export PATH="$HOME/code/bin:$PATH"
+fi
+
 export EDITOR=vim
 export VISUAL=vim
 
