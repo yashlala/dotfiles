@@ -144,7 +144,7 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Sp
 exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
 
 exec --no-startup-id ~/.local/scripts/set-desktop-background.sh
-exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.sh
+exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.bash
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
 exec --no-startup-id compton --daemon

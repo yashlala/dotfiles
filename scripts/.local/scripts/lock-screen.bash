@@ -13,12 +13,23 @@
 i3lock_command="$HOME/.local/scripts/i3lock.sh"
 
 # Options to pass to i3lock
-i3lock_options='--ignore-empty-password --pass-media-keys'
+i3lock_options="
+  --ignore-empty-password --pass-media-keys
+  --image=$HOME/.local/backgrounds/i3lock/sddm-clairvoyance.png
+  --radius=56 --ring-width=3 --indicator
+  --insidecolor=00000000 --ringcolor=00000000
+  --insidevercolor=00000000 --ringvercolor=77b5feaa
+  --insidewrongcolor=00000000 --ringwrongcolor=dc143caa
+  --line-uses-inside --separatorcolor=00000000
+  --keyhlcolor=00000030 --bshlcolor=00ff0030
+  --verifcolor=00000000 --wrongcolor=00000000
+  "
+
 
 # Run before starting the locker
 pre_lock() {
   if [[ -e "$HOME/.local/share/mpd/pid" ]]; then
-    music_playing=true
+    music_playing="true"
     mpc pause
   fi
   return
@@ -26,7 +37,7 @@ pre_lock() {
 
 # Run after the locker exits
 post_lock() {
-  if [[ -z "$music_playing" ]]; then
+  if [[ "$music_playing" = "true" ]]; then
     mpc seekthrough -5
     mpc play
   fi
