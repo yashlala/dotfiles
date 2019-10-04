@@ -108,11 +108,9 @@ bindsym $mod+n split v
 bindsym $mod+b layout toggle split
 
 # floating window keybindings
-bindsym $mod+d floating toggle
-bindsym $mod+g focus mode_toggle
+bindsym $mod+t floating toggle
 
 # i3 server keybindings
-bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exit
 
@@ -174,4 +172,4 @@ bar {
     }
 }
 
-# vim:ft=conf:set expandtab:
+# vim:ft=conf:sw=4:set expandtab::

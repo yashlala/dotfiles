@@ -1,5 +1,6 @@
 ! General
 rofi.modi:             run,ssh
+rofi.terminal:         urxvt
 
 ! Layout
 rofi.font:             DejaVu Sans Mono 35

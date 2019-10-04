@@ -22,11 +22,15 @@
 	adp = add --patch
 	bl = blame -s
 	br = branch
+	brd = branch --delete
 	bre = branch --edit-description
 	brm = branch --move
 	chb = checkout -b
 	ch = checkout
 	chp = checkout --patch
+	cl = clean --interactive # set safe default
+	cld = clean --dry-run
+	cli = clean --interactive
 	coa = commit --amend
 	co = commit
 	coi = commit --interactive
