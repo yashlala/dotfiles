@@ -9,6 +9,7 @@
 	singlekey = true
 [merge]
 	tool = vimdiff
+	ff = false
 [mergetool]
 	keepBackup = false
 	prompt = false
@@ -40,7 +41,9 @@
 	gr = grep
 	la = "!git config -l | grep alias | cut -c 7-" # list aliases
 	loa = log --abbrev-commit --pretty=oneline --all
+	lof = log --abbrev-commit --pretty=oneline --first-parent
 	lola = log --abbrev-commit --all
+	lolf = log log --abbrev-commit --first-parent
 	lol = log --abbrev-commit
 	lo = log --abbrev-commit --pretty=oneline
 	me = merge
@@ -54,7 +57,7 @@
 	rei = rebase --interactive
 	re = rebase
 	sh = show
-	st = status
+	st = status --find-renames
 	tad = tag --delete
 	ta = tag
 	usp = reset --patch HEAD
@@ -73,3 +76,5 @@
 	templatedir = ~/.config/git/templates
 [branch]
 	autosetuprebase = always
+[commit]
+	gpgsign = true
