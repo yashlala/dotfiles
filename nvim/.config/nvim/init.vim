@@ -53,9 +53,9 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'jremmen/vim-ripgrep'
 
 Plug 'easymotion/vim-easymotion'
 
