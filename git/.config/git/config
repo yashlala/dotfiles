@@ -82,3 +82,6 @@
 	autosetuprebase = always
 [commit]
 	gpgsign = true
+[push]
+	gpgSign = false
+	followTags = true
