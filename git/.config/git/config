@@ -3,8 +3,8 @@
 
 [user]
 	name = yashlala
-	email = lala@lala
-	signingkey = lala@lala
+	email = yashlala@gmail.com
+	signingkey = Yash Lala <yashlala@gmail.com>
 [interactive]
 	singlekey = true
 [merge]
