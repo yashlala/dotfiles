@@ -10,6 +10,6 @@ revert() {
 }
 
 trap revert HUP INT TERM
-xset +dpms dpms 5 5 5
+xset +dpms dpms 10 10 10
 i3lock -n "$@"
 revert
