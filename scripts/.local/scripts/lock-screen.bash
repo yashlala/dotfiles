@@ -28,8 +28,7 @@ i3lock_options="
 
 # Run before starting the locker
 pre_lock() {
-  if [[ -e "$HOME/.local/share/mpd/pid" ]]; then
-    music_playing="true"
+  if ! mpc status | grep -q playing; then
     mpc pause
   fi
   return
@@ -37,10 +36,6 @@ pre_lock() {
 
 # Run after the locker exits
 post_lock() {
-  if [[ "$music_playing" = "true" ]]; then
-    mpc seekthrough -5
-    mpc play
-  fi
     return
 }
 
