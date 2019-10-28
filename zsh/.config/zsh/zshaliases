@@ -47,4 +47,4 @@ lkj () {
 ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
 
-md () { mkdir "$1" && cd "$1"; }
+md () { mkdir -p "$1" && cd "$1"; }
