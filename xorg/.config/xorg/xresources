@@ -1,15 +1,16 @@
 Xft.dpi: 210
 
+Urxvt.saveLines: 	 4096
 URxvt.font:              xft:DejaVu Sans Mono:size=11,xft:Unifont:size=11
 URxvt.scrollBar:         false
 URxvt.fading:            10
+Urxvt.visualBell:        true
 URxvt.iso14755:          false
 URxvt.iso14755_52:       false
 URxvt.scrollTtyOutput:   false
 URxvt.scrollTtyKeypress: true
 Urxvt.perl-ext:
 Urxvt.perl-ext-common:
-
 URxvt.print-pipe: "$HOME/.local/scripts/save-scrollback-buffer.sh"
 
 *background:   #3a3a3a
