@@ -6,7 +6,8 @@ zshconfigdir="$HOME/.config/zsh"
 zshdatadir="$HOME/.local/share/zsh"
 
 # configure prompt
-PS1='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
+PROMPT='%B[%c %(?..%F{black})%#%F{fg}]%f%b '
+RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
 
 # configure history
 HISTFILE="$zshdatadir/histfile"
