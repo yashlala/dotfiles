@@ -49,6 +49,7 @@
 	lof = log --abbrev-commit --pretty=oneline --first-parent
 	los = log --abbrev-commit
 	lo = log --abbrev-commit --pretty=oneline --graph
+	lop = log --abbrev-commit --pretty=oneline --graph --patch
 	me = merge
 	met = mergetool
 	no = notes
@@ -64,6 +65,8 @@
 	st = status --find-renames
 	taa = tag --annotate
 	tad = tag --delete
+	taas = tag --annotate --sign
+	tas = tag --sign
 	ta = tag
 	usp = reset --patch HEAD
 	us = reset HEAD

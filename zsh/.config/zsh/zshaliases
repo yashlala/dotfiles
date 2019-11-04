@@ -9,6 +9,8 @@ alias connect-to='sudo netctl-auto switch-to'
 alias hibernate='systemctl hibernate'
 alias quit='exit'
 alias unstow='stow -D'
+alias clin='xclip -in -selection clipboard'
+alias clout='xclip -out -selection clipboard'
 
 alias cl='clear'
 alias g='git'
