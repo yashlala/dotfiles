@@ -44,7 +44,8 @@ set $mod Mod4
 floating_modifier $mod
 
 # application keybindings
-bindsym $mod+Return                   exec urxvt
+bindsym $mod+Return                   exec urxvtc
+bindsym $mod+Shift+Return             exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+space                    exec --no-startup-id rofi -show run
@@ -52,11 +53,11 @@ bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi.bash
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi.bash --clip
 bindsym $mod+i                        exec firefox
-bindsym $mod+f                        exec urxvt -e ranger
+bindsym $mod+f                        exec urxvtc -e ranger
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
-bindsym --release XF86Tools           exec urxvt -cd ~/.config
-bindsym --release Shift+XF86Tools     exec urxvt -cd ~/.dotfiles
+bindsym --release XF86Tools           exec urxvtc -cd ~/.config
+bindsym --release Shift+XF86Tools     exec urxvtc -cd ~/.dotfiles
 
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -149,6 +150,7 @@ exec --no-startup-id redshift
 exec --no-startup-id xbanish
 exec --no-startup-id compton --daemon
 exec --no-startup-id dunst
+exec --no-startup-id urxvtd -q -o
 
 
 ##################################

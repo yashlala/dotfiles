@@ -8,6 +8,9 @@ export XCOMPOSECACHE=$HOME/.cache/xorg/compose-cache
 export GTK_IM_MODULE=xim
 export XMODIFIERS="@im=none"
 
+export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd.socket"
+export TERMINAL=urxvtc
+
 userresources=$HOME/.config/xorg/xresources
 usermodmap=$HOME/.config/xorg/xmodmap
 sysresources=/etc/X11/xinit/.Xresources
