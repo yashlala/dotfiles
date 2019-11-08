@@ -28,6 +28,7 @@ i3lock_options="
 
 # Run before starting the locker
 pre_lock() {
+  pactl set-sink-mute @DEFAULT_SINK@ true
   if ! mpc status | grep -q playing; then
     mpc pause
   fi

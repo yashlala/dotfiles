@@ -147,6 +147,7 @@ exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_
 exec --no-startup-id xset b off r rate 200 25 s on s 600
 exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
 exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
+exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ true
 
 exec --no-startup-id ~/.local/scripts/set-desktop-background.sh
 exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.bash
