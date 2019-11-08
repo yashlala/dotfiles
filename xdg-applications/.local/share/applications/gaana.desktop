@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=gaana
+GenericName=Music Player
+Comment=Play music with mpd and ario
+Exec=gaana
+Terminal=false
+Type=Application
+Categories=Audio;

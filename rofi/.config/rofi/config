@@ -1,5 +1,5 @@
 ! General
-rofi.modi:             run,ssh
+rofi.modi:             run,drun,ssh
 rofi.terminal:         urxvt
 
 ! Layout

@@ -48,7 +48,7 @@ bindsym $mod+Return                   exec urxvtc
 bindsym $mod+Shift+Return             exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
-bindsym $mod+space                    exec --no-startup-id rofi -show run
+bindsym $mod+space                    exec --no-startup-id rofi -show drun
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi.bash
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi.bash --clip

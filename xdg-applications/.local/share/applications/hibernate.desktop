@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=hibernate
+Comment=Hibernate the computer
+Exec=systemctl hibernate
+Terminal=false
+Type=Application
+Categories=System;
