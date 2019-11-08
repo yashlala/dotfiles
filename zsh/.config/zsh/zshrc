@@ -13,7 +13,7 @@ RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
 HISTFILE="$zshdatadir/histfile"
 HISTSIZE=6000
 SAVEHIST=5000
-HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|git (st|lo|di|dis|show)( #| ##[^|]#)|man ##*)'
+HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|(g|git) (st|lo|di|dis|loa|lop|show)( #| ##[^|]#)|man ##*)'
 setopt histignoredups histignorespace histfindnodups
 setopt appendhistory sharehistory histexpiredupsfirst
 
