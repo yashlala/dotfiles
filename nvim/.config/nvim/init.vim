@@ -7,6 +7,7 @@ set ignorecase
 set smartcase
 set nohlsearch
 set nojoinspaces
+set gdefault
 
 set clipboard=unnamedplus
 set keywordprg=search
@@ -104,7 +105,7 @@ map F <Plug>(easymotion-Fl)
 map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
-noremap gs :%s//g<left><left>
+noremap gs :%s/
 map ga <Plug>(EasyAlign)
 
 " swap 'uncountably high' numbers with their symbols
