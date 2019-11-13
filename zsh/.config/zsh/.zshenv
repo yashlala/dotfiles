@@ -9,6 +9,7 @@ fi
 
 export EDITOR=vim
 export VISUAL=vim
+export PAGER=less
 
 # set application environment variables
 
