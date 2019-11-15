@@ -2,6 +2,7 @@
 " Config
 """""""""""""""""""
 set lazyredraw
+set noswapfile
 
 set ignorecase
 set smartcase
