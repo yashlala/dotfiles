@@ -1,2 +1,2 @@
-setlocal formatoptions+=tcrn formatoptions-=o
+setlocal formatoptions+=tcrn1 formatoptions-=o
 setlocal textwidth=79

@@ -1,4 +1,4 @@
 setlocal expandtab
-setlocal formatoptions+=cr formatoptions-=o
+setlocal formatoptions+=cr1 formatoptions-=o
 setlocal shiftwidth=2
 setlocal textwidth=79
