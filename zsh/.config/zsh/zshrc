@@ -13,8 +13,10 @@ RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
 HISTFILE="$zshdatadir/histfile"
 HISTSIZE=6000
 SAVEHIST=5000
+# TODO: regex not working, fix it.
 HISTORY_IGNORE='(q(uit)#|l[sal]( #| ##[^|]#|)|lkj|(g|git) (st|lo|di|dis|loa|lop|show)( #| ##[^|]#)|man ##*)'
-setopt histignoredups histignorespace histfindnodups
+setopt histignorealldups histignorespace histfindnodups
+setopt histsavenodups histignorealldups
 setopt appendhistory sharehistory histexpiredupsfirst
 
 # configure user interface
