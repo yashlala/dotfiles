@@ -85,7 +85,9 @@
 [branch]
 	autosetuprebase = always
 [commit]
-	gpgsign = true
+	gpgsign = false
 [push]
 	gpgSign = false
 	followTags = true
+[tag]
+	gpgSign = true
