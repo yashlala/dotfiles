@@ -86,6 +86,7 @@ nnoremap V v
 nnoremap v V
 nnoremap U <c-r>
 nnoremap <cr> o<esc>
+nnoremap S :keeppatterns s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
 nnoremap K kJ
 nnoremap ` ~
 nnoremap Q @@
@@ -127,6 +128,7 @@ noremap ( 9
 noremap ) 0
 noremap - 0
 
+
 """""""""""""""""""
 " Leader Commands
 """""""""""""""""""
@@ -134,9 +136,9 @@ let mapleader = ','
 let g:mapleader= ','
 
 nnoremap <leader>d :r !date --iso-8601<cr>
-nnoremap <leader>m Go<!--<cr>vim: ft=markdown<cr>--><esc>''
 
-nnoremap <leader>g :Goyo<cr>
+nnoremap <leader>g :G<cr>
+nnoremap <leader>m :Goyo<cr>
 
 noremap  <leader>p "0p
 noremap  <leader>P "0P
