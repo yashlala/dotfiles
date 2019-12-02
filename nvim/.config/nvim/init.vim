@@ -47,19 +47,20 @@ autocmd BufReadPost *
 call plug#begin('~/.local/share/nvim/plugged')
 
 " loaded plugins
-Plug 'junegunn/seoul256.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'junegunn/seoul256.vim'
 
-Plug 'tpope/vim-commentary'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-surround'
 
 Plug 'easymotion/vim-easymotion'
+
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 
@@ -86,7 +87,7 @@ nnoremap V v
 nnoremap v V
 nnoremap U <c-r>
 nnoremap <cr> o<esc>
-nnoremap S :keeppatterns s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
+nnoremap <silent> S :keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
 nnoremap K kJ
 nnoremap ` ~
 nnoremap Q @@
@@ -114,7 +115,7 @@ map ga <Plug>(EasyAlign)
 noremap 4 $
 noremap 5 %
 noremap 6 ^
-noremap 7 :&&<cr>
+noremap <silent> 7 :&&<cr>
 noremap 8 @
 noremap 9 (
 noremap 0 )
@@ -137,11 +138,11 @@ let g:mapleader= ','
 
 nnoremap <leader>d :r !date --iso-8601<cr>
 
-nnoremap <leader>g :G<cr>
-nnoremap <leader>m :Goyo<cr>
+nnoremap <silent> <leader>g :G<cr>
+nnoremap <silent> <leader>m :Goyo<cr>
 
-noremap  <leader>p "0p
-noremap  <leader>P "0P
+noremap <leader>p "0p
+noremap <leader>P "0P
 
-nnoremap  <leader>q :q!<cr>
-nnoremap  <leader>e :e!<cr>
+nnoremap <silent> <leader>q :q!<cr>
+nnoremap <silent> <leader>e :e!<cr>
