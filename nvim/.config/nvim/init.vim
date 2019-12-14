@@ -79,6 +79,7 @@ let g:EasyMotion_smartcase = 1
 """""""""""""""""""
 noremap Y y$
 noremap ; :
+noremap : q:
 noremap ' `
 noremap \ "
 
@@ -91,7 +92,6 @@ nnoremap K kJ
 nnoremap ` ~
 nnoremap Q @@
 nnoremap \| K
-nnoremap : q:
 
 noremap <bs> <c-u>
 noremap <tab> <c-d>
@@ -138,10 +138,10 @@ let g:mapleader= ','
 nnoremap <leader>d :r !date --iso-8601<cr>
 
 nnoremap <silent> <leader>g :G<cr>
-nnoremap <silent> <leader>m :Goyo<cr>
+nnoremap <silent> <leader>w :Goyo<cr>
 
-noremap <leader>p "0p
-noremap <leader>P "0P
+noremap <silent> <leader>p "0p
+noremap <silent> <leader>P "0P
 
 nnoremap <silent> <leader>q :q!<cr>
 nnoremap <silent> <leader>e :e!<cr>
