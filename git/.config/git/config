@@ -41,7 +41,6 @@
 	diw = diff --ignore-space-at-eol --word-diff
 	diws = diff --ignore-space-at-eol --word-diff --staged
 	fe = fetch
-	fep = fetch --prune
 	gr = grep
 	in = init
 	la = "!git config -l | grep alias | cut -c 7-" # list aliases
@@ -53,11 +52,8 @@
 	me = merge
 	met = mergetool
 	no = notes
-	pump = pull --merge --prune
 	pum = pull --merge # pull-merge; *usually* default pull behavior
-	pup = pull --prune
 	pu = pull
-	purp = pull --rebase --prune
 	pur = pull --rebase
 	rei = rebase --interactive
 	re = rebase
