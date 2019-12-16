@@ -9,7 +9,6 @@ general {
 
 order += "volume master"
 order += "battery builtin"
-order += "wireless wlp4s0"
 order += "tztime local"
 
 
@@ -28,12 +27,6 @@ battery builtin {
 	low_threshold            = 10
 	threshold_type           = percentage
 	path                     = /sys/class/power_supply/BAT0/uevent
-}
-
-wireless wlp4s0 {
-	color_good  = "#b48ead"
-	format_up   = " C "
-	format_down = " D "
 }
 
 tztime local {
