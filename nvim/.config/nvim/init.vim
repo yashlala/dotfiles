@@ -27,18 +27,6 @@ set autoindent
 filetype plugin indent on
 syntax on
 
-"""""""""""""""""""
-" Autocommands
-"""""""""""""""""""
-" trim trailing whitespace for certain filetypes
-autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf
-  \ autocmd BufWritePre <buffer> %s/\s\+$//e
-
-" return to last edit position when opening files
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
 
 """""""""""""""""""
 " Plugins
@@ -56,12 +44,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-
 Plug 'easymotion/vim-easymotion'
 
 Plug 'tpope/vim-repeat'
 
 call plug#end()
+
 
 """""""""""""""""""
 " Plugin Settings
@@ -74,74 +62,82 @@ set noshowmode
 
 let g:EasyMotion_smartcase = 1
 
+
 """""""""""""""""""
-" Key Rebindings
+" Autocommands
+"""""""""""""""""""
+" trim trailing whitespace for certain filetypes
+" autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf,ocaml
+"   \ autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" return to last edit position when opening files
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+
+"""""""""""""""""""
+" Keybindings
 """""""""""""""""""
 noremap Y y$
 noremap ; :
 noremap : q:
-noremap ' `
-noremap \ "
-
-nnoremap V v
-nnoremap v V
-nnoremap U <c-r>
-nnoremap <cr> o<esc>
-nnoremap <silent> S :keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
-nnoremap K kJ
 nnoremap ` ~
+noremap ' `
+noremap <bslash> "
+
+nnoremap <cr> o<esc>
+nnoremap <bar> K
+nnoremap K kJ
 nnoremap Q @@
-nnoremap \| K
+nnoremap <silent> S :keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
+nnoremap U <c-r>
+nnoremap v V
+nnoremap V v
 
 noremap <bs> <c-u>
-noremap <tab> <c-d>
 noremap <up> <c-u>
+noremap <tab> <c-d>
 noremap <down> <c-d>
-noremap <left> g;
-noremap <right> g,
 
-" plugin bindings
 map <space> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
 map F <Plug>(easymotion-Fl)
 map t <Plug>(easymotion-tl)
 map T <Plug>(easymotion-Tl)
 
-noremap gs :%s/
-map ga <Plug>(EasyAlign)
-
-" swap 'uncountably high' numbers with their symbols
+" swap 'uncountably high' numbers with their symbols,
+" with some tweaks, of course.
 noremap 4 $
-noremap 5 %
-noremap 6 ^
-noremap <silent> 7 :&&<cr>
-noremap 8 @
-noremap 9 (
-noremap 0 )
-
 noremap $ 4
+noremap 5 %
 noremap % 5
+noremap 6 ^
 noremap ^ 6
+noremap <silent> 7 :&&<cr>
 noremap & 7
+noremap 8 @
 noremap * 8
+noremap 9 (
 noremap ( 9
+noremap 0 )
 noremap ) 0
 noremap - 0
 
+map ga <Plug>(EasyAlign)
+nnoremap gs :%s/
 
-"""""""""""""""""""
-" Leader Commands
-"""""""""""""""""""
+" leader keybinds
 let mapleader = ','
-let g:mapleader= ','
-
-nnoremap <leader>d :r !date --iso-8601<cr>
-
-nnoremap <silent> <leader>g :G<cr>
-nnoremap <silent> <leader>w :Goyo<cr>
+let g:mapleader = ','
 
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P
 
+nnoremap <leader>d :r !date --iso-8601<cr>
 nnoremap <silent> <leader>q :q!<cr>
 nnoremap <silent> <leader>e :e!<cr>
+
+nnoremap <silent> <leader>g :G<cr>
+nnoremap <silent> <leader>w :Goyo<cr>

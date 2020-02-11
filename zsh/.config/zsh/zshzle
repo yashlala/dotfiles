@@ -16,7 +16,6 @@ bindkey -M viins '^L' clear-screen
 bindkey -M vicmd '^L' clear-screen
 
 # misc keybindings
-bindkey -M vicmd '^I' autosuggest-execute
 
 # =================================
 # custom widgets and behaviors

@@ -17,6 +17,7 @@ setopt appendhistory
 setopt histsavenodups histfindnodups
 setopt histreduceblanks
 setopt histignorespace
+
 # configure user interface
 setopt nobeep ignore_eof
 
@@ -50,7 +51,7 @@ for file in "$zshconfigdir/zshrc.d/"*; do
   source "$file"
 done
 
-# *lastly*, enable and configure zsh completion module
+# *lastly*, enable zsh completion module
 autoload -Uz compinit
 compinit
 

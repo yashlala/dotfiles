@@ -53,6 +53,7 @@ bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi.bash
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi.bash --clip
 bindsym $mod+i                        exec firefox
+bindsym $mod+Shift+i                  exec firefox --private-window
 bindsym $mod+f                        exec urxvtc -e ranger
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png

@@ -12,6 +12,7 @@ alias unstow='stow -D'
 alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 
+alias a='asciinema'
 alias cl='clear'
 alias g='git'
 alias o='rifle'
