@@ -23,6 +23,7 @@ set breakindent
 let &showbreak = '↳ '
 
 set modeline
+set confirm
 set autoindent
 filetype plugin indent on
 syntax on
