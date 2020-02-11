@@ -143,7 +143,9 @@ bindsym $mod+r mode "resize"
 # Autostart
 ##################################
 
-exec --no-startup-id setxkbmap -option caps:swapescape -option altwin:swap_lalt_lwin -option compose:ralt
+# TODO: move x configuration over to xmodmap files, etc to be dealt with by
+# Xprofile instead of wm if it should be done; think what should go where. 
+exec --no-startup-id setxkbmap -option altwin:swap_lalt_lwin -option compose:ralt
 exec --no-startup-id xset b off r rate 200 25 s on s 600
 exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
 exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
