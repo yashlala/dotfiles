@@ -54,7 +54,7 @@ bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi.bash --clip
 bindsym $mod+i                        exec firefox
 bindsym $mod+Shift+i                  exec firefox --private-window
-bindsym $mod+f                        exec urxvtc -e ranger
+bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser.sh
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 bindsym --release XF86Tools           exec urxvtc -cd ~/.config
