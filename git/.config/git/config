@@ -42,13 +42,16 @@
 	diws = diff --ignore-space-at-eol --word-diff --staged
 	fe = fetch
 	gr = grep
+	ig = update-index --skip-worktree # ignore a file
 	in = init
-	la = "!git config -l | grep alias | cut -c 7-" # list aliases
 	loa = log --abbrev-commit --pretty=oneline --graph --all
 	lof = log --abbrev-commit --pretty=oneline --first-parent
-	los = log --abbrev-commit
 	lo = log --abbrev-commit --pretty=oneline --graph
 	lop = log --abbrev-commit --pretty=oneline --graph --patch
+	los = log --abbrev-commit
+	ls-aliases = "!git config -l | grep alias | cut -c 7-" # list aliases
+	ls-ignored = "!git ls-files -v | grep '^S' | cut -c 3-" # list 'ignored' files
+	ls = status --find-renames
 	me = merge
 	met = mergetool
 	no = notes
@@ -58,14 +61,19 @@
 	rei = rebase --interactive
 	re = rebase
 	sh = show
-	st = status --find-renames
+	stdr = stash drop
+	stpo = stash pop
+	stpu = stash push
+	stsh = stash show
+	st = stash
+	taas = tag --annotate --sign
 	taa = tag --annotate
 	tad = tag --delete
-	taas = tag --annotate --sign
 	tas = tag --sign
 	ta = tag
-	usp = reset --patch HEAD
-	us = reset HEAD
+	uig = update-index --no-skip-worktree # unignore a file
+	ustp = reset --patch HEAD
+	ust = reset HEAD
 [apply]
 	whitespace = nowarn
 [core]
