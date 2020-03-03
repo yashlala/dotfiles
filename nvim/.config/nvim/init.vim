@@ -87,6 +87,7 @@ noremap : q:
 nnoremap ` ~
 noremap ' `
 noremap <bslash> "
+noremap - 0
 
 nnoremap <cr> o<esc>
 nnoremap <bar> K
@@ -101,6 +102,8 @@ noremap <bs> <c-u>
 noremap <up> <c-u>
 noremap <tab> <c-d>
 noremap <down> <c-d>
+noremap _ <c-y>
+noremap + <c-e>
 
 map <space> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
@@ -124,7 +127,6 @@ noremap 9 (
 noremap ( 9
 noremap 0 )
 noremap ) 0
-noremap - 0
 
 map ga <Plug>(EasyAlign)
 nnoremap gs :%s/
