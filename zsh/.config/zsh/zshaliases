@@ -15,6 +15,7 @@ alias clout='xclip -out -selection clipboard'
 
 alias a='asciinema'
 alias cl='clear'
+alias f='z'
 alias g='git'
 alias o='rifle'
 alias py='python -q'
