@@ -84,17 +84,18 @@ autocmd BufReadPost *
 noremap Y y$
 noremap ; :
 noremap : q:
-nnoremap ` ~
 noremap ' `
 noremap <bslash> "
 noremap - 0
 
+nnoremap ` ~
 nnoremap <cr> o<esc>
 nnoremap <bar> K
 nnoremap K kJ
 nnoremap Q @@
 nnoremap <silent> S :keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
 nnoremap U <c-r>
+nnoremap <c-r> U
 nnoremap v V
 nnoremap V v
 
