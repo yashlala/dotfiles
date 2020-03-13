@@ -21,10 +21,12 @@
 	adi = add --interactive
 	adp = add --patch
 	bl = blame -s
+	bra = branch --all
 	br = branch
 	brd = branch --delete
 	bre = branch --edit-description
 	brm = branch --move
+	brr = branch --remotes
 	chb = checkout -b
 	ch = checkout
 	chp = checkout --patch
@@ -41,6 +43,7 @@
 	diw = diff --ignore-space-at-eol --word-diff
 	diws = diff --ignore-space-at-eol --word-diff --staged
 	fe = fetch
+	fea = fetch --all
 	gr = grep
 	ig = update-index --skip-worktree # ignore a file
 	in = init
@@ -62,7 +65,9 @@
 	re = rebase
 	sh = show
 	stdr = stash drop
+	stli = stash list
 	stpo = stash pop
+	stp = stash --patch
 	stpu = stash push
 	stsh = stash show
 	st = stash

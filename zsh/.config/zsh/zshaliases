@@ -6,6 +6,7 @@
 
 alias battery='acpi -b'
 alias connect-to='sudo netctl-auto switch-to'
+alias gitka='gitk --all'
 alias hibernate='systemctl hibernate'
 alias quit='exit'
 alias parallel='parallel-moreutils'
