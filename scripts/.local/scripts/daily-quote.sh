@@ -15,6 +15,7 @@ fi
 
 if [ $(date -I) != "$last_date" ]; then
   # don't consolidate the slowtypes; it changes the end-of-phrase delay. 
+  sleep 2
   echo "Good Morning!" | slowtype
   echo -e "Here's a quote just for you:\n" | slowtype
   sleep 0.3
