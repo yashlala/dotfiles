@@ -3,3 +3,5 @@ setlocal textwidth=79
 
 inoremap _ -
 inoremap - _
+inoremap ; :
+inoremap : ;
