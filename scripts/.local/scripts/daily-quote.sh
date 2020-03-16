@@ -4,7 +4,7 @@
 
 # TODO: make these quotes more inspirational/whimsical. 
 
-cache_file="$HOME/.cache/daily-quote/last-visited"
+cache_file="$HOME/.cache/daily-quote/run-date"
 
 if [ -e "$cache_file" ]; then 
   last_date=$(cat "$cache_file")
@@ -13,16 +13,20 @@ else
   mkdir -p "$(dirname "$cache_file")"
 fi
 
-if [ $(date -I) != "$last_date" ]; then
-  # don't consolidate the slowtypes; it changes the end-of-phrase delay. 
-  sleep 2
-  echo "Good Morning!" | slowtype
-  echo -e "Here's a quote just for you:\n" | slowtype
-  sleep 0.3
-  { fortune -s -n 250; echo; } | slowtype
-  sleep 0.3
-  echo "Have a nice day!" | slowtype
-  sleep 0.3
-
-  date -I >"$cache_file"
+# Exit if we've already printed a quote today or it's not 6:30 AM yet.
+if [ "$(date -I)" = "$last_date" ] \
+    || [ "$(date '+%s')" -lt "$(date -d '06:30 Today' '+%s')" ]; then
+  exit
 fi
+
+# don't consolidate the slowtypes; it changes the end-of-phrase delay. 
+sleep 1
+echo "Good Morning!" | slowtype
+echo -e "Here's a quote just for you:\n" | slowtype
+sleep 0.3
+{ fortune -s -n 250; echo; } | slowtype
+sleep 0.3
+echo "Remember to have a nice day!" | slowtype
+sleep 0.3
+
+date -I >"$cache_file"
