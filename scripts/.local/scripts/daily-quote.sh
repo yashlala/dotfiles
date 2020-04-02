@@ -19,6 +19,8 @@ if [ "$(date -I)" = "$last_date" ] \
   exit
 fi
 
+date -I >"$cache_file"
+
 # don't consolidate the slowtypes; it changes the end-of-phrase delay. 
 sleep 1
 echo "Good Morning!" | slowtype
@@ -28,5 +30,3 @@ sleep 0.3
 sleep 0.3
 echo "Remember to have a nice day!" | slowtype
 sleep 0.3
-
-date -I >"$cache_file"
