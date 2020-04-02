@@ -99,6 +99,6 @@
 	gpgSign = false
 	followTags = true
 [tag]
-	gpgSign = true
+	forceSignAnnotated = true
 [fetch]
 	prune = true
