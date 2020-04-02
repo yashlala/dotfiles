@@ -1,15 +1,19 @@
 # set core environment variables
 
-# add ~/code/bin to PATH if it's not there already
-if ! echo "$PATH" \
-  | /bin/grep -Eq "(^|:)$HOME/code/bin($|:)"
-then
-  export PATH="$HOME/code/bin:$PATH"
-fi
-
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
+
+# add entries to PATH if they're not there already
+function prepend_path { 
+  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+prepend_path "$HOME/.gem/ruby/2.7.0/bin"
+prepend_path "$HOME/code/bin"
+unset prepend_path
 
 # set application environment variables
 
