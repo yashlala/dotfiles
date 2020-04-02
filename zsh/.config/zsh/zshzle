@@ -11,9 +11,9 @@ bindkey -M viins '^[[3~' delete-char
 bindkey -M viins '^M' accept-line
 
 # bash keybindings
-bindkey -M main '^L' clear-screen
-bindkey -M viins '^L' clear-screen
-bindkey -M vicmd '^L' clear-screen
+bindkey -M main '^K' clear-screen-scrollback
+bindkey -M viins '^K' clear-screen-scrollback
+bindkey -M vicmd '^K' clear-screen-scrollback
 
 # misc keybindings
 
@@ -39,9 +39,8 @@ accept-line () {
   zle .accept-line
 }
 
-# clear scrollback buffer as well
-clear-screen () {
-  echo -ne '\033c'
+clear-screen-scrollback () {
+  echo -ne '\033c' # clear scrollback buffer as well
   zle .clear-screen
 }
 
@@ -49,4 +48,4 @@ clear-screen () {
 zle -N zle-keymap-select
 zle -N zle-line-init
 zle -N accept-line
-zle -N clear-screen
+zle -N clear-screen-scrollback
