@@ -27,7 +27,7 @@ setopt histreduceblanks
 setopt histignorespace
 
 # configure user interface
-setopt nobeep ignore_eof
+setopt nobeep
 
 # configure completions
 fpath=("$zshdatadir/completions" $fpath)
