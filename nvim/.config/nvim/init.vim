@@ -46,6 +46,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
+Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
 
 Plug 'tpope/vim-repeat'
 
@@ -70,6 +71,7 @@ let g:EasyMotion_smartcase = 1
 " trim trailing whitespace for certain filetypes
 " autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf,ocaml
 "   \ autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd BufWritePre *.go GoFmt
 
 " return to last edit position when opening files
 autocmd BufReadPost *
