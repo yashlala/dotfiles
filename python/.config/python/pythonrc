@@ -6,7 +6,7 @@ readline.parse_and_bind("set editing-mode vi")
 import os
 histfile = os.path.expanduser('~/.cache/python/history')
 if not os.path.exists(histfile): 
-    os.makedirs(os.path.dirname(histfile))
+    os.makedirs(os.path.dirname(histfile), exist_ok=True)
     open(histfile, 'a').close()
 
 readline.read_history_file(histfile)
