@@ -1,19 +1,17 @@
-# enable vi keybindings
+# Enable vi keybindings. 
 import readline
 readline.parse_and_bind("set editing-mode vi")
 
-# disable history file
-import sys
-def register_readline_completion():
-    # rlcompleter must be loaded for Python-specific completion
-    try: import readline, rlcompleter
-    except ImportError: return
-    # Enable tab-completion
-    readline_doc = getattr(readline, '__doc__', '')
-    if readline_doc is not None and 'libedit' in readline_doc:
-        readline.parse_and_bind('bind ^I rl_complete')
-    else:
-        readline.parse_and_bind('tab: complete')
-sys.__interactivehook__ = register_readline_completion
+# Change location of interactive interpreter's history file. 
+import os
+histfile = os.path.expanduser('~/.cache/python/python_history')
+if not os.path.exists(histfile): 
+    os.makedirs(os.path.dirname(histfile))
+    open(histfile, 'a').close()
+
+readline.read_history_file(histfile)
+readline.write_history_file(histfile)
+
+del histfile
 
 # vim: ft=python
