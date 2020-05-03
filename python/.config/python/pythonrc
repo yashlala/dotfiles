@@ -4,7 +4,7 @@ readline.parse_and_bind("set editing-mode vi")
 
 # Change location of interactive interpreter's history file. 
 import os
-histfile = os.path.expanduser('~/.cache/python/python_history')
+histfile = os.path.expanduser('~/.cache/python/history')
 if not os.path.exists(histfile): 
     os.makedirs(os.path.dirname(histfile))
     open(histfile, 'a').close()
