@@ -71,24 +71,28 @@
 	stpu = stash push
 	stsh = stash show
 	st = stash
+	swc = switch --create
+	swd = switch --discard-changes
+	swm = switch --merge
+	sw = switch
 	taas = tag --annotate --sign
 	taa = tag --annotate
 	tad = tag --delete
 	tas = tag --sign
 	ta = tag
 	uig = update-index --no-skip-worktree # unignore a file
-	ustp = reset --patch HEAD
-	ust = reset HEAD
 [apply]
 	whitespace = nowarn
 [core]
 	whitespace = -trailing-space
 	editor = vim
+	pager = less
 [gui]
 	fontui = -family \"DejaVu Sans\" -size 18 -weight normal -slant roman -underline 0 -overstrike 0
 [advice]
 	statusHints = false
 	detachedHead = false
+	addEmptyPathspec = false
 [init]
 	templatedir = ~/.config/git/templates
 [branch]
