@@ -10,7 +10,7 @@
 ## CONFIGURATION ##
 
 # Location of the i3lock wrapper script
-i3lock_command="$HOME/.local/scripts/i3lock.sh"
+i3lock_command="$HOME/.local/scripts/i3lock"
 
 # Options to pass to i3lock
 i3lock_options="

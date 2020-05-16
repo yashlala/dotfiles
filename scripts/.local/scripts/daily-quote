@@ -4,7 +4,7 @@
 # TODO: make these quotes more inspirational/whimsical. 
 
 cache_file="$HOME/.cache/daily-quote/run-date"
-slowtype="$HOME/.local/scripts/slowtype.py"
+slowtype="$HOME/.local/scripts/slowtype"
 
 
 cleanup () { 

@@ -1,1 +1,1 @@
-~/.local/scripts/daily-quote.sh
+"$HOME/.local/scripts/daily-quote"

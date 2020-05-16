@@ -50,11 +50,11 @@ bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+space                    exec --no-startup-id rofi -show drun
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
-bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi.bash
-bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi.bash --clip
+bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
+bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 bindsym $mod+i                        exec firefox
 bindsym $mod+Shift+i                  exec firefox --private-window
-bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser.sh
+bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 bindsym --release XF86Tools           exec urxvtc -cd ~/.config
@@ -153,8 +153,8 @@ exec --no-startup-id xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Sp
 exec --no-startup-id sleep 0.5 && xinput disable 'ELAN Touchscreen'
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ true
 
-exec --no-startup-id ~/.local/scripts/set-desktop-background.sh
-exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen.bash
+exec --no-startup-id ~/.local/scripts/set-desktop-background
+exec --no-startup-id xss-lock -l -- ~/.local/scripts/lock-screen
 exec --no-startup-id redshift
 exec --no-startup-id xbanish
 exec --no-startup-id picom --daemon

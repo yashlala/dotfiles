@@ -11,7 +11,7 @@ URxvt.scrollTtyOutput:   false
 URxvt.scrollTtyKeypress: true
 Urxvt.perl-ext:
 Urxvt.perl-ext-common:
-URxvt.print-pipe: "$HOME/.local/scripts/save-scrollback-buffer.sh"
+URxvt.print-pipe: "$HOME/.local/scripts/save-scrollback-buffer"
 
 *background:   #3a3a3a
 *foreground:   #d0d0d0
