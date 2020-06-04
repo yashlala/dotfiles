@@ -2,16 +2,45 @@
 import readline
 readline.parse_and_bind("set editing-mode vi")
 
-# Change location of interactive interpreter's history file. 
-import os
-histfile = os.path.expanduser('~/.cache/python/history')
-if not os.path.exists(histfile): 
-    os.makedirs(os.path.dirname(histfile), exist_ok=True)
-    open(histfile, 'a').close()
+# Set up readline. This is a modified version of CPython code, we're loading
+# a modified version here just so we can configure the location of our history
+# file. 
+def register_readline():
+    import atexit
+    import os
+    try:
+        import readline
+        import rlcompleter
+    except ImportError:
+        return
 
-readline.read_history_file(histfile)
-readline.write_history_file(histfile)
+    # Reading the initialization (config) file may not be enough to set a
+    # completion key, so we set one first and then read the file.
+    readline_doc = getattr(readline, '__doc__', '')
+    if readline_doc is not None and 'libedit' in readline_doc:
+        readline.parse_and_bind('bind ^I rl_complete')
+    else:
+        readline.parse_and_bind('tab: complete')
 
-del histfile
+    try:
+        readline.read_init_file()
+    except OSError:
+        pass
+
+    if readline.get_current_history_length() == 0:
+        history = os.path.expanduser('~/.cache/python/history')
+        if not os.path.exists(history): 
+            os.makedirs(os.path.dirname(history), exist_ok=True)
+            open(history, 'a').close()
+
+        try:
+            readline.read_history_file(history)
+        except IOError:
+            pass
+        atexit.register(readline.write_history_file, history)
+
+import sys
+sys.__interactivehook__ = register_readline
+del register_readline
 
 # vim: ft=python
