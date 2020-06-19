@@ -2,19 +2,27 @@
 
 import sys, time, random, signal
 
-def delaykey(t, p=15): 
-    time.sleep(t + random.random() / p)
+char_wait = 1/30
+newline_wait = 1/5
+if len(sys.argv) >= 2: 
+    char_wait = 1 / int(sys.argv[1])
+if len(sys.argv) >= 3:
+    newline_wait = 1 / int(sys.argv[2])
+
+def delaykey(delay=char_wait): 
+    offset = (random.random() - 0.5) * delay / 5
+    time.sleep(delay + offset)
 
 signal.signal(signal.SIGINT, lambda x, y: sys.exit(1))
 
 for line in sys.stdin: 
     for char in line: 
         if char == '\n': 
-            delaykey(0.17)
+            delaykey(newline_wait)
         elif char == '\t': 
-            delaykey(0.15)
+            delaykey(newline_wait)
         
         sys.stdout.write(char)
         sys.stdout.flush()
-        delaykey(0.04)
-delaykey(0.3, 5)
+        delaykey(char_wait)
+delaykey(newline_wait * 2)
