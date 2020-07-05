@@ -30,6 +30,7 @@ alias q='exit'
 disable r; alias r='ranger'
 
 alias info='info --vi-keys'
+alias R='R -q'
 alias bpython='bpython -q'
 alias python='python -q'
 alias gdb='gdb -q'
