@@ -2,21 +2,27 @@
 
 # Prints a quote to stdout once per day. 
 
-
 date_file="$HOME/.local/share/daily-quote/run-date"
-quote_dir="$HOME/.local/share/daily-quote/quotes"
+quote_dir="$HOME/.local/quotes"
 slowtype="$HOME/.local/scripts/slowtype"
 temp_file=$(mktemp)
+stty_original=$(stty -g)
 
 cleanup () { 
-  date -I >"$date_file"
   rm -f "$temp_file"
+  stty $stty_original
+}
+cleanup_err () { 
+  date -I >"$date_file"
+  cleanup
   exit 1
 }
-trap cleanup SIGINT
+trap cleanup_err SIGINT
 
+stty -echo
+
+# Load the last time this program was run, and store the current date.
 mkdir -p "$quote_dir" "$(dirname "$date_file")"
-
 if [ -e "$date_file" ]; then 
   last_date=$(cat "$date_file")
 else
@@ -28,7 +34,9 @@ if [ "$(date -I)" = "$last_date" ] \
     || [ "$(date '+%s')" -lt "$(date -d '06:30 Today' '+%s')" ]; then
   exit
 fi
+date -I >"$date_file"
 
+# Generate a quote, centering the text to the terminal.
 quote_width=$(tput cols | awk '{printf "%d\n", int($1) / 1.5}')
 quote_center=$(tput cols | awk '{printf "%d\n", int($1) / 2}')
 fortune 100% "$quote_dir" \
@@ -36,8 +44,11 @@ fortune 100% "$quote_dir" \
   | awk "{printf \"%\" int(${quote_center} + length(\$0)/2) \"s\\n\", \$0}" \
   >>"$temp_file"
 
-typing_speed=$(wc -m "$temp_file" | awk '{printf "%d\n", int($1) / 10}')
-newline_speed=$(wc -l "$temp_file" | awk '{printf "%d\n", int($1) * 2}')
+# Decide how fast to print the quote depending on its length.
+num_letters=$(<"$temp_file" tr -d '[:space:]' \
+  | wc -m | cut -d ' ' -f 1)
+typing_speed=$(echo "$num_letters" | awk '{printf "%d\n", int($0) / 10}')
+newline_speed=$(echo "$num_letters" | awk '{printf "%d\n", int($0) * 2}')
 if [ "$typing_speed" -lt 50 ]; then
   typing_speed=50
 fi
@@ -45,10 +56,10 @@ if [ "$newline_speed" -lt 5 ]; then
   newline_speed=20
 fi
 
-sleep 1
+# Print the quote.
+sleep 0.3
 echo -e "Good Morning!\nHere's a quote:\n" | "$slowtype" 30
 "$slowtype" "$typing_speed" "$newline_speed" <"$temp_file"
 echo -e "\nHave a nice day!" | "$slowtype" 30 2
 
-rm -f "$temp_file"
-date -I >"$date_file"
+cleanup
