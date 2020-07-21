@@ -3,6 +3,7 @@
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
+export BROWSER='firefox --new-window'
 
 # add entries to PATH if they're not there already
 function prepend_path { 
@@ -27,8 +28,11 @@ export HISTFILE="$HOME/.local/share/zsh/histfile"
 # needed for GNU Readline
 export INPUTRC="$HOME/.config/readline/inputrc"
 export NETHACKOPTIONS="$HOME/.config/nethack/nethackrc"
+export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuchrc"
 # needed for pass
 export PASSWORD_STORE_DIR="$HOME/.local/passwords"
 # needed for python interactive interpreter
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
+# needed for openssl-rand PRNG
+export RANDFILE="$HOME/.local/share/openssl/rnd"
 export WEECHAT_HOME="$HOME/.config/weechat"

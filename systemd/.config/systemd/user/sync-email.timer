@@ -1,0 +1,9 @@
+[Unit]
+Description=Copy Gmail contents to local Maildir
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=20min
+
+[Install]
+WantedBy=timers.target

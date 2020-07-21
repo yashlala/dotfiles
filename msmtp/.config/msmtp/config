@@ -1,0 +1,16 @@
+# Set default values for all following accounts.
+defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+# Personal account
+account personal
+host smtp.gmail.com
+port 587
+protocol smtp
+from yashlala@gmail.com
+user yashlala@gmail.com
+passwordeval "gpg --batch --quiet --decrypt ~/.local/passwords/scripts/email/offlineimap-on-graphite.asc"
+
+account default : personal

@@ -79,6 +79,8 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
+autocmd BufNewFile,BufRead neomutt-* set filetype=mail
+
 
 """""""""""""""""""
 " Keybindings
