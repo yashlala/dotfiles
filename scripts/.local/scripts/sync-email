@@ -1,9 +1,10 @@
 #!/bin/sh -e
 
 # this isn't set if we're not starting from a shell
-export GNUPGHOME=/home/lala/.local/share/gnupg
-
+# edit: wait..maybe? I don't think we actually need the below line
+export GNUPGHOME="$HOME/.local/share/gnupg"
 # TODO: use pinentry to figure some shit out, this password crap is annoying
+
 
 # Count mail
 count() { 
