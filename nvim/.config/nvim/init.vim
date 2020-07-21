@@ -101,7 +101,6 @@ nnoremap <silent> S :keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
 nnoremap U <c-r>
 nnoremap <c-r> U
 nnoremap v V
-nnoremap V v
 
 noremap <bs> <c-u>
 noremap <up> <c-u>

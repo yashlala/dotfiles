@@ -2,5 +2,4 @@ set selection-clipboard clipboard
 set window-title-home-tilde true
 set statusbar-home-tilde true
 set scroll-step 160
-set hscroll-step 80
 set font "DejaVu Sans Mono 9"

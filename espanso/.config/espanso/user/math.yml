@@ -1,0 +1,35 @@
+name: math
+parent: default
+
+# MATH SYMBOLS
+
+# Most patterns should be the same as LaTeX math.
+
+matches:
+  # NOT EQUAL TO
+  - trigger: "`neq"
+    replace: "≠"
+
+  # LESS THAN OR EQUAL TO
+  - trigger: "`leq"
+    replace: "≤"
+
+  # GREATER THAN OR EQUAL TO
+  - trigger: "`geq"
+    replace: "≥"
+
+  # ALMOST EQUAL TO
+  - trigger: "`approx"
+    replace: "≈"
+
+  # PLUS-MINUS SIGN
+  - trigger: "`pm"
+    replace: "±"
+
+  # ELEMENT OF
+  - trigger: "`in"
+    replace: "∈"
+
+  # NOT AN ELEMENT OF
+  - trigger: "`notin"
+    replace: "∉"

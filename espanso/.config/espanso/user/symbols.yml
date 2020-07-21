@@ -1,0 +1,15 @@
+name: symbols
+parent: default
+
+# GENERAL SYMBOLS
+
+# Most patterns should be the same as in XCompose.
+
+matches:
+  # U+2122 TRADE MARK SIGN
+  - trigger: "`tm"
+    replace: "™"
+
+  # U+00AE REGISTERED SIGN
+  - trigger: "`or"
+    replace: "®"
