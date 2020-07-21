@@ -1,0 +1,9 @@
+[Unit]
+Description=Copy updated shell completions to local fpath. 
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh /home/lala/.local/scripts/sync-completions
+
+[Install]
+WantedBy=default.target
