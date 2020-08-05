@@ -3,7 +3,7 @@
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
-export BROWSER='firefox --new-window'
+export BROWSER=firefox
 
 # add entries to PATH if they're not there already
 function prepend_path { 
@@ -24,6 +24,12 @@ export ESCDELAY=15
 
 # change application config and data locations
 
+# some apps only adhere to the standard if we make these explicit
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+export CGDB_DIR="$HOME/.local/share/cgdb"
 export ELINKS_CONFDIR="$HOME/.local/share/elinks"
 export GNUPGHOME="$HOME/.local/share/gnupg"
 # needed for bash, sh, etc.
@@ -38,4 +44,6 @@ export PASSWORD_STORE_DIR="$HOME/.local/passwords"
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 # needed for openssl-rand PRNG
 export RANDFILE="$HOME/.local/share/openssl/rnd"
+# needed for ~/.zoom folder
+export SSB_HOME="$HOME/.local/share/zoom/"
 export WEECHAT_HOME="$HOME/.config/weechat"
