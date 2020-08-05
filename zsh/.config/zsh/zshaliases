@@ -24,6 +24,7 @@ alias bpy='bpython -q'
 alias q='exit'
 disable r; alias r='ranger'
 
+alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
 alias info='info --vi-keys'
 alias R='R -q'
 alias bpython='bpython -q'

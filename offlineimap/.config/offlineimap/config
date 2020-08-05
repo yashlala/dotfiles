@@ -12,7 +12,6 @@ remoterepository = personal-remote
 [Repository personal-local]
 type = Maildir
 localfolders = ~/.local/mail
-postsynchook = notmuch new
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'sent':    '[Gmail]/Sent Mail',
                             'flagged': '[Gmail]/Starred',

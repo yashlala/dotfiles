@@ -19,6 +19,8 @@ unset prepend_path
 # set application environment variables
 
 export RANGER_LOAD_DEFAULT_RC="FALSE"
+# used for ncurses
+export ESCDELAY=15
 
 # change application config and data locations
 

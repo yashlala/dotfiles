@@ -18,7 +18,7 @@ fi
 
 # Get old email count
 old=$(count)
-if ! offlineimap -o -u quiet; then
+if ! nice offlineimap -o -u quiet; then
   notify-send -a 'offlineimap' 'could not sync email'
   exit 1
 fi
@@ -33,3 +33,6 @@ if [ "$new" -gt "$old" ]; then
   fi
   notify-send -a 'offlineimap' "$msg"
 fi
+
+# Now that we've downloaded our mail, index it. 
+sleep 2 && notmuch new

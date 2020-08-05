@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec abook --config ~/.config/abook/abookrc \
+  --datafile ~/.local/share/abook/addressbook \
+  "$@"

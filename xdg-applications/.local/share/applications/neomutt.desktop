@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=neomutt
+GenericName=Mail Client
+Comment=A terminal mail client
+Exec=/usr/bin/neomutt
+Terminal=true
+Type=Application
