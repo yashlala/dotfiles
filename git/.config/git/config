@@ -58,11 +58,13 @@
 	me = merge
 	met = mergetool
 	no = notes
-	pum = pull --merge # pull-merge; *usually* default pull behavior
 	pu = pull
+	pum = pull --merge # pull-merge; *usually* default pull behavior
 	pur = pull --rebase
-	rei = rebase --interactive
-	re = rebase
+	re = restore
+	# TODO TODO:
+	rbi = rebase --interactive
+	rb = rebase
 	sh = show
 	stdr = stash drop
 	stli = stash list
@@ -71,8 +73,8 @@
 	stpu = stash push
 	stsh = stash show
 	st = stash
-	swc = switch --create
-	swd = switch --discard-changes
+	swc = switch --create  # new equialent to chb
+	swd = switch --discard-changes 
 	swm = switch --merge
 	sw = switch
 	taas = tag --annotate --sign
@@ -93,8 +95,6 @@
 	statusHints = false
 	detachedHead = false
 	addEmptyPathspec = false
-[init]
-	templatedir = ~/.config/git/templates
 [branch]
 	autosetuprebase = always
 [commit]

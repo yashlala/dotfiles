@@ -29,6 +29,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+export ASPELL_CONF="per-conf $HOME/.config/aspell/config;home-dir $HOME/.local/share/aspell"
 export CGDB_DIR="$HOME/.local/share/cgdb"
 export ELINKS_CONFDIR="$HOME/.local/share/elinks"
 export GNUPGHOME="$HOME/.local/share/gnupg"

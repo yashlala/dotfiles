@@ -13,3 +13,7 @@ matches:
   # U+00AE REGISTERED SIGN
   - trigger: "`or"
     replace: "®"
+
+  # U+2026 HORIZONTAL ELLIPSIS
+  - trigger: "`..."
+    replace: "…"

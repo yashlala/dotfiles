@@ -1,6 +1,7 @@
 # espanso configuration file
 
 toggle_key: "RIGHT_ALT"
+auto_restart: false
 
 matches:
   - trigger: "`-"
