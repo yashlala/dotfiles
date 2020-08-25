@@ -3,7 +3,7 @@ Description=Copy Gmail contents to local Maildir
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sh /home/lala/.local/scripts/sync-email
+ExecStart=/usr/bin/zsh /home/lala/.local/scripts/sync-email
 
 [Install]
 WantedBy=default.target
