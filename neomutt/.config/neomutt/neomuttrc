@@ -39,7 +39,7 @@ set mime_type_query_command = "xdg mime query filetype"
 
 
 set status_chars  = " *%A"
-set status_format = "───[ %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+set status_format = " %f %?d? (%d to delete)?"
 
 ignore *
 unignore from: to: cc: date: subject:   # show only these,
@@ -61,7 +61,7 @@ alternative_order text/plain text/html text/enriched
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
-set index_format = "[%Z]  %D  %-20.20F  %s"
+set index_format = "%Z %{%b %d} %-20.20L %s"
 set sort = threads
 set sort_aux = reverse-last-date-received
 set collapse_all
@@ -83,13 +83,18 @@ set forward_quote                    # include message in forwards
 # Key Bindings ---------------------------------------
 
 set abort_key = "<Esc>"
+bind generic \; enter-command
+bind pager \; enter-command
 
-bind  index g           noop
-bind  index gg          first-entry
-bind  index G           last-entry
-bind  index <Tab>       half-down
-bind  index <Backspace> half-up
-bind  index s           mail # send
+
+bind index g           noop
+bind index gg          first-entry
+bind index G           last-entry
+bind index <Tab>       half-down
+bind index <Backspace> half-up
+bind index i           mail
+bind index s           sync-mailbox
+bind index $           noop
 # "mark" like vim? kinda?
 macro index,pager m "<pipe-message>~/.local/scripts/email-contacts --add-email-quiet<return>" "Add this sender to address book"
 macro index c           "<change-folder>?" "change mailboxes"
@@ -102,9 +107,11 @@ bind  index dw delete-message
 bind  index y  noop
 macro index yy "<copy-message>?<toggle-mailboxes>" "copy a message"
 
-macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox folder"
+macro index O "<shell-escape>offlineimap -q<enter>" "run offlineimap to sync all folders"
 
 
+bind pager i           noop
 bind pager k           previous-line
 bind pager j           next-line
 bind pager g           noop
@@ -115,7 +122,6 @@ bind pager <Backspace> half-up
 bind pager R           group-reply
 
 macro pager \Cu "<pipe-message>urlscan<enter>" "call urlscan to open links"
-
 bind attach l view-mailcap # View attachments properly.
 
 # TODO
