@@ -32,6 +32,7 @@ fi
 # Exit if we've already printed a quote today or it's not 6:30 AM yet.
 if [ "$(date -I)" = "$last_date" ] \
     || [ "$(date '+%s')" -lt "$(date -d '06:30 Today' '+%s')" ]; then
+  cleanup
   exit
 fi
 date -I >"$date_file"
