@@ -35,4 +35,4 @@ if [ "$new" -gt "$old" ]; then
 fi
 
 # Now that we've downloaded our mail, index it. 
-sleep 2 && notmuch new
+notmuch new
