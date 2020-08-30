@@ -26,20 +26,19 @@ set move = no
 unset record 
 set copy = no
 set delete = yes
-
-unset confirmappend
+set abort_noattach = ask-no
 set quit = ask-yes
+unset confirmappend
 unset mark_old           # read/new is good enough
 set pipe_decode          # strip headers and eval mimes when piping
-# set thorough_search      # strip headers and eval mimes before searching
 set wait_key = no
-
 set query_command = "~/.local/scripts/email-contacts --mutt-query '%s'"
 set mime_type_query_command = "xdg mime query filetype"
 
 
 set status_chars  = " *%A"
 set status_format = " %f %?d? (%d to delete)?"
+set folder_format = "%i"
 
 ignore *
 unignore from: to: cc: date: subject:   # show only these,
@@ -54,7 +53,7 @@ set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus
 set tilde                  # show tildes like in vim
 unset markers              # no ugly plus signs
-set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set quote_regex = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 auto_view text/html
 alternative_order text/plain text/html text/enriched
 
@@ -68,6 +67,7 @@ set collapse_all
 set uncollapse_jump 
 set sort_re 
 set reply_regex = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
 
 # Compose View Options -------------------------------
 set fcc_attach                       # save attachments with the body
