@@ -44,11 +44,11 @@ set $mod Mod4
 floating_modifier $mod
 
 # application keybindings
-bindsym $mod+Return                   exec urxvtc
-bindsym $mod+Shift+Return             exec urxvt
+bindsym $mod+space                    exec urxvtc
+bindsym $mod+Shift+space              exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
-bindsym $mod+space                    exec --no-startup-id rofi -show drun
+bindsym $mod+Return                   exec --no-startup-id rofi -show drun
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
@@ -57,8 +57,6 @@ bindsym $mod+Shift+i                  exec firefox --private-window
 bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
-bindsym --release XF86Tools           exec urxvtc -cd ~/.config
-bindsym --release Shift+XF86Tools     exec urxvtc -cd ~/.dotfiles
 
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -184,4 +182,4 @@ bar {
     }
 }
 
-# vim:ft=conf:sw=4:set expandtab::
+# vim:ft=conf:sw=4:set expandtab:
