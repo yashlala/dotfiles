@@ -12,15 +12,13 @@ function prepend_path {
   fi
 }
 
-prepend_path "$HOME/.gem/ruby/2.7.0/bin"
 prepend_path "$HOME/code/bin"
 unset prepend_path
 
 # set application environment variables
 
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-# used for ncurses
-export ESCDELAY=15
+export ESCDELAY=15 # used by ncurses
 
 # change application config and data locations
 
