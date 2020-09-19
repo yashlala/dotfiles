@@ -16,7 +16,7 @@ matches:
       - name: date
         type: date
         params:
-          format: "%m/%d/%Y"
+          format: "%Y-%m-%d"
 
   - trigger: "`time"
     replace: "{{time}}"

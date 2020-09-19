@@ -59,8 +59,8 @@ alternative_order text/plain text/html text/enriched
 
 
 # Index View Options ---------------------------------
-set date_format = "%m/%d"
-set index_format = "%Z %{%b %d} %-20.20L %s"
+set date_format = "%y-%m-%d"
+set index_format = "%Z %d %-20.20L %s"
 set sort = threads
 set sort_aux = reverse-last-date-received
 set collapse_all
