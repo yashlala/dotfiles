@@ -27,7 +27,7 @@ unset record
 set copy = no
 set delete = yes
 set abort_noattach = ask-no
-set quit = ask-yes
+set quit = yes
 unset confirmappend
 unset mark_old           # read/new is good enough
 set pipe_decode          # strip headers and eval mimes when piping
@@ -36,6 +36,7 @@ set query_command = "~/.local/scripts/email-contacts --mutt-query '%s'"
 set mime_type_query_command = "xdg mime query filetype"
 
 
+set to_chars = "   cf  "
 set status_chars  = " *%A"
 set status_format = " %f %?d? (%d to delete)?"
 set folder_format = "%i"
@@ -47,7 +48,7 @@ hdr_order from: to: cc: date: subject:  # and in this order
 
 
 # Pager View Options ---------------------------------
-set pager_index_lines = 4  # number of index lines to show
+set pager_index_lines = 3  # number of index lines to show
 set pager_context = 3      # number of context lines to show
 set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus

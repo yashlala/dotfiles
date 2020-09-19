@@ -49,12 +49,13 @@ bindsym $mod+Shift+space              exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id rofi -show drun
+bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser
+bindsym $mod+m                        exec urxvtc -e neomutt
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
-bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
-bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 bindsym $mod+i                        exec firefox
 bindsym $mod+Shift+i                  exec firefox --private-window
-bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser
+bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
+bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 
@@ -69,10 +70,10 @@ bindsym Shift+XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @
 bindsym XF86AudioMute                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute              exec --no-startup-id amixer -q sset Capture toggle
 
-bindsym XF86MonBrightnessUp           exec --no-startup-id xbacklight -inc 10
-bindsym XF86MonBrightnessDown         exec --no-startup-id xbacklight -dec 10
-bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 2
-bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 2
+bindsym XF86MonBrightnessUp           exec --no-startup-id xbacklight -inc 2
+bindsym XF86MonBrightnessDown         exec --no-startup-id xbacklight -dec 2
+bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id xbacklight -inc 10
+bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id xbacklight -dec 10
 
 # workspace keybindings
 bindsym $mod+1 workspace $workspace1
