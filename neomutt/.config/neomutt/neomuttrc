@@ -30,7 +30,7 @@ set abort_noattach = ask-no
 set quit = yes
 unset confirmappend
 unset mark_old           # read/new is good enough
-set pipe_decode          # strip headers and eval mimes when piping
+set pipe_decode = no
 set wait_key = no
 set query_command = "~/.local/scripts/email-contacts --mutt-query '%s'"
 set mime_type_query_command = "xdg mime query filetype"
