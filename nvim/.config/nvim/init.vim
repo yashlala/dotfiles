@@ -25,6 +25,7 @@ let &showbreak = '↳ '
 set modeline
 set confirm
 set autoindent
+set undofile
 filetype plugin indent on
 syntax on
 
