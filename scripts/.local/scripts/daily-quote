@@ -2,10 +2,10 @@
 
 # Prints a quote to stdout once per day. 
 
-date_file="$HOME/.local/share/daily-quote/run-date"
-quote_dir="$HOME/.local/quotes"
+date_file="$HOME/.local/share/daily-msg/run-date"
 slowtype="$HOME/.local/scripts/slowtype"
-temp_file=$(mktemp)
+log_file=$(find "$HOME/documents/log" -print0 | sort -z \
+  | tail -zn 1 | tr -d '\0')
 stty_original=$(stty -g)
 
 cleanup () { 
@@ -22,7 +22,7 @@ trap cleanup_err SIGINT
 stty -echo
 
 # Load the last time this program was run, and store the current date.
-mkdir -p "$quote_dir" "$(dirname "$date_file")"
+mkdir -p "$(dirname "$date_file")"
 if [ -e "$date_file" ]; then 
   last_date=$(cat "$date_file")
 else
@@ -37,30 +37,12 @@ if [ "$(date -I)" = "$last_date" ] \
 fi
 date -I >"$date_file"
 
-# Generate a quote, centering the text to the terminal.
-quote_width=$(tput cols | awk '{printf "%d\n", int($1) / 1.5}')
-quote_center=$(tput cols | awk '{printf "%d\n", int($1) / 2}')
-fortune 100% "$quote_dir" \
-  | fmt -w "$quote_width" \
-  | awk "{printf \"%\" int(${quote_center} + length(\$0)/2) \"s\\n\", \$0}" \
-  >>"$temp_file"
-
-# Decide how fast to print the quote depending on its length.
-num_letters=$(<"$temp_file" tr -d '[:space:]' \
-  | wc -m | cut -d ' ' -f 1)
-typing_speed=$(echo "$num_letters" | awk '{printf "%d\n", int($0) / 10}')
-newline_speed=$(echo "$num_letters" | awk '{printf "%d\n", int($0) * 2}')
-if [ "$typing_speed" -lt 50 ]; then
-  typing_speed=50
-fi
-if [ "$newline_speed" -lt 5 ]; then
-  newline_speed=20
-fi
-
 # Print the quote.
-sleep 0.3
-echo -e "Good Morning!\nHere's a quote:\n" | "$slowtype" 30
-"$slowtype" "$typing_speed" "$newline_speed" <"$temp_file"
-echo -e "\nHave a nice day!" | "$slowtype" 30 2
+
+"$slowtype" 30 2 <<EOF 
+Logbook Data Found.
+Replaying Entry $(basename "$log_file" '.md')...
+EOF
+cat "$log_file" | less
 
 cleanup
