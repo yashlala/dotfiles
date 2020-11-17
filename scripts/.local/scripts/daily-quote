@@ -1,25 +1,55 @@
 #!/bin/sh -e
 
-# Prints a quote to stdout once per day. 
+# Prints a logbook entry to stdout once per day. 
+# When called with '-p', unconditionally prints the entry. 
 
 date_file="$HOME/.local/share/daily-msg/run-date"
 slowtype="$HOME/.local/scripts/slowtype"
-log_file=$(find "$HOME/documents/log" -print0 | sort -z \
-  | tail -zn 1 | tr -d '\0')
-stty_original=$(stty -g)
+log_dir="$HOME/documents/log"
 
+
+# ----------------
+# Helper Functions
+# ----------------
+
+# Cleanup Functions
+stty_original=$(stty -g)
 cleanup () { 
-  rm -f "$temp_file"
-  stty $stty_original
+  stty "$stty_original"
 }
-cleanup_err () { 
+cleanup_interrupt () { 
   date -I >"$date_file"
   cleanup
   exit 1
 }
-trap cleanup_err SIGINT
+
+# Prints the most recent log file.
+print_log_entry () { 
+  log_file=$(find "$log_dir" -print0 | sort -z \
+    | tail -zn 1 | tr -d '\0')
+  entry=$(basename "$log_file" '.md')
+
+  echo -e "Logbook Data Found.\nReplaying Entry $entry..." \
+    | "$slowtype" 30 2 
+  less "$log_file"
+}
+
+
+# -----------
+# Main Script
+# -----------
 
 stty -echo
+trap cleanup_interrupt SIGINT
+
+if [ "$1" = '-p' ]; then 
+  # TODO: code duplication. cardinal sin.
+  log_file=$(find "$log_dir" -print0 | sort -z \
+    | tail -zn 1 | tr -d '\0')
+  less "$log_file" 
+  cleanup
+  exit
+fi
 
 # Load the last time this program was run, and store the current date.
 mkdir -p "$(dirname "$date_file")"
@@ -35,14 +65,7 @@ if [ "$(date -I)" = "$last_date" ] \
   cleanup
   exit
 fi
+
 date -I >"$date_file"
-
-# Print the quote.
-
-"$slowtype" 30 2 <<EOF 
-Logbook Data Found.
-Replaying Entry $(basename "$log_file" '.md')...
-EOF
-cat "$log_file" | less
-
+print_log_entry
 cleanup
