@@ -1,3 +1,7 @@
+
+
+
+
 # Paths ----------------------------------------------
 set folder           = ~/.local/mail
 set mailcap_path     = ~/.config/neomutt/mailcap
@@ -64,7 +68,6 @@ set date_format = "%y-%m-%d"
 set index_format = "%Z %d %-20.20L %s"
 set sort = threads
 set sort_aux = reverse-last-date-received
-set collapse_all
 set uncollapse_jump 
 set sort_re 
 set reply_regex = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
@@ -79,6 +82,7 @@ set attribution = "On %d, %n wrote:" # format of quoting header
 set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
 set forward_quote                    # include message in forwards
+set text_flowed = yes
 
 
 # Key Bindings ---------------------------------------
@@ -100,6 +104,7 @@ bind index $           noop
 macro index,pager m "<pipe-message>~/.local/scripts/email-contacts --add-email-quiet<return>" "Add this sender to address book"
 macro index c           "<change-folder>?" "change mailboxes"
 bind  index <space>     collapse-thread
+bind  index e           entire-thread
 bind  index /           vfolder-from-query # use notmuch
 
 bind  index d  noop

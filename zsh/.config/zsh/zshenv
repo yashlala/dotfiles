@@ -35,6 +35,7 @@ export GNUPGHOME="$HOME/.local/share/gnupg"
 export HISTFILE="$HOME/.local/share/zsh/histfile"
 # needed for GNU Readline
 export INPUTRC="$HOME/.config/readline/inputrc"
+export IPYTHONDIR="$HOME/.local/share/ipython"
 export NETHACKOPTIONS="$HOME/.config/nethack/nethackrc"
 export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuchrc"
 # needed for pass

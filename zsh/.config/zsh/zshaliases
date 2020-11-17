@@ -6,28 +6,25 @@
 
 alias battery='acpi -b'
 alias connect-to='sudo netctl-auto switch-to'
-alias gitka='gitk --all'
 alias hibernate='systemctl hibernate'
 alias quit='exit'
 alias unstow='stow -D'
 alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 
-alias a='asciinema'
-alias f='z'
+alias adoc='asciidoctor'
 alias g='git'
 alias m='neomutt'
 alias o='rifle'
-alias py='python -q'
-alias bpy='bpython -q'
+alias py='ipython'
 alias q='exit'
 disable r; alias r='ranger'
+alias rec='asciinema'
+alias s='stg'
 
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
 alias info='info --vi-keys'
 alias R='R -q'
-alias bpython='bpython -q'
-alias python='python -q'
 alias gdb='gdb -q'
 alias cgdb='cgdb -q'
 alias mv='mv -i'
@@ -51,8 +48,9 @@ alias rghc='rg --smart-case --hidden --color=always'
 alias fdc='fd --color=always'
 alias fdh='fd --hidden'
 alias fdhc='fd --hidden --color=always'
+alias gitka='gitk --all'
 
-alias zz='top'
+alias zz='top' # B-)===>
 
 # functions
 
