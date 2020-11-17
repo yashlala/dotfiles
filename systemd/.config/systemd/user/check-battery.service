@@ -1,0 +1,9 @@
+[Unit]
+Description=Warn if battery is low
+
+[Service]
+Type=oneshot
+ExecStart=/home/lala/.local/scripts/check-battery
+
+[Install]
+WantedBy=default.target

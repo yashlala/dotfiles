@@ -1,0 +1,6 @@
+#!/bin/sh
+acpi -b | awk '
+$3 ~ /Discharging/ { 
+if ((substr($4, 0, 2) + 0) < 10) 
+  print "low"; 
+}' | ifne notify-send -u critical -a 'battery' 'low battery'
