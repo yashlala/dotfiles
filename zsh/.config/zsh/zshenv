@@ -19,6 +19,7 @@ unset prepend_path
 
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 export ESCDELAY=15 # used by ncurses
+export CONDA_CHANGEPS1='false'
 
 # change application config and data locations
 
