@@ -11,6 +11,6 @@ port 587
 protocol smtp
 from yashlala@gmail.com
 user yashlala@gmail.com
-passwordeval "gpg --batch --quiet --decrypt ~/.local/passwords/scripts/email/offlineimap-on-graphite.asc"
+passwordeval "gpg --batch --quiet --decrypt ~/.local/passwords/scripts/email/offlineimap.asc"
 
 account default : personal

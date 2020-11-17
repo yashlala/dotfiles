@@ -4,5 +4,5 @@ from subprocess import check_output
 
 def getPassword():
     return check_output("gpg --batch --quiet --decrypt " + 
-            "~/.local/passwords/scripts/email/offlineimap-on-graphite.asc",
+            "~/.local/passwords/scripts/email/offlineimap.asc",
             shell=True).strip("\n")
