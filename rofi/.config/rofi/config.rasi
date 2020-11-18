@@ -1,8 +1,8 @@
 configuration {
 	modi: "run,drun,ssh";
-	width: 700;
+	width: 900;
 	lines: 6;
-	font: "DejaVu Sans Mono 23";
+	font: "DejaVu Sans Mono 35";
 	terminal: "urxvt";
 	hide-scrollbar: true;
 	theme: "/usr/share/rofi/themes/solarized.rasi";
