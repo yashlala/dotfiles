@@ -30,8 +30,8 @@ def add_html(msg):
 
     if body.get_content_type() == 'text/plain': 
         body.make_alternative()
-        mime_text = body.get_payload()[0]
-        mime_html = MIMEText(to_html(mime_text.get_content()), 'html', 'utf-8')
+        text = body.get_payload()[0]
+        html = MIMEText(to_html(text.get_content()), 'html', 'utf-8')
 
         body.set_payload([text, html])
 
