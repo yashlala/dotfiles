@@ -1,0 +1,3 @@
+#!/bin/sh
+
+~/.local/scripts/add-html-to-email | msmtp "$@"
