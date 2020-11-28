@@ -9,6 +9,12 @@ from email.parser import Parser
 
 import markdown
 
+# TODO: 
+# This script fails completely when the input email is UTF-8 encoded. 
+# Can we change that? 
+# I've tried generating a policy object: take a look at that later. 
+
+
 # Cheat Sheet (Inspired by Akkana): 
 # When given a 'multipart/alternative' message, the last part of the message is
 # preferred as the authoritative message body (RFC 2046). If we attach the HTML
@@ -31,18 +37,18 @@ def add_html(msg):
     if body.get_content_type() == 'text/plain': 
         body.make_alternative()
         text = body.get_payload()[0]
-        html = MIMEText(to_html(text.get_content()), 'html', 'utf-8')
-
-        body.set_payload([text, html])
+        body.set_payload([text, to_html(text)])
 
     return msg
 
 
 def to_html(text):
-    return markdown.markdown(text)
+    text_data = text.get_content()
+    html_data = markdown.markdown(text_data)
+    return MIMEText(html_data, 'html', 'utf-8')
 
 if __name__ == "__main__":
-    # Read a MIME email from stdin, convert it, then print it to stdout.
-    msg = Parser(policy=policy.default).parse(sys.stdin)
+    # Use CRLF newlines as per RFC.
+    msg = Parser(policy=policy.SMTP).parse(sys.stdin)
     msg = add_html(msg)
     os.write(1, msg.as_bytes())

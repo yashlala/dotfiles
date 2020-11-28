@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/sh -e
 
-~/.local/scripts/add-html-to-email | msmtp "$@"
+~/.local/scripts/add-html-to-email | ifne msmtp "$@"
