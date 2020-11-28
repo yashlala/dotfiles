@@ -1,7 +1,3 @@
-
-
-
-
 # Paths ----------------------------------------------
 set folder           = ~/.local/mail
 set mailcap_path     = ~/.config/neomutt/mailcap
@@ -24,7 +20,7 @@ set sendmail = "~/.local/scripts/send-email"
 # Basic Options --------------------------------------
 set mbox_type = Maildir  # mailbox type
 set timeout = 5          # idle time before scanning
-set mail_check = 300      # minimum time between scans
+set mail_check = 300     # minimum time between scans
 
 set move = no 
 unset record 
@@ -83,6 +79,7 @@ set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
 set forward_quote                    # include message in forwards
 set text_flowed = yes
+unset signature
 
 
 # Key Bindings ---------------------------------------
