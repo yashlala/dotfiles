@@ -27,10 +27,6 @@ cleanup_interrupt () {
 print_log_entry () { 
   log_file=$(find "$log_dir" -print0 | sort -z \
     | tail -zn 1 | tr -d '\0')
-  entry=$(basename "$log_file" '.md')
-
-  echo -e "Logbook Data Found.\nReplaying Entry $entry..." \
-    | "$slowtype" 30 2 
   less "$log_file"
 }
 
@@ -43,10 +39,7 @@ stty -echo
 trap cleanup_interrupt SIGINT
 
 if [ "$1" = '-p' ]; then 
-  # TODO: code duplication. cardinal sin.
-  log_file=$(find "$log_dir" -print0 | sort -z \
-    | tail -zn 1 | tr -d '\0')
-  less "$log_file" 
+  print_log_entry
   cleanup
   exit
 fi
