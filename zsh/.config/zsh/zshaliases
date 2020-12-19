@@ -13,6 +13,7 @@ alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 
 alias adoc='asciidoctor'
+alias c='qalc'
 alias g='git'
 alias m='neomutt'
 alias o='rifle'
