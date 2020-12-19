@@ -1,9 +1,0 @@
-[Unit]
-Description=Warn if battery is low
-
-[Timer]
-OnBootSec=1min
-OnUnitActiveSec=5min
-
-[Install]
-WantedBy=timers.target
