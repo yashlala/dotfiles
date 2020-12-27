@@ -24,6 +24,7 @@ alias rec='asciinema'
 alias s='stg'
 
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
+alias fishnet='fishnet --conf ~/.config/fishnet/fishnet.ini'
 alias info='info --vi-keys'
 alias R='R -q'
 alias gdb='gdb -q'
