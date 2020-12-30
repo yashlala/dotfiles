@@ -1,0 +1,9 @@
+[Unit]
+Description=Trim the FreeDesktop.org Trash bin. 
+
+[Service]
+Type=oneshot
+ExecStart=trash-empty 1
+
+[Install]
+WantedBy=default.target
