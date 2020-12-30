@@ -1,0 +1,82 @@
+set drawbox true
+set smartcase true
+set ignoredia true
+set anchorfind false
+set preview false
+set promptfmt "\033[34;1m%w\033[0m\033[1m%f\033[0m"
+
+
+# ================
+# Functions
+# ================
+
+# Dynamically set the number of columns
+%{{
+    w=$(tput cols)
+    if [ $w -le 30 ]; then
+      lf -remote "send $id set ratios 1"
+    elif [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 3:2"
+    else
+        lf -remote "send $id set ratios 1:2:2"
+    fi
+}}
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) "$EDITOR" "$f";;
+        application/pdf) devour zathura "$f";;
+        video/*) devour mpv --force-window=yes "$f";;
+        audio/*) devour mpv --force-window=yes "$f";;
+        image/*) devour feh "$f";;
+        *) xdg-open "$f";;
+    esac
+}}
+
+# used as a command.
+cmd md ${{
+  mkdir "$1"
+}}
+# used as a keybind.
+cmd interactive_md ${{
+  printf "Directory Name: "
+  read -r ans
+  mkdir "$ans"
+}}
+
+
+# ================
+# Key Bindings
+# ================
+
+map d # unset cut
+map y # unset yank
+map p # unset paste
+map c # unset clear
+map m # unset mkdir
+map \;
+map \:
+
+map J half-down
+map K half-up
+
+map dd cut
+map dw $ trash-put "$f"
+map yy copy
+map pp paste
+map u $ trash-restore 
+map v toggle
+map ; read
+map . set hidden!
+
+map r :rename; cmd-word-back; cmd-left # change name
+map cw :rename; cmd-delete-home # change all
+map ce :rename # change extension
+map R $printf "%s\n" "$fx" | vidir - # bulk rename
+
+map gh cd ~
+map gi cd ~/io
+map gp cd ~/pictures
+map gp cd ~/pictures
+map gd cd ~/documents
+map gc cd ~/code
