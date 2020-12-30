@@ -5,17 +5,8 @@
 zshconfigdir="$HOME/.config/zsh"
 zshdatadir="$HOME/.local/share/zsh"
 
-# configure prompt
-if [ -z "$RANGER_LEVEL" ]; then 
-  prompt_sym='%#'
-elif [ "$RANGER_LEVEL" -le 1 ]; then 
-  prompt_sym="←"
-else
-  prompt_sym=$(expr "$RANGER_LEVEL" - 1)
-fi
-PROMPT="%B[%c %(?..%F{black})$prompt_sym%F{fg}]%f%b "
+PROMPT="%B[%c %(?..%F{black})%#%F{fg}]%f%b "
 RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
-unset prompt_sym
 
 # configure history
 HISTFILE="$zshdatadir/histfile"
