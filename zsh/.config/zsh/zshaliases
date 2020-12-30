@@ -14,6 +14,7 @@ alias clout='xclip -out -selection clipboard'
 
 alias adoc='asciidoctor'
 alias c='qalc'
+alias e="$EDITOR"
 alias g='git'
 alias m='neomutt'
 alias o='rifle'
