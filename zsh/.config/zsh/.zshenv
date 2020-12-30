@@ -28,23 +28,24 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export ASPELL_CONF="per-conf $HOME/.config/aspell/config;home-dir $HOME/.local/share/aspell"
-export CGDB_DIR="$HOME/.local/share/cgdb"
-export ELINKS_CONFDIR="$HOME/.local/share/elinks"
-export GNUPGHOME="$HOME/.local/share/gnupg"
+export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/config;home-dir $XDG_DATA_HOME/aspell"
+export CGDB_DIR="$XDG_DATA_HOME/cgdb"
+export ELINKS_CONFDIR="$XDG_DATA_HOME/elinks"
+export _FASD_DATA="$XDG_DATA_HOME/fasd"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 # needed for bash, sh, etc.
-export HISTFILE="$HOME/.local/share/zsh/histfile"
+export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 # needed for GNU Readline
-export INPUTRC="$HOME/.config/readline/inputrc"
-export IPYTHONDIR="$HOME/.local/share/ipython"
-export NETHACKOPTIONS="$HOME/.config/nethack/nethackrc"
-export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuchrc"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export IPYTHONDIR="$XDG_DATA_HOME/ipython"
+export NETHACKOPTIONS="$XDG_CONFIG_HOME/nethack/nethackrc"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 # needed for pass
 export PASSWORD_STORE_DIR="$HOME/.local/passwords"
 # needed for python interactive interpreter
-export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 # needed for openssl-rand PRNG
-export RANDFILE="$HOME/.local/share/openssl/rnd"
+export RANDFILE="$XDG_DATA_HOME/openssl/rnd"
 # needed for ~/.zoom folder
-export SSB_HOME="$HOME/.local/share/zoom/"
-export WEECHAT_HOME="$HOME/.config/weechat"
+export SSB_HOME="$XDG_DATA_HOME/zoom/"
+export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
