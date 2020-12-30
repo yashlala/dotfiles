@@ -49,7 +49,7 @@ bindsym $mod+Shift+space              exec urxvt
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id rofi -show drun
-bindsym $mod+f                        exec urxvtc -e ~/.local/scripts/file-browser
+bindsym $mod+f                        exec urxvtc -e lf
 bindsym $mod+m                        exec urxvtc -e neomutt
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+i                        exec firefox
