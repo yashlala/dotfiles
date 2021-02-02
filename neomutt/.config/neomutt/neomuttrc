@@ -128,6 +128,8 @@ macro pager \Cu "<pipe-message>urlscan<enter>" "call urlscan to open links"
 bind attach l view-mailcap # View attachments properly.
 
 # TODO
+# we're literally one keystroke away from sending an email we meant to compose. 
+# this is terrifying. we're 100% going to send osmething by accident. 
 bind compose p postpone-message
 macro index,pager a "<purge-message>" "functions as gmail 'archival'"
 bind editor <Tab> complete-query

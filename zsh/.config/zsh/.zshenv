@@ -17,7 +17,6 @@ unset prepend_path
 
 # set application environment variables
 
-export RANGER_LOAD_DEFAULT_RC="FALSE"
 export ESCDELAY=15 # used by ncurses
 export CONDA_CHANGEPS1='false'
 
@@ -48,4 +47,5 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export RANDFILE="$XDG_DATA_HOME/openssl/rnd"
 # needed for ~/.zoom folder
 export SSB_HOME="$XDG_DATA_HOME/zoom/"
+export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"

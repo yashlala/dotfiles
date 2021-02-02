@@ -2,7 +2,7 @@ set drawbox
 set smartcase
 set ignoredia
 set noanchorfind
-set promptfmt "\033[34;1m%w\033[0m\033[1m%f\033[0m"
+set promptfmt "\033[34;1m%w\033[0m"
 
 # ================
 # Functions
@@ -44,13 +44,14 @@ map \;
 map \:
 
 map <space> quit
-map J half-down
-map K half-up
+map <tab> half-down
+map <backspace2> half-up
 map ; read
 map . set hidden!
 
 map dd cut
 map dw $ trash-put "$f"
+map DW $ trash-put "$fx"
 map yy copy
 map pp paste
 map u $ trash-restore 
