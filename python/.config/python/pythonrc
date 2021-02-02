@@ -1,3 +1,7 @@
+# Add local code modules 
+import sys
+sys.path.append('/home/lala/code/lib')
+
 # Enable vi keybindings. 
 import readline
 readline.parse_and_bind("set editing-mode vi")
