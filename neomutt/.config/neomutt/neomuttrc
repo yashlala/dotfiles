@@ -4,14 +4,13 @@ set mailcap_path     = ~/.config/neomutt/mailcap
 set header_cache     = ~/.cache/neomutt/headers
 set message_cachedir = ~/.cache/neomutt/messages
 
-
 # Account Settings -----------------------------------
 set realname = "Yash Lala"
 set from     = "yashlala@gmail.com"
 set spoolfile = "+/INBOX"
 set mbox      = "+/archive"
 set postponed = "+/drafts"
-mailboxes =INBOX =drafts =archive =sent =trash
+mailboxes =INBOX =drafts =archive =sent =trash =flagged
 set trash     = "+/trash"
 
 set sendmail = "~/.local/scripts/send-email"
