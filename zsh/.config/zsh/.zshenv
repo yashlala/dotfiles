@@ -6,13 +6,14 @@ export PAGER=less
 export BROWSER=firefox
 
 # add entries to PATH if they're not there already
-function prepend_path { 
+function prepend_path {
   if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
     export PATH="$1:$PATH"
   fi
 }
 
 prepend_path "$HOME/code/bin"
+prepend_path "$HOME/.local/share/npm/bin"
 unset prepend_path
 
 # set application environment variables
@@ -29,6 +30,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/config;home-dir $XDG_DATA_HOME/aspell"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CGDB_DIR="$XDG_DATA_HOME/cgdb"
 export EDITRC="$XDG_CONFIG_HOME/editline/config"
 export ELINKS_CONFDIR="$XDG_DATA_HOME/elinks"
@@ -40,7 +42,9 @@ export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export IPYTHONDIR="$XDG_DATA_HOME/ipython"
 export NETHACKOPTIONS="$XDG_CONFIG_HOME/nethack/nethackrc"
+export NODE_REPL_HISTORY_FILE="$XDG_CONFIG_HOME/node/repl-history"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 # needed for pass
 export PASSWORD_STORE_DIR="$HOME/.local/passwords"
 # needed for python interactive interpreter
