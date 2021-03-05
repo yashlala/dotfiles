@@ -1,6 +1,6 @@
-#!/bin/sh -e
+#!/bin/sh
 
-fpath_folder=$HOME/.local/share/zsh/completions
+fpath_folder="$HOME/.local/share/zsh/completions"
 
 # TODO: check if files have changed before automatically writing them.
 
@@ -15,3 +15,6 @@ update () {
 
 # pip completions
 update _pip 'pip completion --zsh'
+
+# github completions
+gh completion -s zsh >"$fpath_folder/_gh"

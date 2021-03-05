@@ -1,11 +1,11 @@
 #!/bin/sh -e
 
 # TODO: Ensure this script enherits the right environment when starting it from
-# systemd. As of now, we're just running it with /bin/zsh from systemd. 
+# systemd. As of now, we're just running it with /bin/zsh from systemd.
 
 
 # Count mail
-count() { 
+count() {
   find "$HOME/.local/mail/INBOX" -type f | wc -l
 }
 
@@ -31,5 +31,5 @@ if [ "$new" -gt "$old" ]; then
   notify-send -a 'offlineimap' "$msg"
 fi
 
-# Now that we've downloaded our mail, index it. 
+# Now that we've downloaded our mail, index it.
 notmuch new >/dev/null
