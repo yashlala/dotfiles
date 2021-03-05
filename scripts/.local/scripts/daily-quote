@@ -1,10 +1,9 @@
-#!/bin/sh -e
+#!/bin/sh
 
-# Prints a logbook entry to stdout once per day. 
-# When called with '-p', unconditionally prints the entry. 
+# Prints a logbook entry to stdout once per day.
+# When called with '-p', unconditionally prints the entry.
 
 date_file="$HOME/.local/share/daily-msg/run-date"
-slowtype="$HOME/.local/scripts/slowtype"
 log_dir="$HOME/documents/log"
 
 
@@ -14,17 +13,17 @@ log_dir="$HOME/documents/log"
 
 # Cleanup Functions
 stty_original=$(stty -g)
-cleanup () { 
+cleanup () {
   stty "$stty_original"
 }
-cleanup_interrupt () { 
+cleanup_interrupt () {
   date -I >"$date_file"
   cleanup
   exit 1
 }
 
 # Prints the most recent log file.
-print_log_entry () { 
+print_log_entry () {
   log_file=$(find "$log_dir" -print0 | sort -z \
     | tail -zn 1 | tr -d '\0')
   less "$log_file"
@@ -36,9 +35,9 @@ print_log_entry () {
 # -----------
 
 stty -echo
-trap cleanup_interrupt SIGINT
+trap cleanup_interrupt INT
 
-if [ "$1" = '-p' ]; then 
+if [ "$1" = '-p' ]; then
   print_log_entry
   cleanup
   exit
@@ -46,7 +45,7 @@ fi
 
 # Load the last time this program was run, and store the current date.
 mkdir -p "$(dirname "$date_file")"
-if [ -e "$date_file" ]; then 
+if [ -e "$date_file" ]; then
   last_date=$(cat "$date_file")
 else
   last_date="never"
@@ -60,5 +59,6 @@ if [ "$(date -I)" = "$last_date" ] \
 fi
 
 date -I >"$date_file"
+less "$HOME/documents/yatr/lessons"
 print_log_entry
 cleanup
