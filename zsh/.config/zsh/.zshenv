@@ -17,8 +17,9 @@ unset prepend_path
 
 # set application environment variables
 
-export ESCDELAY=15 # used by ncurses
 export CONDA_CHANGEPS1='false'
+export ESCDELAY=15 # used by ncurses
+export LESS='-i -R -M -c'
 
 # change application config and data locations
 

@@ -1,5 +1,5 @@
 #env
-LESS=-i -R -M
+LESS=-i -R -M -c
 LESSHISTFILE=/dev/null
 LESS_TERMCAP_mb=[5m
 LESS_TERMCAP_md=[1m
