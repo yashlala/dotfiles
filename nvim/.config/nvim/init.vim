@@ -49,6 +49,9 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
 
+Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 Plug 'tpope/vim-repeat'
 
 call plug#end()
@@ -65,14 +68,18 @@ set noshowmode
 
 let g:EasyMotion_smartcase = 1
 
+" let g:ale_sign_column_always = 1
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+let g:ale_lint_delay = 500
+let g:ale_fix_on_save = 1
+" let g:ale_completion_enabled = 1
+
+" damn that's a lot of cpu
+" let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""""
 " Autocommands
 """""""""""""""""""
-" trim trailing whitespace for certain filetypes
-" autocmd FileType c,cpp,python,sh,bash,zsh,vim,conf,ocaml
-"   \ autocmd BufWritePre <buffer> %s/\s\+$//e
-autocmd BufWritePre *.go GoFmt
 
 " return to last edit position when opening files
 autocmd BufReadPost *
@@ -140,6 +147,13 @@ nnoremap gs :%s/
 let mapleader = ','
 let g:mapleader = ','
 
+" jao
+noremap <silent> <leader>j :ALEGoToDefinition<cr>
+" kya
+noremap <silent> <leader>k :ALEHover<cr>
+" fix
+noremap <silent> <leader>f :ALEFix<cr>
+
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P
 
@@ -148,4 +162,4 @@ nnoremap <silent> <leader>q :q!<cr>
 nnoremap <silent> <leader>e :e!<cr>
 
 nnoremap <silent> <leader>g :G<cr>
-nnoremap <silent> <leader>w :Goyo<cr>
+nnoremap <silent> <leader>m :Goyo<cr>
