@@ -49,6 +49,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
 Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+Plug 'psf/black', { 'branch': 'stable' }
 
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -69,14 +70,10 @@ set noshowmode
 
 let g:EasyMotion_smartcase = 1
 
-" let g:ale_sign_column_always = 1
+let g:ale_enabled = 0
 let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
 let g:ale_lint_delay = 500
 let g:ale_fix_on_save = 1
-" let g:ale_completion_enabled = 1
-
-" damn that's a lot of cpu
-" let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""""
 " Autocommands
