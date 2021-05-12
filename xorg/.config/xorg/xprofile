@@ -7,6 +7,9 @@ xhost +local:
 
 export XCOMPOSEFILE="$HOME/.config/xorg/xcompose"
 export XCOMPOSECACHE="$HOME/.cache/xorg/compose-cache"
+# export GTK_IM_MODULE=xim
+# export XMODIFIERS="@im=none"
+export GDK_SCALE=1.5
 
 export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd.socket"
 export TERMINAL=urxvtc
