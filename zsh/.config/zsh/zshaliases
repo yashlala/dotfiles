@@ -20,13 +20,16 @@ alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 alias e="$EDITOR"
 alias g='git'
-alias m='cd ~/io && neomutt && cd -' # Mutt saves files in the CWD.
+alias jn='jupyter-notebook'
+alias l='less ~/documents/yatr/lessons'
+alias m='cd ~/io && neomutt && cd - >/dev/null' # Mutt saves files in the CWD.
 alias o='xdg-open'
 alias py='ipython'
 alias q='exit'
 alias rec='asciinema'
 alias spy='isympy --quiet --auto' # sympy, create missing symbols
-alias t='tmsu'
+alias t='task'
+alias tag='tmsu'
 
 alias battery='acpi -b'
 alias connect-to='sudo netctl-auto switch-to'
@@ -46,6 +49,7 @@ alias rg='rg --smart-case'
 alias R='R -q'
 alias tor='tor -f ~/.config/tor/torrc'
 alias units='units --history ""'
+alias manim='manim -v WARNING'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
