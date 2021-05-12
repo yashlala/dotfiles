@@ -54,6 +54,9 @@ Plug 'psf/black', { 'branch': 'stable' }
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'ptzz/lf.vim'
+Plug 'voldikss/vim-floaterm' " must be *after* lf.vim
+
 Plug 'tpope/vim-repeat'
 
 call plug#end()
@@ -74,6 +77,8 @@ let g:ale_enabled = 0
 let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
 let g:ale_lint_delay = 500
 let g:ale_fix_on_save = 1
+
+let g:lf_replace_netrw = 1 " Open lf when vim opens a directory
 
 """""""""""""""""""
 " Autocommands
@@ -151,6 +156,8 @@ noremap <silent> <leader>j :ALEGoToDefinition<cr>
 noremap <silent> <leader>k :ALEHover<cr>
 " fix
 noremap <silent> <leader>f :ALEFix<cr>
+" lf
+noremap <silent> <leader>l :Lf<cr>
 
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P

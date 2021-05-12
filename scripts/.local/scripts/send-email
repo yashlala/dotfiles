@@ -1,4 +1,8 @@
 #!/bin/sh -e
 
+# TODO: fix add-html-to-email to deal with non ascii characters, dammit
+#       we keep losing emails to this
+#
+#       for now we'll just strip them before send
 backup_copy=$(mktemp -p "$(xdg-user-dir DOWNLOAD)" sent-email.XXX)
-~/.local/scripts/add-html-to-email | tee "$backup_copy" | ifne msmtp "$@"
+tee "$backup_copy" | tr -cd '\000-\177' | ~/.local/scripts/add-html-to-email | ifne msmtp "$@"

@@ -1,7 +1,8 @@
-#!/bin/zsh 
+#!/bin/zsh
 
-lf () { 
+lf () {
   tmp=$(mktemp)
   command lf -last-dir-path "$tmp"
-  cd $(<"$tmp")
+  cd "$(<"$tmp")"
+  rm -f "$tmp"
 }
