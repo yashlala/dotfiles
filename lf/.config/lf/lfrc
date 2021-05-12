@@ -2,7 +2,7 @@ set drawbox
 set smartcase
 set ignoredia
 set noanchorfind
-set promptfmt "\033[34;1m%w\033[0m"
+set promptfmt "\033[34;1m%w\033[0m %f"
 
 # ================
 # Functions
@@ -31,6 +31,13 @@ cmd open ${{
     esac
 }}
 
+cmd redraw_and_reload :{{
+   redraw
+   reload
+}}
+
+cmd md % mkdir "$@"
+
 # ================
 # Key Bindings
 # ================
@@ -43,6 +50,9 @@ map m # unset mkdir
 map \;
 map \:
 
+map <c-k> redraw_and_reload
+map <c-l> redraw
+
 map <space> quit
 map <tab> half-down
 map <backspace2> half-up
@@ -51,17 +61,18 @@ map . set hidden!
 
 map dd cut
 map dw $ trash-put "$fx"
-map DW $ trash-put $f # only the currently selected one
+map DW $ trash-put "$f" # only the currently selected one
 map yy copy
 map pp paste
-map u $ trash-restore 
+map u $ trash-restore
 map v toggle
+map m mark-save
+map \' mark-load
+
 map r :rename; cmd-word-back; cmd-left # change name
 map cw :rename; cmd-delete-home # change all
 map ce :rename # change extension
 map R $printf "%s\n" "$fx" | vidir - # bulk rename
-cmd md % mkdir "$@"
-map md push ;md<space>
 
 map gh cd ~
 map gi cd ~/io
