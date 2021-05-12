@@ -59,6 +59,5 @@ if [ "$(date -I)" = "$last_date" ] \
 fi
 
 date -I >"$date_file"
-less "$HOME/documents/yatr/lessons"
 print_log_entry
 cleanup
