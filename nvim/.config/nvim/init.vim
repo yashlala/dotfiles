@@ -40,10 +40,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/seoul256.vim'
 
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
@@ -67,7 +65,6 @@ call plug#end()
 """""""""""""""""""
 colorscheme seoul256
 let g:seoul256_srgb = 1
-
 let g:lightline = {'colorscheme': 'seoul256'}
 set noshowmode
 
