@@ -5,16 +5,6 @@ export VISUAL=vim
 export PAGER=less
 export BROWSER=firefox
 
-# add entries to PATH if they're not there already
-function prepend_path {
-  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
-    export PATH="$1:$PATH"
-  fi
-}
-
-prepend_path "$HOME/code/bin"
-prepend_path "$HOME/.local/share/npm/bin"
-unset prepend_path
 
 # set application environment variables
 
@@ -36,6 +26,7 @@ export EDITRC="$XDG_CONFIG_HOME/editline/config"
 export ELINKS_CONFDIR="$XDG_DATA_HOME/elinks"
 export _FASD_DATA="$XDG_DATA_HOME/fasd"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export GOPATH="$XDG_DATA_HOME/go"
 # needed for bash, sh, etc.
 export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 # needed for GNU Readline
@@ -59,3 +50,19 @@ export TASKRC="$XDG_CONFIG_HOME/task/taskrc"
 export TASKDATA="$XDG_DATA_HOME/task/"
 export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
+
+
+
+# set PATH
+
+# add entries to PATH if they're not there already
+function prepend_path {
+  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+prepend_path "$HOME/code/bin"
+prepend_path "$HOME/.local/share/npm/bin"
+prepend_path "$GOPATH/bin"
+unset prepend_path 
