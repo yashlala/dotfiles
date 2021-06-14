@@ -29,6 +29,8 @@ set undofile
 filetype plugin indent on
 syntax on
 
+set autowrite
+
 
 """""""""""""""""""
 " Plugins
@@ -46,14 +48,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'easymotion/vim-easymotion'
-Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'dense-analysis/ale'
+" TODO: re-enable deoplete by default!
+" turns out it was high CPU because of a bug!
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'ptzz/lf.vim'
-Plug 'voldikss/vim-floaterm' " must be *after* lf.vim
 
 Plug 'tpope/vim-repeat'
 
@@ -70,12 +72,24 @@ set noshowmode
 
 let g:EasyMotion_smartcase = 1
 
-let g:ale_enabled = 0
+let g:ale_enabled = 1
 let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'] }
+let g:ale_linters = { 'python': [] }
 let g:ale_lint_delay = 500
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
-let g:lf_replace_netrw = 1 " Open lf when vim opens a directory
+let g:deoplete#enable_at_startup = 1
+" Deoplete only uses ALE as completion
+call deoplete#custom#option({'max_list': 20, 'sources': { '_': ['ale'] }})
+" TODO: figure out wtf is happening here, how do we make this work? 
+set pumheight=5
+function! s:my_cr_function()
+    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+let g:go_doc_keywordprg_enabled = 0 " disable K keybind. 
 
 """""""""""""""""""
 " Autocommands
@@ -117,11 +131,11 @@ noremap <down> <c-d>
 noremap _ <c-y>
 noremap + <c-e>
 
-map <space> <Plug>(easymotion-prefix)
-map f <Plug>(easymotion-fl)
-map F <Plug>(easymotion-Fl)
-map t <Plug>(easymotion-tl)
-map T <Plug>(easymotion-Tl)
+map <silent> <space> <Plug>(easymotion-prefix)
+map <silent> f <Plug>(easymotion-fl)
+map <silent> F <Plug>(easymotion-Fl)
+map <silent> t <Plug>(easymotion-tl)
+map <silent> T <Plug>(easymotion-Tl)
 
 " swap 'uncountably high' numbers with their symbols,
 " with some tweaks, of course.
@@ -147,14 +161,13 @@ nnoremap gs :%s/
 let mapleader = ','
 let g:mapleader = ','
 
+
 " jao
 noremap <silent> <leader>j :ALEGoToDefinition<cr>
-" kya
+" kya. This key is rebound for some filetypes.
 noremap <silent> <leader>k :ALEHover<cr>
 " fix
 noremap <silent> <leader>f :ALEFix<cr>
-" lf
-noremap <silent> <leader>l :Lf<cr>
 
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P
@@ -162,6 +175,7 @@ noremap <silent> <leader>P "0P
 nnoremap <leader>d :r !date --iso-8601<cr>
 nnoremap <silent> <leader>q :q!<cr>
 nnoremap <silent> <leader>e :e!<cr>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <silent> <leader>g :G<cr>
 nnoremap <silent> <leader>m :Goyo<cr>
