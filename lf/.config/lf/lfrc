@@ -37,6 +37,7 @@ cmd redraw_and_reload :{{
 }}
 
 cmd md % mkdir "$@"
+cmd mkdir % mkdir "$@"
 
 # ================
 # Key Bindings
