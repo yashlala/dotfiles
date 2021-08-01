@@ -33,8 +33,8 @@
 	cl = clean --interactive # set safe default
 	cld = clean --dry-run
 	cli = clean --interactive
-	coa = commit --amend
-	co = commit
+	coa = commit --amend --verbose
+	co = commit --verbose
 	coi = commit --interactive
 	cp = cherry-pick
 	di = diff --ignore-space-at-eol
