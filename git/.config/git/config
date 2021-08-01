@@ -54,6 +54,7 @@
 	los = log --abbrev-commit
 	ls-aliases = "!git config -l | grep alias | cut -c 7-" # list aliases
 	ls-ignored = "!git ls-files -v | grep '^S' | cut -c 3-" # list 'ignored' files
+	ls-frequently-changed = "!git log --pretty=format: --name-only | sort | uniq -c | sort -rg | less" # list the files in the repo that change the most often. 
 	ls = status --find-renames
 	me = merge
 	met = mergetool
@@ -62,7 +63,9 @@
 	pum = pull --merge # pull-merge; *usually* default pull behavior
 	pur = pull --rebase
 	re = restore
-	# TODO TODO:
+	res = restore --staged
+	resp = restore --staged --patch
+	resw = restore --source=HEAD --staged --worktree
 	rbi = rebase --interactive
 	rb = rebase
 	sh = show
@@ -83,6 +86,8 @@
 	tas = tag --sign
 	ta = tag
 	uig = update-index --no-skip-worktree # unignore a file
+	ust = restore --staged # unstage
+	ustp = restore --staged --patch # unstage --patch
 [apply]
 	whitespace = nowarn
 [core]
