@@ -89,6 +89,7 @@ vim.g.seoul256_srgb = 1
 
 vim.o.lazyredraw = true
 vim.o.undofile = true
+vim.o.hidden = true
 vim.o.gdefault = true
 vim.o.ignorecase = true
 vim.o.hlsearch = false
