@@ -423,7 +423,7 @@ noremap ( 9
 noremap 0 )
 noremap ) 0
 
-" map ga <Plug>(EasyAlign)
+map ga <Plug>(EasyAlign)
 nnoremap gs :%s/
 
 " leader keybinds
