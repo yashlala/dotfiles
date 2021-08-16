@@ -10,7 +10,7 @@ export BROWSER=firefox
 
 export CONDA_CHANGEPS1='false'
 export ESCDELAY=15 # used by ncurses
-export LESS='-i -R -M -c'
+export LESS='-i -R -M -c -z-5'
 
 # change application config and data locations
 
@@ -32,6 +32,7 @@ export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 # needed for GNU Readline
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export IPYTHONDIR="$XDG_DATA_HOME/ipython"
+export LESSHISTFILE="$XDG_DATA_HOME/less-history"
 export NETHACKOPTIONS="$XDG_CONFIG_HOME/nethack/nethackrc"
 export NODE_REPL_HISTORY_FILE="$XDG_CONFIG_HOME/node/repl-history"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
