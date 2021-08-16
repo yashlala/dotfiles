@@ -43,6 +43,8 @@ export LESSHISTFILE="$XDG_DATA_HOME/less-history"
 export NETHACKOPTIONS="$XDG_CONFIG_HOME/nethack/nethackrc"
 export NODE_REPL_HISTORY_FILE="$XDG_CONFIG_HOME/node/repl-history"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+export npm_config_userconfig="$XDG_CONFIG_HOME/npm/npmrc"
+export npm_config_cache="$XDG_CACHE_HOME/npm"
 # needed for pass
 export PASSWORD_STORE_DIR="$HOME/.local/passwords"
 # needed for python interactive interpreter
