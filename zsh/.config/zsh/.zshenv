@@ -11,6 +11,13 @@ export BROWSER=firefox
 export CONDA_CHANGEPS1='false'
 export ESCDELAY=15 # used by ncurses
 export LESS='-i -R -M -c -z-5'
+export LESS_TERMCAP_mb='[5m'
+export LESS_TERMCAP_md='[1m'
+export LESS_TERMCAP_me='[m(B'
+export LESS_TERMCAP_so='[7m'
+export LESS_TERMCAP_se='[27m'
+export LESS_TERMCAP_us='[4m'
+export LESS_TERMCAP_ue='[24m'
 
 # change application config and data locations
 
