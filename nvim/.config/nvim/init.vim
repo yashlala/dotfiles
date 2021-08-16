@@ -378,9 +378,10 @@ autocmd BufReadPost *
 
 autocmd BufNewFile,BufRead neomutt-* set filetype=mail
 
-" Why do we do this? Because putting the buffer status on the bottom line can
-" sometimes go awry. Do make sure to 
-autocmd BufReadPost,BufWritePost,BufEnter,BufLeave,BufModifiedSet,BufWinEnter,BufWinLeave,CmdlineEnter,WinClosed,CmdwinEnter,CmdwinLeave *
+" The bottom status line doesn't update very often, so the buffer listing can
+" become stale. Avoid this by throwing in a few autocommands (we have a
+" function later in this file that mitigates this problem as well)
+autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
   \ call lightline#update()
 
 """""""""""""""""""
@@ -435,8 +436,12 @@ let g:mapleader = ' '
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P
 
+function! DeleteBufferAndUpdateLightline()
+  exe 'bdelete'
+  call lightline#update()
+endfunction
 nnoremap <silent> <leader>q <cmd>q<cr>
-nnoremap <silent> <leader>d <cmd>bd<cr>
+nnoremap <silent> <leader>d <cmd>call DeleteBufferAndUpdateLightline()<cr>
 nnoremap <silent> <leader>e <cmd>e<cr>
 
 " matches the other git commands. 
