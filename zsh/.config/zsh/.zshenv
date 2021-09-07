@@ -11,6 +11,7 @@ export BROWSER=firefox
 export CONDA_CHANGEPS1='false'
 export ESCDELAY=15 # used by ncurses
 export LESS='-i -R -M -c -z-5'
+export GPG_TTY="$(tty)"
 
 # change application config and data locations
 
