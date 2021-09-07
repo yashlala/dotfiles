@@ -58,5 +58,5 @@ autoload -Uz compinit
 compinit
 
 # unset convenience variables
-unset zshconfigdir
-unset zshdatadir
+unset -v zshconfigdir
+unset -v zshdatadir
