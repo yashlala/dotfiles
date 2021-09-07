@@ -451,7 +451,7 @@ nnoremap <silent> <leader>gg <cmd>G<cr>
 
 nnoremap <silent> <leader>m <cmd>Goyo<cr>
 nnoremap <silent> <leader><leader> <cmd>Telescope<cr>
-nnoremap , <cmd>HopChar1<cr>
+nnoremap <silent> f <cmd>HopChar1<cr>
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
