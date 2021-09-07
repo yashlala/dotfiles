@@ -5,8 +5,15 @@
 zshconfigdir="$HOME/.config/zsh"
 zshdatadir="$HOME/.local/share/zsh"
 
-PROMPT="%B[%c %(?..%F{black})%#%F{fg}]%f%b "
+# If we're being accessed from a remote machine, change the shell prompt. 
+if [[ -n "$SSH_CLIENT" ]]; then
+  hostname='%m '
+else
+  hostname=
+fi
+PROMPT="%B[${hostname}%c %(?..%F{black})%#%F{fg}]%f%b "
 RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
+unset -v hostname
 
 # configure history
 HISTFILE="$zshdatadir/histfile"
