@@ -179,7 +179,7 @@ require('gitsigns').setup {
     ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
     ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
     ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-    ['n <leader>gtb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
+    ['n <leader>tgb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
