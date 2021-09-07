@@ -52,8 +52,6 @@ bindsym $mod+Return                   exec --no-startup-id rofi -show drun
 bindsym $mod+f                        exec urxvtc -e lf
 bindsym $mod+m                        exec urxvtc -e neomutt
 bindsym $mod+s                        exec --no-startup-id rofi -show ssh
-bindsym $mod+i                        exec firefox
-bindsym $mod+Shift+i                  exec firefox --private-window
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 
