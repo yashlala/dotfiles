@@ -380,6 +380,9 @@ autocmd BufReadPost *
 
 autocmd BufNewFile,BufRead neomutt-* set filetype=mail
 
+" Close netrw buffers (we can't do this by default, for some reason). 
+autocmd Filetype netrw setl bufhidden=delete
+
 " The bottom status line doesn't update very often, so the buffer listing can
 " become stale. Avoid this by throwing in a few autocommands (we have a
 " function later in this file that mitigates this problem as well)
