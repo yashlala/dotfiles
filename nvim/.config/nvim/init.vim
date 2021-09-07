@@ -274,7 +274,9 @@ require('compe').setup({
 
 -- Implement "Completion-Toggle" keybinds. 
 require('completion-toggle')
-vim.api.nvim_set_keymap('n', '<leader>ct', "<cmd>CompeToggle<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>tc', "<cmd>CompeToggle<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-space>', "<cmd>CompeToggle<cr>", { noremap = true })
+vim.api.nvim_set_keymap('i', '<c-space>', "<cmd>CompeToggle<cr>", { noremap = true })
 
 
 --[[
