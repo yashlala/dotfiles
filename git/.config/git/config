@@ -33,7 +33,7 @@
 	cl = clean --interactive # set safe default
 	cld = clean --dry-run
 	cli = clean --interactive
-	coa = commit --amend --verbose
+	coa = commit --verbose --amend
 	co = commit --verbose
 	coi = commit --interactive
 	cp = cherry-pick
@@ -68,6 +68,7 @@
 	resw = restore --source=HEAD --staged --worktree
 	rbi = rebase --interactive
 	rb = rebase
+	rms = remove --cached # should be remove --staged for consistency >:(
 	sh = show
 	stdr = stash drop
 	stli = stash list
