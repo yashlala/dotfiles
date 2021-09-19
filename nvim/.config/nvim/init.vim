@@ -1,5 +1,7 @@
 lua <<EOF
 
+-- TODO: WHY DO WE KEEP GETTING QUOTES INSERTED AT BEGINNING OF LINE AFTER DICT? 
+
 --[[
 Plugins
 --]]
@@ -52,11 +54,16 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
+  -- Org-Mode plugin. 
+  -- TODO: set this up. 
+  use 'kristijanhusak/orgmode.nvim'
+
   -- EasyMotion-style text movements.
   use { 'phaazon/hop.nvim', as = 'hop' }
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
+  use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
   -- TODO: Enable Treesitter functionality. Has to be done explicitly. 
   -- Highlighting, editing, etc. using incremental parsing. 
   use 'nvim-treesitter/nvim-treesitter'
@@ -80,10 +87,6 @@ end)
 --[[
 Other Configuration
 --]]
-
--- Load colorscheme *before* other plugins are set up. 
-vim.api.nvim_exec('colorscheme seoul256', false)
-vim.g.seoul256_srgb = 1
 
 -- Vanilla Vim Options
 
@@ -113,19 +116,94 @@ vim.o.autoindent = true
 
 vim.api.nvim_set_keymap('n', ' ', '<noop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
+
 vim.api.nvim_set_keymap('', 'Y', 'y$', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
 vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
--- TODO: Move all the vim components of the binds up here. 
 
+
+vim.api.nvim_set_keymap('', "'", '`', { noremap = true })
+
+vim.api.nvim_set_keymap('', '\\', '"', { noremap = true })
+vim.api.nvim_set_keymap('', '`', '~', { noremap = true })
+vim.api.nvim_set_keymap('', '-', '0', { noremap = true })
+vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
+vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<cr>', 'o<esc>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<bar>', 'K', { noremap = true })
+vim.api.nvim_set_keymap('n', 'K', 'kJ', { noremap = true })
+vim.api.nvim_set_keymap('n', 'U', '<c-r>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-r>', 'U', { noremap = true })
+vim.api.nvim_set_keymap('n', 'v', 'V', { noremap = true })
+vim.api.nvim_set_keymap( 'n', 'S', 
+    [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]], 
+    { noremap = true, silent = true }
+)
+
+vim.api.nvim_set_keymap('', '<leader>p', '"0p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<leader>P', '"0P', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('', 'ga', '<Plug>(EasyAlign)', { noremap = false })
+vim.api.nvim_set_keymap('n', 'gs', ':%s/', { noremap = true })
+
+vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
+vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>', { noremap = true, silent = true })
+
+-- TODO: LOOK INTO THE `langmap` setting! This may finally resolve the
+-- problems we have with numbers and the operator-pending mode!!!
+vim.api.nvim_set_keymap('', '4', '$', { noremap = true })
+vim.api.nvim_set_keymap('', '$', '4', { noremap = true })
+vim.api.nvim_set_keymap('', '5', '%', { noremap = true })
+vim.api.nvim_set_keymap('', '%', '5', { noremap = true })
+vim.api.nvim_set_keymap('', '6', '^', { noremap = true })
+vim.api.nvim_set_keymap('', '^', '6', { noremap = true })
+vim.api.nvim_set_keymap('', '7', '<cmd>&&<cr>',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '&', '7', { noremap = true })
+vim.api.nvim_set_keymap('', '8', '@', { noremap = true })
+vim.api.nvim_set_keymap('', '*', '8', { noremap = true })
+vim.api.nvim_set_keymap('', '9', '(', { noremap = true })
+vim.api.nvim_set_keymap('', '(', '9', { noremap = true })
+vim.api.nvim_set_keymap('', '0', ')', { noremap = true })
+vim.api.nvim_set_keymap('', ')', '0', { noremap = true })
+
+vim.api.nvim_set_keymap('n', '<leader>1', 
+    '<Plug>lightline#bufferline#go(1)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>2', 
+    '<Plug>lightline#bufferline#go(2)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>3', 
+    '<Plug>lightline#bufferline#go(3)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>4', 
+    '<Plug>lightline#bufferline#go(4)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>5', 
+    '<Plug>lightline#bufferline#go(5)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>6', 
+    '<Plug>lightline#bufferline#go(6)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>7', 
+    '<Plug>lightline#bufferline#go(7)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>8', 
+    '<Plug>lightline#bufferline#go(8)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>9', 
+    '<Plug>lightline#bufferline#go(9)', { noremap = false })
 
 -- "Simple" Plugins
+-- Load colorscheme *before* other plugins are set up. 
+vim.api.nvim_exec('colorscheme seoul256', false)
+vim.g.seoul256_srgb = 1
 
 require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
 
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
+
+require('orgmode').setup({
+  org_agenda_files = {'~/documents/org/agenda/*'},
+  org_default_notes_file = '~/documents/org/refile.org',
+})
 
 -- Git Plugin Setup
 
@@ -225,7 +303,9 @@ vim.api.nvim_set_keymap('n', '<leader>fp',
 
 -- Autocomplete + LSP Plugin Setup
 
+
 -- Set up LSP Configurations. 
+--[[
 require('lspconfig').pyright.setup({})
 require('lspconfig').ccls.setup({})
 require('lspconfig').bashls.setup({})
@@ -234,6 +314,7 @@ require('lspconfig').texlab.setup({})
 require('lspconfig').dockerls.setup({})
 require('lspconfig').gopls.setup({})
 require('lspconfig').jedi_language_server.setup{}
+--]]
 
 -- Setup `compe`. 
 vim.o.completeopt = "menuone,noselect"
@@ -266,6 +347,7 @@ require('compe').setup({
     calc = true;
     nvim_lsp = true;
     nvim_lua = true;
+    orgmode = true;
     vsnip = false;
     ultisnips = false;
     luasnip = true;
@@ -328,20 +410,16 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 END (ish): THINGS I DON'T UNDERSTAND
 --]]
 
+vim.api.nvim_exec(
+  [[
+  filetype plugin indent on 
+  syntax on
+]], false)
+
 EOF
 
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
-filetype plugin indent on
-syntax on
-
-
-"""""""""""""""""""
-" Plugins
-"""""""""""""""""""
-
-
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
 
 """""""""""""""""""
@@ -392,77 +470,20 @@ autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,Cmdline
 """""""""""""""""""
 " Keybindings
 """""""""""""""""""
-noremap ' `
-noremap <bslash> "
-noremap - 0
-
-nnoremap ` ~
-nnoremap <cr> o<esc>
-nnoremap <bar> K
-nnoremap K kJ
-nnoremap Q @@
-nnoremap <silent> S <cmd>keepp s/\s*\%#\s*/\r/e <bar> norm! ==<CR>
-nnoremap U <c-r>
-nnoremap <c-r> U
-nnoremap v V
-
-noremap _ <c-y>
-noremap + <c-e>
-
-nnoremap <silent> <C-N> <cmd>bnext<CR>
-nnoremap <silent> <C-P> <cmd>bprev<CR>
-
-" swap 'uncountably high' numbers with their symbols,
-" with some tweaks, of course.
-noremap 4 $
-noremap $ 4
-noremap 5 %
-noremap % 5
-noremap 6 ^
-noremap ^ 6
-noremap <silent> 7 <cmd>&&<cr>
-noremap & 7
-noremap 8 @
-noremap * 8
-noremap 9 (
-noremap ( 9
-noremap 0 )
-noremap ) 0
-
-map ga <Plug>(EasyAlign)
-nnoremap gs :%s/
-
-" leader keybinds
-nnoremap <space> <nop>
-let mapleader = ' '
-let g:mapleader = ' '
-
-
-noremap <silent> <leader>p "0p
-noremap <silent> <leader>P "0P
 
 function! DeleteBufferAndUpdateLightline()
   exe 'bdelete'
   call lightline#update()
 endfunction
+noremap <silent> <leader>p "0p
+noremap <silent> <leader>P "0P
 nnoremap <silent> <leader>q <cmd>q<cr>
 nnoremap <silent> <leader>d <cmd>call DeleteBufferAndUpdateLightline()<cr>
 nnoremap <silent> <leader>e <cmd>e<cr>
 
 " matches the other git commands. 
 nnoremap <silent> <leader>gg <cmd>G<cr> 
-
-nnoremap <silent> <leader>m <cmd>Goyo<cr>
 nnoremap <silent> <leader><leader> <cmd>Telescope<cr>
-nnoremap <silent> f <cmd>HopChar1<cr>
 
-nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+nnoremap <silent> f <cmd>HopChar1<cr>
+vnoremap <silent> f <cmd>HopChar1<cr>
