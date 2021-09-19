@@ -91,8 +91,8 @@ bind pager \; enter-command
 bind index g           noop
 bind index gg          first-entry
 bind index G           last-entry
-bind index <Tab>       half-down
-bind index <Backspace> half-up
+bind index \Cd         half-down
+bind index \Cu         half-up
 bind index i           mail
 bind index s           sync-mailbox
 bind index $           noop
@@ -119,11 +119,11 @@ bind pager j           next-line
 bind pager g           noop
 bind pager gg          top
 bind pager G           bottom
-bind pager <Tab>       half-down
-bind pager <Backspace> half-up
+bind pager \Cd         half-down
+bind pager \Cu         half-up
 bind pager R           group-reply
 
-macro pager \Cu "<pipe-message>urlscan<enter>" "call urlscan to open links"
+macro pager \Cm "<pipe-message>urlscan<enter>" "call urlscan to open links"
 bind attach l view-mailcap # View attachments properly.
 
 # TODO
