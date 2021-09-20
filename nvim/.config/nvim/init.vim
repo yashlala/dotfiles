@@ -56,10 +56,6 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
-  -- Org-Mode plugin. 
-  -- TODO: set this up. 
-  use 'kristijanhusak/orgmode.nvim'
-
   -- EasyMotion-style text movements.
   use { 'phaazon/hop.nvim', as = 'hop' }
 
@@ -201,11 +197,6 @@ require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
-
-require('orgmode').setup({
-  org_agenda_files = {'~/documents/org/agenda/*'},
-  org_default_notes_file = '~/documents/org/refile.org',
-})
 
 -- Git Plugin Setup
 
