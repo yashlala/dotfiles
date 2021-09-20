@@ -44,6 +44,8 @@ require('packer').startup(function()
   use 'tpope/vim-surround' 
   -- "gc" keybinding to comment visual regions/lines.
   use 'tpope/vim-commentary'
+  -- Date increments and decrements w/ <c-a> and <c-x>
+  use 'tpope/vim-speeddating' 
   -- Unix commands. 
   use 'tpope/vim-eunuch' 
  -- Automatically match file format/indentation.
