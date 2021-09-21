@@ -110,6 +110,9 @@ vim.o.modeline = true
 vim.o.confirm = true
 vim.o.autoindent = true
 
+vim.o.langremap = false
+vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
+
 -- "Simple" Keybinds
 
 vim.api.nvim_set_keymap('n', ' ', '<noop>', { noremap = true, silent = true })
@@ -138,6 +141,8 @@ vim.api.nvim_set_keymap( 'n', 'S',
     [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]], 
     { noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap('', '&', '<cmd>&&<cr>',
+    { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('', '<leader>p', '"0p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<leader>P', '"0P', { noremap = true, silent = true })
@@ -150,23 +155,6 @@ vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>', { noremap = true, silent = true })
 
--- TODO: LOOK INTO THE `langmap` setting! This may finally resolve the
--- problems we have with numbers and the operator-pending mode!!!
-vim.api.nvim_set_keymap('', '4', '$', { noremap = true })
-vim.api.nvim_set_keymap('', '$', '4', { noremap = true })
-vim.api.nvim_set_keymap('', '5', '%', { noremap = true })
-vim.api.nvim_set_keymap('', '%', '5', { noremap = true })
-vim.api.nvim_set_keymap('', '6', '^', { noremap = true })
-vim.api.nvim_set_keymap('', '^', '6', { noremap = true })
-vim.api.nvim_set_keymap('', '7', '<cmd>&&<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '&', '7', { noremap = true })
-vim.api.nvim_set_keymap('', '8', '@', { noremap = true })
-vim.api.nvim_set_keymap('', '*', '8', { noremap = true })
-vim.api.nvim_set_keymap('', '9', '(', { noremap = true })
-vim.api.nvim_set_keymap('', '(', '9', { noremap = true })
-vim.api.nvim_set_keymap('', '0', ')', { noremap = true })
-vim.api.nvim_set_keymap('', ')', '0', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<leader>1', 
     '<Plug>lightline#bufferline#go(1)', { noremap = false })
