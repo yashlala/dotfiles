@@ -50,14 +50,16 @@ require('packer').startup(function()
   use 'tpope/vim-eunuch' 
  -- Automatically match file format/indentation.
   use 'tpope/vim-sleuth'
+  -- Vim motions that don't require counts. 
+  use 'easymotion/vim-easymotion'
+  -- Use `lf` instead of the admittedly confusing netrw. 
+  use 'ptzz/lf.vim'
+  use 'voldikss/vim-floaterm'
 
   -- Git commands + Status page.
   use 'tpope/vim-fugitive'
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-
-  -- EasyMotion-style text movements.
-  use { 'phaazon/hop.nvim', as = 'hop' }
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
@@ -88,35 +90,39 @@ Other Configuration
 
 -- Vanilla Vim Options
 
-vim.o.lazyredraw = true
-vim.o.undofile = true
-vim.o.hidden = true
-vim.o.gdefault = true
-vim.o.ignorecase = true
-vim.o.hlsearch = false
-vim.o.joinspaces = false
-vim.o.smartcase = true
+vim.o.autoindent = true
+vim.o.breakindent = true
 -- TODO: does using the 'unnamedplus' clipboard break everything? 
 -- vim.o.clipboard = 'unnamedplus'
+vim.o.confirm = true
 vim.o.foldenable = false
 vim.o.foldlevel = 1
 vim.o.foldmethod = 'syntax'
 vim.o.foldnestmax = 1
-vim.o.wrap = true
+vim.o.gdefault = true
+vim.o.hidden = true
+vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.joinspaces = false
+vim.o.lazyredraw = true
 vim.o.linebreak = true
-vim.o.breakindent = true
-vim.o.mouse = 'a'
 vim.o.modeline = true
-vim.o.confirm = true
-vim.o.autoindent = true
+vim.o.mouse = 'a'
+vim.o.scrollback = 1024
+vim.o.showmode = false
+vim.o.smartcase = true
+vim.o.undofile = true
+vim.o.wrap = true
 
+-- Swap digits and special characters. We need to do this in `langmap` (as
+-- opposed to regular bindings) because Vim isn't able to map all of its modes. 
+-- map them all (eg: operator-pending for some reason doesn't remap di
 vim.o.langremap = false
 vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
 
--- "Simple" Keybinds
-
-vim.api.nvim_set_keymap('n', ' ', '<noop>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ' ', '<nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
+
 
 vim.api.nvim_set_keymap('', 'Y', 'y$', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
@@ -144,43 +150,40 @@ vim.api.nvim_set_keymap( 'n', 'S',
 vim.api.nvim_set_keymap('', '&', '<cmd>&&<cr>',
     { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
+vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('', '<leader>p', '"0p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('', '<leader>P', '"0P', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('', 'ga', '<Plug>(EasyAlign)', { noremap = false })
 vim.api.nvim_set_keymap('n', 'gs', ':%s/', { noremap = true })
 
-vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
-vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>', { noremap = true, silent = true })
-
-
-vim.api.nvim_set_keymap('n', '<leader>1', 
+vim.api.nvim_set_keymap('n', '<leader>!', 
     '<Plug>lightline#bufferline#go(1)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>2', 
+vim.api.nvim_set_keymap('n', '<leader>@', 
     '<Plug>lightline#bufferline#go(2)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>3', 
+vim.api.nvim_set_keymap('n', '<leader>#', 
     '<Plug>lightline#bufferline#go(3)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>4', 
+vim.api.nvim_set_keymap('n', '<leader>$', 
     '<Plug>lightline#bufferline#go(4)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>5', 
+vim.api.nvim_set_keymap('n', '<leader>%', 
     '<Plug>lightline#bufferline#go(5)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>6', 
+vim.api.nvim_set_keymap('n', '<leader>^', 
     '<Plug>lightline#bufferline#go(6)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>7', 
+vim.api.nvim_set_keymap('n', '<leader>&', 
     '<Plug>lightline#bufferline#go(7)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>8', 
+vim.api.nvim_set_keymap('n', '<leader>*', 
     '<Plug>lightline#bufferline#go(8)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>9', 
+vim.api.nvim_set_keymap('n', '<leader>(', 
     '<Plug>lightline#bufferline#go(9)', { noremap = false })
 
 -- "Simple" Plugins
 -- Load colorscheme *before* other plugins are set up. 
 vim.api.nvim_exec('colorscheme seoul256', false)
 vim.g.seoul256_srgb = 1
-
-require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
 
 vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
@@ -267,10 +270,7 @@ require('gitsigns').setup {
 
 require('telescope').load_extension('fzy_native')
 
-vim.api.nvim_set_keymap('n', '<leader>fb',
-  "<cmd>lua require('telescope.builtin').file_browser({})<cr>",
-  { noremap = true, silent = true }
-)
+-- File browser is provided by `lf.vim`, no need to use this one. 
 vim.api.nvim_set_keymap('n', '<leader>ff',
   "<cmd>lua require('telescope.builtin').find_files({})<cr>",
   { noremap = true, silent = true }
@@ -286,7 +286,6 @@ vim.api.nvim_set_keymap('n', '<leader>fp',
 
 
 -- Autocomplete + LSP Plugin Setup
-
 
 -- Set up LSP Configurations. 
 --[[
@@ -399,12 +398,11 @@ vim.api.nvim_exec(
   filetype plugin indent on 
   syntax on
 ]], false)
-
 EOF
 
-
-" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-
+nnoremap <space> <nop>
+let mapleader = ' '
+let g:mapleader = ' '
 
 """""""""""""""""""
 " Plugin Settings
@@ -426,9 +424,40 @@ let g:lightline = {
 let g:lightline#bufferline#show_number = 2
 let g:lightline#bufferline#unnamed = '[No Name]'
 
-set noshowmode
 
 let g:go_doc_keywordprg_enabled = 0 " disable K keybind.
+
+
+" Vim EASYMOTION
+
+let g:EasyMotion_do_mapping = 0 
+let g:EasyMotion_smartcase = 1
+
+noremap f <nop>
+map f <Plug>(easymotion-f)
+map F <Plug>(easymotion-F)
+map t <Plug>(easymotion-t)
+map T <Plug>(easymotion-T)
+map w <Plug>(easymotion-w)
+map W <Plug>(easymotion-W)
+map e <Plug>(easymotion-e)
+map E <Plug>(easymotion-E)
+map b <Plug>(easymotion-b)
+map B <Plug>(easymotion-B)
+map ge <Plug>(easymotion-ge)
+map gE <Plug>(easymotion-gE)
+map s <Plug>(easymotion-lineanywhere)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+
+" Vim lf 
+let g:lf_replace_netrw = 1
+let g:lf_map_keys = 0
+nmap <silent> <leader>fb :Lf<CR>
 
 """""""""""""""""""
 " Autocommands
@@ -467,7 +496,6 @@ nnoremap <silent> <leader>e <cmd>e<cr>
 
 " matches the other git commands. 
 nnoremap <silent> <leader>gg <cmd>G<cr> 
-nnoremap <silent> <leader><leader> <cmd>Telescope<cr>
 
-nnoremap <silent> f <cmd>HopChar1<cr>
-vnoremap <silent> f <cmd>HopChar1<cr>
+" Terminal mode bindings
+tnoremap <c-\> <c-\><c-n>
