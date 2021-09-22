@@ -76,6 +76,15 @@ require('packer').startup(function()
   use { 'nvim-telescope/telescope-fzy-native.nvim', requires = {
     { 'nvim-telescope/telescope.nvim' } } 
   }
+  -- Automatically `cd` to project root. Integrates with Telescope. 
+  -- Use this to quickly return to old projects (as opposed to searching *in*
+  -- a project, which we do with the regular telescope builtins. 
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim").setup{}
+    end
+  }
   -- Autocompletion plugin
   use 'hrsh7th/nvim-compe'
 
@@ -189,6 +198,10 @@ vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
 
+-- Make `project.nvim` integrate with Telescope.
+require('telescope').setup {}
+require('telescope').load_extension('projects')
+
 -- Git Plugin Setup
 
 require('gitsigns').setup {
@@ -283,7 +296,11 @@ vim.api.nvim_set_keymap('n', '<leader>fp',
   "<cmd>lua require('telescope.builtin').git_files({})<cr>",
   { noremap = true, silent = true }
 )
-
+-- <leader>fP will find a *project* (not find _in_ a project, which is
+-- `<leader>fp`). This Telescope picker comes from `project.nvim`. 
+vim.api.nvim_set_keymap('n', '<leader>fP',
+  "<cmd>Telescope projects<cr>", { noremap = true, silent = true }
+)
 
 -- Autocomplete + LSP Plugin Setup
 
