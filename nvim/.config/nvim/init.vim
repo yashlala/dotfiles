@@ -507,4 +507,7 @@ nnoremap <silent> <leader>e <cmd>e<cr>
 nnoremap <silent> <leader>gg <cmd>G<cr> 
 
 " Terminal mode bindings
+" Simplify terminal escape keybind. 
 tnoremap <c-\> <c-\><c-n>
+" Unbind regular command (we forget what buffer we're in a lot). 
+nnoremap <c-\> <nop>
