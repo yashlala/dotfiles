@@ -299,10 +299,20 @@ vim.api.nvim_set_keymap('n', '<leader>fp',
   "<cmd>lua require('telescope.builtin').git_files({})<cr>",
   { noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap('n', '<leader>fo',
+  "<cmd>lua require('telescope.builtin').oldfiles({})<cr>",
+  { noremap = true, silent = true }
+)
 -- <leader>fP will find a *project* (not find _in_ a project, which is
 -- `<leader>fp`). This Telescope picker comes from `project.nvim`. 
 vim.api.nvim_set_keymap('n', '<leader>fP',
   "<cmd>Telescope projects<cr>", { noremap = true, silent = true }
+)
+
+
+vim.api.nvim_set_keymap('n', '<leader>b',
+  "<cmd>lua require('telescope.builtin').buffers({})<cr>",
+  { noremap = true, silent = true }
 )
 
 -- Autocomplete + LSP Plugin Setup
