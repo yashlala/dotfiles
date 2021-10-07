@@ -28,6 +28,7 @@ export ELINKS_CONFDIR="$XDG_DATA_HOME/elinks"
 export _FASD_DATA="$XDG_DATA_HOME/fasd"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
 # needed for bash, sh, etc.
 export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 # needed for GNU Readline
