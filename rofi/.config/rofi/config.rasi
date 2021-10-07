@@ -1,20 +1,9 @@
 configuration {
 	modi: "run,drun,ssh";
+	width: 900;
+	lines: 6;
 	font: "DejaVu Sans Mono 35";
-/*	location: 0;*/
-/*	yoffset: 0;*/
-/*	xoffset: 0;*/
-	fixed-num-lines: true;
 	terminal: "urxvt";
+	hide-scrollbar: true;
 	theme: "/usr/share/rofi/themes/solarized.rasi";
-	cache-dir: ".cache/rofi/";
-	drun-use-desktop-cache: true;
-  timeout {
-      action: "kb-cancel";
-      delay:  0;
-  }
-  filebrowser {
-      directories-first: true;
-      sorting-method:    "name";
-  }
 }
