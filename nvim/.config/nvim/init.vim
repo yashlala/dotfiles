@@ -61,6 +61,9 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
+  -- Remove whitespace at the end of modified lines when lives are saved. 
+  use 'axelf4/vim-strip-trailing-whitespace'
+
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
   use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
