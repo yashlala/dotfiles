@@ -85,7 +85,11 @@ require('packer').startup(function()
   use {
     "ahmedkhalf/project.nvim",
     config = function()
-      require("project_nvim").setup{}
+      require("project_nvim").setup({
+        -- Don't automatically CD to project root (only via :ProjectRoot).
+        -- We have `autochdir` set up, anyways.
+        manual_mode = true
+      })
     end
   }
   -- Autocompletion plugin
@@ -102,6 +106,7 @@ Other Configuration
 
 -- Vanilla Vim Options
 
+vim.o.autochdir = true
 vim.o.autoindent = true
 vim.o.breakindent = true
 -- TODO: does using the 'unnamedplus' clipboard break everything? 
