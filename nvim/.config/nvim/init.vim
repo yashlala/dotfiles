@@ -521,7 +521,6 @@ function! DeleteBufferAndUpdateLightline()
 endfunction
 noremap <silent> <leader>p "0p
 noremap <silent> <leader>P "0P
-nnoremap <silent> <leader>q <cmd>q<cr>
 nnoremap <silent> <leader>d <cmd>call DeleteBufferAndUpdateLightline()<cr>
 nnoremap <silent> <leader>e <cmd>e<cr>
 
