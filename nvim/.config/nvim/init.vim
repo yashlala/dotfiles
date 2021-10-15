@@ -154,7 +154,7 @@ vim.api.nvim_set_keymap('', '-', '0', { noremap = true })
 vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
 vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<cr>', 'o<esc>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<cr>', ':put _<cr>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<bar>', 'K', { noremap = true })
 vim.api.nvim_set_keymap('n', 'K', 'kJ', { noremap = true })
 vim.api.nvim_set_keymap('n', 'U', '<c-r>', { noremap = true })
