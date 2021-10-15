@@ -501,11 +501,15 @@ autocmd BufNewFile,BufRead neomutt-* set filetype=mail
 " Close netrw buffers (we can't do this by default, for some reason). 
 autocmd Filetype netrw setl bufhidden=delete
 
+" Enter terminal mode as soon as we enter a terminal buffer.
+autocmd TermOpen * startinsert
+
 " The bottom status line doesn't update very often, so the buffer listing can
 " become stale. Avoid this by throwing in a few autocommands (we have a
 " function later in this file that mitigates this problem as well)
 autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
   \ call lightline#update()
+
 
 """""""""""""""""""
 " Keybindings
