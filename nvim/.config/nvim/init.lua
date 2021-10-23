@@ -1,6 +1,146 @@
---[[
-Plugins
---]]
+-- Vanilla Vim Options
+
+vim.o.autochdir = true
+vim.o.autoindent = true
+vim.o.breakindent = true
+vim.o.confirm = true
+vim.o.foldenable = false
+vim.o.foldlevel = 1
+vim.o.foldmethod = 'syntax'
+vim.o.foldnestmax = 1
+vim.o.gdefault = true
+vim.o.hidden = true
+vim.o.hlsearch = false
+vim.o.ignorecase = true
+vim.o.joinspaces = false
+vim.o.lazyredraw = true
+vim.o.linebreak = true
+vim.o.modeline = true
+vim.o.mouse = 'a'
+vim.o.scrollback = 1024
+vim.o.showmode = false
+vim.o.smartcase = true
+vim.o.undofile = true
+vim.o.wrap = true
+-- Swap digits and special characters. We need to do this in `langmap` (as
+-- opposed to regular bindings) because Vim isn't able to map all of its modes.
+-- map them all (eg: operator-pending for some reason doesn't remap di
+vim.o.langremap = false
+vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
+
+
+-- "Straightforward" Keymaps (there are more in the plugin setup funcs)
+
+-- Vanilla Remaps
+vim.api.nvim_set_keymap('n', ' ', '<nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+
+vim.api.nvim_set_keymap('', 'Y', 'y$', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
+vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', "'", '`', { noremap = true })
+vim.api.nvim_set_keymap('', '\\', '"', { noremap = true })
+vim.api.nvim_set_keymap('', '`', '~', { noremap = true })
+vim.api.nvim_set_keymap('', '-', '0', { noremap = true })
+vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
+vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<cr>', ':put _<cr>',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<bar>', 'K', { noremap = true })
+vim.api.nvim_set_keymap('n', 'K', 'kJ', { noremap = true })
+vim.api.nvim_set_keymap('n', 'U', '<c-r>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-r>', 'U', { noremap = true })
+vim.api.nvim_set_keymap('n', 'v', 'V', { noremap = true })
+vim.api.nvim_set_keymap( 'n', 'S',
+    [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]],
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '&', '<cmd>&&<cr>',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
+vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'gs', ':%s/', { noremap = true })
+vim.api.nvim_set_keymap('', 'ga', '<Plug>(EasyAlign)', { noremap = false })
+-- Simple Leader Keybinds
+vim.api.nvim_set_keymap('', '<leader>p', '"0p',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<leader>P', '"0P',
+    { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>d',
+    '<cmd>call DeleteBufferAndUpdateLightline()<cr>',
+    { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>G<cr>', { noremap = false })
+-- Terminal Mode Keybindings
+vim.api.nvim_set_keymap('t', '<c-\\>', '<c-\\><c-n>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<c-\\>', '<nop>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<c-\\>', '<esc>', { noremap = true })
+-- EasyMotion Keybindings
+vim.api.nvim_set_keymap('', 'f', '<nop>', { noremap = true })
+vim.api.nvim_set_keymap('', 'f', '<Plug>(easymotion-f)', { noremap = false })
+vim.api.nvim_set_keymap('', 'F', '<Plug>(easymotion-F)', { noremap = false })
+vim.api.nvim_set_keymap('', 't', '<Plug>(easymotion-t)', { noremap = false })
+vim.api.nvim_set_keymap('', 'T', '<Plug>(easymotion-T)', { noremap = false })
+vim.api.nvim_set_keymap('', 's', '<Plug>(easymotion-lineanywhere)',
+    { noremap = false })
+vim.api.nvim_set_keymap('', '<leader>j', '<Plug>(easymotion-j)',
+    { noremap = false })
+vim.api.nvim_set_keymap('', '<leader>k', '<Plug>(easymotion-k)',
+    { noremap = false })
+-- Diary Keybinds
+vim.api.nvim_set_keymap('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote',
+    { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>wi', '<cmd>DiaryIndex<cr>',
+    { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>wt', '<Plug>VimwikiMakeTodayDiaryNote',
+    { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>wy',
+    '<Plug>VimwikiMakeYesterdayDiaryNote', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>w<leader>w', '<Plug>VimwikiIndex',
+    { noremap = false })
+-- Quick Buffer Switching Keybindings
+vim.api.nvim_set_keymap('n', '<leader>!',
+    '<Plug>lightline#bufferline#go(1)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>@',
+    '<Plug>lightline#bufferline#go(2)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>#',
+    '<Plug>lightline#bufferline#go(3)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>$',
+    '<Plug>lightline#bufferline#go(4)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>%',
+    '<Plug>lightline#bufferline#go(5)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>^',
+    '<Plug>lightline#bufferline#go(6)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>&',
+    '<Plug>lightline#bufferline#go(7)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>*',
+    '<Plug>lightline#bufferline#go(8)', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>(',
+    '<Plug>lightline#bufferline#go(9)', { noremap = false })
+
+-- Helper functions used in keybinds above.
+
+vim.api.nvim_exec([[
+  function! DeleteBufferAndUpdateLightline()
+    exe 'bdelete'
+    call lightline#update()
+  endfunction
+]], false)
+--  Visit the diary index with :Diary. It'll regenerate
+-- every time we visit it (updates itself with new links).
+vim.api.nvim_exec([[
+command! DiaryIndex VimwikiDiaryIndex
+augroup vimwikigroup
+    autocmd!
+    " automatically update links on read diary
+    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
+augroup end
+]], false)
+
+
+-- Plugins
 
 -- Install packer if needed.
 local packer_install_path = (vim.fn.stdpath('data')
@@ -78,16 +218,8 @@ require('packer').startup(function()
   -- Automatically `cd` to project root. Integrates with Telescope. 
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins. 
-  use {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup({
-        -- Don't automatically CD to project root (only via :ProjectRoot).
-        -- We have `autochdir` set up, anyways.
-        manual_mode = true
-      })
-    end
-  }
+  use "ahmedkhalf/project.nvim"
+
   -- Autocompletion plugin
   -- use 'hrsh7th/nvim-compe'
 
@@ -97,134 +229,8 @@ end)
 
 
 --[[
-Other Configuration
+Kinkier Configuration
 --]]
-
--- Vanilla Vim Options
-
-vim.o.autochdir = true
-vim.o.autoindent = true
-vim.o.breakindent = true
-vim.o.confirm = true
-vim.o.foldenable = false
-vim.o.foldlevel = 1
-vim.o.foldmethod = 'syntax'
-vim.o.foldnestmax = 1
-vim.o.gdefault = true
-vim.o.hidden = true
-vim.o.hlsearch = false
-vim.o.ignorecase = true
-vim.o.joinspaces = false
-vim.o.lazyredraw = true
-vim.o.linebreak = true
-vim.o.modeline = true
-vim.o.mouse = 'a'
-vim.o.scrollback = 1024
-vim.o.showmode = false
-vim.o.smartcase = true
-vim.o.undofile = true
-vim.o.wrap = true
--- Swap digits and special characters. We need to do this in `langmap` (as
--- opposed to regular bindings) because Vim isn't able to map all of its modes.
--- map them all (eg: operator-pending for some reason doesn't remap di
-vim.o.langremap = false
-vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
-
-vim.g.mapleader = ' '
--- Vanilla Remaps
-vim.api.nvim_set_keymap('n', ' ', '<nop>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', 'Y', 'y$', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
-vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', "'", '`', { noremap = true })
-vim.api.nvim_set_keymap('', '\\', '"', { noremap = true })
-vim.api.nvim_set_keymap('', '`', '~', { noremap = true })
-vim.api.nvim_set_keymap('', '-', '0', { noremap = true })
-vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
-vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<cr>', ':put _<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<bar>', 'K', { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', 'kJ', { noremap = true })
-vim.api.nvim_set_keymap('n', 'U', '<c-r>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-r>', 'U', { noremap = true })
-vim.api.nvim_set_keymap('n', 'v', 'V', { noremap = true })
-vim.api.nvim_set_keymap( 'n', 'S',
-    [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]],
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '&', '<cmd>&&<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
-vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', 'ga', '<Plug>(EasyAlign)', { noremap = false })
-vim.api.nvim_set_keymap('n', 'gs', ':%s/', { noremap = true })
-vim.api.nvim_set_keymap('', '<leader>p', '"0p',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '<leader>P', '"0P',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d',
-    '<cmd>call DeleteBufferAndUpdateLightline()<cr>',
-    { noremap = false, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>G<cr>', { noremap = false })
--- Terminal Mode Keybindings
-vim.api.nvim_set_keymap('t', '<c-\\>', '<c-\\><c-n>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-\\>', '<nop>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<c-\\>', '<esc>', { noremap = true })
--- EasyMotion Keybindings
-vim.api.nvim_set_keymap('', 'f', '<nop>', { noremap = true })
-vim.api.nvim_set_keymap('', 'f', '<Plug>(easymotion-f)', { noremap = false })
-vim.api.nvim_set_keymap('', 'F', '<Plug>(easymotion-F)', { noremap = false })
-vim.api.nvim_set_keymap('', 't', '<Plug>(easymotion-t)', { noremap = false })
-vim.api.nvim_set_keymap('', 'T', '<Plug>(easymotion-T)', { noremap = false })
-vim.api.nvim_set_keymap('', 's', '<Plug>(easymotion-lineanywhere)',
-    { noremap = false })
-vim.api.nvim_set_keymap('', '<leader>j', '<Plug>(easymotion-j)',
-    { noremap = false })
-vim.api.nvim_set_keymap('', '<leader>k', '<Plug>(easymotion-k)',
-    { noremap = false })
--- Quick Buffer Switching Keybindings
-vim.api.nvim_set_keymap('n', '<leader>!',
-    '<Plug>lightline#bufferline#go(1)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>@',
-    '<Plug>lightline#bufferline#go(2)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>#',
-    '<Plug>lightline#bufferline#go(3)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>$',
-    '<Plug>lightline#bufferline#go(4)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>%',
-    '<Plug>lightline#bufferline#go(5)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>^',
-    '<Plug>lightline#bufferline#go(6)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>&',
-    '<Plug>lightline#bufferline#go(7)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>*',
-    '<Plug>lightline#bufferline#go(8)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>(',
-    '<Plug>lightline#bufferline#go(9)', { noremap = false })
--- Diary Keybinds
-vim.api.nvim_set_keymap('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wi', '<cmd>DiaryIndex<cr>',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wt', '<Plug>VimwikiMakeTodayDiaryNote',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wy',
-    '<Plug>VimwikiMakeYesterdayDiaryNote', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>w<leader>w', '<Plug>VimwikiIndex',
-    { noremap = false })
-
-
-vim.g.indent_blankline_use_treesitter = true
-vim.api.nvim_set_var('lightline#bufferline#show_number', 2)
-vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
-vim.g.go_doc_keywordprg_enabled = 0 -- disable K keybind.
-
-
--- "Simple" Plugins
 
 -- Load colorscheme *before* other plugins are set up.
 vim.api.nvim_exec('colorscheme seoul256', false)
@@ -234,13 +240,36 @@ vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
 
+vim.api.nvim_set_var('lightline#bufferline#show_number', 2)
+vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
+
+vim.g.go_doc_keywordprg_enabled = 0 -- disable K keybind.
+
 vim.g.EasyMotion_do_mapping = 0
 vim.g.EasyMotion_smartcase = 1
 
--- Make `project.nvim` integrate with Telescope.
+require('project_nvim').setup({ manual_mode = true })
 require('telescope').setup {}
-require('telescope').load_extension('projects')
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('projects')
+
+vim.api.nvim_set_keymap('n', '<leader>b',
+  "<cmd>lua require('telescope.builtin').buffers({})<cr>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff',
+  "<cmd>lua require('telescope.builtin').find_files({})<cr>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fg',
+  "<cmd>lua require('telescope.builtin').grep_string({})<cr>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fp',
+  "<cmd>lua require('telescope.builtin').git_files({})<cr>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fo',
+  "<cmd>lua require('telescope.builtin').oldfiles({})<cr>",
+  { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fP',
+  "<cmd>Telescope projects<cr>", { noremap = true, silent = true })
 
 -- Git Plugin Setup
 
@@ -316,37 +345,9 @@ require('gitsigns').setup {
 }
 
 
--- Global Menu + Fuzzy Finder Configuration
 
 
--- File browser is provided by `lf.vim`, no need to use this one.
-vim.api.nvim_set_keymap('n', '<leader>ff',
-  "<cmd>lua require('telescope.builtin').find_files({})<cr>",
-  { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap('n', '<leader>fg',
-  "<cmd>lua require('telescope.builtin').grep_string({})<cr>",
-  { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap('n', '<leader>fp',
-  "<cmd>lua require('telescope.builtin').git_files({})<cr>",
-  { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap('n', '<leader>fo',
-  "<cmd>lua require('telescope.builtin').oldfiles({})<cr>",
-  { noremap = true, silent = true }
-)
--- <leader>fP will find a *project* (not find _in_ a project, which is
--- `<leader>fp`). This Telescope picker comes from `project.nvim`.
-vim.api.nvim_set_keymap('n', '<leader>fP',
-  "<cmd>Telescope projects<cr>", { noremap = true, silent = true }
-)
 
-
-vim.api.nvim_set_keymap('n', '<leader>b',
-  "<cmd>lua require('telescope.builtin').buffers({})<cr>",
-  { noremap = true, silent = true }
-)
 
 -- Autocomplete + LSP Plugin Setup
 
@@ -465,25 +466,11 @@ vim.api.nvim_exec([[
   syntax on
 ]], false)
 
-vim.api.nvim_exec([[
-  function! DeleteBufferAndUpdateLightline()
-    exe 'bdelete'
-    call lightline#update()
-  endfunction
-]], false)
-
---  Visit the diary index with :Diary. It'll regenerate
--- every time we visit it (updates itself with new links).
-vim.api.nvim_exec([[
-command! DiaryIndex VimwikiDiaryIndex
-augroup vimwikigroup
-    autocmd!
-    " automatically update links on read diary
-    autocmd BufRead,BufNewFile diary.wiki VimwikiDiaryGenerateLinks
-augroup end
-]], false)
 
 
+--[[
+Autocommands
+--]]
 
 -- return to last edit position when opening files
 vim.api.nvim_exec([[
@@ -528,3 +515,4 @@ vim.api.nvim_exec([[
         \ }
         \ }
   ]], false)
+
