@@ -254,6 +254,11 @@ let g:lightline = {
       \ 'component_type': { 'buffers': 'tabsel' } }
 ]], false)
 
+vim.api.nvim_exec([[
+let g:vimwiki_list = [{'path': '~/documents/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+]], false)
+
 vim.g.go_doc_keywordprg_enabled = 0 -- disable K keybind.
 
 vim.g.EasyMotion_do_mapping = 0
