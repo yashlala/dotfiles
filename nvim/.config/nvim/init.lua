@@ -274,42 +274,13 @@ vim.api.nvim_set_keymap('n', '<leader>fP',
 -- Git Plugin Setup
 
 require('gitsigns').setup {
-  signs = {
-    add = {
-      hl = 'GitSignsAdd', text = '│', numhl='GitSignsAddNr', linehl='GitSignsAddLn' },
-    change = {
-      hl = 'GitSignsChange',
-      text = '│',
-      numhl='GitSignsChangeNr',
-      linehl='GitSignsChangeLn'
-    },
-    delete = {
-      hl = 'GitSignsDelete',
-      text = '_', numhl='GitSignsDeleteNr',
-      linehl='GitSignsDeleteLn'
-    },
-    topdelete = {
-      hl = 'GitSignsDelete',
-      text = '‾',
-      numhl='GitSignsDeleteNr',
-      linehl='GitSignsDeleteLn'},
-    changedelete = {
-      hl = 'GitSignsChange',
-      text = '~',
-      numhl='GitSignsChangeNr',
-      linehl='GitSignsChangeLn'},
-  },
-  numhl = false,
-  linehl = false,
   keymaps = {
     -- Default keymap options
     noremap = true,
-    ['n ]g'] = {
-      expr = true,
+    ['n ]g'] = { expr = true,
       "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"
     },
-    ['n [g'] = {
-      expr = true,
+    ['n [g'] = { expr = true,
       "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"
     },
     ['n <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
@@ -321,32 +292,13 @@ require('gitsigns').setup {
     ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
     ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
     ['n <leader>tgb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
-
     -- Text objects
-    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+    ['o ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['x ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
   },
-  watch_index = {
-    interval = 1000,
-    follow_files = true
-  },
-  current_line_blame = false,
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  word_diff = false,
-  current_line_blame_opts = {
-    virt_text_pos = 'eol',
-    delay = 500
-  },
-  diff_opts = {
-    internal = true  -- If luajit is present
-  },
+  current_line_blame_opts = { virt_text_pos = 'eol', delay = 500 },
+  diff_opts = { internal = true },
 }
-
-
-
-
 
 
 -- Autocomplete + LSP Plugin Setup
@@ -461,6 +413,7 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 END (ish): THINGS I DON'T UNDERSTAND
 --]]
 
+
 vim.api.nvim_exec([[
   filetype plugin indent on
   syntax on
@@ -497,22 +450,4 @@ vim.api.nvim_exec([[
 autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
   \ call lightline#update()
 ]], false)
-
-vim.api.nvim_exec([[
-  let g:vimwiki_list = [{'path': '~/documents/vimwiki/',
-                        \ 'syntax': 'markdown', 'ext': '.md'}]
-  let g:lightline = {
-        \ 'colorscheme': 'seoul256',
-        \ 'active': {
-        \   'left': [ ['buffers'] ],
-        \   'right': [ [ 'lineinfo' ], [ 'percent' ],  [ 'fileformat', 'fileencoding', 'filetype' ] ]
-        \ },
-        \ 'component_expand': {
-        \   'buffers': 'lightline#bufferline#buffers'
-        \ },
-        \ 'component_type': {
-        \   'buffers': 'tabsel'
-        \ }
-        \ }
-  ]], false)
 
