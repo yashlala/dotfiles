@@ -73,6 +73,7 @@ vim.api.nvim_set_keymap('n', '<leader>d',
     '<cmd>call DeleteBufferAndUpdateLightline()<cr>',
     { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>G<cr>', { noremap = false })
+vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>silent !uwin<cr>', { noremap = false })
 -- Terminal Mode Keybindings
 vim.api.nvim_set_keymap('t', '<c-\\>', '<c-\\><c-n>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<c-\\>', '<nop>', { noremap = true })
@@ -466,4 +467,3 @@ vim.api.nvim_exec([[
 autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
   \ call lightline#update()
 ]], false)
-

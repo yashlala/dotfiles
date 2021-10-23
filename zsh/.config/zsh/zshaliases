@@ -79,7 +79,13 @@ lkj () {
   eval sudo "$(fc -ln -1)"
 }
 
+# Create a new urxvt window
+uwin () {
+  urxvtc -cd "$(pwd)"
+}
+
 ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir -p "$1" && cd "$1"; }
+
