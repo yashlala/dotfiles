@@ -32,94 +32,88 @@ vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
 -- "Straightforward" Keymaps (there are more in the plugin setup funcs)
 
 -- Vanilla Remaps
-vim.api.nvim_set_keymap('n', ' ', '<nop>', { noremap = true, silent = true })
-vim.g.mapleader = ' '
 
-vim.api.nvim_set_keymap('', 'Y', 'y$', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
-vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', "'", '`', { noremap = true })
-vim.api.nvim_set_keymap('', '\\', '"', { noremap = true })
-vim.api.nvim_set_keymap('', '`', '~', { noremap = true })
-vim.api.nvim_set_keymap('', '-', '0', { noremap = true })
-vim.api.nvim_set_keymap('', ';', ':', { noremap = true })
-vim.api.nvim_set_keymap('', ':', 'q:', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<cr>', ':put _<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<bar>', 'K', { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', 'kJ', { noremap = true })
-vim.api.nvim_set_keymap('n', 'U', '<c-r>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-r>', 'U', { noremap = true })
-vim.api.nvim_set_keymap('n', 'v', 'V', { noremap = true })
-vim.api.nvim_set_keymap( 'n', 'S',
-    [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]],
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '&', '<cmd>&&<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '_', '<c-y>', { noremap = true })
-vim.api.nvim_set_keymap('', '+', '<c-e>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-n>', '<cmd>bnext<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<c-p>', '<cmd>bprev<cr>',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gs', ':%s/', { noremap = true })
-vim.api.nvim_set_keymap('', 'ga', '<Plug>(EasyAlign)', { noremap = false })
--- Simple Leader Keybinds
-vim.api.nvim_set_keymap('', '<leader>p', '"0p',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('', '<leader>P', '"0P',
-    { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d',
-    '<cmd>call DeleteBufferAndUpdateLightline()<cr>',
-    { noremap = false, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gg', '<cmd>G<cr>', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>u', '<cmd>silent !uwin<cr>', { noremap = false })
--- Terminal Mode Keybindings
-vim.api.nvim_set_keymap('t', '<c-\\>', '<c-\\><c-n>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-\\>', '<nop>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<c-\\>', '<esc>', { noremap = true })
--- EasyMotion Keybindings
-vim.api.nvim_set_keymap('', 'f', '<nop>', { noremap = true })
-vim.api.nvim_set_keymap('', 'f', '<Plug>(easymotion-f)', { noremap = false })
-vim.api.nvim_set_keymap('', 'F', '<Plug>(easymotion-F)', { noremap = false })
-vim.api.nvim_set_keymap('', 't', '<Plug>(easymotion-t)', { noremap = false })
-vim.api.nvim_set_keymap('', 'T', '<Plug>(easymotion-T)', { noremap = false })
-vim.api.nvim_set_keymap('', 's', '<Plug>(easymotion-lineanywhere)',
-    { noremap = false })
-vim.api.nvim_set_keymap('', '<leader>j', '<Plug>(easymotion-j)',
-    { noremap = false })
-vim.api.nvim_set_keymap('', '<leader>k', '<Plug>(easymotion-k)',
-    { noremap = false })
--- Diary Keybinds
-vim.api.nvim_set_keymap('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wi', '<cmd>DiaryIndex<cr>',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wt', '<Plug>VimwikiMakeTodayDiaryNote',
-    { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>wy',
-    '<Plug>VimwikiMakeYesterdayDiaryNote', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>w<leader>w', '<Plug>VimwikiIndex',
-    { noremap = false })
--- Quick Buffer Switching Keybindings
-vim.api.nvim_set_keymap('n', '<leader>!',
-    '<Plug>lightline#bufferline#go(1)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>@',
-    '<Plug>lightline#bufferline#go(2)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>#',
-    '<Plug>lightline#bufferline#go(3)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>$',
-    '<Plug>lightline#bufferline#go(4)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>%',
-    '<Plug>lightline#bufferline#go(5)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>^',
-    '<Plug>lightline#bufferline#go(6)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>&',
-    '<Plug>lightline#bufferline#go(7)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>*',
-    '<Plug>lightline#bufferline#go(8)', { noremap = false })
-vim.api.nvim_set_keymap('n', '<leader>(',
-    '<Plug>lightline#bufferline#go(9)', { noremap = false })
+do
+  vim.g.mapleader = ' '
+
+  local function mapwrap(mode, key, value, args)
+    vim.api.nvim_set_keymap(mode, key, value, args)
+  end
+  local function map(mode, key, value)
+    vim.api.nvim_set_keymap(mode, key, value, { noremap = false })
+  end
+  local function smap(mode, key, value)
+    vim.api.nvim_set_keymap(mode, key, value,
+      { noremap = false, silent = true })
+  end
+  local function noremap(mode, key, value)
+    mapwrap(mode, key, value, { noremap = true })
+  end
+  local function snoremap(mode, key, value)
+    mapwrap(mode, key, value, { noremap = true, silent = true })
+  end
+
+  snoremap('n', ' ', '<nop>')
+
+  snoremap('', 'Y', 'y$')
+  noremap('', ';', ':')
+  snoremap('', ':', 'q:')
+  noremap('', "'", '`')
+  noremap('', '\\', '"')
+  noremap('', '`', '~')
+  noremap('', '-', '0')
+  noremap('', ';', ':')
+  snoremap('', ':', 'q:')
+  snoremap('n', '<cr>', ':put _<cr>')
+  noremap('n', '<bar>', 'K')
+  noremap('n', 'K', 'kJ')
+  noremap('n', 'U', '<c-r>')
+  noremap('n', '<c-r>', 'U')
+  noremap('n', 'v', 'V')
+  snoremap( 'n', 'S', [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]])
+  snoremap('', '&', '<cmd>&&<cr>')
+  noremap('', '_', '<c-y>')
+  noremap('', '+', '<c-e>')
+  snoremap('n', '<c-n>', '<cmd>bnext<cr>')
+  snoremap('n', '<c-p>', '<cmd>bprev<cr>')
+  noremap('n', 'gs', ':%s/')
+  map('', 'ga', '<Plug>(EasyAlign)')
+  -- Simple Leader Keybinds
+  snoremap('', '<leader>p', '"0p')
+  snoremap('', '<leader>P', '"0P')
+  smap('n', '<leader>d', '<cmd>call DeleteBufferAndUpdateLightline()<cr>')
+  smap('n', '<leader>gg', '<cmd>G<cr>')
+  smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
+  -- Terminal Mode Keybindings
+  noremap('t', '<c-\\>', '<c-\\><c-n>')
+  noremap('n', '<c-\\>', '<nop>')
+  noremap('i', '<c-\\>', '<esc>')
+  -- EasyMotion Keybindings
+  noremap('', 'f', '<nop>')
+  map('', 'f', '<Plug>(easymotion-f)')
+  map('', 'F', '<Plug>(easymotion-F)')
+  map('', 't', '<Plug>(easymotion-t)')
+  map('', 'T', '<Plug>(easymotion-T)')
+  map('', 's', '<Plug>(easymotion-lineanywhere)')
+  map('', '<leader>j', '<Plug>(easymotion-j)')
+  map('', '<leader>k', '<Plug>(easymotion-k)')
+  -- Diary Keybinds
+  map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
+  map('n', '<leader>wi', '<cmd>DiaryIndex<cr>')
+  map('n', '<leader>wt', '<Plug>VimwikiMakeTodayDiaryNote')
+  map('n', '<leader>wy', '<Plug>VimwikiMakeYesterdayDiaryNote')
+  map('n', '<leader>w<leader>w', '<Plug>VimwikiIndex')
+  -- Quick Buffer Switching Keybindings
+  map('n', '<leader>!', '<Plug>lightline#bufferline#go(1)')
+  map('n', '<leader>@', '<Plug>lightline#bufferline#go(2)')
+  map('n', '<leader>#', '<Plug>lightline#bufferline#go(3)')
+  map('n', '<leader>$', '<Plug>lightline#bufferline#go(4)')
+  map('n', '<leader>%', '<Plug>lightline#bufferline#go(5)')
+  map('n', '<leader>^', '<Plug>lightline#bufferline#go(6)')
+  map('n', '<leader>&', '<Plug>lightline#bufferline#go(7)')
+  map('n', '<leader>*', '<Plug>lightline#bufferline#go(8)')
+  map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
+end
 
 -- Helper functions used in keybinds above.
 
@@ -197,12 +191,12 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
-  -- Remove whitespace at the end of modified lines when lives are saved. 
+  -- Remove whitespace at the end of modified lines when lives are saved.
   use 'axelf4/vim-strip-trailing-whitespace'
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
-  use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+  -- use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
   -- TODO: Enable Treesitter functionality. Has to be done explicitly. 
   -- Highlighting, editing, etc. using incremental parsing. 
@@ -318,19 +312,19 @@ require('gitsigns').setup {
 }
 
 
--- Autocomplete + LSP Plugin Setup
+-- Autocomplete + LSP Setup
 
 -- Set up LSP Configurations.
---[[
-require('lspconfig').pyright.setup({})
+
+-- LSP Configurations are moved to the filetype-specific `after` configs.
+-- require('lspconfig').pyright.setup({})
 require('lspconfig').ccls.setup({})
-require('lspconfig').bashls.setup({})
-require('lspconfig').texlab.setup({})
-require('lspconfig').dockerls.setup({})
-require('lspconfig').gopls.setup({})
-require('lspconfig').jedi_language_server.setup{}
+-- require('lspconfig').bashls.setup({})
+-- require('lspconfig').texlab.setup({})
+-- require('lspconfig').dockerls.setup({})
+-- require('lspconfig').gopls.setup({})
+-- require('lspconfig').jedi_language_server.setup{}
 -- require('lspconfig').jdtls.setup{}
---]]
 
 --[[
 -- Setup `compe`.
