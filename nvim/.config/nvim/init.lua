@@ -1,5 +1,3 @@
-lua <<EOF
-
 --[[
 Plugins
 --]]
@@ -218,6 +216,13 @@ vim.api.nvim_set_keymap('n', '<leader>wy',
     '<Plug>VimwikiMakeYesterdayDiaryNote', { noremap = false })
 vim.api.nvim_set_keymap('n', '<leader>w<leader>w', '<Plug>VimwikiIndex',
     { noremap = false })
+
+
+vim.g.indent_blankline_use_treesitter = true
+vim.api.nvim_set_var('lightline#bufferline#show_number', 2)
+vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
+vim.g.go_doc_keywordprg_enabled = 0 -- disable K keybind.
+
 
 -- "Simple" Plugins
 
@@ -478,60 +483,48 @@ augroup vimwikigroup
 augroup end
 ]], false)
 
-EOF
 
-let mapleader = ' '
-let g:mapleader = ' '
 
-"""""""""""""""""""
-" Plugin Settings
-"""""""""""""""""""
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ ['buffers'] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ],  [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_expand': {
-      \   'buffers': 'lightline#bufferline#buffers'
-      \ },
-      \ 'component_type': {
-      \   'buffers': 'tabsel'
-      \ }
-      \ }
-let g:lightline#bufferline#show_number = 2
-let g:lightline#bufferline#unnamed = '[No Name]'
-
-let g:go_doc_keywordprg_enabled = 0 " disable K keybind.
-
-"""""""""""""""""""
-" Autocommands
-"""""""""""""""""""
-
-" return to last edit position when opening files
+-- return to last edit position when opening files
+vim.api.nvim_exec([[
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
   \ endif
+]], false)
 
+vim.api.nvim_exec([[
 autocmd BufNewFile,BufRead neomutt-* set filetype=mail
+]], false)
 
-" Close netrw buffers (we can't do this by default, for some reason).
-autocmd Filetype netrw setl bufhidden=delete
+-- Close netrw buffers (we can't do this by default, for some reason).
+vim.api.nvim_exec("autocmd Filetype netrw setl bufhidden=delete", false)
 
-" Enter terminal mode as soon as we enter a terminal buffer.
-autocmd TermOpen * startinsert
+-- Enter terminal mode as soon as we enter a terminal buffer.
+vim.api.nvim_exec("autocmd TermOpen * startinsert", false)
 
-" The bottom status line doesn't update very often, so the buffer listing can
-" become stale. Avoid this by throwing in a few autocommands (we have a
-" function later in this file that mitigates this problem as well)
+-- The bottom status line doesn't update very often, so the buffer listing can
+-- become stale. Avoid this by throwing in a few autocommands (we have a
+-- function later in this file that mitigates this problem as well)
+vim.api.nvim_exec([[
 autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
   \ call lightline#update()
+]], false)
 
-
-"""""""""""""""""""
-" Keybindings
-"""""""""""""""""""
-
-let g:vimwiki_list = [{'path': '~/documents/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+vim.api.nvim_exec([[
+  let g:vimwiki_list = [{'path': '~/documents/vimwiki/',
+                        \ 'syntax': 'markdown', 'ext': '.md'}]
+  let g:lightline = {
+        \ 'colorscheme': 'seoul256',
+        \ 'active': {
+        \   'left': [ ['buffers'] ],
+        \   'right': [ [ 'lineinfo' ], [ 'percent' ],  [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'component_expand': {
+        \   'buffers': 'lightline#bufferline#buffers'
+        \ },
+        \ 'component_type': {
+        \   'buffers': 'tabsel'
+        \ }
+        \ }
+  ]], false)
