@@ -4,13 +4,6 @@
 # When called with '-p', unconditionally prints the entry.
 
 date_file="$HOME/.local/share/daily-msg/run-date"
-log_dir="$HOME/documents/log"
-
-
-# ----------------
-# Helper Functions
-# ----------------
-
 # Cleanup Functions
 stty_original=$(stty -g)
 cleanup () {
@@ -22,26 +15,8 @@ cleanup_interrupt () {
   exit 1
 }
 
-# Prints the most recent log file.
-print_log_entry () {
-  log_file=$(find "$log_dir" -print0 | sort -z \
-    | tail -zn 1 | tr -d '\0')
-  less "$log_file"
-}
-
-
-# -----------
-# Main Script
-# -----------
-
 stty -echo
 trap cleanup_interrupt INT
-
-if [ "$1" = '-p' ]; then
-  print_log_entry
-  cleanup
-  exit
-fi
 
 # Load the last time this program was run, and store the current date.
 mkdir -p "$(dirname "$date_file")"
@@ -60,5 +35,4 @@ fi
 
 date -I >"$date_file"
 less ~/documents/yatr/lessons
-print_log_entry
 cleanup
