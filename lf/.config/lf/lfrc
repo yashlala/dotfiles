@@ -22,7 +22,7 @@ set promptfmt "\033[34;1m%w\033[0m %f"
 
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
-        text/*|application/json) "$EDITOR" "$f";;
+        text/*|application/json) nvr -s "$f";;
         application/pdf) devour zathura "$f";;
         video/*) devour mpv --force-window=yes "$f";;
         audio/*) devour mpv --force-window=yes "$f";;
