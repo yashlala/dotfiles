@@ -1,4 +1,4 @@
-if [[ $NVIM_LISTEN_ADDRESS ]]; then
+if [ -e "$NVIM_LISTEN_ADDRESS" ]; then
     neovim_autocd() {
         ~/.local/scripts/neovim-autocd
     }
