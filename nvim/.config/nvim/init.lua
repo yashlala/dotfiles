@@ -18,27 +18,27 @@ vim.o.autochdir = true
 vim.o.autoindent = true
 vim.o.breakindent = true
 vim.o.confirm = true
-vim.o.foldenable = false
-vim.o.foldlevel = 1
-vim.o.foldmethod = 'syntax'
-vim.o.foldnestmax = 1
+
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+
 vim.o.gdefault = true
 vim.o.hidden = true
+vim.o.lazyredraw = true
 vim.o.hlsearch = false
 vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.o.joinspaces = false
-vim.o.lazyredraw = true
+vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.modeline = true
-vim.o.mouse = 'a'
-vim.o.scrollback = 1024
 vim.o.showmode = false
-vim.o.smartcase = true
--- TODO: We just disabled this. Was it causing our weird highlight problems? 
--- vim.o.termguicolors = true
+vim.o.mouse = 'a'
+vim.o.scrollback = 8192
+-- TODO: Was the below causing our weird highlight problems? 
 vim.o.termguicolors = false
 vim.o.undofile = true
-vim.o.wrap = true
+
 -- Swap digits and special characters. We need to do this in `langmap` (as
 -- opposed to regular bindings) because Vim isn't able to map all of its modes.
 -- map them all (eg: operator-pending for some reason doesn't remap di
@@ -46,7 +46,6 @@ vim.o.langremap = false
 vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
 
 -- Helper functions used in the keybinds above.
-
 vim.api.nvim_command([[
   function! DeleteBufferAndUpdateLightline()
     exe 'bdelete'
@@ -82,9 +81,12 @@ require('packer').startup(function()
   -- Buffer list for statusline.
   use 'mengelbrecht/lightline-bufferline'
   -- Indentation guides.
-  use 'lukas-reineke/indent-blankline.nvim'
   -- Colorscheme.
   use 'junegunn/seoul256.vim'
+  use 'overcache/NeoSolarized'
+  use 'nisavid/vim-colors-solarized'
+  -- TODO: Is this causing the weird missing text in terminal mode? 
+  -- use 'lukas-reineke/indent-blankline.nvim'
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
@@ -105,13 +107,13 @@ require('packer').startup(function()
   use 'tpope/vim-speeddating'
   -- Unix commands.
   use 'tpope/vim-eunuch'
-  use 'itchyny/calendar.vim'
+  use 'itchyny/calendar.vim' -- TODO: Can't select diary date? 
   -- Git commands + Status page.
   use 'tpope/vim-fugitive'
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-  -- TODO: Set this up later. 
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  -- TODO: Try neogit instead
+  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
   -- File Browser
   -- TODO: Set up.
@@ -125,12 +127,15 @@ require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
+
   -- TODO: Enable Treesitter functionality. Has to be done explicitly.
   -- Highlighting, editing, etc. using incremental parsing.
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
   -- use 'nvim-treesitter/nvim-treesitter'
-  -- use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
   -- Autocompletion plugin
-  -- use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/nvim-cmp'
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
@@ -142,6 +147,7 @@ require('packer').startup(function()
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
+  -- TODO: Why aren't we listing previous projects anymore? 
   use "ahmedkhalf/project.nvim"
 
 
@@ -153,6 +159,16 @@ end)
 --[[
 Kinkier Configuration
 --]]
+
+
+
+
+
+
+
+
+
+
 -- TODO: Set up a function that'll let us toggle on and off.
 -- In the meantime, just use this to disable the virtual text.
 require'toggle_lsp_diagnostics'.init({
@@ -169,7 +185,6 @@ vim.g.indent_blankline_use_treesitter = true
 vim.g.indent_blankline_show_first_indent_level = false
 vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
 
-vim.api.nvim_set_var('lightline#bufferline#show_number', 2)
 vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
 vim.api.nvim_exec([[
 let g:lightline = {
@@ -230,10 +245,47 @@ require('gitsigns').setup {
 }
 
 
--- Autocomplete + LSP Setup
+--[[
+-- Language Specific Configuration
+--]]
+
+-- Set up smarter syntax highlighting using treesitter. 
+require('nvim-treesitter.configs').setup({
+  ensure_installed = "maintained", 
+  sync_install = false, 
+  ignore_install = { }, -- List of parsers
+  highlight = {
+    enable = true, 
+    disable = { },  -- list of languages 
+    additional_vim_regex_highlighting = false,
+  },
+})
+
+-- Use Treesitter to implement the `=` indentation operator
+require('nvim-treesitter.configs').setup({
+  indent = { enable = true }
+})
+
+-- Define "incremental selection". When we already have a visual selection, 
+-- we can use keybinds to expand or shrink the selection based on nearby
+-- syntax. 
+-- TODO: Verify if we actually need or use this. Might use it to replace
+-- things...but probably not. Map something to `V`? 
+require('nvim-treesitter.configs').setup({
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+} )
 
 -- LSP Configurations are moved to the filetype-specific `after` configs.
 -- EDIT: no they aren't. for some reason they don't work when we put them
+-- TODO: Move them to the specific locations, find out what's up. 
 
 require('lspconfig').ccls.setup({
   init_options = {
@@ -254,64 +306,18 @@ require('lspconfig').ccls.setup({
 --require('lspconfig').jdtls.setup{}
 -- there.
 -- require('lspconfig').pyright.setup({})
--- require('lspconfig').bashls.setup({})
+require('lspconfig').bashls.setup({})
 -- require('lspconfig').texlab.setup({})
--- require('lspconfig').dockerls.setup({})
--- require('lspconfig').gopls.setup({})
+require('lspconfig').dockerls.setup({})
+require('lspconfig').gopls.setup({})
 -- require('lspconfig').jedi_language_server.setup{}
 
---[[
--- Setup `compe`.
-vim.o.completeopt = "menuone,noselect"
-require('compe').setup({
-  enabled = true;
-  autocomplete = false;
-  debug = false;
-  min_length = 1;
-  preselect = 'always';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = {
-    -- the border option is the same as `|help nvim_open_win|`
-    border = { '', '' ,'', ' ', '', '', '', ' ' },
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    min_width = 60,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-  };
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    orgmode = true;
-    vsnip = false;
-    ultisnips = false;
-    luasnip = true;
-  };
-})
-
--- Implement "Completion-Toggle" keybinds.
-require('completion-toggle')
-vim.api.nvim_set_keymap('n', '<leader>tc', "<cmd>CompeToggle<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<c-space>', "<cmd>CompeToggle<cr>", { noremap = true })
-vim.api.nvim_set_keymap('i', '<c-space>', "<cmd>CompeToggle<cr>", { noremap = true })
---]]
 
 
 --[[
 BEGIN: THINGS I DON'T UNDERSTAND
 --]]
 
---[[
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -352,17 +358,18 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
---]]
 
 --[[
 END (ish): THINGS I DON'T UNDERSTAND
 --]]
 
 
-vim.api.nvim_exec([[
+--[[
+vim.api.nvim_exec(
   filetype plugin indent on
-  syntax on
-]], false)
+  syntax enable
+, false)
+--]]
 
 
 
@@ -432,7 +439,6 @@ do
   noremap('', ';', ':')
   snoremap('', ':', 'q:')
   noremap('', "'", '`')
-  noremap('', '\\', '"')
   noremap('', '`', '~')
   noremap('', '-', '0')
   noremap('', ';', ':')
@@ -486,8 +492,6 @@ do
   map('', 's', '<Plug>(easymotion-lineanywhere)')
   map('', '<leader>j', '<Plug>(easymotion-j)')
   map('', '<leader>k', '<Plug>(easymotion-k)')
-  -- LSP Keybinds
-  -- TODO
   -- Diary Keybinds
   map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
   map('n', '<leader>wi', '<Plug>VimwikiDiaryIndex')
@@ -523,8 +527,3 @@ do
   snoremap('n', '<bar>', '<cmd>lua vim.lsp.buf.hover()<cr>')
   map('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')
 end
-
--- TODO: 
--- Create an alias: finally alias 'e' in the shell. 'e file' will edit the file
--- in the CONTAINING nvim instance (if we use it in the nvim terminal, the
--- outer nvim will open it! genius!)
