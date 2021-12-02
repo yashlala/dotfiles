@@ -19,6 +19,9 @@ vim.o.autoindent = true
 vim.o.breakindent = true
 vim.o.confirm = true
 
+vim.o.foldenable = true
+vim.o.foldlevelstart = 99 -- Start with no folds closed. 
+-- Use treesitter for folds
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
@@ -150,7 +153,6 @@ require('packer').startup(function()
   -- TODO: Why aren't we listing previous projects anymore? 
   use "ahmedkhalf/project.nvim"
 
-
   -- Allow plugins to use the `.` key (if they support it).
   use 'tpope/vim-repeat'
 end)
@@ -162,28 +164,9 @@ Kinkier Configuration
 
 
 
-
-
-
-
-
-
-
--- TODO: Set up a function that'll let us toggle on and off.
--- In the meantime, just use this to disable the virtual text.
-require'toggle_lsp_diagnostics'.init({
-  start_on = true,
-  underline = true,
-  virtual_text = false
-})
-
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
-
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_show_first_indent_level = false
-vim.g.indent_blankline_filetype_exclude = { 'markdown', 'text', 'asciidoc' }
 
 vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
 vim.api.nvim_exec([[
@@ -215,193 +198,21 @@ require('telescope').setup {}
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('projects')
 
--- Git Plugin Setup
-
-require('gitsigns').setup {
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    ['n ]c'] = { expr = true,
-      "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"
-    },
-    ['n [c'] = { expr = true,
-      "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"
-    },
-    ['n <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
-    ['n <leader>tgb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
-    -- Text objects
-    ['o ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  },
-  current_line_blame_opts = { virt_text_pos = 'eol', delay = 500 },
-  diff_opts = { internal = true },
-}
-
 
 --[[
 -- Language Specific Configuration
 --]]
 
--- Set up smarter syntax highlighting using treesitter. 
-require('nvim-treesitter.configs').setup({
-  ensure_installed = "maintained", 
-  sync_install = false, 
-  ignore_install = { }, -- List of parsers
-  highlight = {
-    enable = true, 
-    disable = { },  -- list of languages 
-    additional_vim_regex_highlighting = false,
-  },
-})
 
--- Use Treesitter to implement the `=` indentation operator
-require('nvim-treesitter.configs').setup({
-  indent = { enable = true }
-})
+require('config.treesitter')
 
--- Define "incremental selection". When we already have a visual selection, 
--- we can use keybinds to expand or shrink the selection based on nearby
--- syntax. 
--- TODO: Verify if we actually need or use this. Might use it to replace
--- things...but probably not. Map something to `V`? 
-require('nvim-treesitter.configs').setup({
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-} )
+require('config.lsp')
 
--- LSP Configurations are moved to the filetype-specific `after` configs.
--- EDIT: no they aren't. for some reason they don't work when we put them
--- TODO: Move them to the specific locations, find out what's up. 
+require('config.gitsigns')
 
-require('lspconfig').ccls.setup({
-  init_options = {
-    cache = {
-	directory = "/home/lala/.cache/ccls";
-    };
-    compilationDatabaseDirectory = "build";
-    index = {
-      threads = 1;
-    };
-    clang = {
-      excludeArgs = { "-frounding-math"};
-    };
-  }
-})
+require('config.completion')
 
--- TODO: jdtls exits with error
---require('lspconfig').jdtls.setup{}
--- there.
--- require('lspconfig').pyright.setup({})
-require('lspconfig').bashls.setup({})
--- require('lspconfig').texlab.setup({})
-require('lspconfig').dockerls.setup({})
-require('lspconfig').gopls.setup({})
--- require('lspconfig').jedi_language_server.setup{}
-
-
-
---[[
-BEGIN: THINGS I DON'T UNDERSTAND
---]]
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn['luasnip#expand_or_jumpable']() == 1 then
-    -- TODO: fix this condition, and this thing in the middle. It used to look
-    -- like this:
-    -- elseif vim.fn['vsnip#available'](1) == 1 then
-    --  return t "<Plug>(vsnip-expand-or-jump)"
-    -- TODO: adapt it to LuaSnip! The current code is a guess, and doesn't work right.
-    return t "<Plug>(luasnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn['vsnip#jumpable'](-1) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    -- If <S-Tab> is not working in your terminal, change it to <C-h>
-    return t "<S-Tab>"
-  end
-end
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
---[[
-END (ish): THINGS I DON'T UNDERSTAND
---]]
-
-
---[[
-vim.api.nvim_exec(
-  filetype plugin indent on
-  syntax enable
-, false)
---]]
-
-
-
---[[
-Autocommands
---]]
-
--- return to last edit position when opening files
-vim.api.nvim_exec([[
-autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
-]], false)
-
-vim.api.nvim_exec([[
-autocmd BufNewFile,BufRead neomutt-* set filetype=mail
-]], false)
-
--- Close netrw buffers (we can't do this by default, for some reason).
-vim.api.nvim_exec("autocmd Filetype netrw setl bufhidden=delete", false)
-
--- Enter terminal mode as soon as we create a terminal buffer.
-vim.api.nvim_exec("autocmd TermOpen * startinsert", false)
-
--- The bottom status line doesn't update very often, so the buffer listing can
--- become stale. Avoid this by throwing in a few autocommands (we have a
--- function later in this file that mitigates this problem as well)
-vim.api.nvim_exec([[
-autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
-  \ call lightline#update()
-]], false)
+require('config.autocmds')
 
 
 
@@ -409,16 +220,11 @@ autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,Cmdline
 -- Keymaps
 --]]
 
--- "Straightforward" Keymaps (there are more in the plugin setup funcs)
-
 -- Vanilla Remaps
 
 do
   vim.g.mapleader = ' '
 
-  local function mapwrap(mode, key, value, args)
-    vim.api.nvim_set_keymap(mode, key, value, args)
-  end
   local function map(mode, key, value)
     vim.api.nvim_set_keymap(mode, key, value, { noremap = false })
   end
@@ -427,10 +233,10 @@ do
       { noremap = false, silent = true })
   end
   local function noremap(mode, key, value)
-    mapwrap(mode, key, value, { noremap = true })
+    vim.api.nvim_set_keymap(mode, key, value, { noremap = true })
   end
   local function snoremap(mode, key, value)
-    mapwrap(mode, key, value, { noremap = true, silent = true })
+    vim.api.nvim_set_keymap(mode, key, value, { noremap = true, silent = true })
   end
 
   snoremap('n', ' ', '<nop>')
