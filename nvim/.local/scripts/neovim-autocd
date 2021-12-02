@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+
 # When we cd in the nvim terminal, we want the change to propagate to neovim.
 
 import neovim
