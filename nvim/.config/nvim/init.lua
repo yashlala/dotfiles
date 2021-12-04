@@ -1,3 +1,14 @@
+
+-- Cache our compiled config modules. 
+pcall(require, "impatient")
+
+-- Set this early on, so all modules will see it. 
+vim.g.mapleader = ' '
+
+-- If this is the first time we're running Neovim, install packer.nvim etc. 
+require('lala.fresh-install')()
+
+
 -- Vanilla Vim Options
 
 -- TODO: Ask in the matrix room how to get highlights working. 
@@ -14,47 +25,11 @@ vim.api.nvim_command('autocmd!')
 vim.api.nvim_command("autocmd ColorScheme * lua require'hop.highlight'.insert_highlights()")
 vim.api.nvim_command('augroup end')
 
-vim.o.autochdir = true
-vim.o.autoindent = true
-vim.o.breakindent = true
-vim.o.confirm = true
-
-vim.o.foldenable = true
-vim.o.foldlevelstart = 99 -- Start with no folds closed. 
--- Use treesitter for folds
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-
-vim.o.gdefault = true
-vim.o.hidden = true
-vim.o.lazyredraw = true
-vim.o.hlsearch = false
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.joinspaces = false
-vim.o.wrap = true
-vim.o.linebreak = true
-vim.o.modeline = true
-vim.o.showmode = false
-vim.o.mouse = 'a'
-vim.o.scrollback = 8192
--- TODO: Was the below causing our weird highlight problems? 
-vim.o.termguicolors = false
-vim.o.undofile = true
-
 -- Swap digits and special characters. We need to do this in `langmap` (as
 -- opposed to regular bindings) because Vim isn't able to map all of its modes.
 -- map them all (eg: operator-pending for some reason doesn't remap di
 vim.o.langremap = false
 vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
-
--- Helper functions used in the keybinds above.
-vim.api.nvim_command([[
-  function! DeleteBufferAndUpdateLightline()
-    exe 'bdelete'
-    call lightline#update()
-  endfunction
-]])
 
 -- Plugins
 
@@ -77,6 +52,9 @@ vim.api.nvim_exec([[
 -- Load plugins.
 local use = require('packer').use
 require('packer').startup(function()
+  -- Cache lua modules. Will eventually be merged into mainline. 
+  use 'lewis6991/impatient.nvim'
+
   -- Package manager.
   use 'wbthomason/packer.nvim'
   -- Fancier statusline.
@@ -88,8 +66,7 @@ require('packer').startup(function()
   use 'junegunn/seoul256.vim'
   use 'overcache/NeoSolarized'
   use 'nisavid/vim-colors-solarized'
-  -- TODO: Is this causing the weird missing text in terminal mode? 
-  -- use 'lukas-reineke/indent-blankline.nvim'
+  use 'tjdevries/colorbuddy.nvim'
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
@@ -105,7 +82,7 @@ require('packer').startup(function()
   -- Surround vim motions.
   use 'tpope/vim-surround'
   -- "gc" keybinding to comment visual regions/lines.
-  use 'tpope/vim-commentary'
+  use 'numToStr/Comment.nvim'
   -- Date increments and decrements w/ <c-a> and <c-x>
   use 'tpope/vim-speeddating'
   -- Unix commands.
@@ -128,17 +105,24 @@ require('packer').startup(function()
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
+  use 'onsails/lspkind-nvim'
   use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+  use 'mfussenegger/nvim-jdtls'
 
-
-  -- TODO: Enable Treesitter functionality. Has to be done explicitly.
   -- Highlighting, editing, etc. using incremental parsing.
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  -- use 'nvim-treesitter/nvim-treesitter'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
+
   -- Autocompletion plugin
+  -- TODO: It's new! set it up!
   use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'saadparwaiz1/cmp_luasnip'
+
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
@@ -204,15 +188,17 @@ require('telescope').load_extension('projects')
 --]]
 
 
-require('config.treesitter')
+require('lala.treesitter')
 
-require('config.lsp')
+require('lala.lsp')
 
-require('config.gitsigns')
+require('lala.gitsigns')
 
-require('config.completion')
+require('lala.completion')
 
-require('config.autocmds')
+require('lala.autocmds')
+
+require('lala.commentary')
 
 
 
@@ -220,116 +206,19 @@ require('config.autocmds')
 -- Keymaps
 --]]
 
--- Vanilla Remaps
 
-do
-  vim.g.mapleader = ' '
 
-  local function map(mode, key, value)
-    vim.api.nvim_set_keymap(mode, key, value, { noremap = false })
-  end
-  local function smap(mode, key, value)
-    vim.api.nvim_set_keymap(mode, key, value,
-      { noremap = false, silent = true })
-  end
-  local function noremap(mode, key, value)
-    vim.api.nvim_set_keymap(mode, key, value, { noremap = true })
-  end
-  local function snoremap(mode, key, value)
-    vim.api.nvim_set_keymap(mode, key, value, { noremap = true, silent = true })
-  end
-
-  snoremap('n', ' ', '<nop>')
-
-  snoremap('', 'Y', 'y$')
-  noremap('', ';', ':')
-  snoremap('', ':', 'q:')
-  noremap('', "'", '`')
-  noremap('', '`', '~')
-  noremap('', '-', '0')
-  noremap('', ';', ':')
-  snoremap('', ':', 'q:')
-  -- TODO: Add this functionality to all other keys when on a terminal window. 
-  -- I guess we'll have to pass in something to the script? 
-  noremap('n', '<bar>', 'K')
-  noremap('n', 'K', 'kJ')
-  noremap('n', 'U', '<c-r>')
-  noremap('n', '<c-r>', 'U')
-  noremap('n', 'v', 'V')
-  snoremap( 'n', 'S', [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]])
-  snoremap('', '&', '<cmd>&&<cr>')
-  noremap('', '_', '<c-y>')
-  noremap('', '+', '<c-e>')
-  snoremap('n', '<c-n>', '<cmd>bnext<cr>')
-  snoremap('n', '<c-p>', '<cmd>bprev<cr>')
-  noremap('n', 'gs', ':%s/')
-  map('', 'ga', '<Plug>(EasyAlign)')
-  -- Simple Leader Keybinds
-  snoremap('', '<leader>p', '"0p')
-  noremap('n', '<bar>', 'K')
-  noremap('n', 'K', 'kJ')
-  noremap('n', 'U', '<c-r>')
-  noremap('n', '<c-r>', 'U')
-  noremap('n', 'v', 'V')
-  snoremap( 'n', 'S', [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]])
-  snoremap('', '&', '<cmd>&&<cr>')
-  noremap('', '_', '<c-y>')
-  noremap('', '+', '<c-e>')
-  snoremap('n', '<c-n>', '<cmd>bnext<cr>')
-  snoremap('n', '<c-p>', '<cmd>bprev<cr>')
-  noremap('n', 'gs', ':%s/')
-  map('', 'ga', '<Plug>(EasyAlign)')
-  -- Simple Leader Keybinds
-  snoremap('', '<leader>p', '"0p')
-  snoremap('', '<leader>P', '"0P')
-  smap('n', '<leader>d', '<cmd>call DeleteBufferAndUpdateLightline()<cr>')
-  smap('n', '<leader>gg', '<cmd>G<cr>')
-  smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
-  -- Terminal Mode Keybindings
-  noremap('t', '<c-\\>', '<c-\\><c-n>')
-  noremap('n', '<c-\\>', '<nop>') -- prevent current mode confusion
-  noremap('i', '<c-\\>', '<esc>') -- just keep mashing, we'll get to normal
-  -- EasyMotion Keybindings
-  noremap('', 'f', '<nop>')
-  map('', 'f', '<Plug>(easymotion-f)')
-  map('', 'F', '<Plug>(easymotion-F)')
-  map('', 't', '<Plug>(easymotion-t)')
-  map('', 'T', '<Plug>(easymotion-T)')
-  map('', 's', '<Plug>(easymotion-lineanywhere)')
-  map('', '<leader>j', '<Plug>(easymotion-j)')
-  map('', '<leader>k', '<Plug>(easymotion-k)')
-  -- Diary Keybinds
-  map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
-  map('n', '<leader>wi', '<Plug>VimwikiDiaryIndex')
-  map('n', '<leader>wt', '<Plug>VimwikiMakeTomorrowDiaryNote')
-  map('n', '<leader>wy', '<Plug>VimwikiMakeYesterdayDiaryNote')
-  map('n', '<leader>w<leader>w', '<Plug>VimwikiIndex')
-  -- Quick Buffer Switching Keybindings
-  map('n', '<leader>!', '<Plug>lightline#bufferline#go(1)')
-  map('n', '<leader>@', '<Plug>lightline#bufferline#go(2)')
-  map('n', '<leader>#', '<Plug>lightline#bufferline#go(3)')
-  map('n', '<leader>$', '<Plug>lightline#bufferline#go(4)')
-  map('n', '<leader>%', '<Plug>lightline#bufferline#go(5)')
-  map('n', '<leader>^', '<Plug>lightline#bufferline#go(6)')
-  map('n', '<leader>&', '<Plug>lightline#bufferline#go(7)')
-  map('n', '<leader>*', '<Plug>lightline#bufferline#go(8)')
-  map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
-  -- Telescope Keybinds
-  snoremap('n', ',',
-      "<cmd>lua require('telescope.builtin').buffers({})<cr>")
-  snoremap('n', '<leader>ff',
-      "<cmd>lua require('telescope.builtin').find_files({})<cr>")
-  snoremap('n', '<leader>fg',
-      "<cmd>lua require('telescope.builtin').grep_string({})<cr>")
-  snoremap('n', '<leader>fp',
-      "<cmd>lua require('telescope.builtin').git_files({})<cr>")
-  snoremap('n', '<leader>fo',
-      "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
-  snoremap('n', '<leader>fP', "<cmd>Telescope projects<cr>")
-  -- LSP Keybinds
-  snoremap('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<cr>')
-  snoremap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-  snoremap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-  snoremap('n', '<bar>', '<cmd>lua vim.lsp.buf.hover()<cr>')
-  map('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')
-end
+require('lspconfig').ccls.setup({
+  init_options = {
+    cache = {
+	directory = "/home/lala/.cache/ccls";
+    };
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 1;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"};
+    };
+  }
+})
