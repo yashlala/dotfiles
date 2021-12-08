@@ -187,38 +187,9 @@ require('telescope').load_extension('projects')
 -- Language Specific Configuration
 --]]
 
+-- Source basic options and keymaps first. 
+-- All more complicated things are in the `after/plugin` dir. 
 
-require('lala.treesitter')
+require('lala.options')()
+require('lala.keymaps')()
 
-require('lala.lsp')
-
-require('lala.gitsigns')
-
-require('lala.completion')
-
-require('lala.autocmds')
-
-require('lala.commentary')
-
-
-
---[[
--- Keymaps
---]]
-
-
-
-require('lspconfig').ccls.setup({
-  init_options = {
-    cache = {
-	directory = "/home/lala/.cache/ccls";
-    };
-    compilationDatabaseDirectory = "build";
-    index = {
-      threads = 1;
-    };
-    clang = {
-      excludeArgs = { "-frounding-math"};
-    };
-  }
-})

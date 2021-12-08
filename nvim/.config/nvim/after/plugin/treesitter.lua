@@ -10,9 +10,10 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
--- Use Treesitter to implement the `=` indentation operator
+-- Don't use Treesitter to implement the `=` indentation operator yet. 
+-- It's still pretty buggy, looks like. 
 require('nvim-treesitter.configs').setup({
-  indent = { enable = true }
+  indent = { enable = false }
 })
 
 -- Define "incremental selection". When we already have a visual selection, 
@@ -30,4 +31,4 @@ require('nvim-treesitter.configs').setup({
       node_decremental = "grm",
     },
   },
-} )
+})

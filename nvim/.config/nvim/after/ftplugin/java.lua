@@ -1,3 +1,5 @@
+-- TODO: Can we set up a default file width before vim sleuth kicks in? 
+--
 -- Let's set up a jdtls server using nvim-jdtls. 
 
 -- TODO: jdtls refuses to set itself up on our computer. 
