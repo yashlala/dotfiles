@@ -1,5 +1,4 @@
 set termguicolors
-syntax enable
 colorscheme seoul256
 
 " Enable Mouse
