@@ -26,7 +26,7 @@ cmp.setup({
   sources = { 
     { name = "nvim_lua" }, -- automatically runs only for lua
     { name = "nvim_lsp" }, 
-    { name = "path", keyword_length = 5 }, 
+    { name = "path", keyword_length = 5 }, -- TODO: Not working...
     { name = "luasnip" }, 
     -- Don't start suggestions until we've typed in more than a few chars. 
     { name = "buffer", keyword_length = 5 }, 

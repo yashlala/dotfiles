@@ -44,6 +44,13 @@ local M = function()
 
   vim.o.scrollback = 8192 -- lines of terminal mode scrollback
 
+  -- TODO: Add documentation for this. 
+  -- There should highkey be a better option here, this is dumb. 
+  -- We removed the `_` option. 
+  -- vim.o.cpoptions = 'aABceFs'
+  -- We can use the below to  delete options!
+  vim.o.cpoptions = vim.o.cpoptions:gsub("_", "")
+
   -- TODO: Figure this out. 
   --[[ vim.o.formatoptions = vim.o.formatoptions
     - "a" -- Auto formatting is BAD.

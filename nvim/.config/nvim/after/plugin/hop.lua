@@ -1,3 +1,7 @@
+-- Legacy
+vim.g.EasyMotion_do_mapping = 0
+vim.g.EasyMotion_smartcase = 1
+
 require('hop').setup()
 
 -- TODO: Ask in the matrix room how to get highlights working. 

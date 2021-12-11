@@ -1,5 +1,4 @@
 local M = function() 
-
   -- Re-compile packer after any edits to our config file.
   vim.api.nvim_exec([[
     augroup Packer

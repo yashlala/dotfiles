@@ -74,6 +74,7 @@ local M = function()
   noremap('n', '<m-space>', '<nop>') -- prevent current mode confusion
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   noremap('t', '<m-space>', '<c-\\><c-n>')
+  noremap('t', '<c-space>', '<c-\\><c-n>')
   noremap('n', '<c-\\>', '<nop>') 
   noremap('i', '<c-\\>', '<esc>') 
   noremap('t', '<c-\\>', '<c-\\><c-n>')
@@ -153,6 +154,11 @@ local M = function()
   -- then we should not quit. 
   -- vim.cmd("cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>")
 
+  -- Swap digits and special characters. We need to do this in `langmap` (as
+  -- opposed to regular bindings) because Vim isn't able to map all of its modes.
+  -- map them all (eg: operator-pending for some reason doesn't remap di
+  vim.o.langremap = false
+  vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
 end
 
 return M

@@ -1,57 +1,56 @@
 -- `init.lua`
 --
--- This serves primarily as a dispatcher 
+
+--[[ TODO TODO:
+Roadmap:
+
+1. Understand how telescope really works. We'll be using it for pretty much
+   everything else.
+2. Use telescope for a solid file browser.
+   We can use this to make the rest of these pervasive changes.
+3. Once we have a file browser, implement other telescope pickers, TJ style.
+   This may allow us to remove `autochdir` and reinstate `project.nvim`.
+4. Set up luasnip style snippets.
+5. Create binds for LSP commands - `gd`, etc. 
+6. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
+   diagnostics on point. 
+7. Remove all `TODO`s from our configs. Too many weird bugs. 
+8. Set a better abbreviation so we can't quit when there are multiple buffers. 
+9. Set up a better git plugin. 
+]]
 
 
 -- Cache our compiled config modules. 
 pcall(require, 'impatient')
 
--- Set this early on, so all modules will see it. 
+-- Set global variables and lua functions early in our config, so all modules
+-- will see them. 
 vim.g.mapleader = ' '
+require('lala.globals')
+
+-- Source basic options and keymaps first. 
+-- All more complicated things are in the `after/plugin` dir. 
+require('lala.options')()
+require('lala.keymaps')()
 
 -- If this is the first time we're running Neovim, install packer.nvim etc. 
 require('lala.fresh-install')()
 
-
--- Vanilla Vim Options
-
--- Swap digits and special characters. We need to do this in `langmap` (as
--- opposed to regular bindings) because Vim isn't able to map all of its modes.
--- map them all (eg: operator-pending for some reason doesn't remap di
-vim.o.langremap = false
-vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
-
--- Plugins
-
--- Install packer if needed.
-local packer_install_path = (vim.fn.stdpath('data')
-  .. '/site/pack/packer/start/packer.nvim')
-if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim '
-  .. packer_install_path)
-end
--- Re-compile packer after any edits to our config file.
-vim.api.nvim_exec([[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-    autocmd BufWritePost init.vim PackerCompile
-  augroup end
-]], true)
-
 -- Load plugins.
 local use = require('packer').use
 require('packer').startup(function()
-  -- Cache lua modules. Will eventually be merged into mainline. 
-  use 'lewis6991/impatient.nvim'
-
   -- Package manager.
   use 'wbthomason/packer.nvim'
+  -- Utility functions used by other plugins. 
+  use 'nvim-lua/plenary.nvim' 
+  -- Caches lua modules. Will eventually be merged into mainline. 
+  use 'lewis6991/impatient.nvim'
+
   -- Fancier statusline.
   use 'itchyny/lightline.vim'
   -- Buffer list for statusline.
   use 'mengelbrecht/lightline-bufferline'
-  -- Indentation guides.
+
   -- Colorscheme.
   use 'junegunn/seoul256.vim'
   use 'overcache/NeoSolarized'
@@ -60,8 +59,10 @@ require('packer').startup(function()
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
+  use 'itchyny/calendar.vim' -- TODO: Can't select diary date? 
 
  -- Automatically match file format/indentation.
+ -- TODO: Rewrite this so defaults make sense. 
   use 'tpope/vim-sleuth'
   -- Vim motions that don't require counts. 
   use 'easymotion/vim-easymotion'
@@ -77,7 +78,7 @@ require('packer').startup(function()
   use 'tpope/vim-speeddating'
   -- Unix commands.
   use 'tpope/vim-eunuch'
-  use 'itchyny/calendar.vim' -- TODO: Can't select diary date? 
+
   -- Git commands + Status page.
   use 'tpope/vim-fugitive'
   -- Git related info in signs column and popups.
@@ -88,11 +89,6 @@ require('packer').startup(function()
   -- File Browser
   -- TODO: Set up.
 
-  -- Highlighting
-  -- use { 'kyazdani42/nvim-tree.lua',
-  --   requires = { 'kyazdani42/nvim-web-devicons' }
-  -- }
-
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
@@ -100,7 +96,7 @@ require('packer').startup(function()
   use 'mfussenegger/nvim-jdtls'
 
   -- Highlighting, editing, etc. using incremental parsing.
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
 
@@ -113,7 +109,6 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
 
-
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
     { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
@@ -121,6 +116,7 @@ require('packer').startup(function()
   use { 'nvim-telescope/telescope-fzy-native.nvim', requires = {
     { 'nvim-telescope/telescope.nvim' } }
   }
+  use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
@@ -131,54 +127,7 @@ require('packer').startup(function()
   use 'tpope/vim-repeat'
 end)
 
-
---[[
-Kinkier Configuration
---]]
-
-
-
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
-
-vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
-vim.api.nvim_exec([[
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ ['buffers'] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ],
-      \     [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
-      \ 'component_type': { 'buffers': 'tabsel' } }
-]], false)
-
-vim.api.nvim_exec([[
-let g:vimwiki_list = [{'path': '~/documents/vimwiki/', 'syntax': 'markdown', 
-      \ 'auto_diary_index': 1, 'auto_generate_links': 1, 'ext': '.md'}]
-]], false)
-
-vim.g.go_doc_keywordprg_enabled = 0 -- disable K keybind.
-
-vim.g.EasyMotion_do_mapping = 0
-vim.g.EasyMotion_smartcase = 1
-
-
-require('project_nvim').setup({ manual_mode = true })
-require('telescope').setup {}
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('projects')
-
-
---[[
--- Language Specific Configuration
---]]
-
--- Source basic options and keymaps first. 
--- All more complicated things are in the `after/plugin` dir. 
-
-require('lala.options')()
-require('lala.keymaps')()
 
