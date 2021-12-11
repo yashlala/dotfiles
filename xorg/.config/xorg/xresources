@@ -1,7 +1,7 @@
 Xft.dpi: 210
 
 Urxvt.saveLines: 	 4096
-URxvt.font:              xft:DejaVu Sans Mono:size=12,xft:Unifont:size=12
+URxvt.font:              xft:DejaVuSansMono Nerd Font:size=12,xft:Unifont:size=12
 URxvt.scrollBar:         false
 URxvt.fading:            10
 Urxvt.visualBell:        true
