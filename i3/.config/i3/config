@@ -52,7 +52,6 @@ bindsym $mod+Return                   exec --no-startup-id rofi -show drun
 bindsym $mod+f                        exec urxvtc -e lf
 bindsym $mod+m                        exec urxvtc -e neomutt
 bindsym $mod+i                        exec chromium
-bindsym $mod+s                        exec --no-startup-id rofi -show ssh
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 
@@ -107,8 +106,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split window keybindings
-bindsym $mod+v split h
-bindsym $mod+n split v
+bindsym $mod+s split h
+bindsym $mod+v split v
 bindsym $mod+b layout toggle split
 
 # floating window keybindings
