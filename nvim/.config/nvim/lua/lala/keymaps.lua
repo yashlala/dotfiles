@@ -36,17 +36,24 @@ local M = function()
   noremap('n', 'U', '<c-r>')
   noremap('n', '<c-r>', 'U')
   noremap('n', 'v', 'V')
+  -- "Available" (unmapped) normal mode keys: 
+  -- U, S, V. Potentially H, M, L?
+
+  -- TODO: Rebind these to our own functions. 
+  -- If there's something in the quickfix list, it should go through the list. 
+  -- If there's something in the location list, it should go through that. 
+  -- If both are empty, it should just go through the neovim LSP diagnostics. 
+  -- Great stuffl 
+  snoremap('n', '<c-q>', '<cmd>copen<cr>')
+  snoremap('n', '<c-n>', '<cmd>cnext<cr>')
+  snoremap('n', '<c-p>', '<cmd>cprev<cr>')
+
+  noremap('n', 'gs', ':%s/')
+  map('n', 'ga', '<Plug>(EasyAlign)')
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')
   noremap('', '+', '<c-e>')
-  snoremap('n', '<c-n>', '<cmd>bnext<cr>')
-  snoremap('n', '<c-p>', '<cmd>bprev<cr>')
-  noremap('n', 'gs', ':%s/')
-  map('', 'ga', '<Plug>(EasyAlign)')
-
-  -- Split a line. TODO: Doesn't seem to work anymore. 
-  snoremap( 'n', 'S', [[<cmd>keepp s/\\s*\%#\\s*/\\r/e <bar> norm! ==<CR>]])
 
   -- Easy moving between windows
 
@@ -127,6 +134,12 @@ local M = function()
   map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
 
   -- Telescope Keybinds
+  snoremap('n', '<leader><space>', "<cmd>Telescope<cr>")
+  -- Go to the help menus. Should we search the quickfix list here instead?
+  -- (Q) for quickfix, or Q for query? 
+  -- Maybe we should have Q to bring up the quickfix menu instead? 
+  snoremap('n', 'Q',
+    "<cmd>lua require('telescope.builtin').help_tags({})<cr>")
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({})<cr>")
   snoremap('n', '<leader>ff',
