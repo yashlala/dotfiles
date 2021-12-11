@@ -13,6 +13,9 @@ export ESCDELAY=15 # used by ncurses
 export LESS='-i -R -M -c -z-5'
 export GPG_TTY="$(tty)"
 
+# Use Neovim as a pager. Allows for section overviews. 
+export MANPAGER='nvim +Man!'
+
 # change application config and data locations
 
 # some apps only adhere to the standard if we make these explicit
