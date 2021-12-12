@@ -5,5 +5,5 @@ configuration {
 	font: "DejaVu Sans Mono 35";
 	terminal: "urxvt";
 	hide-scrollbar: true;
-	theme: "/usr/share/rofi/themes/solarized.rasi";
 }
+@theme "/home/lala/.config/rofi/theme.rasi"
