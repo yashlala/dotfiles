@@ -1,22 +1,32 @@
 -- `init.lua`
---
 
 --[[ TODO TODO:
 Roadmap:
 
-1. Understand how telescope really works. We'll be using it for pretty much
-   everything else.
+1. Figure out why everything breaks when we put it in the `after` directory. 
+   Figured it out. The plugin dir is sourced before the after dir -- so all
+   global variables we set in the after dir won't actually do anything.
+   What a pain. We'll make corresponding entries in the regular plugin dirs then. 
+
+2. Use the previous insight to fully move from EasyMotion to hop. 
+
 2. Use telescope for a solid file browser.
+   We should have the prompt include the CWD
    We can use this to make the rest of these pervasive changes.
+
 3. Once we have a file browser, implement other telescope pickers, TJ style.
    This may allow us to remove `autochdir` and reinstate `project.nvim`.
+
 4. Set up luasnip style snippets.
+
 5. Create binds for LSP commands - `gd`, etc. 
 6. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
    diagnostics on point. 
 7. Remove all `TODO`s from our configs. Too many weird bugs. 
 8. Set a better abbreviation so we can't quit when there are multiple buffers. 
+10. Set up the quickfix binds to be smarter (as per comment there)
 9. Set up a better git plugin. 
+11. Set up a grand telescope picker menu (not jus tbuiltins)
 ]]
 
 
@@ -28,15 +38,15 @@ pcall(require, 'impatient')
 vim.g.mapleader = ' '
 require('lala.globals')
 
--- Source basic options and keymaps first. 
--- All more complicated things are in the `after/plugin` dir. 
-require('lala.options')()
-require('lala.keymaps')()
-
 -- If this is the first time we're running Neovim, install packer.nvim etc. 
 require('lala.fresh-install')()
 
--- Load plugins.
+-- Source basic options and keymaps first. 
+-- All more complicated things are in the `after/plugin` dir. 
+require('lala.options')()
+require('lala.mappings')()
+
+-- Source our plugins
 local use = require('packer').use
 require('packer').startup(function()
   -- Package manager.
@@ -55,6 +65,7 @@ require('packer').startup(function()
   use 'junegunn/seoul256.vim'
   use 'overcache/NeoSolarized'
   use 'nisavid/vim-colors-solarized'
+  use 'kyazdani42/nvim-web-devicons'
   use 'tjdevries/colorbuddy.nvim'
 
   -- Diary + Wiki
@@ -113,8 +124,9 @@ require('packer').startup(function()
   use { 'nvim-telescope/telescope.nvim', requires = {
     { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
-  use { 'nvim-telescope/telescope-fzy-native.nvim', requires = {
-    { 'nvim-telescope/telescope.nvim' } }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', 
+    requires = { 'nvim-telescope/telescope.nvim' }, 
+    run = 'make'
   }
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
   -- Automatically `cd` to project root. Integrates with Telescope.
@@ -131,3 +143,19 @@ end)
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
 
+-- TODO: Things work when we do it here, but _not_ when we do it later in the
+-- file. What gives? 
+-- Figure out how everything works...maybe we should just do it in the lua dir. 
+
+vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
+vim.api.nvim_exec([[
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ ['buffers'] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ],
+      \     [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
+      \ 'component_type': { 'buffers': 'tabsel' } }
+]], false)

@@ -105,15 +105,26 @@ local M = function()
   smap('n', '<leader>d', '<cmd>call DeleteBufferAndUpdateLightline()<cr>')
 
 
-  -- EasyMotion Keybindings
-  noremap('', 'f', '<nop>')
-  map('', 'f', '<Plug>(easymotion-f)')
-  map('', 'F', '<Plug>(easymotion-F)')
-  map('', 't', '<Plug>(easymotion-t)')
-  map('', 'T', '<Plug>(easymotion-T)')
+  -- Hop Keybindings
+  -- TODO: Set up colors properly. 
+  noremap('', 'f', '<cmd>HopChar1AC<cr>')
+  noremap('', 'F', '<cmd>HopChar1BC<cr>')
+
+  noremap('', 't', '<Plug>(easymotion-t)')
+  noremap('', 'T', '<Plug>(easymotion-T)')
+
+  -- TODO: Make the `t` command work as expected. 
+  -- TODO: Also, can we just use plain lua functions instead of stringifying
+  -- here? 
+  -- TODO: Looks like there's a PR for this? 
+  -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>", {})
+  -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
+
+  -- TODO: Jump to beginning _and_ end of words. 
+  noremap('', 's', '<cmd>HopWordCurrentLine<cr>')
   map('', 's', '<Plug>(easymotion-lineanywhere)')
-  map('', '<leader>j', '<Plug>(easymotion-j)')
-  map('', '<leader>k', '<Plug>(easymotion-k)')
+  noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
+  noremap('', '<leader>k', '<cmd>HopLineBC<cr>')
 
   -- Diary Keybinds
   map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
@@ -133,34 +144,51 @@ local M = function()
   map('n', '<leader>*', '<Plug>lightline#bufferline#go(8)')
   map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
 
+  
   -- Telescope Keybinds
-  snoremap('n', '<leader><space>', "<cmd>Telescope<cr>")
+  -- TODO: Can we use this to find _every_ picker, not just builtin ones?
+  snoremap('n', '<leader><leader>', "<cmd>Telescope<cr>")
   -- Go to the help menus. Should we search the quickfix list here instead?
-  -- (Q) for quickfix, or Q for query? 
+  -- (Q) for quickfix, or Q for query? Maybe use (H) for help?
   -- Maybe we should have Q to bring up the quickfix menu instead? 
   snoremap('n', 'Q',
     "<cmd>lua require('telescope.builtin').help_tags({})<cr>")
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({})<cr>")
+  -- Find File
   snoremap('n', '<leader>ff',
     "<cmd>lua require('telescope.builtin').find_files({})<cr>")
-  snoremap('n', '<leader>fg',
+  -- Find Here (Buffer's dir is the CWD)
+  snoremap('n', '<leader>fh', 
+    "<cmd>lua require('lala.telescope-custom').find_files_bufdir()<cr>")
+  -- TODO: Make our file browser even better!
+  -- Can we get the preview window to show the CWD? 
+  snoremap('n', '<leader>fb',
+    "<cmd>lua require('telescope.builtin').file_browser({})<cr>")
+  -- Find Word
+  snoremap('n', '<leader>fw',
+    "<cmd>lua require('telescope.builtin').live_grep({})<cr>")
+  -- TODO: 2-layer find word with the grep_string. First, we prompt for the
+  -- string to search with lua, then we search through those results. 
+  snoremap('n', '<leader>fW',
     "<cmd>lua require('telescope.builtin').grep_string({})<cr>")
-  snoremap('n', '<leader>fp',
+  -- Find Gitfile
+  snoremap('n', '<leader>fg',
     "<cmd>lua require('telescope.builtin').git_files({})<cr>")
+  -- Find recently used file. 
   snoremap('n', '<leader>fo',
     "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
-  snoremap('n', '<leader>fP', "<cmd>Telescope projects<cr>")
+  -- Find recently used project. 
+  snoremap('n', '<leader>fp', "<cmd>Telescope projects<cr>")
+
   -- LSP Keybinds
-  snoremap('n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<cr>')
-  snoremap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-  snoremap('n', '<leader>li', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+  snoremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+  snoremap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+  snoremap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
   snoremap('n', '<bar>', '<cmd>lua vim.lsp.buf.hover()<cr>')
   -- TODO: Add keybinds to jump to next and previous lsp diagnostics
   -- Maybe this should be <c-n> and <c-p>? 
   map('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')
-
-  -- TODO: Rebind gd, etc to use LSP if available. 
 
   -- We keep quitting on accident. 
   -- TODO: Make this smarter, maybe? If we have more than a few buffers open,

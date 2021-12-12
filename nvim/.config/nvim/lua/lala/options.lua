@@ -4,8 +4,6 @@ local M = function()
   vim.o.confirm = true -- Ask before dangerous changes
   vim.o.gdefault = true -- s/.../.../g by default
 
-  vim.o.autochdir = true -- CWD should follow current buffer
-
   vim.o.autoindent = true -- use line's indent for the next line
   vim.o.smartindent = true; -- and use C rules if possible.
 
