@@ -39,12 +39,22 @@ local M = function()
   -- "Available" (unmapped) normal mode keys: 
   -- U, S, V. Potentially H, M, L?
 
+  vim.api.nvim_command([[
+    function! ToggleQuickFix()
+      if empty(filter(getwininfo(), 'v:val.quickfix'))
+          copen
+      else
+          cclose
+      endif
+    endfunction
+  ]])
+  snoremap('n', '<c-q>', '<cmd>call ToggleQuickFix()<cr>')
+  snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list(s)
   -- TODO: Rebind these to our own functions. 
   -- If there's something in the quickfix list, it should go through the list. 
   -- If there's something in the location list, it should go through that. 
   -- If both are empty, it should just go through the neovim LSP diagnostics. 
-  -- Great stuffl 
-  snoremap('n', '<c-q>', '<cmd>copen<cr>')
+  -- Great stuff!
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
 
@@ -55,7 +65,7 @@ local M = function()
   noremap('', '_', '<c-y>')
   noremap('', '+', '<c-e>')
 
-  -- Easy moving between windows
+  -- Use Meta for easy window operations
 
   noremap('n', '<m-h>', '<c-w>h')
   noremap('i', '<m-h>', '<esc><c-w>h')
@@ -107,11 +117,12 @@ local M = function()
 
   -- Hop Keybindings
   -- TODO: Set up colors properly. 
-  noremap('', 'f', '<cmd>HopChar1AC<cr>')
+
+  --[[ noremap('', 'f', '<cmd>HopChar1AC<cr>')
   noremap('', 'F', '<cmd>HopChar1BC<cr>')
 
   noremap('', 't', '<Plug>(easymotion-t)')
-  noremap('', 'T', '<Plug>(easymotion-T)')
+  noremap('', 'T', '<Plug>(easymotion-T)') ]]
 
   -- TODO: Make the `t` command work as expected. 
   -- TODO: Also, can we just use plain lua functions instead of stringifying
@@ -121,10 +132,10 @@ local M = function()
   -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
 
   -- TODO: Jump to beginning _and_ end of words. 
-  noremap('', 's', '<cmd>HopWordCurrentLine<cr>')
+  --[[ noremap('', 's', '<cmd>HopWordCurrentLine<cr>')
   map('', 's', '<Plug>(easymotion-lineanywhere)')
   noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
-  noremap('', '<leader>k', '<cmd>HopLineBC<cr>')
+  noremap('', '<leader>k', '<cmd>HopLineBC<cr>') ]]
 
   -- Diary Keybinds
   map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
@@ -134,6 +145,7 @@ local M = function()
   map('n', '<leader>w<leader>w', '<Plug>VimwikiIndex')
 
   -- Quick Buffer Switching Keybindings
+  -- TODO: Can we remove the lightline altogether? 
   map('n', '<leader>!', '<Plug>lightline#bufferline#go(1)')
   map('n', '<leader>@', '<Plug>lightline#bufferline#go(2)')
   map('n', '<leader>#', '<Plug>lightline#bufferline#go(3)')
@@ -144,15 +156,10 @@ local M = function()
   map('n', '<leader>*', '<Plug>lightline#bufferline#go(8)')
   map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
 
-  
   -- Telescope Keybinds
   -- TODO: Can we use this to find _every_ picker, not just builtin ones?
   snoremap('n', '<leader><leader>', "<cmd>Telescope<cr>")
-  -- Go to the help menus. Should we search the quickfix list here instead?
-  -- (Q) for quickfix, or Q for query? Maybe use (H) for help?
-  -- Maybe we should have Q to bring up the quickfix menu instead? 
-  snoremap('n', 'Q',
-    "<cmd>lua require('telescope.builtin').help_tags({})<cr>")
+  -- TODO: Can we make this use LRU instead? 
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({})<cr>")
   -- Find File
@@ -184,7 +191,7 @@ local M = function()
   -- LSP Keybinds
   snoremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
   snoremap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-  snoremap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+  snoremap('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>')
   snoremap('n', '<bar>', '<cmd>lua vim.lsp.buf.hover()<cr>')
   -- TODO: Add keybinds to jump to next and previous lsp diagnostics
   -- Maybe this should be <c-n> and <c-p>? 

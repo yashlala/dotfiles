@@ -38,6 +38,9 @@ local M = function()
   vim.o.modeline = true
   vim.o.showmode = false -- Don't write VISUAL on the last line. 
 
+  -- Always show the sign column. 
+  vim.o.signcolumn = 'yes'
+
   vim.o.mouse = 'a'
 
   vim.o.scrollback = 8192 -- lines of terminal mode scrollback

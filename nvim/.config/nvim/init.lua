@@ -70,14 +70,22 @@ require('packer').startup(function()
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
-  use 'itchyny/calendar.vim' -- TODO: Can't select diary date? 
+  -- TODO: Can't select diary date? 
+  -- TODO: Integrate with Google Calendar. 
+  use 'itchyny/calendar.vim' 
 
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense. 
   use 'tpope/vim-sleuth'
+  -- Automatically remove trailing spaces on lines we modify. 
+  -- This might cause some problems with other plugins -- can enable with
+  -- `:LessSpace` and disable with `:LessSpace!` as needed. 
+  use 'thirtythreeforty/lessspace.vim'
+
   -- Vim motions that don't require counts. 
   use 'easymotion/vim-easymotion'
   use 'phaazon/hop.nvim'
+  use 'ggandor/lightspeed.nvim'
 
   -- Automatic table alignment.
   use 'junegunn/vim-easy-align'
@@ -95,7 +103,13 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
   -- TODO: Try neogit instead
-  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
+  -- Better quickfix list. 
+  use 'kevinhwang91/nvim-bqf'
+  -- Better marks
+  -- TODO: Make a telescope previewer for the marks in the current buffer. 
+  use 'chentau/marks.nvim'
 
   -- File Browser
   -- TODO: Set up.
@@ -109,8 +123,6 @@ require('packer').startup(function()
   -- Highlighting, editing, etc. using incremental parsing.
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
-
   -- Autocompletion plugin
   -- TODO: It's new! set it up!
   use 'hrsh7th/nvim-cmp'
@@ -118,6 +130,8 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
+
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
   use 'saadparwaiz1/cmp_luasnip'
 
   -- Global Menu and Fuzzy Finder.
@@ -142,20 +156,4 @@ end)
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
-
--- TODO: Things work when we do it here, but _not_ when we do it later in the
--- file. What gives? 
--- Figure out how everything works...maybe we should just do it in the lua dir. 
-
-vim.api.nvim_set_var('lightline#bufferline#unnamed', '[No Name]')
-vim.api.nvim_exec([[
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ ['buffers'] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ],
-      \     [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_expand': { 'buffers': 'lightline#bufferline#buffers' },
-      \ 'component_type': { 'buffers': 'tabsel' } }
-]], false)
+-- TODO: Highlight the signs column like we do in gitsigns. 
