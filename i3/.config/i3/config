@@ -49,7 +49,7 @@ bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id rofi -show drun
 bindsym $mod+f                        exec alacritty -e lf
-bindsym $mod+m                        exec alacritty-e neomutt
+bindsym $mod+m                        exec alacritty -e neomutt
 bindsym $mod+i                        exec chromium
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip

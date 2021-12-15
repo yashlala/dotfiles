@@ -3,7 +3,7 @@ configuration {
 	width: 900;
 	lines: 6;
 	font: "DejaVu Sans Mono 35";
-	terminal: "urxvt";
+	terminal: "alacritty";
 	hide-scrollbar: true;
 }
 @theme "/home/lala/.config/rofi/theme.rasi"
