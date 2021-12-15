@@ -27,6 +27,8 @@ Roadmap:
 10. Set up the quickfix binds to be smarter (as per comment there)
 9. Set up a better git plugin. 
 11. Set up a grand telescope picker menu (not jus tbuiltins)
+
+Install neogit instead, then get rid of signs and fugitive? Might be easier.
 ]]
 
 
@@ -78,9 +80,9 @@ require('packer').startup(function()
  -- TODO: Rewrite this so defaults make sense. 
   use 'tpope/vim-sleuth'
   -- Automatically remove trailing spaces on lines we modify. 
-  -- This might cause some problems with other plugins -- can enable with
+  -- TODO: This causes problems with Telescope, so we disabled it.
   -- `:LessSpace` and disable with `:LessSpace!` as needed. 
-  use 'thirtythreeforty/lessspace.vim'
+  -- use 'thirtythreeforty/lessspace.vim'
 
   -- Vim motions that don't require counts. 
   use 'easymotion/vim-easymotion'
