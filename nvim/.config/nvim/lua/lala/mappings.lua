@@ -172,8 +172,8 @@ local M = function()
   -- Can we get the preview window to show the CWD? 
   snoremap('n', '<leader>fb',
     "<cmd>lua require('telescope.builtin').file_browser({})<cr>")
-  -- Find Word
-  snoremap('n', '<leader>fw',
+  -- Find String
+  snoremap('n', '<leader>fs',
     "<cmd>lua require('telescope.builtin').live_grep({})<cr>")
   -- TODO: 2-layer find word with the grep_string. First, we prompt for the
   -- string to search with lua, then we search through those results. 

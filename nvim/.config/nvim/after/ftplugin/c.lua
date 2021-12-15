@@ -5,6 +5,7 @@ vim.wo.signcolumn = 'yes'
 -- Set up the CCLS language server. 
 require('lspconfig').ccls.setup({
   init_options = {
+    single_file_support = true,
     cache = {
 	directory = "/home/lala/.cache/ccls";
     };

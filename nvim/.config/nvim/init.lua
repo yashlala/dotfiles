@@ -159,3 +159,4 @@ end)
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
 -- TODO: Highlight the signs column like we do in gitsigns. 
+vim.api.nvim_command('highlight SignColumn ctermbg=238')
