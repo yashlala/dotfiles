@@ -8,8 +8,7 @@ xhost +local:
 export XCOMPOSEFILE="$HOME/.config/xorg/xcompose"
 export XCOMPOSECACHE="$HOME/.cache/xorg/compose-cache"
 
-export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd.socket"
-export TERMINAL=urxvtc
+export TERMINAL=alacritty
 
 userresources="$HOME/.config/xorg/xresources"
 usermodmap="$HOME/.config/xorg/xmodmap"
