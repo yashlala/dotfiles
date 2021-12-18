@@ -147,7 +147,9 @@ require('packer').startup(function()
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
   -- TODO: Why aren't we listing previous projects anymore? 
-  use "ahmedkhalf/project.nvim"
+  use 'ahmedkhalf/project.nvim'
+
+  use 'folke/which-key.nvim'
 
   -- Allow plugins to use the `.` key (if they support it).
   use 'tpope/vim-repeat'
