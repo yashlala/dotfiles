@@ -102,18 +102,19 @@ local M = function()
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
   smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
+  smap('n', '<leader>d', '<cmd>silent bdelete<cr>')
 
-  -- Lightline-Bufferline is very bad at updating its buffer list. 
-  -- We compensate by manually updating it when deleting a buffer. 
-  -- TODO: Remove the bufferline entirely. Useless...
-  vim.api.nvim_command([[
-    function! DeleteBufferAndUpdateLightline()
-      exe 'bdelete'
-      call lightline#update()
-    endfunction
-  ]])
-  smap('n', '<leader>d', '<cmd>call DeleteBufferAndUpdateLightline()<cr>')
-
+  -- Quick Tab Switching Keybindings
+  snoremap('n', '<leader>!', '1gt')
+  snoremap('n', '<leader>@', '2gt')
+  snoremap('n', '<leader>#', '3gt')
+  snoremap('n', '<leader>$', '4gt')
+  snoremap('n', '<leader>%', '5gt')
+  snoremap('n', '<leader>^', '6gt')
+  snoremap('n', '<leader>&', '7gt')
+  snoremap('n', '<leader>*', '8gt')
+  snoremap('n', '<leader>(', '9gt')
+  snoremap('n', '<leader>)', '10gt')
 
   -- Hop Keybindings
   -- TODO: Set up colors properly. 
@@ -144,24 +145,17 @@ local M = function()
   map('n', '<leader>wy', '<Plug>VimwikiMakeYesterdayDiaryNote')
   map('n', '<leader>w<leader>w', '<Plug>VimwikiIndex')
 
-  -- Quick Buffer Switching Keybindings
-  -- TODO: Can we remove the lightline altogether? 
-  map('n', '<leader>!', '<Plug>lightline#bufferline#go(1)')
-  map('n', '<leader>@', '<Plug>lightline#bufferline#go(2)')
-  map('n', '<leader>#', '<Plug>lightline#bufferline#go(3)')
-  map('n', '<leader>$', '<Plug>lightline#bufferline#go(4)')
-  map('n', '<leader>%', '<Plug>lightline#bufferline#go(5)')
-  map('n', '<leader>^', '<Plug>lightline#bufferline#go(6)')
-  map('n', '<leader>&', '<Plug>lightline#bufferline#go(7)')
-  map('n', '<leader>*', '<Plug>lightline#bufferline#go(8)')
-  map('n', '<leader>(', '<Plug>lightline#bufferline#go(9)')
 
   -- Telescope Keybinds
   -- TODO: Can we use this to find _every_ picker, not just builtin ones?
   snoremap('n', '<leader><leader>', "<cmd>Telescope<cr>")
-  -- TODO: Can we make this use LRU instead? 
+  -- TODO: Can we make this use LRU or frecency? 
+  -- TODO: Define a custom path displayer that combines the smartness of
+  --       "truncate" with the selectiveness of "shorten"
+  -- We'll use this as our _primary_ method of navigation, so we should make it
+  -- damn nice. 
   snoremap('n', ',',
-    "<cmd>lua require('telescope.builtin').buffers({})<cr>")
+    "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
   -- Find File
   snoremap('n', '<leader>ff',
     "<cmd>lua require('telescope.builtin').find_files({})<cr>")

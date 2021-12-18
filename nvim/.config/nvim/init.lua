@@ -59,9 +59,7 @@ require('packer').startup(function()
   use 'lewis6991/impatient.nvim'
 
   -- Fancier statusline.
-  use 'itchyny/lightline.vim'
-  -- Buffer list for statusline.
-  use 'mengelbrecht/lightline-bufferline'
+  use 'nvim-lualine/lualine.nvim'
 
   -- Colorscheme.
   use 'junegunn/seoul256.vim'
