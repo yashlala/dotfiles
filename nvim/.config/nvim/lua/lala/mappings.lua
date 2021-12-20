@@ -5,7 +5,12 @@
 
 local M = function() 
   local function map(mode, key, value)
-    vim.api.nvim_set_keymap(mode, key, value, { noremap = false })
+    if type(mode) ~= 'table' then
+      mode = { mode }
+    end
+    for _, m in pairs(mode) do
+      vim.api.nvim_set_keymap(m, key, value, { noremap = false })
+    end
   end
 
   local function smap(mode, key, value)
@@ -34,13 +39,15 @@ local M = function()
   noremap('n', '<bar>', 'K')
   noremap('n', 'K', 'kJ')
   noremap('n', 'U', '<c-r>')
-  noremap('n', '<c-r>', 'U')
   noremap('n', 'v', 'V')
   -- "Available" (unmapped) normal mode keys: 
   -- U, S, V. Potentially H, M, L?
 
+  noremap('n', 'gs', ':%s/')
+  map('n', 'ga', '<Plug>(EasyAlign)')
+
   vim.api.nvim_command([[
-    function! ToggleQuickFix()
+    function! ToggleQFList()
       if empty(filter(getwininfo(), 'v:val.quickfix'))
           copen
       else
@@ -48,45 +55,46 @@ local M = function()
       endif
     endfunction
   ]])
-  snoremap('n', '<c-q>', '<cmd>call ToggleQuickFix()<cr>')
-  snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list(s)
-  -- TODO: Rebind these to our own functions. 
-  -- If there's something in the quickfix list, it should go through the list. 
-  -- If there's something in the location list, it should go through that. 
-  -- If both are empty, it should just go through the neovim LSP diagnostics. 
-  -- Great stuff!
+  vim.api.nvim_command([[
+    function! ToggleLocList()
+      echo(
+      if empty(filter(getwininfo(), 'v:val.loclist'))
+          lopen
+      else
+          lclose
+      endif
+    endfunction
+  ]])
+  snoremap('n', '<c-q>', '<cmd>call ToggleQFList()<cr>')
+  snoremap('n', '<c-r>', '<cmd>call ToggleLocList()<cr>')
+  snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
+  snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
-
-  noremap('n', 'gs', ':%s/')
-  map('n', 'ga', '<Plug>(EasyAlign)')
+  noremap('n', '<c-j>', '<cmd>lnext<cr>')
+  noremap('n', '<c-k>', '<cmd>lprev<cr>')
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')
   noremap('', '+', '<c-e>')
 
   -- Use Meta for easy window operations
+  local nitmapper = function(lhs, rhs)
+    noremap('n', lhs, rhs)
+    noremap('i', lhs, '<esc>' .. rhs)
+    noremap('t', lhs, '<c-\\><c-n>' .. rhs)
+  end
 
-  noremap('n', '<m-h>', '<c-w>h')
-  noremap('i', '<m-h>', '<esc><c-w>h')
-  noremap('n', '<m-j>', '<c-w>j')
-  noremap('i', '<m-j>', '<esc><c-w>j')
-  noremap('n', '<m-k>', '<c-w>k')
-  noremap('i', '<m-k>', '<esc><c-w>k')
-  noremap('n', '<m-l>', '<c-w>l')
-  noremap('i', '<m-l>', '<esc><c-w>l')
+  nitmapper('<m-h>', '<c-w>h') -- Easy movement
+  nitmapper('<m-j>', '<c-w>j')
+  nitmapper('<m-k>', '<c-w>k')
+  nitmapper('<m-l>', '<c-w>l')
 
-  noremap('n', '<m-s>', '<c-w>s')
-  noremap('i', '<m-s>', '<esc><c-w>s')
-  noremap('n', '<m-v>', '<c-w>v')
-  noremap('i', '<m-v>', '<esc><c-w>v')
-  noremap('n', '<m-c>', '<c-w>c')
-  noremap('i', '<m-c>', '<esc><c-w>c')
-
-  noremap('t', '<m-h>', '<c-\\><c-n><c-w>h')
-  noremap('t', '<m-j>', '<c-\\><c-n><c-w>j')
-  noremap('t', '<m-k>', '<c-\\><c-n><c-w>k')
-  noremap('t', '<m-l>', '<c-\\><c-n><c-w>l')
+  nitmapper('<m-s>', '<c-w>s') -- Split
+  nitmapper('<m-v>', '<c-w>v') -- Vertical
+  nitmapper('<m-c>', '<c-w>c') -- Close
+  nitmapper('<m-x>', '<c-w>x') -- X-change
+  nitmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
 
   noremap('n', '<m-space>', '<nop>') -- prevent current mode confusion
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
@@ -95,7 +103,6 @@ local M = function()
   noremap('n', '<c-\\>', '<nop>') 
   noremap('i', '<c-\\>', '<esc>') 
   noremap('t', '<c-\\>', '<c-\\><c-n>')
-
 
   -- Simple Leader Keybinds
   snoremap('', '<leader>p', '"0p')
@@ -158,25 +165,25 @@ local M = function()
     "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
   -- Find File
   snoremap('n', '<leader>ff',
-    "<cmd>lua require('telescope.builtin').find_files({})<cr>")
+    "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>")
   -- Find Here (Buffer's dir is the CWD)
   snoremap('n', '<leader>fh', 
-    "<cmd>lua require('lala.telescope-custom').find_files_bufdir()<cr>")
+    "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true)<cr>")
   -- TODO: Make our file browser even better!
   -- Can we get the preview window to show the CWD? 
   snoremap('n', '<leader>fb',
-    "<cmd>lua require('telescope.builtin').file_browser({})<cr>")
+    "<cmd>lua require('telescope.builtin').file_browser({hidden = true})<cr>")
   -- Find String
   snoremap('n', '<leader>fs',
-    "<cmd>lua require('telescope.builtin').live_grep({})<cr>")
+    "<cmd>lua require('telescope.builtin').live_grep({hidden = true})<cr>")
   -- TODO: 2-layer find word with the grep_string. First, we prompt for the
   -- string to search with lua, then we search through those results. 
-  snoremap('n', '<leader>fW',
-    "<cmd>lua require('telescope.builtin').grep_string({})<cr>")
+  snoremap('n', '<leader>fS',
+    "<cmd>lua require('telescope.builtin').grep_string({hidden = true})<cr>")
   -- Find Gitfile
   snoremap('n', '<leader>fg',
     "<cmd>lua require('telescope.builtin').git_files({})<cr>")
-  -- Find recently used file. 
+  -- Find old files (recently used)
   snoremap('n', '<leader>fo',
     "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
   -- Find recently used project. 

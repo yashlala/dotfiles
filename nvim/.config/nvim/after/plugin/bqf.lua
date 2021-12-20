@@ -13,7 +13,7 @@ require('bqf').setup({
     stogglevm = 'v', -- In visual mode, too. 
 
     ptoggleauto = 'p', -- Toggle previews
-    pscrollorig = 'zz', -- Center the preview window. 
+    pscrollorig = '=', -- Center the preview window. 
     -- We can use <c-f> <c-b> to move around in the preview window too
 
     prevhist = '[[', -- Go to the previous qf list

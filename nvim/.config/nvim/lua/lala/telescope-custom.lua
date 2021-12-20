@@ -48,8 +48,10 @@ local create_new_file = function(opts, prompt_bufnr)
   end
 
   -- TODO: This doesn't work when we run it from a terminal window. 
-  -- Use `getbufvar` function. 
+  -- Instead, maybe use
+  -- local fpath = require('telescope.utils').buffer_dir())
   local fpath = current_picker.cwd .. os_sep .. file
+
   if not is_dir(fpath) then
     actions.close(prompt_bufnr)
     Path:new(fpath):touch { parents = true }

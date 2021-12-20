@@ -1,7 +1,4 @@
 -- Legacy
-vim.g.EasyMotion_do_mapping = 0
-vim.g.EasyMotion_smartcase = 1
-
 vim.api.nvim_command('highlight HopNextKey  guifg=#00dfff gui=bold ctermfg=45 cterm=bold')
 vim.api.nvim_command('highlight HopNextKey1 guifg=#00dfff gui=bold ctermfg=45 cterm=bold')
 vim.api.nvim_command('highlight HopNextKey2 guifg=#2b8db3 ctermfg=33')

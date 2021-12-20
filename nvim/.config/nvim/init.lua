@@ -3,12 +3,10 @@
 --[[ TODO TODO:
 Roadmap:
 
-1. Figure out why everything breaks when we put it in the `after` directory. 
-   Figured it out. The plugin dir is sourced before the after dir -- so all
-   global variables we set in the after dir won't actually do anything.
-   What a pain. We'll make corresponding entries in the regular plugin dirs then. 
+1. Switch to easymotion, hop, or something. We may be blocking on a PR going
+   through, if this is the case then set up a proper reminder. 
 
-2. Use the previous insight to fully move from EasyMotion to hop. 
+5. Create binds for LSP commands - `gd`, etc. 
 
 2. Use telescope for a solid file browser.
    We should have the prompt include the CWD
@@ -19,16 +17,18 @@ Roadmap:
 
 4. Set up luasnip style snippets.
 
-5. Create binds for LSP commands - `gd`, etc. 
 6. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
    diagnostics on point. 
+
 7. Remove all `TODO`s from our configs. Too many weird bugs. 
+
 8. Set a better abbreviation so we can't quit when there are multiple buffers. 
+
 10. Set up the quickfix binds to be smarter (as per comment there)
-9. Set up a better git plugin. 
 11. Set up a grand telescope picker menu (not jus tbuiltins)
 
-Install neogit instead, then get rid of signs and fugitive? Might be easier.
+9. Set up a better git plugin. Install neogit instead, then get rid of signs
+   and fugitive? Might be easier.
 ]]
 
 
@@ -78,12 +78,13 @@ require('packer').startup(function()
  -- TODO: Rewrite this so defaults make sense. 
   use 'tpope/vim-sleuth'
   -- Automatically remove trailing spaces on lines we modify. 
-  -- TODO: This causes problems with Telescope, so we disabled it.
+  -- This causes problems with Telescope, so we disabled it.
   -- `:LessSpace` and disable with `:LessSpace!` as needed. 
   -- use 'thirtythreeforty/lessspace.vim'
 
   -- Vim motions that don't require counts. 
-  use 'easymotion/vim-easymotion'
+  -- TODO: Why do all of these suck? 
+  -- use 'easymotion/vim-easymotion'
   use 'phaazon/hop.nvim'
   use 'ggandor/lightspeed.nvim'
 
@@ -111,9 +112,6 @@ require('packer').startup(function()
   -- TODO: Make a telescope previewer for the marks in the current buffer. 
   use 'chentau/marks.nvim'
 
-  -- File Browser
-  -- TODO: Set up.
-
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
@@ -131,7 +129,7 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
 
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: broken.
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: Set this up. 
   use 'saadparwaiz1/cmp_luasnip'
 
   -- Global Menu and Fuzzy Finder.
