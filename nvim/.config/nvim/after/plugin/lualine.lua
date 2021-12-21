@@ -10,12 +10,10 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'filename'},
-    lualine_c = {{
-      'buffers', 
-      -- Only print the buffer list if there are fewer than 5
-      cond = function()
+    lualine_c = {{ 
+      function()
         local num_buffers = vim.fn.len(vim.fn.getbufinfo({buflisted = 1}))
-        return 1 < num_buffers and num_buffers < 5
+        return tostring(num_buffers)
       end
     }},
     lualine_x = {'filetype', 'branch'},
