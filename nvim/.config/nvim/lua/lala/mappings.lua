@@ -109,7 +109,9 @@ local M = function()
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
   smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
-  smap('n', '<leader>d', '<cmd>silent bdelete<cr>')
+  -- Close the current window. If there's no window open
+  smap('n', '<leader>d', '<cmd>silent bd<cr>')
+  -- smap('n', '<leader>d', '<cmd>silent bp | sp | bn | bd<cr>')
 
   -- Quick Tab Switching Keybindings
   snoremap('n', '<leader>!', '1gt')

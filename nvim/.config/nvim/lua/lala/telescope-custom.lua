@@ -101,6 +101,7 @@ M.find_files_bufdir = function()
   opts_with_preview = {
     prompt_title = "Find Files in Buffer Dir",
     shorten_path = false,
+    -- TODO: Use the proper path. 
     cwd = vim.fn.expand('%:h'),
     attach_mappings = preview_mappings,
   }
