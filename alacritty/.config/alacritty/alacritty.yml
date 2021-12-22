@@ -109,9 +109,9 @@ font:
   bold:
     style: Bold
   italic:
-    style: Italic
+    style: Oblique
   bold_italic:
-    style: Bold Italic
+    style: Bold Oblique
 
   # Point size
   size: 12.0
