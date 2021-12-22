@@ -46,27 +46,7 @@ local M = function()
   noremap('n', 'gs', ':%s/')
   map('n', 'ga', '<Plug>(EasyAlign)')
 
-  vim.api.nvim_command([[
-    function! ToggleQFList()
-      if empty(filter(getwininfo(), 'v:val.quickfix'))
-          copen
-      else
-          cclose
-      endif
-    endfunction
-  ]])
-  vim.api.nvim_command([[
-    function! ToggleLocList()
-      echo(
-      if empty(filter(getwininfo(), 'v:val.loclist'))
-          lopen
-      else
-          lclose
-      endif
-    endfunction
-  ]])
-  snoremap('n', '<c-q>', '<cmd>call ToggleQFList()<cr>')
-  snoremap('n', '<c-r>', '<cmd>call ToggleLocList()<cr>')
+
   snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
   snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
@@ -95,6 +75,27 @@ local M = function()
   nitmapper('<m-c>', '<c-w>c') -- Close
   nitmapper('<m-x>', '<c-w>x') -- X-change
   nitmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
+
+  vim.api.nvim_command([[
+    function! ToggleQFList()
+      if empty(filter(getwininfo(), 'v:val.quickfix'))
+          copen
+      else
+          cclose
+      endif
+    endfunction
+  ]])
+  vim.api.nvim_command([[
+    function! ToggleLocList()
+      if empty(filter(getwininfo(), 'v:val.loclist'))
+          lopen
+      else
+          lclose
+      endif
+    endfunction
+  ]])
+  nitmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
+  nitmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
 
   noremap('n', '<m-space>', '<nop>') -- prevent current mode confusion
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
@@ -174,7 +175,7 @@ local M = function()
   -- TODO: Make our file browser even better!
   -- Can we get the preview window to show the CWD? 
   snoremap('n', '<leader>fb',
-    "<cmd>lua require('telescope.builtin').file_browser({hidden = true})<cr>")
+    "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>")
   -- Find String
   snoremap('n', '<leader>fs',
     "<cmd>lua require('telescope.builtin').live_grep({hidden = true})<cr>")
@@ -195,7 +196,8 @@ local M = function()
   snoremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
   snoremap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
   snoremap('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-  snoremap('n', '<bar>', '<cmd>lua vim.lsp.buf.hover()<cr>')
+  snoremap('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>')
+  snoremap('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()')
   -- TODO: Add keybinds to jump to next and previous lsp diagnostics
   -- Maybe this should be <c-n> and <c-p>? 
   map('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')

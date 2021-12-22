@@ -70,9 +70,7 @@ require('packer').startup(function()
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
-  -- TODO: Can't select diary date? 
-  -- TODO: Integrate with Google Calendar. 
-  use 'itchyny/calendar.vim' 
+  use 'mattn/calendar-vim'
 
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense. 
@@ -140,12 +138,14 @@ require('packer').startup(function()
     requires = { 'nvim-telescope/telescope.nvim' }, 
     run = 'make'
   }
-  use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
+  -- 
+  use 'nvim-telescope/telescope-file-browser.nvim'
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
   -- TODO: Why aren't we listing previous projects anymore? 
   use 'ahmedkhalf/project.nvim'
+  use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 
   use 'folke/which-key.nvim'
 
