@@ -13,6 +13,9 @@ require'lualine'.setup {
     lualine_c = {{ 
       function()
         local num_buffers = vim.fn.len(vim.fn.getbufinfo({buflisted = 1}))
+        if num_buffers <= 1 then
+          return ""
+        end
         return tostring(num_buffers)
       end
     }},
