@@ -46,3 +46,5 @@ local config = {
 -- or attaches to an existing client & server depending on the `root_dir`.
 require('jdtls').start_or_attach(config)
 -]]
+
+require('lspconfig').jedi_language_server.setup{}

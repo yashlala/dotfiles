@@ -5,9 +5,3 @@ require('toggle_lsp_diagnostics').init({
   underline = true,
   virtual_text = false
 })
-
-require('lspconfig').pyright.setup({})
-require('lspconfig').bashls.setup({})
-require('lspconfig').texlab.setup({})
-require('lspconfig').dockerls.setup({})
-require('lspconfig').jedi_language_server.setup{}
