@@ -44,13 +44,13 @@ set $mod Mod4
 floating_modifier $mod
 
 # application keybindings
-bindsym $mod+space                    exec alacritty
+bindsym $mod+space                    exec --no-startup-id alacritty
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id rofi -show drun
-bindsym $mod+f                        exec alacritty -e lf
-bindsym $mod+m                        exec alacritty -e neomutt
-bindsym $mod+i                        exec chromium
+bindsym $mod+f                        exec --no-startup-id alacritty -e lf
+bindsym $mod+m                        exec --no-startup-id alacritty -e neomutt
+bindsym $mod+i                        exec --no-startup-id chromium
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 
