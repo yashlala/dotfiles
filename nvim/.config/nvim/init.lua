@@ -4,9 +4,11 @@
 Roadmap:
 
 1. Switch to easymotion, hop, or something. We may be blocking on a PR going
-   through, if this is the case then set up a proper reminder. 
+   through, if this is the case then set up a proper reminder.
 
-5. Create binds for LSP commands - `gd`, etc. 
+2. Figure out why lua LSP isn't autostarting. 
+
+5. Create binds for LSP commands - `gd`, etc.
 
 2. Use telescope for a solid file browser.
    We should have the prompt include the CWD
@@ -18,11 +20,11 @@ Roadmap:
 4. Set up luasnip style snippets.
 
 6. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
-   diagnostics on point. 
+   diagnostics on point.
 
-7. Remove all `TODO`s from our configs. Too many weird bugs. 
+7. Remove all `TODO`s from our configs. Too many weird bugs.
 
-8. Set a better abbreviation so we can't quit when there are multiple buffers. 
+8. Set a better abbreviation so we can't quit when there are multiple buffers.
 
 10. Set up the quickfix binds to be smarter (as per comment there)
 11. Set up a grand telescope picker menu (not jus tbuiltins)
@@ -32,19 +34,19 @@ Roadmap:
 ]]
 
 
--- Cache our compiled config modules. 
+-- Cache our compiled config modules.
 pcall(require, 'impatient')
 
 -- Set global variables and lua functions early in our config, so all modules
--- will see them. 
+-- will see them.
 vim.g.mapleader = ' '
 require('lala.globals')
 
--- If this is the first time we're running Neovim, install packer.nvim etc. 
+-- If this is the first time we're running Neovim, install packer.nvim etc.
 require('lala.fresh-install')()
 
--- Source basic options and keymaps first. 
--- All more complicated things are in the `after/plugin` dir. 
+-- Source basic options and keymaps first.
+-- All more complicated things are in the `after/plugin` dir.
 require('lala.options')()
 require('lala.mappings')()
 
@@ -53,9 +55,9 @@ local use = require('packer').use
 require('packer').startup(function()
   -- Package manager.
   use 'wbthomason/packer.nvim'
-  -- Utility functions used by other plugins. 
-  use 'nvim-lua/plenary.nvim' 
-  -- Caches lua modules. Will eventually be merged into mainline. 
+  -- Utility functions used by other plugins.
+  use 'nvim-lua/plenary.nvim'
+  -- Caches lua modules. Will eventually be merged into mainline.
   use 'lewis6991/impatient.nvim'
 
   -- Fancier statusline.
@@ -73,15 +75,16 @@ require('packer').startup(function()
   use 'mattn/calendar-vim'
 
  -- Automatically match file format/indentation.
- -- TODO: Rewrite this so defaults make sense. 
+ -- TODO: Rewrite this so defaults make sense.
   use 'tpope/vim-sleuth'
-  -- Automatically remove trailing spaces on lines we modify. 
-  -- This causes problems with Telescope, so we disabled it.
-  -- `:LessSpace` and disable with `:LessSpace!` as needed. 
-  -- use 'thirtythreeforty/lessspace.vim'
+  -- Strip trailing whitespace on lines we've modified.
+  -- This plugin can only keep track of about 95 changed lines
+  -- before it runs out of stack space and defaults to "strip the entire file".
+  -- May cause issues for us later. 
+  use 'axelf4/vim-strip-trailing-whitespace'
 
-  -- Vim motions that don't require counts. 
-  -- TODO: Why do all of these suck? 
+  -- Vim motions that don't require counts.
+  -- TODO: Why do all of these suck?
   -- use 'easymotion/vim-easymotion'
   use 'phaazon/hop.nvim'
   use 'ggandor/lightspeed.nvim'
@@ -104,10 +107,10 @@ require('packer').startup(function()
   -- TODO: Try neogit instead
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
-  -- Better quickfix list. 
+  -- Better quickfix list.
   use 'kevinhwang91/nvim-bqf'
   -- Better marks
-  -- TODO: Make a telescope previewer for the marks in the current buffer. 
+  -- TODO: Make a telescope previewer for the marks in the current buffer.
   use 'chentau/marks.nvim'
 
   -- Collection of configurations for built-in LSP client
@@ -127,23 +130,23 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
 
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: Set this up. 
+  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: Set this up.
   use 'saadparwaiz1/cmp_luasnip'
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
     { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
   }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', 
-    requires = { 'nvim-telescope/telescope.nvim' }, 
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
+    requires = { 'nvim-telescope/telescope.nvim' },
     run = 'make'
   }
-  -- 
+  --
   use 'nvim-telescope/telescope-file-browser.nvim'
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
-  -- TODO: Why aren't we listing previous projects anymore? 
+  -- TODO: Why aren't we listing previous projects anymore?
   use 'ahmedkhalf/project.nvim'
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 
@@ -156,5 +159,5 @@ end)
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
--- TODO: Highlight the signs column like we do in gitsigns. 
+-- TODO: Highlight the signs column like we do in gitsigns.
 vim.api.nvim_command('highlight SignColumn ctermbg=238')

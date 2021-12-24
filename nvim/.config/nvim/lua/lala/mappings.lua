@@ -1,9 +1,9 @@
--- This file contains "vanilla" keymaps for Vim. 
+-- This file contains "vanilla" keymaps for Vim.
 
--- The maps here don't really fit into a bigger picture. 
--- If they do, you'll probably find them in a dedicated file instead. 
+-- The maps here don't really fit into a bigger picture.
+-- If they do, you'll probably find them in a dedicated file instead.
 
-local M = function() 
+local M = function()
   local function map(mode, key, value)
     if type(mode) ~= 'table' then
       mode = { mode }
@@ -40,7 +40,7 @@ local M = function()
   noremap('n', 'K', 'kJ')
   noremap('n', 'U', '<c-r>')
   noremap('n', 'v', 'V')
-  -- "Available" (unmapped) normal mode keys: 
+  -- "Available" (unmapped) normal mode keys:
   -- U, S, V. Potentially H, M, L?
 
   noremap('n', 'gs', ':%s/')
@@ -101,8 +101,8 @@ local M = function()
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   noremap('t', '<m-space>', '<c-\\><c-n>')
   noremap('t', '<c-space>', '<c-\\><c-n>')
-  noremap('n', '<c-\\>', '<nop>') 
-  noremap('i', '<c-\\>', '<esc>') 
+  noremap('n', '<c-\\>', '<nop>')
+  noremap('i', '<c-\\>', '<esc>')
   noremap('t', '<c-\\>', '<c-\\><c-n>')
 
   -- Simple Leader Keybinds
@@ -110,9 +110,10 @@ local M = function()
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
   smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
-  -- Close the current window. If there's no window open
+  -- Close the current buffer. This can close the window too.
   smap('n', '<leader>d', '<cmd>silent bd<cr>')
-  -- smap('n', '<leader>d', '<cmd>silent bp | sp | bn | bd<cr>')
+  -- Delete the current buffer, but leave the window untouched.
+  smap('n', '<leader>D', '<cmd>silent bn | bd#')
 
   -- Quick Tab Switching Keybindings
   snoremap('n', '<leader>!', '1gt')
@@ -127,7 +128,7 @@ local M = function()
   snoremap('n', '<leader>)', '10gt')
 
   -- Hop Keybindings
-  -- TODO: Set up colors properly. 
+  -- TODO: Set up colors properly.
 
   --[[ noremap('', 'f', '<cmd>HopChar1AC<cr>')
   noremap('', 'F', '<cmd>HopChar1BC<cr>')
@@ -135,14 +136,14 @@ local M = function()
   noremap('', 't', '<Plug>(easymotion-t)')
   noremap('', 'T', '<Plug>(easymotion-T)') ]]
 
-  -- TODO: Make the `t` command work as expected. 
+  -- TODO: Make the `t` command work as expected.
   -- TODO: Also, can we just use plain lua functions instead of stringifying
-  -- here? 
-  -- TODO: Looks like there's a PR for this? 
+  -- here?
+  -- TODO: Looks like there's a PR for this?
   -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>", {})
   -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
 
-  -- TODO: Jump to beginning _and_ end of words. 
+  -- TODO: Jump to beginning _and_ end of words.
   --[[ noremap('', 's', '<cmd>HopWordCurrentLine<cr>')
   map('', 's', '<Plug>(easymotion-lineanywhere)')
   noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
@@ -159,28 +160,28 @@ local M = function()
   -- Telescope Keybinds
   -- TODO: Can we use this to find _every_ picker, not just builtin ones?
   snoremap('n', '<leader><leader>', "<cmd>Telescope<cr>")
-  -- TODO: Can we make this use LRU or frecency? 
+  -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten"
   -- We'll use this as our _primary_ method of navigation, so we should make it
-  -- damn nice. 
+  -- damn nice.
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
   -- Find File
   snoremap('n', '<leader>ff',
     "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>")
   -- Find Here (Buffer's dir is the CWD)
-  snoremap('n', '<leader>fh', 
+  snoremap('n', '<leader>fh',
     "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true)<cr>")
   -- TODO: Make our file browser even better!
-  -- Can we get the preview window to show the CWD? 
+  -- Can we get the preview window to show the CWD?
   snoremap('n', '<leader>fb',
     "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>")
   -- Find String
   snoremap('n', '<leader>fs',
     "<cmd>lua require('telescope.builtin').live_grep({hidden = true})<cr>")
   -- TODO: 2-layer find word with the grep_string. First, we prompt for the
-  -- string to search with lua, then we search through those results. 
+  -- string to search with lua, then we search through those results.
   snoremap('n', '<leader>fS',
     "<cmd>lua require('telescope.builtin').grep_string({hidden = true})<cr>")
   -- Find Gitfile
@@ -189,7 +190,7 @@ local M = function()
   -- Find old files (recently used)
   snoremap('n', '<leader>fo',
     "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
-  -- Find recently used project. 
+  -- Find recently used project.
   snoremap('n', '<leader>fp', "<cmd>Telescope projects<cr>")
 
   -- LSP Keybinds
@@ -197,14 +198,14 @@ local M = function()
   snoremap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
   snoremap('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>')
   snoremap('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>')
-  snoremap('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()')
+  snoremap('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>')
   -- TODO: Add keybinds to jump to next and previous lsp diagnostics
-  -- Maybe this should be <c-n> and <c-p>? 
+  -- Maybe this should be <c-n> and <c-p>?
   map('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')
 
-  -- We keep quitting on accident. 
+  -- We keep quitting on accident.
   -- TODO: Make this smarter, maybe? If we have more than a few buffers open,
-  -- then we should not quit. 
+  -- then we should not quit.
   -- vim.cmd("cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>")
 
   -- Swap digits and special characters. We need to do this in `langmap` (as
