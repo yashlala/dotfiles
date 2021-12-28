@@ -94,6 +94,8 @@ bind index gg          first-entry
 bind index G           last-entry
 bind index \Cd         half-down
 bind index \Cu         half-up
+bind index \Cf         half-down
+bind index \Cb         half-up
 bind index i           mail
 bind index s           sync-mailbox
 bind index $           noop
@@ -122,6 +124,8 @@ bind pager gg          top
 bind pager G           bottom
 bind pager \Cd         half-down
 bind pager \Cu         half-up
+bind pager \Cf         half-down
+bind pager \Cb         half-up
 bind pager R           group-reply
 
 macro pager \Cm "<pipe-message>urlscan<enter>" "call urlscan to open links"
