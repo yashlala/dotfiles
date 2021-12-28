@@ -48,3 +48,6 @@ require('telescope').load_extension('projects')
 
 -- Integrate with `telescope-file-browser.nvim`
 require('telescope').load_extension('file_browser')
+
+-- Integrate with `harpoon`
+require('telescope').load_extension('harpoon')
