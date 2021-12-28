@@ -6,7 +6,7 @@ Roadmap:
 1. Switch to easymotion, hop, or something. We may be blocking on a PR going
    through, if this is the case then set up a proper reminder.
 
-2. Figure out why lua LSP isn't autostarting. 
+2. Figure out why lua LSP isn't autostarting.
 
 5. Create binds for LSP commands - `gd`, etc.
 
@@ -105,13 +105,17 @@ require('packer').startup(function()
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
   -- TODO: Try neogit instead
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  -- Looks like neogit just runs out of memory when dealing with large number
+  -- of changes. Eek.
+  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
   -- Better quickfix list.
   use 'kevinhwang91/nvim-bqf'
   -- Better marks
   -- TODO: Make a telescope previewer for the marks in the current buffer.
   use 'chentau/marks.nvim'
+  -- Project-specific file "marks"
+  use 'ThePrimeagen/harpoon'
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
@@ -146,7 +150,7 @@ require('packer').startup(function()
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
-  -- TODO: Why aren't we listing previous projects anymore?
+  -- TODO: Not working for some reason.
   use 'ahmedkhalf/project.nvim'
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 

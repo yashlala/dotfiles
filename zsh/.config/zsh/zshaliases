@@ -29,6 +29,7 @@ alias q='exit'
 alias rec='asciinema'
 alias spy='isympy --quiet --auto' # sympy, create missing symbols
 alias t='task'
+alias tsh='tasksh'
 alias tag='tmsu'
 
 alias battery='acpi -b'

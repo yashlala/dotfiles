@@ -40,11 +40,15 @@ local M = function()
   noremap('n', 'K', 'kJ')
   noremap('n', 'U', '<c-r>')
   noremap('n', 'v', 'V')
-  -- "Available" (unmapped) normal mode keys:
-  -- U, S, V. Potentially H, M, L?
+  -- "Available" (unmapped) normal mode keys: U, S, V.
 
   noremap('n', 'gs', ':%s/')
   map('n', 'ga', '<Plug>(EasyAlign)')
+
+  -- Mark the entire file with Harpoon.
+  snoremap('n', 'M', '<cmd>lua require("harpoon.mark").add_file()<cr>')
+  -- Bring up the Harpoon menu for quick switching.
+  snoremap('n', 'H', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
 
 
   snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
@@ -113,7 +117,8 @@ local M = function()
   -- Close the current buffer. This can close the window too.
   smap('n', '<leader>d', '<cmd>silent bd<cr>')
   -- Delete the current buffer, but leave the window untouched.
-  smap('n', '<leader>D', '<cmd>silent bn | bd#')
+  -- TODO: Switch to the alternate buffer if it exists? If not, do bn.
+  smap('n', '<leader>D', '<cmd>silent bn | bd#<cr>')
 
   -- Quick Tab Switching Keybindings
   snoremap('n', '<leader>!', '1gt')
@@ -126,6 +131,31 @@ local M = function()
   snoremap('n', '<leader>*', '8gt')
   snoremap('n', '<leader>(', '9gt')
   snoremap('n', '<leader>)', '10gt')
+
+  -- Quick Harpooned file access.
+  snoremap('n', '<leader>h!', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
+  snoremap('n', '<leader>h@', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
+  snoremap('n', '<leader>h#', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
+  snoremap('n', '<leader>h$', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
+  snoremap('n', '<leader>h%', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
+  snoremap('n', '<leader>h^', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>')
+  snoremap('n', '<leader>h&', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>')
+  snoremap('n', '<leader>h*', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>')
+  snoremap('n', '<leader>h(', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>')
+  snoremap('n', '<leader>h)', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
+
+  -- Quick terminal access. Creates terminals if they don't exist yet.
+  -- TODO: Use <leader>tt to open a temporary terminal in a split.
+  snoremap('n', '<leader>t!', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
+  snoremap('n', '<leader>t@', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
+  snoremap('n', '<leader>t#', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
+  snoremap('n', '<leader>t$', '<cmd>lua require("harpoon.term").gotoTerminal(4)<cr>')
+  snoremap('n', '<leader>t%', '<cmd>lua require("harpoon.term").gotoTerminal(5)<cr>')
+  snoremap('n', '<leader>t^', '<cmd>lua require("harpoon.term").gotoTerminal(6)<cr>')
+  snoremap('n', '<leader>t&', '<cmd>lua require("harpoon.term").gotoTerminal(7)<cr>')
+  snoremap('n', '<leader>t*', '<cmd>lua require("harpoon.term").gotoTerminal(8)<cr>')
+  snoremap('n', '<leader>t(', '<cmd>lua require("harpoon.term").gotoTerminal(9)<cr>')
+  snoremap('n', '<leader>t)', '<cmd>lua require("harpoon.term").gotoTerminal(10)<cr>')
 
   -- Hop Keybindings
   -- TODO: Set up colors properly.
@@ -167,9 +197,15 @@ local M = function()
   -- damn nice.
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
+  -- Find old files (recently used)
+  snoremap('n', '<leader>fo',
+    "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
   -- Find File
   snoremap('n', '<leader>ff',
     "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>")
+  -- Find Nvim Dotfile
+  snoremap('n', '<leader>fd',
+    "<cmd>lua require('telescope.builtin').find_files({hidden = true, cwd='~/.config/nvim'})<cr>")
   -- Find Here (Buffer's dir is the CWD)
   snoremap('n', '<leader>fh',
     "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true)<cr>")
@@ -184,14 +220,11 @@ local M = function()
   -- string to search with lua, then we search through those results.
   snoremap('n', '<leader>fS',
     "<cmd>lua require('telescope.builtin').grep_string({hidden = true})<cr>")
-  -- Find Gitfile
-  snoremap('n', '<leader>fg',
+  -- Find in project
+  snoremap('n', '<leader>fp',
     "<cmd>lua require('telescope.builtin').git_files({})<cr>")
-  -- Find old files (recently used)
-  snoremap('n', '<leader>fo',
-    "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
-  -- Find recently used project.
-  snoremap('n', '<leader>fp', "<cmd>Telescope projects<cr>")
+  -- Find in all known projects.
+  snoremap('n', '<leader>fP', "<cmd>Telescope projects<cr>")
 
   -- LSP Keybinds
   snoremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
@@ -211,6 +244,12 @@ local M = function()
   -- Swap digits and special characters. We need to do this in `langmap` (as
   -- opposed to regular bindings) because Vim isn't able to map all of its modes.
   -- map them all (eg: operator-pending for some reason doesn't remap di
+  -- TODO: If we set this to true, then everything works for us that failed
+  -- before (eg: d9 should act like `d(`).
+  -- I think we should set it to false. But.
+  -- but set up operator pending mode maps as well?
+  -- Apparently iminsert has something to do with this, too?
+  -- vim.o.langremap = true
   vim.o.langremap = false
   vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
 end

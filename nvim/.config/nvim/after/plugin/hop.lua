@@ -1,4 +1,5 @@
--- Legacy
+-- TODO: The highlights aren't working. We can fix this with
+-- https://github.com/phaazon/hop.nvim/issues/154#issuecomment-1001178509
 vim.api.nvim_command('highlight HopNextKey  guifg=#00dfff gui=bold ctermfg=45 cterm=bold')
 vim.api.nvim_command('highlight HopNextKey1 guifg=#00dfff gui=bold ctermfg=45 cterm=bold')
 vim.api.nvim_command('highlight HopNextKey2 guifg=#2b8db3 ctermfg=33')
@@ -10,9 +11,3 @@ vim.api.nvim_command("autocmd ColorScheme * lua require'hop.highlight'.insert_hi
 vim.api.nvim_command('augroup end')
 
 require('hop').setup()
-
--- TODO: Ask in the matrix room how to get highlights working. 
--- Nothing we do here seems to work. Been changing up the colors etc. 
--- We've installed fractal, a matrix client. use this to ask the developers in
--- the matrix room. 
--- Alternately, copy TJ's prompt. 

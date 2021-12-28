@@ -15,7 +15,7 @@ require('gitsigns').setup {
     ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
     ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line({full=true, ignore_whitespace=true})<CR>',
     ['n <leader>tgb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
     -- Text objects
     ['o ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
