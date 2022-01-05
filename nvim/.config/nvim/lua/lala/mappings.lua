@@ -180,11 +180,11 @@ local M = function()
   noremap('', '<leader>k', '<cmd>HopLineBC<cr>') ]]
 
   -- Diary Keybinds
-  map('n', '<leader>ww', '<Plug>VimwikiMakeDiaryNote')
-  map('n', '<leader>wi', '<Plug>VimwikiDiaryIndex')
-  map('n', '<leader>wt', '<Plug>VimwikiMakeTomorrowDiaryNote')
-  map('n', '<leader>wy', '<Plug>VimwikiMakeYesterdayDiaryNote')
-  map('n', '<leader>w<leader>w', '<Plug>VimwikiIndex')
+  map('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
+  map('n', '<leader>wi', '<cmd>VimwikiDiaryIndex 1<cr>')
+  map('n', '<leader>wt', '<cmd>VimwikiMakeTomorrowDiaryNote 1<cr>')
+  map('n', '<leader>wy', '<cmd>VimwikiMakeYesterdayDiaryNote 1<cr>')
+  map('n', '<leader>w<leader>w', '<cmd>VimwikiIndex 1<cr>')
 
 
   -- Telescope Keybinds
