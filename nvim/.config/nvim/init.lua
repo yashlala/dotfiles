@@ -72,7 +72,6 @@ require('packer').startup(function()
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
-  use 'mattn/calendar-vim'
 
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense.
@@ -114,8 +113,10 @@ require('packer').startup(function()
   -- Better marks
   -- TODO: Make a telescope previewer for the marks in the current buffer.
   use 'chentau/marks.nvim'
-  -- Project-specific file "marks"
+  -- Project-specific file "marks" and terminals
   use 'ThePrimeagen/harpoon'
+  -- Use for a generic persistent terminal keybind.
+  use 'akinsho/toggleterm.nvim'
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'

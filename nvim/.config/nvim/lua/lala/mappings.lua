@@ -113,12 +113,12 @@ local M = function()
   snoremap('', '<leader>p', '"0p')
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
-  smap('n', '<leader>o', '<cmd>silent !uwin<cr>')
-  -- Close the current buffer. This can close the window too.
-  smap('n', '<leader>d', '<cmd>silent bd<cr>')
-  -- Delete the current buffer, but leave the window untouched.
-  -- TODO: Switch to the alternate buffer if it exists? If not, do bn.
-  smap('n', '<leader>D', '<cmd>silent bn | bd#<cr>')
+  -- TODO: Switch to the alternate buffer if it exists. If not, do bn.
+  snoremap('n', '<leader>d', '<cmd>b# <bar> bd#<cr>')
+  snoremap('n', '<leader>D', '<cmd>bd<cr>')
+  snoremap('n', '<leader>c', '<c-w>c')
+  snoremap('n', '<leader>O', '<cmd>silent !uwin<cr>')
+  snoremap('n', '<leader>o', '<cmd>tab split<cr>') -- Tab
 
   -- Quick Tab Switching Keybindings
   snoremap('n', '<leader>!', '1gt')
@@ -189,7 +189,7 @@ local M = function()
 
   -- Telescope Keybinds
   -- TODO: Can we use this to find _every_ picker, not just builtin ones?
-  snoremap('n', '<leader><leader>', "<cmd>Telescope<cr>")
+  snoremap('n', '<leader><leader>', '<cmd>Telescope<cr>')
   -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten"
