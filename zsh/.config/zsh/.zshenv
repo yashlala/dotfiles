@@ -3,7 +3,7 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=firefox
+export BROWSER=chromium
 
 
 # set application environment variables
