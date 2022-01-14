@@ -117,6 +117,8 @@ require('packer').startup(function()
   use 'ThePrimeagen/harpoon'
   -- Use for a generic persistent terminal keybind.
   use 'akinsho/toggleterm.nvim'
+  -- Delete a buffer without affecting the window layout.
+  use 'yashlala/vim-sayonara'
 
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
