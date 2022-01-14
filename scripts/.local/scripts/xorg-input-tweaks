@@ -1,0 +1,11 @@
+#!/bin/sh
+
+setxkbmap -option caps:swapescape \
+       -option altwin:swap_lalt_lwin \
+       -option ctrl:ralt_rctrl \
+       -option ctrl:rctrl_ralt
+xset b off r rate 200 25 s on s 600 m 0 0
+xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
+sleep 0.5 
+xinput disable 'ELAN Touchscreen'
+xmodmap ~/.config/xorg/xmodmap
