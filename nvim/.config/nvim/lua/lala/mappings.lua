@@ -28,13 +28,13 @@ local M = function()
 
   snoremap('n', ' ', '<nop>')
 
-  noremap('', ';', ':')
-  snoremap('', ':', 'q:')
   noremap('', "'", '`')
   noremap('', '`', '~')
   noremap('', '-', '0')
+
   noremap('', ';', ':')
-  snoremap('', ':', 'q:')
+  noremap('n', ':', '@:')
+  snoremap('n', 'q;', 'q:')
 
   noremap('n', '<bar>', 'K')
   noremap('n', 'K', 'kJ')
@@ -113,12 +113,20 @@ local M = function()
   snoremap('', '<leader>p', '"0p')
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
-  -- TODO: Switch to the alternate buffer if it exists. If not, do bn.
-  snoremap('n', '<leader>d', '<cmd>b# <bar> bd#<cr>')
-  snoremap('n', '<leader>D', '<cmd>bd<cr>')
-  snoremap('n', '<leader>c', '<c-w>c')
+
+  -- Delete the current buffer, close the current window/tab, clear loclist.
+  -- Smart command, use it as a generic "get out of my face" inator. 
+  snoremap('n', '<leader>s', '<cmd>Sayonara<cr>')
+  -- Delete the current buffer, preserve the window layout (smarter :bd)
+  -- Use when we want to delete _buffer_ but preserve everything else. 
+  snoremap('n', '<leader>d', '<cmd>Sayonara!<cr>')
+  -- Close the current window. Change nothing. 
+  -- Use when we want to delete window only. 
+  snoremap('n', '<leader>c', '<cmd>close<cr>')
+  -- Create new tab. 
+  snoremap('n', '<leader>o', '<cmd>tab split<cr>')
+  -- Create new window. 
   snoremap('n', '<leader>O', '<cmd>silent !uwin<cr>')
-  snoremap('n', '<leader>o', '<cmd>tab split<cr>') -- Tab
 
   -- Quick Tab Switching Keybindings
   snoremap('n', '<leader>!', '1gt')
@@ -145,7 +153,7 @@ local M = function()
   snoremap('n', '<leader>h)', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
 
   -- Quick terminal access. Creates terminals if they don't exist yet.
-  -- TODO: Use <leader>tt to open a temporary terminal in a split.
+  -- ToggleTerm.lua also provides us with <leader>tt, not shown here. 
   snoremap('n', '<leader>t!', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
   snoremap('n', '<leader>t@', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
   snoremap('n', '<leader>t#', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
@@ -159,12 +167,11 @@ local M = function()
 
   -- Hop Keybindings
   -- TODO: Set up colors properly.
-
-  --[[ noremap('', 'f', '<cmd>HopChar1AC<cr>')
+  noremap('', 'f', '<cmd>HopChar1AC<cr>')
   noremap('', 'F', '<cmd>HopChar1BC<cr>')
 
-  noremap('', 't', '<Plug>(easymotion-t)')
-  noremap('', 'T', '<Plug>(easymotion-T)') ]]
+  -- noremap('', 't', '<Plug>(easymotion-t)')
+  -- noremap('', 'T', '<Plug>(easymotion-T)')
 
   -- TODO: Make the `t` command work as expected.
   -- TODO: Also, can we just use plain lua functions instead of stringifying
@@ -172,12 +179,13 @@ local M = function()
   -- TODO: Looks like there's a PR for this?
   -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>", {})
   -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
+  noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
+  noremap('', '<leader>k', '<cmd>HopLineBC<cr>')
 
   -- TODO: Jump to beginning _and_ end of words.
-  --[[ noremap('', 's', '<cmd>HopWordCurrentLine<cr>')
-  map('', 's', '<Plug>(easymotion-lineanywhere)')
-  noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
-  noremap('', '<leader>k', '<cmd>HopLineBC<cr>') ]]
+  map('n', 's', '<Plug>(SubversiveSubstitute)')
+  map('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
+  map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 
   -- Diary Keybinds
   map('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
@@ -193,8 +201,9 @@ local M = function()
   -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten"
+  -- TODO: Can we define a keybind to kill buffers easily?
   -- We'll use this as our _primary_ method of navigation, so we should make it
-  -- damn nice.
+  -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
   snoremap('n', ',',
     "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
   -- Find old files (recently used)
@@ -203,12 +212,12 @@ local M = function()
   -- Find File
   snoremap('n', '<leader>ff',
     "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>")
-  -- Find Nvim Dotfile
+  -- Find (Nvim) Dotfile
   snoremap('n', '<leader>fd',
     "<cmd>lua require('telescope.builtin').find_files({hidden = true, cwd='~/.config/nvim'})<cr>")
   -- Find Here (Buffer's dir is the CWD)
   snoremap('n', '<leader>fh',
-    "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true)<cr>")
+    "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true})<cr>")
   -- TODO: Make our file browser even better!
   -- Can we get the preview window to show the CWD?
   snoremap('n', '<leader>fb',

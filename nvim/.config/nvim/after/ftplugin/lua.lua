@@ -1,4 +1,4 @@
--- TODO: Should autostart the LSP server. 
+-- TODO: Should autostart the LSP server.
 -- Not working for some reason, we need to manually :LspStart
 
 

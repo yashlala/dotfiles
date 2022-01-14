@@ -1,5 +1,9 @@
 -- `init.lua`
 
+-- Experimental opt in. Report bugs we find to the relevant neovim issue.
+-- https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
+vim.g.do_filetype_lua = 1
+
 --[[ TODO TODO:
 Roadmap:
 
@@ -80,18 +84,19 @@ require('packer').startup(function()
   -- This plugin can only keep track of about 95 changed lines
   -- before it runs out of stack space and defaults to "strip the entire file".
   -- May cause issues for us later. 
-  use 'axelf4/vim-strip-trailing-whitespace'
+  -- use 'axelf4/vim-strip-trailing-whitespace'
 
   -- Vim motions that don't require counts.
   -- TODO: Why do all of these suck?
   -- use 'easymotion/vim-easymotion'
   use 'phaazon/hop.nvim'
-  use 'ggandor/lightspeed.nvim'
 
   -- Automatic table alignment.
   use 'junegunn/vim-easy-align'
   -- Surround vim motions.
   use 'tpope/vim-surround'
+  -- Substitute areas of text with register contents (motion style)
+  use 'svermeulen/vim-subversive'
   -- "gc" keybinding to comment visual regions/lines.
   use 'numToStr/Comment.nvim'
   -- Date increments and decrements w/ <c-a> and <c-x>

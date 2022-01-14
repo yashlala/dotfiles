@@ -1,6 +1,6 @@
--- Basic Vim options. 
+-- Basic Vim options.
 
-local M = function() 
+local M = function()
   vim.o.confirm = true -- Ask before dangerous changes
   vim.o.gdefault = true -- s/.../.../g by default
 
@@ -19,40 +19,38 @@ local M = function()
   vim.o.showbreak = '    ' -- 4 extra spaces before wrapped line starts
   vim.o.linebreak = true
 
-  vim.o.belloff = 'all'  -- No bells! Whistles are OK. 
+  vim.o.belloff = 'all'  -- No bells! Whistles are OK.
 
-  -- TODO: We briefly got a ballin fold thing going. 
+  -- TODO: We briefly got a ballin fold thing going.
   -- Now that we have treesitter, this could become a real game changer in
-  -- terms of quickly parsing code. 
+  -- terms of quickly parsing code.
   vim.o.foldenable = true
-  vim.o.foldlevelstart = 99 -- Start with no folds closed. 
-
-  vim.o.hidden = true -- buffers don't disappear the moment you switch away
+  vim.o.foldlevelstart = 99 -- Start with no folds closed.
 
   vim.o.undofile = true -- persistent undo between sessions
 
   vim.o.lazyredraw = true
   vim.o.hlsearch = false
-  vim.o.termguicolors = false -- TODO: Was this causing highlight problems? 
+  vim.o.termguicolors = true -- TODO: Was this causing highlight problems?
 
   vim.o.modeline = true
-  vim.o.showmode = false -- Don't write VISUAL on the last line. 
+  vim.o.showmode = false -- Don't write VISUAL on the last line.
 
-  -- Always show the sign column. 
+  -- Always show the sign column.
   vim.o.signcolumn = 'yes'
 
   vim.o.mouse = 'a'
 
   vim.o.scrollback = 8192 -- lines of terminal mode scrollback
 
-  -- TODO: Add documentation for this. 
-  -- There should highkey be a better option here, this is dumb. 
-  -- We removed the `_` option. 
+  -- TODO: Add documentation for this.
+  -- There should highkey be a better option here, this is dumb.
+  -- We removed the `_` option.
   -- vim.o.cpoptions = 'aABceFs'
   -- We can use the below to  delete options!
   vim.o.cpoptions = vim.o.cpoptions:gsub("_", "")
 
-  -- TODO: Figure this out. 
+  -- TODO: Figure this out.
   --[[ vim.o.formatoptions = vim.o.formatoptions
     - "a" -- Auto formatting is BAD.
     - "t" -- Don't auto format my code. I got linters for that.

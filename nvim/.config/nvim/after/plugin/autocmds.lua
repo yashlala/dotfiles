@@ -26,6 +26,8 @@ local M = function()
 
   -- Enter terminal mode as soon as we create a terminal buffer.
   vim.api.nvim_exec("autocmd TermOpen * startinsert", false)
+  -- TODO: Why doesn't the below actually work? 
+  vim.api.nvim_exec("autocmd TermOpen * setlocal signcolumn=no", false)
 
   -- The bottom status line doesn't update very often, so the buffer listing can
   -- become stale. Avoid this by throwing in a few autocommands (we have a
