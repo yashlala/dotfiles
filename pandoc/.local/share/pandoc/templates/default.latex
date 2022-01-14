@@ -302,6 +302,31 @@ $if(pagestyle)$
 \pagestyle{$pagestyle$}
 $endif$
 
+% Define some macros to make math more tolerable. 
+
+% math text
+\newcommand{\mt}[1]{\ensuremath{\text{#1}}}
+% math bb
+\newcommand{\mbb}[1]{\ensuremath{\mathbb{#1}}}
+% math rm
+\newcommand{\mrm}[1]{\ensuremath{\mathrm{#1}}}
+% math cal (calligraphy font)
+\newcommand{\mc}{\ensuremath{\mathcal}}
+% math left
+\newcommand{\ml}{\ensuremath{\left}}
+% math right
+\newcommand{\mr}{\ensuremath{\right}}
+% begin equation
+\newcommand{\beq}{\begin{equation}}
+% begin equation with label
+\newcommand{\beql}[1]{\begin{equation}\label{#1}}
+% end equation
+\newcommand{\eeq}{\end{equation}}
+% end equation mode with a period
+\newcommand{\eeqp}{\;\;\;.\end{equation}}
+% end equation mode with a comma
+\newcommand{\eeqc}{\;\;\;,\end{equation}}
+
 % set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
