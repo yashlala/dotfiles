@@ -21,14 +21,19 @@ set promptfmt "\033[34;1m%w\033[0m %f"
 }}
 
 cmd open ${{
-    case $(file --mime-type "$f" -bL) in
-        text/*|application/json) nvim "$f";;
-        application/pdf) devour zathura "$f";;
-        video/*) devour mpv --force-window=yes "$f";;
-        audio/*) devour mpv --force-window=yes "$f";;
-        image/*) devour feh "$f";;
-        *) xdg-open "$f";;
-    esac
+    # Sometimes mp3s are labeled as octet streams.
+    if [ "${f##*.}" = "mp3" ]; then
+        mpv "$f"
+    else
+        case $(file --mime-type "$f" -bL) in
+            text/*|application/json) nvim "$f";;
+            application/pdf) devour zathura "$f";;
+            video/*) devour mpv --force-window=yes "$f";;
+            audio/*) devour mpv --force-window=yes "$f";;
+            image/*) devour feh "$f";;
+            *) xdg-open "$f";;
+        esac
+    fi
 }}
 
 cmd redraw_and_reload :{{
