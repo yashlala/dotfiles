@@ -26,7 +26,7 @@ cmd open ${{
         mpv "$f"
     else
         case $(file --mime-type "$f" -bL) in
-            text/*|application/json) nvim "$f";;
+            text/*|application/json) nvr -s "$f";;
             application/pdf) devour zathura "$f";;
             video/*) devour mpv --force-window=yes "$f";;
             audio/*) devour mpv --force-window=yes "$f";;
