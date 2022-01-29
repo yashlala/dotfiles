@@ -301,7 +301,7 @@ c.TerminalInteractiveShell.confirm_exit = False
 c.TerminalInteractiveShell.editing_mode = 'vi'
 
 ## Set the editor used by IPython (default to $EDITOR/vi/notepad).
-c.TerminalInteractiveShell.editor = 'vim'
+c.TerminalInteractiveShell.editor = 'nvim'
 
 ## Allows to enable/disable the prompt toolkit history search
 #c.TerminalInteractiveShell.enable_history_search = True
