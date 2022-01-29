@@ -26,6 +26,10 @@ require('telescope').setup {
     }
   },
 
+  preview = {
+    treesitter = false
+  },
+
   extensions = {
     file_browser = {
       mappings = {

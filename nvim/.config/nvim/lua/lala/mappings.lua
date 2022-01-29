@@ -51,8 +51,6 @@ local M = function()
   snoremap('n', 'H', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
 
 
-  snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
-  snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
   noremap('n', '<c-j>', '<cmd>lnext<cr>')
@@ -63,22 +61,23 @@ local M = function()
   noremap('', '+', '<c-e>')
 
   -- Use Meta for easy window operations
-  local nitmapper = function(lhs, rhs)
+  local nitvmapper = function(lhs, rhs)
     noremap('n', lhs, rhs)
     noremap('i', lhs, '<esc>' .. rhs)
     noremap('t', lhs, '<c-\\><c-n>' .. rhs)
+    noremap('v', lhs, '<esc>' .. rhs)
   end
 
-  nitmapper('<m-h>', '<c-w>h') -- Easy movement
-  nitmapper('<m-j>', '<c-w>j')
-  nitmapper('<m-k>', '<c-w>k')
-  nitmapper('<m-l>', '<c-w>l')
+  nitvmapper('<m-h>', '<c-w>h') -- Easy movement
+  nitvmapper('<m-j>', '<c-w>j')
+  nitvmapper('<m-k>', '<c-w>k')
+  nitvmapper('<m-l>', '<c-w>l')
 
-  nitmapper('<m-s>', '<c-w>s') -- Split
-  nitmapper('<m-v>', '<c-w>v') -- Vertical
-  nitmapper('<m-c>', '<c-w>c') -- Close
-  nitmapper('<m-x>', '<c-w>x') -- X-change
-  nitmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
+  nitvmapper('<m-s>', '<c-w>s') -- Split
+  nitvmapper('<m-v>', '<c-w>v') -- Vertical
+  nitvmapper('<m-c>', '<c-w>c') -- Close
+  nitvmapper('<m-x>', '<c-w>x') -- X-change
+  nitvmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
 
   vim.api.nvim_command([[
     function! ToggleQFList()
@@ -98,8 +97,10 @@ local M = function()
       endif
     endfunction
   ]])
-  nitmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
-  nitmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
+  nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
+  nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
+  snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
+  snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
 
   noremap('n', '<m-space>', '<nop>') -- prevent current mode confusion
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
@@ -113,6 +114,8 @@ local M = function()
   snoremap('', '<leader>p', '"0p')
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
+  -- "Go Here"; cd into the current file's directory. 
+  smap('n', 'gh', '<cmd>cd %:h<cr>')
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator. 
@@ -129,41 +132,41 @@ local M = function()
   snoremap('n', '<leader>O', '<cmd>silent !uwin<cr>')
 
   -- Quick Tab Switching Keybindings
-  snoremap('n', '<leader>!', '1gt')
-  snoremap('n', '<leader>@', '2gt')
-  snoremap('n', '<leader>#', '3gt')
-  snoremap('n', '<leader>$', '4gt')
-  snoremap('n', '<leader>%', '5gt')
-  snoremap('n', '<leader>^', '6gt')
-  snoremap('n', '<leader>&', '7gt')
-  snoremap('n', '<leader>*', '8gt')
-  snoremap('n', '<leader>(', '9gt')
-  snoremap('n', '<leader>)', '10gt')
+  snoremap('n', '<leader>1', '1gt')
+  snoremap('n', '<leader>2', '2gt')
+  snoremap('n', '<leader>3', '3gt')
+  snoremap('n', '<leader>4', '4gt')
+  snoremap('n', '<leader>5', '5gt')
+  snoremap('n', '<leader>6', '6gt')
+  snoremap('n', '<leader>7', '7gt')
+  snoremap('n', '<leader>8', '8gt')
+  snoremap('n', '<leader>9', '9gt')
+  snoremap('n', '<leader>0', '10gt')
 
   -- Quick Harpooned file access.
-  snoremap('n', '<leader>h!', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
-  snoremap('n', '<leader>h@', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
-  snoremap('n', '<leader>h#', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
-  snoremap('n', '<leader>h$', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
-  snoremap('n', '<leader>h%', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
-  snoremap('n', '<leader>h^', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>')
-  snoremap('n', '<leader>h&', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>')
-  snoremap('n', '<leader>h*', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>')
-  snoremap('n', '<leader>h(', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>')
-  snoremap('n', '<leader>h)', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
+  snoremap('n', '<leader>h1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
+  snoremap('n', '<leader>h2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
+  snoremap('n', '<leader>h3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
+  snoremap('n', '<leader>h4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
+  snoremap('n', '<leader>h5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
+  snoremap('n', '<leader>h6', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>')
+  snoremap('n', '<leader>h7', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>')
+  snoremap('n', '<leader>h8', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>')
+  snoremap('n', '<leader>h9', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>')
+  snoremap('n', '<leader>h0', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
 
   -- Quick terminal access. Creates terminals if they don't exist yet.
   -- ToggleTerm.lua also provides us with <leader>tt, not shown here. 
-  snoremap('n', '<leader>t!', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
-  snoremap('n', '<leader>t@', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
-  snoremap('n', '<leader>t#', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
-  snoremap('n', '<leader>t$', '<cmd>lua require("harpoon.term").gotoTerminal(4)<cr>')
-  snoremap('n', '<leader>t%', '<cmd>lua require("harpoon.term").gotoTerminal(5)<cr>')
-  snoremap('n', '<leader>t^', '<cmd>lua require("harpoon.term").gotoTerminal(6)<cr>')
-  snoremap('n', '<leader>t&', '<cmd>lua require("harpoon.term").gotoTerminal(7)<cr>')
-  snoremap('n', '<leader>t*', '<cmd>lua require("harpoon.term").gotoTerminal(8)<cr>')
-  snoremap('n', '<leader>t(', '<cmd>lua require("harpoon.term").gotoTerminal(9)<cr>')
-  snoremap('n', '<leader>t)', '<cmd>lua require("harpoon.term").gotoTerminal(10)<cr>')
+  snoremap('n', '<leader>t1', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
+  snoremap('n', '<leader>t2', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
+  snoremap('n', '<leader>t3', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
+  snoremap('n', '<leader>t4', '<cmd>lua require("harpoon.term").gotoTerminal(4)<cr>')
+  snoremap('n', '<leader>t5', '<cmd>lua require("harpoon.term").gotoTerminal(5)<cr>')
+  snoremap('n', '<leader>t6', '<cmd>lua require("harpoon.term").gotoTerminal(6)<cr>')
+  snoremap('n', '<leader>t7', '<cmd>lua require("harpoon.term").gotoTerminal(7)<cr>')
+  snoremap('n', '<leader>t8', '<cmd>lua require("harpoon.term").gotoTerminal(8)<cr>')
+  snoremap('n', '<leader>t9', '<cmd>lua require("harpoon.term").gotoTerminal(9)<cr>')
+  snoremap('n', '<leader>t0', '<cmd>lua require("harpoon.term").gotoTerminal(10)<cr>')
 
   -- Hop Keybindings
   -- TODO: Set up colors properly.
@@ -181,8 +184,8 @@ local M = function()
   -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
   noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
   noremap('', '<leader>k', '<cmd>HopLineBC<cr>')
-
   -- TODO: Jump to beginning _and_ end of words.
+
   map('n', 's', '<Plug>(SubversiveSubstitute)')
   map('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
   map('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
@@ -259,8 +262,11 @@ local M = function()
   -- but set up operator pending mode maps as well?
   -- Apparently iminsert has something to do with this, too?
   -- vim.o.langremap = true
-  vim.o.langremap = false
-  vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
+  -- vim.o.langremap = false
+  -- vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
+  -- TODO: ^ THIS IS THE REASON WHY ALL OF OUR SNIPPET PLUGINS ARE FAILING!
+  -- FIND ANOTHER WAY TO DO THIS, WITH LANGREMAP OR SOMETHING...AND FILE A BUG
+  -- REPORT ON THE LUASNIP REPOSITORY JUST IN CASE!
 end
 
 return M

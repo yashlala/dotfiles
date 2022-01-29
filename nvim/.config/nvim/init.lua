@@ -7,34 +7,11 @@ vim.g.do_filetype_lua = 1
 --[[ TODO TODO:
 Roadmap:
 
-1. Switch to easymotion, hop, or something. We may be blocking on a PR going
-   through, if this is the case then set up a proper reminder.
-
-2. Figure out why lua LSP isn't autostarting.
-
-5. Create binds for LSP commands - `gd`, etc.
-
-2. Use telescope for a solid file browser.
-   We should have the prompt include the CWD
-   We can use this to make the rest of these pervasive changes.
-
-3. Once we have a file browser, implement other telescope pickers, TJ style.
-   This may allow us to remove `autochdir` and reinstate `project.nvim`.
-
-4. Set up luasnip style snippets.
-
-6. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
+1. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
    diagnostics on point.
-
-7. Remove all `TODO`s from our configs. Too many weird bugs.
-
-8. Set a better abbreviation so we can't quit when there are multiple buffers.
-
-10. Set up the quickfix binds to be smarter (as per comment there)
-11. Set up a grand telescope picker menu (not jus tbuiltins)
-
-9. Set up a better git plugin. Install neogit instead, then get rid of signs
-   and fugitive? Might be easier.
+2. Remove all `TODO`s from our configs. Too many weird bugs.
+3. Set up the quickfix binds to be smarter (as per comment there)
+4. Set up a grand telescope picker menu (not jus tbuiltins)
 ]]
 
 
@@ -139,11 +116,13 @@ require('packer').startup(function()
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
 
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin. TODO: Set this up.
   use 'saadparwaiz1/cmp_luasnip'
+  use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', }
+  use 'rafamadriz/friendly-snippets'
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {

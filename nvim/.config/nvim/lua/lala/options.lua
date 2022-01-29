@@ -38,6 +38,8 @@ local M = function()
 
   -- Always show the sign column.
   vim.o.signcolumn = 'yes'
+  -- Limit the number of completion popup menu options.
+  vim.o.pumheight = 6
 
   vim.o.mouse = 'a'
 
