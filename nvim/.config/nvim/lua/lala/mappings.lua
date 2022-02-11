@@ -26,7 +26,7 @@ local M = function()
     vim.api.nvim_set_keymap(mode, key, value, { noremap = true, silent = true })
   end
 
-  snoremap('n', ' ', '<nop>')
+  snoremap('n', '<space>', '<nop>')
 
   noremap('', "'", '`')
   noremap('', '`', '~')
@@ -39,8 +39,10 @@ local M = function()
   noremap('n', '<bar>', 'K')
   noremap('n', 'K', 'kJ')
   noremap('n', 'U', '<c-r>')
+  noremap('n', 'V', 'v')
   noremap('n', 'v', 'V')
-  -- "Available" (unmapped) normal mode keys: U, S, V.
+
+  noremap('v', '<c-g>', 'g<c-g>')
 
   noremap('n', 'gs', ':%s/')
   map('n', 'ga', '<Plug>(EasyAlign)')
@@ -203,12 +205,13 @@ local M = function()
   snoremap('n', '<leader><leader>', '<cmd>Telescope<cr>')
   -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
-  --       "truncate" with the selectiveness of "shorten"
+  --       "truncate" with the selectiveness of "shorten". Can just pass
+  --       a function argument...
   -- TODO: Can we define a keybind to kill buffers easily?
   -- We'll use this as our _primary_ method of navigation, so we should make it
   -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
   snoremap('n', ',',
-    "<cmd>lua require('telescope.builtin').buffers({path_display = {'truncate', 'shorten', 'smart'}})<cr>")
+    "<cmd>lua require('telescope.builtin').buffers({preview = {hide_on_startup = true}, path_display = {'absolute', 'truncate'}})<cr>")
   -- Find old files (recently used)
   snoremap('n', '<leader>fo',
     "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")

@@ -72,6 +72,8 @@ require('packer').startup(function()
   use 'junegunn/vim-easy-align'
   -- Surround vim motions.
   use 'tpope/vim-surround'
+  -- Better text objects (eg: dia to delete one function argument)
+  use 'wellle/targets.vim'
   -- Substitute areas of text with register contents (motion style)
   use 'svermeulen/vim-subversive'
   -- "gc" keybinding to comment visual regions/lines.

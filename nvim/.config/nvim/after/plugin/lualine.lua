@@ -10,18 +10,14 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'filename'},
-    lualine_c = {{ 
+    lualine_c = {{
       function()
-        local num_buffers = vim.fn.len(vim.fn.getbufinfo({buflisted = 1}))
-        if num_buffers <= 1 then
-          return ""
-        end
-        return tostring(num_buffers)
+        return vim.fn.getcwd()
       end
     }},
-    lualine_x = {'filetype', 'branch'},
+    lualine_x = {'branch', 'filetype'},
     lualine_y = {'diagnostics'},
-    lualine_z = {'location'}
+    lualine_z = {'location'},
   },
   inactive_sections = {
     lualine_a = {},

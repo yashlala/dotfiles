@@ -2,7 +2,7 @@
 
 local M = function()
   vim.o.confirm = true -- Ask before dangerous changes
-  vim.o.gdefault = true -- s/.../.../g by default
+  vim.o.gdefault = true -- s/.../.../g by default. Might break plugins. 
 
   vim.o.autoindent = true -- use line's indent for the next line
   vim.o.smartindent = true; -- and use C rules if possible.
@@ -50,6 +50,10 @@ local M = function()
   -- We removed the `_` option.
   -- vim.o.cpoptions = 'aABceFs'
   -- We can use the below to  delete options!
+
+  -- Ordinarily, "cw" and "cW" are treated like "ce" and "cE" if the cursor is
+  -- on a non-blank.  This is Vi-compatible, but confusing. 
+  -- Remove its cpoption (compatibility option) flag below (`_`). 
   vim.o.cpoptions = vim.o.cpoptions:gsub("_", "")
 
   -- TODO: Figure this out.
