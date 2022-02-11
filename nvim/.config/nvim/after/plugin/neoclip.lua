@@ -1,7 +1,7 @@
 -- TODO: Use this to replace <leader-p>
 require('neoclip').setup({
   history = 1000,
-  enable_persistant_history = false,
+  enable_persistent_history = false,
   db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
   filter = nil,
   preview = true,

@@ -5,8 +5,6 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-lspkind.init()
-
 -- TODO: We can fix this using the luasnip API documentation.
 cmp.setup({
   -- TODO: Add more bindings! Control key is easy now.
