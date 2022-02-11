@@ -29,6 +29,8 @@ require'lspconfig'.sumneko_lua.setup {
       workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        -- Disable annoying error message
+        checkThirdParty = false,
       },
       -- Send telemetry data containing a randomized but unique identifier
       telemetry = {
