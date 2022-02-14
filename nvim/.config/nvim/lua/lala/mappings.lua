@@ -108,9 +108,6 @@ local M = function()
   noremap('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   noremap('t', '<m-space>', '<c-\\><c-n>')
   noremap('t', '<c-space>', '<c-\\><c-n>')
-  noremap('n', '<c-\\>', '<nop>')
-  noremap('i', '<c-\\>', '<esc>')
-  noremap('t', '<c-\\>', '<c-\\><c-n>')
 
   -- Simple Leader Keybinds
   snoremap('', '<leader>p', '"0p')
