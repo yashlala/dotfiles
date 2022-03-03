@@ -12,7 +12,12 @@ else
   hostname=
 fi
 PROMPT="%B[${hostname}%c %(?..%F{black})%#%F{fg}]%f%b "
+# Prepend the prompt with a horizontal line
+PROMPT="%F{black}\${(r:\$COLUMNS::-:)}%F{fg}$PS1"
+# Print the last program's return code, if nonzero
 RPROMPT='%(?..%F{black}%B%?%b%F{fg})'
+# Enable prompt substitution, needed for $COLUMN 
+setopt promptsubst
 unset -v hostname
 
 # configure history
