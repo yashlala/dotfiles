@@ -31,7 +31,7 @@ local M = function()
 
   vim.o.lazyredraw = true
   vim.o.hlsearch = false
-  vim.o.termguicolors = true -- TODO: Was this causing highlight problems?
+  vim.o.termguicolors = true 
 
   vim.o.modeline = true
   vim.o.showmode = false -- Don't write VISUAL on the last line.

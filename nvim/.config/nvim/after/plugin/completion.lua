@@ -27,19 +27,20 @@ cmp.setup({
     ['<c-e>'] = cmp.mapping.close(),
     -- Accept the current completion
     ['<c-space>'] = cmp.mapping(function()
+      -- TODO: Expand based on current menu entry somehow. 
+      -- I don't think this is working right, even with cmp_luasnip?
+      -- Figure out fallback logic. 
       if luasnip.expand_or_jumpable() then
-        print('luasnip option')
         luasnip.expand_or_jump()
       elseif cmp.visible() then
-        print('cmp option')
         cmp.confirm { behavior = cmp.ConfirmBehavior.insert, select = true }
       end
     end, { 'i', 'v', 'n', 'c' }),
   },
 
   sources = {
-    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
     { name = 'nvim_lua' }, -- automatically runs only for lua
     { name = 'buffer', keyword_length = 5 },
     { name = 'path', keyword_length = 5 }, -- TODO: kw_len not working

@@ -27,10 +27,4 @@ require('marks').setup({
     sign = "⚑",
     virt_text = ""
   },
-  mappings = {
-    set_bookmark0 = 'm!',
-    delete_bookmark0 = 'dm!',
-    next = "]m",
-    prev = "]m"
-  }
 })

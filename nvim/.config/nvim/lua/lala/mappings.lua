@@ -45,6 +45,7 @@ local M = function()
   noremap('v', '<c-g>', 'g<c-g>')
 
   noremap('n', 'gs', ':%s/')
+  noremap('n', 'gl', ':lua ')
   map('n', 'ga', '<Plug>(EasyAlign)')
 
   -- Mark the entire file with Harpoon.
@@ -55,8 +56,6 @@ local M = function()
 
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
-  noremap('n', '<c-j>', '<cmd>lnext<cr>')
-  noremap('n', '<c-k>', '<cmd>lprev<cr>')
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')
@@ -113,21 +112,21 @@ local M = function()
   snoremap('', '<leader>p', '"0p')
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
-  -- "Go Here"; cd into the current file's directory. 
+  -- "Go Here"; cd into the current file's directory.
   smap('n', 'gh', '<cmd>cd %:h<cr>')
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
-  -- Smart command, use it as a generic "get out of my face" inator. 
+  -- Smart command, use it as a generic "get out of my face" inator.
   snoremap('n', '<leader>s', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
-  -- Use when we want to delete _buffer_ but preserve everything else. 
+  -- Use when we want to delete _buffer_ but preserve everything else.
   snoremap('n', '<leader>d', '<cmd>Sayonara!<cr>')
-  -- Close the current window. Change nothing. 
-  -- Use when we want to delete window only. 
+  -- Close the current window. Change nothing.
+  -- Use when we want to delete window only.
   snoremap('n', '<leader>c', '<cmd>close<cr>')
-  -- Create new tab. 
+  -- Create new tab.
   snoremap('n', '<leader>o', '<cmd>tab split<cr>')
-  -- Create new window. 
+  -- Create new window.
   snoremap('n', '<leader>O', '<cmd>silent !uwin<cr>')
 
   -- Quick Tab Switching Keybindings
@@ -155,7 +154,7 @@ local M = function()
   snoremap('n', '<leader>h0', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
 
   -- Quick terminal access. Creates terminals if they don't exist yet.
-  -- ToggleTerm.lua also provides us with <leader>tt, not shown here. 
+  -- ToggleTerm.lua also provides us with <leader>tt, not shown here.
   snoremap('n', '<leader>t1', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
   snoremap('n', '<leader>t2', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
   snoremap('n', '<leader>t3', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
@@ -168,22 +167,17 @@ local M = function()
   snoremap('n', '<leader>t0', '<cmd>lua require("harpoon.term").gotoTerminal(10)<cr>')
 
   -- Hop Keybindings
-  -- TODO: Set up colors properly.
   noremap('', 'f', '<cmd>HopChar1AC<cr>')
-  noremap('', 'F', '<cmd>HopChar1BC<cr>')
-
-  -- noremap('', 't', '<Plug>(easymotion-t)')
-  -- noremap('', 'T', '<Plug>(easymotion-T)')
-
-  -- TODO: Make the `t` command work as expected.
-  -- TODO: Also, can we just use plain lua functions instead of stringifying
-  -- here?
-  -- TODO: Looks like there's a PR for this?
-  -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>", {})
-  -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>", {})
+  noremap('', 't', '<cmd>HopChar1BC<cr>')
+  noremap('n', 'F', '<cmd>HopChar2AC<cr>')
+  noremap('n', 'T', '<cmd>HopChar2BC<cr>')
+  -- In operator-pending mode, these work like ordinary vim.
+  noremap('o', 'f', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>")
+  noremap('o', 'F', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true })<cr>")
+  noremap('o', 't', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = false })<cr>")
+  noremap('o', 'T', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = false })<cr>")
   noremap('', '<leader>j', '<cmd>HopLineAC<cr>')
   noremap('', '<leader>k', '<cmd>HopLineBC<cr>')
-  -- TODO: Jump to beginning _and_ end of words.
 
   map('n', 's', '<Plug>(SubversiveSubstitute)')
   map('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
@@ -252,21 +246,6 @@ local M = function()
   -- TODO: Make this smarter, maybe? If we have more than a few buffers open,
   -- then we should not quit.
   -- vim.cmd("cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>")
-
-  -- Swap digits and special characters. We need to do this in `langmap` (as
-  -- opposed to regular bindings) because Vim isn't able to map all of its modes.
-  -- map them all (eg: operator-pending for some reason doesn't remap di
-  -- TODO: If we set this to true, then everything works for us that failed
-  -- before (eg: d9 should act like `d(`).
-  -- I think we should set it to false. But.
-  -- but set up operator pending mode maps as well?
-  -- Apparently iminsert has something to do with this, too?
-  -- vim.o.langremap = true
-  -- vim.o.langremap = false
-  -- vim.o.langmap = '1!,!1,2@,@2,3#,#3,$4,4$,5%,%5,6^,^6,7&,&7,8*,*8,9(,(9,0),)0'
-  -- TODO: ^ THIS IS THE REASON WHY ALL OF OUR SNIPPET PLUGINS ARE FAILING!
-  -- FIND ANOTHER WAY TO DO THIS, WITH LANGREMAP OR SOMETHING...AND FILE A BUG
-  -- REPORT ON THE LUASNIP REPOSITORY JUST IN CASE!
 end
 
 return M

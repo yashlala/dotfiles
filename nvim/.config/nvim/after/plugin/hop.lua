@@ -14,5 +14,10 @@ vim.schedule(function()
 end)
 
 require('hop').setup({
-  create_hl_autocmd = false
+  keys = 'asdfghjkl;qwertyuiopzxcvbnm',
+  create_hl_autocmd = false,
+  quit_key = '<esc>',
+  char2_fallback_key = '<esc>', 
+  teasing = false,  -- Don't display annoying error message
+  multi_windows = false,
 })
