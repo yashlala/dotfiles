@@ -6,6 +6,7 @@ setxkbmap -option caps:swapescape \
        -option ctrl:rctrl_ralt
 xset b off r rate 200 25 s on s 600 m 0 0
 xinput --set-prop 'Synaptics TM3072-003' 'libinput Accel Speed' 0.5
+xinput --set-prop 'TPPS/2 IBM TrackPoint' 'libinput Accel Speed' 0.0
 sleep 0.5 
 xinput disable 'ELAN Touchscreen'
 xmodmap ~/.config/xorg/xmodmap

@@ -54,6 +54,7 @@ export RANDFILE="$XDG_DATA_HOME/openssl/rnd"
 # needed for ~/.zoom folder
 export SSB_HOME="$XDG_DATA_HOME/zoom/"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite"
+export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 
