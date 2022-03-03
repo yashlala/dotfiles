@@ -300,6 +300,13 @@ c.TerminalInteractiveShell.confirm_exit = False
 ## Shortcut style to use at the prompt. 'vi' or 'emacs'.
 c.TerminalInteractiveShell.editing_mode = 'vi'
 
+# The below lines are intended to fix a regression in IPython 8, as per: 
+#   https://github.com/ipython/ipython/issues/13443
+# From what I understand, it's a hack. If you're reading this in the future,
+# check to see if they've resolved the issue by now. 
+c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode = False
+c.TerminalInteractiveShell.timeoutlen = 0.25
+
 ## Set the editor used by IPython (default to $EDITOR/vi/notepad).
 c.TerminalInteractiveShell.editor = 'nvim'
 
