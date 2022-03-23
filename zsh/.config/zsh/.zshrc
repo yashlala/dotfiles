@@ -40,11 +40,6 @@ zstyle ':completion:*' menu select
 # configure jobs
 setopt notify longlistjobs
 
-# configure help module
-autoload -Uz run-help
-unalias run-help
-alias help=run-help
-
 # source zle configuration
 source "$zshconfigdir/zshzle"
 
