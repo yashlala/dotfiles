@@ -23,7 +23,7 @@ set promptfmt "\033[34;1m%w\033[0m %f"
 cmd open ${{
     # Sometimes mp3s are labeled as octet streams.
     if [ "${f##*.}" = "mp3" ]; then
-        mpv "$f"
+        mpv --no-audio-display "$f"
     else
         case $(file --mime-type "$f" -bL) in
             text/*|application/json) nvr -s "$f";;
