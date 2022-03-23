@@ -60,7 +60,7 @@ require('packer').startup(function()
   -- Strip trailing whitespace on lines we've modified.
   -- This plugin can only keep track of about 95 changed lines
   -- before it runs out of stack space and defaults to "strip the entire file".
-  -- May cause issues for us later. 
+  -- May cause issues for us later.
   -- use 'axelf4/vim-strip-trailing-whitespace'
 
   -- Vim motions that don't require counts.
@@ -153,4 +153,4 @@ end)
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
 -- TODO: Highlight the signs column like we do in gitsigns.
-vim.api.nvim_command('highlight SignColumn ctermbg=238')
+vim.api.nvim_command('highlight SignColumn ctermbg=238 guibg=#444444')

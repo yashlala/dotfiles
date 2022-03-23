@@ -44,18 +44,21 @@ local M = function()
 
   noremap('v', '<c-g>', 'g<c-g>')
 
-  noremap('n', 'gs', ':%s/')
-  noremap('n', 'gl', ':lua ')
-  map('n', 'ga', '<Plug>(EasyAlign)')
+  snoremap('n', 'gs', ':%s/') -- "Go :s"
+  snoremap('n', 'gG', ':%g/') -- "Go :g"
+  snoremap('n', 'gl', ':lua ') -- "Go lua"
+  snoremap('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
+  map('n', 'ga', '<Plug>(EasyAlign)') -- "Go align"
 
   -- Mark the entire file with Harpoon.
   snoremap('n', 'M', '<cmd>lua require("harpoon.mark").add_file()<cr>')
   -- Bring up the Harpoon menu for quick switching.
   snoremap('n', 'H', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>')
 
-
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
+  noremap('n', '<c-]>', 'g<c-]>')
+  noremap('n', 'g<c-]>', '<c-]>')
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')
@@ -99,7 +102,9 @@ local M = function()
     endfunction
   ]])
   nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
+  nitvmapper('<c-q>', '<cmd>call ToggleQFList()<cr>')
   nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
+  nitvmapper('<c-r>', '<cmd>call ToggleLocList()<cr>')
   snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
   snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
 
@@ -112,8 +117,6 @@ local M = function()
   snoremap('', '<leader>p', '"0p')
   snoremap('', '<leader>P', '"0P')
   smap('n', '<leader>gg', '<cmd>G<cr>')
-  -- "Go Here"; cd into the current file's directory.
-  smap('n', 'gh', '<cmd>cd %:h<cr>')
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator.
@@ -168,8 +171,8 @@ local M = function()
 
   -- Hop Keybindings
   noremap('', 'f', '<cmd>HopChar1AC<cr>')
-  noremap('', 't', '<cmd>HopChar1BC<cr>')
-  noremap('n', 'F', '<cmd>HopChar2AC<cr>')
+  noremap('', 'F', '<cmd>HopChar1BC<cr>')
+  noremap('n', 't', '<cmd>HopChar2AC<cr>')
   noremap('n', 'T', '<cmd>HopChar2BC<cr>')
   -- In operator-pending mode, these work like ordinary vim.
   noremap('o', 'f', "<cmd>lua require'hop'.hint_char1({direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true })<cr>")
@@ -189,6 +192,11 @@ local M = function()
   map('n', '<leader>wt', '<cmd>VimwikiMakeTomorrowDiaryNote 1<cr>')
   map('n', '<leader>wy', '<cmd>VimwikiMakeYesterdayDiaryNote 1<cr>')
   map('n', '<leader>w<leader>w', '<cmd>VimwikiIndex 1<cr>')
+  -- Vimwiki uses <tab> to go to the next link, but <c-i> and <tab> are the
+  -- same for the terminal. Disable the <tab> keybind by assigning it to
+  -- something else before vimwiki is loaded. 
+  map('n', '<leader>wn',  '<Plug>VimwikiNextLink')
+  map('n', '<leader>wp',  '<Plug>VimwikiNextLink')
 
 
   -- Telescope Keybinds
@@ -202,23 +210,31 @@ local M = function()
   -- We'll use this as our _primary_ method of navigation, so we should make it
   -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
   snoremap('n', ',',
-    "<cmd>lua require('telescope.builtin').buffers({preview = {hide_on_startup = true}, path_display = {'absolute', 'truncate'}})<cr>")
+    "<cmd>lua require('telescope.builtin').buffers({preview={hide_on_startup=true}, path_display = {'absolute', 'truncate'}})<cr>")
   -- Find old files (recently used)
   snoremap('n', '<leader>fo',
-    "<cmd>lua require('telescope.builtin').oldfiles({})<cr>")
+    "<cmd>lua require('telescope.builtin').oldfiles({preview={hide_on_startup=true}})<cr>")
   -- Find File
   snoremap('n', '<leader>ff',
-    "<cmd>lua require('telescope.builtin').find_files({hidden = true})<cr>")
-  -- Find (Nvim) Dotfile
-  snoremap('n', '<leader>fd',
-    "<cmd>lua require('telescope.builtin').find_files({hidden = true, cwd='~/.config/nvim'})<cr>")
+    "<cmd>lua require('telescope.builtin').find_files({hidden = true, preview={hide_on_startup=true}})<cr>")
   -- Find Here (Buffer's dir is the CWD)
   snoremap('n', '<leader>fh',
-    "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true})<cr>")
+    "<cmd>lua require('lala.telescope-custom').find_files_bufdir({hidden = true, preview={hide_on_startup=true}})<cr>")
+  -- Find nvim dotfiles
+  snoremap('n', '<leader>fd',
+    "<cmd>lua require('telescope.builtin').find_files({hidden = true, cwd='~/.config/nvim', preview={hide_on_startup=true}})<cr>")
+  -- Find all dotfiles
+  snoremap('n', '<leader>fD',
+    "<cmd>lua require('telescope.builtin').find_files({hidden = true, cwd='~/.dotfiles', preview={hide_on_startup=true}})<cr>")
+  -- Find in project
+  snoremap('n', '<leader>fp',
+    "<cmd>lua require('telescope.builtin').git_files({preview={hide_on_startup=true}})<cr>")
+  -- Find in all known projects.
+  snoremap('n', '<leader>fP', "<cmd>Telescope projects<cr>")
   -- TODO: Make our file browser even better!
   -- Can we get the preview window to show the CWD?
   snoremap('n', '<leader>fb',
-    "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>")
+    "<cmd>lua require('telescope').extensions.file_browser.file_browser({preview={hide_on_startup=true}})<cr>")
   -- Find String
   snoremap('n', '<leader>fs',
     "<cmd>lua require('telescope.builtin').live_grep({hidden = true})<cr>")
@@ -226,11 +242,9 @@ local M = function()
   -- string to search with lua, then we search through those results.
   snoremap('n', '<leader>fS',
     "<cmd>lua require('telescope.builtin').grep_string({hidden = true})<cr>")
-  -- Find in project
-  snoremap('n', '<leader>fp',
-    "<cmd>lua require('telescope.builtin').git_files({})<cr>")
-  -- Find in all known projects.
-  snoremap('n', '<leader>fP', "<cmd>Telescope projects<cr>")
+    -- Find word in _current buffer only
+  snoremap('n', '<leader>fw',
+    "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find({})<cr>")
 
   -- LSP Keybinds
   snoremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')

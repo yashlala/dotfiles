@@ -2,7 +2,8 @@
 
 local M = function()
   vim.o.confirm = true -- Ask before dangerous changes
-  vim.o.gdefault = true -- s/.../.../g by default. Might break plugins. 
+  vim.o.gdefault = true -- s/.../.../g by default. Might break plugins.
+  vim.o.timeout = false -- Don't delay when given ambiguous keymaps
 
   vim.o.autoindent = true -- use line's indent for the next line
   vim.o.smartindent = true; -- and use C rules if possible.
@@ -10,9 +11,22 @@ local M = function()
   vim.o.ignorecase = true -- Ignore case when searching (use \C to undo)
   vim.o.smartcase = true -- unless we see a capital letter
 
+  -- TODO: We briefly got a ballin fold thing going.
+  -- Now that we have treesitter, this could become a real game changer in
+  -- terms of quickly parsing code.
+  vim.o.foldenable = true
+  vim.o.foldlevelstart = 99 -- Start with no folds closed.
   -- Use treesitter for folds
   vim.o.foldmethod = 'expr'
   vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+
+  -- Use ripgrep for `:grep`, if it's available
+  if vim.fn.executable('rg') == 1 then 
+    vim.o.grepprg = 'rg --vimgrep --no-heading $*'
+    vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+  end
+  vim.o.cscopetag = true -- <c-]> should try cscope first instead of ctags
+  vim.o.cscopequickfix = 's-,c-,d-,i-,t-,e-,a-,g-' -- cscope should use the qflist
 
   vim.o.wrap = true
   vim.o.breakindent = true -- A line's wrap should be indented the same
@@ -20,42 +34,24 @@ local M = function()
   vim.o.linebreak = true
 
   vim.o.belloff = 'all'  -- No bells! Whistles are OK.
-
-  -- TODO: We briefly got a ballin fold thing going.
-  -- Now that we have treesitter, this could become a real game changer in
-  -- terms of quickly parsing code.
-  vim.o.foldenable = true
-  vim.o.foldlevelstart = 99 -- Start with no folds closed.
-
   vim.o.undofile = true -- persistent undo between sessions
+  vim.o.scrollback = 8192 -- lines of terminal mode scrollback
 
   vim.o.lazyredraw = true
   vim.o.hlsearch = false
-  vim.o.termguicolors = true 
+  vim.o.termguicolors = true
 
+  vim.o.signcolumn = 'yes' -- Always show the sign column.
+  vim.o.pumheight = 6 -- Limit the number of completion popup menu options.
   vim.o.modeline = true
   vim.o.showmode = false -- Don't write VISUAL on the last line.
 
-  -- Always show the sign column.
-  vim.o.signcolumn = 'yes'
-  -- Limit the number of completion popup menu options.
-  vim.o.pumheight = 6
-
   vim.o.mouse = 'a'
 
-  vim.o.scrollback = 8192 -- lines of terminal mode scrollback
-
-  -- TODO: Add documentation for this.
-  -- There should highkey be a better option here, this is dumb.
-  -- We removed the `_` option.
-  -- vim.o.cpoptions = 'aABceFs'
-  -- We can use the below to  delete options!
-
   -- Ordinarily, "cw" and "cW" are treated like "ce" and "cE" if the cursor is
-  -- on a non-blank.  This is Vi-compatible, but confusing. 
-  -- Remove its cpoption (compatibility option) flag below (`_`). 
+  -- on a non-blank.  This is Vi-compatible, but confusing.
+  -- Remove its cpoption (compatibility option) flag below (`_`).
   vim.o.cpoptions = vim.o.cpoptions:gsub("_", "")
-
   -- TODO: Figure this out.
   --[[ vim.o.formatoptions = vim.o.formatoptions
     - "a" -- Auto formatting is BAD.

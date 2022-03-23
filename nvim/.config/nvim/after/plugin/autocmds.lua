@@ -1,4 +1,4 @@
-local M = function() 
+local M = function()
   -- Re-compile packer after any edits to our config file.
   vim.api.nvim_exec([[
     augroup Packer
@@ -8,7 +8,7 @@ local M = function()
     augroup end
   ]], true)
 
-  -- Return to last edit position when opening files. 
+  -- Return to last edit position when opening files.
   vim.api.nvim_exec([[
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -16,7 +16,7 @@ local M = function()
     \ endif
   ]], false)
 
-  -- Read neomutt filetypes correctly. 
+  -- Read neomutt filetypes correctly.
   vim.api.nvim_exec([[
   autocmd BufNewFile,BufRead neomutt-* set filetype=mail
   ]], false)
@@ -26,13 +26,13 @@ local M = function()
 
   -- Enter terminal mode as soon as we create a terminal buffer.
   vim.api.nvim_exec("autocmd TermOpen * startinsert", false)
-  -- TODO: Why doesn't the below actually work? 
+  -- TODO: Why doesn't the below actually work?
   vim.api.nvim_exec("autocmd TermOpen * setlocal signcolumn=no", false)
 
   -- The bottom status line doesn't update very often, so the buffer listing can
   -- become stale. Avoid this by throwing in a few autocommands (we have a
   -- function later in this file that mitigates this problem as well)
-  -- TODO: Stop using the line altogether. We have a keymap now. 
+  -- TODO: Stop using the line altogether. We have a keymap now.
   vim.api.nvim_exec([[
   autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
     \ call lightline#update()

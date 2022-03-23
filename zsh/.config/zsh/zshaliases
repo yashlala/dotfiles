@@ -4,14 +4,14 @@
 
 # aliases
 
-alias a='fasd -a'
-alias d='fasd -d'
-alias ee="fasd -fe $EDITOR"
-alias f='fasd -f'
-alias j='fasd_cd -d'
-alias jj='fasd_cd -d -i'
-alias sd='fasd -sid'
-alias s='fasd -si'
+alias a='fasd -a' # files and directories (all)
+alias d='fasd -d' # directories
+alias ee="fasd -fe $EDITOR" # edit any file
+alias f='fasd -f' # files
+alias j='fasd_cd -d' # jao; go to directory
+alias jj='fasd_cd -d -i' # interactive jao (menu)
+alias s='fasd -si' # echo instead of cd
+alias sd='fasd -sid' 
 alias sf='fasd -sif'
 
 alias adoc='asciidoctor'
@@ -49,10 +49,12 @@ alias elinks='elinks -config-dir .local/share/elinks'
 alias gdb='gdb -q'
 alias info='info --vi-keys'
 alias mv='mv -i'
+alias newsboat='newsboat -C ~/.config/newsboat/config -u ~/.config/newsboat/urls -c ~/.cache/newsboat'
 alias R='R -q'
 alias tor='tor -f ~/.config/tor/torrc'
 alias units='units --history ""'
 alias manim='manim -v WARNING'
+alias wget='wget --hsts-file /dev/null'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
