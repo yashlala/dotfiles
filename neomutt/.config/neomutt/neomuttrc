@@ -78,7 +78,7 @@ set attribution = "On %d, %n wrote:" # format of quoting header
 set reply_to                         # reply to Reply to: field
 set reverse_name                     # reply as whomever it was to
 set forward_quote                    # include message in forwards
-set text_flowed = yes
+set text_flowed = no
 unset signature
 
 
