@@ -25,12 +25,17 @@ local M = function()
     vim.o.grepprg = 'rg --vimgrep --no-heading $*'
     vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
   end
+  -- Use interactive Z shell (to include aliases)
+  if vim.fn.executable('zsh') == 1 then
+    vim.o.shell = 'zsh -i'
+    vim.o.shellredir = '>%s 2>&1'
+  end
   vim.o.cscopetag = true -- <c-]> should try cscope first instead of ctags
-  vim.o.cscopequickfix = 's-,c-,d-,i-,t-,e-,a-,g-' -- cscope should use the qflist
+  vim.o.cscopequickfix = 's-,g-,d-,c-,t-,e-,f-,i-,a-' -- cscope should use the qflist
 
   vim.o.wrap = true
   vim.o.breakindent = true -- A line's wrap should be indented the same
-  vim.o.showbreak = '    ' -- 4 extra spaces before wrapped line starts
+  vim.o.showbreak = '↳' -- Display arrow symbol for wrapped lines
   vim.o.linebreak = true
 
   vim.o.belloff = 'all'  -- No bells! Whistles are OK.

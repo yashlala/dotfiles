@@ -33,9 +33,9 @@ local M = function()
   noremap('', '-', '0')
 
   noremap('', ';', ':')
-  noremap('n', ':', '@:')
-  snoremap('n', 'q;', 'q:')
-
+  noremap('n', ':', ':lua ')
+  noremap('n', 'q;', 'q:')
+  noremap('n', '@;', '@:')
   noremap('n', '<bar>', 'K')
   noremap('n', 'K', 'kJ')
   noremap('n', 'U', '<c-r>')
@@ -44,9 +44,9 @@ local M = function()
 
   noremap('v', '<c-g>', 'g<c-g>')
 
-  snoremap('n', 'gs', ':%s/') -- "Go :s"
-  snoremap('n', 'gG', ':%g/') -- "Go :g"
-  snoremap('n', 'gl', ':lua ') -- "Go lua"
+  noremap('n', 'gl', ':%') -- "Global" LMAO
+  noremap('n', 'gs', ':%s/') -- "Global :s"
+  noremap('n', 'gG', ':%g/') -- "Global :g"
   snoremap('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
   map('n', 'ga', '<Plug>(EasyAlign)') -- "Go align"
 
@@ -57,8 +57,10 @@ local M = function()
 
   snoremap('n', '<c-n>', '<cmd>cnext<cr>')
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
-  noremap('n', '<c-]>', 'g<c-]>')
-  noremap('n', 'g<c-]>', '<c-]>')
+  snoremap('n', '<c-]>', 'g<c-]>')
+  snoremap('n', 'g<c-]>', '<c-]>')
+  snoremap('n', 'g<c-o>', 'g;')
+  snoremap('n', 'g<c-i>', 'g,')
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')
@@ -102,9 +104,9 @@ local M = function()
     endfunction
   ]])
   nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
-  nitvmapper('<c-q>', '<cmd>call ToggleQFList()<cr>')
   nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
-  nitvmapper('<c-r>', '<cmd>call ToggleLocList()<cr>')
+  snoremap('n', '<c-q>', '<cmd>call ToggleQFList()<cr>')
+  snoremap('n', '<c-r>', '<cmd>call ToggleLocList()<cr>')
   snoremap('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
   snoremap('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
 
