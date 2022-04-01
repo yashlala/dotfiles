@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# This script is meant to be triggered when we press Control + Shift + A to
+# disable LeechBlock via Firefox add-ons menu. Easier to stop it here than to
+# debug LeechBlock, LOL. 
+
+exec notify-send -u normal -t 8500 -a 'Snail' \
+	-i /home/lala/pictures/profile-photos/snail-largeborder.png \
+	$'"Notice the urge, and resist it. What are you feeling right now?"'
