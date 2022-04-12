@@ -59,8 +59,8 @@ local M = function()
   snoremap('n', '<c-p>', '<cmd>cprev<cr>')
   snoremap('n', '<c-]>', 'g<c-]>')
   snoremap('n', 'g<c-]>', '<c-]>')
-  snoremap('n', 'g<c-o>', 'g;')
-  snoremap('n', 'g<c-i>', 'g,')
+  snoremap('n', 'g<c-o>', 'g;') -- <c-o>, but for changelist
+  snoremap('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
 
   snoremap('', '&', '<cmd>&&<cr>')
   noremap('', '_', '<c-y>')

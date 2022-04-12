@@ -21,13 +21,14 @@ local M = function()
   vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
   -- Use ripgrep for `:grep`, if it's available
-  if vim.fn.executable('rg') == 1 then 
+  if vim.fn.executable('rg') == 1 then
     vim.o.grepprg = 'rg --vimgrep --no-heading $*'
     vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
   end
   -- Use interactive Z shell (to include aliases)
   if vim.fn.executable('zsh') == 1 then
-    vim.o.shell = 'zsh -i'
+    vim.o.shell = 'zsh'
+    vim.o.shellcmdflag = '-i -c'
     vim.o.shellredir = '>%s 2>&1'
   end
   vim.o.cscopetag = true -- <c-]> should try cscope first instead of ctags
@@ -41,6 +42,7 @@ local M = function()
   vim.o.belloff = 'all'  -- No bells! Whistles are OK.
   vim.o.undofile = true -- persistent undo between sessions
   vim.o.scrollback = 8192 -- lines of terminal mode scrollback
+  vim.o.updatetime = 1000
 
   vim.o.lazyredraw = true
   vim.o.hlsearch = false
@@ -50,6 +52,10 @@ local M = function()
   vim.o.pumheight = 6 -- Limit the number of completion popup menu options.
   vim.o.modeline = true
   vim.o.showmode = false -- Don't write VISUAL on the last line.
+
+  vim.o.equalalways = false
+  vim.o.splitright = true
+  vim.o.splitbelow = false
 
   vim.o.mouse = 'a'
 

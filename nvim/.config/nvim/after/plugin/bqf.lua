@@ -1,19 +1,21 @@
 require('bqf').setup({
   func_map = {
-    open = '<cr>', -- Open the item under the cursor, keeping the list open. 
-    openc = 'o', -- Open the item under the cursor, closing the qf list. 
+    open = '<cr>', -- Open the item under the cursor, keeping the list open.
+    openc = 'o', -- Open the item under the cursor, closing the qf list.
 
     tabb = 't', -- Open the item in a new tab, but stay here
-    tab = 'T', -- Open the new item in a tab, and follow it to the tab. 
+    tab = 'T', -- Open the new item in a tab, and follow it to the tab.
 
-    split = '<C-s>', -- Open in horizontal split.
-    vsplit = '<C-v>', -- Open in vertical split. 
+    split = '<c-s>', -- Open in horizontal split.
+    vsplit = '<c-v>', -- Open in vertical split.
 
-    stoggledown = 'v', -- Toggle the current item as "selected". 
-    stogglevm = 'v', -- In visual mode, too. 
+    stoggledown = 'v', -- Toggle the current item as "selected".
+    stogglevm = 'v', -- In visual mode, too.
 
     ptoggleauto = 'p', -- Toggle previews
-    pscrollorig = '=', -- Center the preview window. 
+    ptoggleitem = 'P', -- Toggle preview for a particular node
+    
+    pscrollorig = '=', -- Center the preview window.
     -- We can use <c-f> <c-b> to move around in the preview window too
 
     prevhist = '[[', -- Go to the previous qf list
@@ -23,31 +25,31 @@ require('bqf').setup({
     -- a new, more "trimmed down", list. This is nothing short of incredible.
     -- If we want to trim down the list further, we can do
     --    `g/pattern/norm v`
-    -- to manually "press v" (select) the items of our choice. 
-    -- 
+    -- to manually "press v" (select) the items of our choice.
+    --
     -- Using <c-e>, we can create a NEW list (effectively filtering) with only
-    -- those items. 
+    -- those items.
     --
     -- What do we do when we eventually want to do something at every location?
-    -- We can just use :cdo. 
-    -- 
+    -- We can just use :cdo.
+    --
     -- Eg :cdo s/YEE=/YEE =/
     -- or :cdo norm! ^wwwidt)<cr>
-    -- 
+    --
     -- See? In effect, we can automate actions on all quickfix lines!!!
-    -- 
-    -- Godly EX commands: 
+    --
+    -- Godly EX commands:
     -- - :global
     -- - :normal
     -- - :cdo
     -- - :bufdo
-    -- 
+    --
     -- So much trial and error gone with these EX commands!
-    -- Anyways, here's FZF. 
-    fzffilter = '/', 
+    -- Anyways, here's FZF.
+    fzffilter = '/',
     filter = '<c-e>' -- FILTER list based on current selected options
 
-  }, 
+  },
 
   -- Bindings while in fzf mode
   filter = {
