@@ -9,34 +9,31 @@ local M = function()
   ]], true)
 
   -- Return to last edit position when opening files.
-  vim.api.nvim_exec([[
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-  ]], false)
+  vim.api.create_autocmd('BufReadPost', {
+    pattern = '*',
+    callback = function()
+      local line = vim.fn.line("'\"")
+      if 0 < line and line <= vim.fn.line("$") then
+        vim.cmd('exe "normal! g`\""')
+      end
+   end,
+    desc = 'Return to the last edit position when opening files.'
+  })
 
-  -- Read neomutt filetypes correctly.
-  vim.api.nvim_exec([[
-  autocmd BufNewFile,BufRead neomutt-* set filetype=mail
-  ]], false)
+  vim.api.create_autocmd({'BufNewFile', 'BufRead'}, {
+    pattern = 'neomutt-*',
+    callback = function()
+      vim.bo.filetype = 'mail'
+    end
+  })
 
   -- Close netrw buffers (we can't do this by default, for some reason).
-  vim.api.nvim_exec("autocmd Filetype netrw setl bufhidden=delete", false)
+  vim.cmd('autocmd Filetype netrw setl bufhidden=delete')
 
   -- Enter terminal mode as soon as we create a terminal buffer.
-  vim.api.nvim_exec("autocmd TermOpen * startinsert", false)
+  vim.cmd('autocmd TermOpen * startinsert')
   -- TODO: Why doesn't the below actually work?
-  vim.api.nvim_exec("autocmd TermOpen * setlocal signcolumn=no", false)
-
-  -- The bottom status line doesn't update very often, so the buffer listing can
-  -- become stale. Avoid this by throwing in a few autocommands (we have a
-  -- function later in this file that mitigates this problem as well)
-  -- TODO: Stop using the line altogether. We have a keymap now.
-  vim.api.nvim_exec([[
-  autocmd BufEnter,BufLeave,BufWritePost,BufHidden,BufWinEnter,BufWinLeave,CmdlineEnter,InsertEnter *
-    \ call lightline#update()
-  ]], false)
+  vim.cmd('autocmd TermOpen * setlocal signcolumn=no')
 end
 
 return M

@@ -47,7 +47,7 @@ local create_new_file = function(opts, prompt_bufnr)
     return
   end
 
-  -- TODO: This doesn't work when we run it from a terminal window. 
+  -- TODO: This doesn't work when we run it from a terminal window.
   -- Instead, maybe use
   -- local fpath = require('telescope.utils').buffer_dir())
   local fpath = current_picker.cwd .. os_sep .. file
@@ -59,23 +59,23 @@ local create_new_file = function(opts, prompt_bufnr)
   else
     Path:new(fpath:sub(1, -2)):mkdir { parents = true }
     local new_cwd = vim.fn.expand(fpath)
-    -- Change the window's CWD. 
+    -- Change the window's CWD.
     vim.cmd(string.format(":lcd %s", fpath))
     current_picker.cwd = new_cwd
   end
 end
 
--- Find files, using the current buffer's path as the root dir. 
--- Like if we were using autochdir! 
-M.find_files_bufdir = function()
+-- Find files, using the current buffer's path as the root dir.
+-- Like if we were using autochdir!
+M.find_files_bufdir = function(args)
   -- We want to use a keybind to toggle previews. We can't toggle previews of
   -- the current window, but we _can_ spawn a new Telescope window with the
-  -- other option. 
-  -- Maintain two sets of options. Each has a keybind to invoke the other. 
-  -- We generate these sets via the gen_mappings wrapper function. 
-  local gen_mappings = function(opts, alternate_opts) 
+  -- other option.
+  -- Maintain two sets of options. Each has a keybind to invoke the other.
+  -- We generate these sets via the gen_mappings wrapper function.
+  local gen_mappings = function(opts, alternate_opts)
     return function(prompt_bufnr, map)
-      -- Toggle the preview window as described above. 
+      -- Toggle the preview window as described above.
       map("i", "<M-p>", function()
         actions.close(prompt_bufnr)
         vim.schedule(function()
@@ -83,7 +83,7 @@ M.find_files_bufdir = function()
         end)
       end)
 
-      -- Visit the given file. If it doesn't exist, then create it. 
+      -- Visit the given file. If it doesn't exist, then create it.
       map('i', '<cr>', function(prompt_bufnr)
         create_new_file(opts, prompt_bufnr)
       end)
@@ -101,10 +101,11 @@ M.find_files_bufdir = function()
   opts_with_preview = {
     prompt_title = "Find Files in Buffer Dir",
     shorten_path = false,
-    -- TODO: Use the proper path. 
+    -- TODO: Use the proper path.
     cwd = vim.fn.expand('%:h'),
     attach_mappings = preview_mappings,
   }
+  vim.tbl_extend('keep', opts_with_preview, args)
 
   opts_without_preview = vim.deepcopy(opts_with_preview)
   opts_without_preview.previewer = false

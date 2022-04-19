@@ -26,13 +26,6 @@ require('telescope').setup {
     }
   },
 
-  -- TODO: WHY CAN'T I DISABLE THIS GLOBALLY?
-  -- Try again. We just fixed an error with a close brace.
-  preview = {
-    treesitter = false,
-    hide_on_startup = true,
-  },
-
   extensions = {
     file_browser = {
       mappings = {

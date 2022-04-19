@@ -136,13 +136,13 @@ require('packer').startup(function()
     requires = { 'nvim-telescope/telescope.nvim' },
     run = 'make'
   }
-  --
   use 'nvim-telescope/telescope-file-browser.nvim'
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
   -- TODO: Not working for some reason.
   use 'ahmedkhalf/project.nvim'
+  use 'stevearc/dressing.nvim' -- Prettify built-in UIs.
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 
   use 'folke/which-key.nvim'
@@ -151,8 +151,9 @@ require('packer').startup(function()
   use 'tpope/vim-repeat'
 end)
 
+-- TODO: Colorscheme things
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 vim.api.nvim_command('colorscheme seoul256')
 -- TODO: Highlight the signs column like we do in gitsigns.
-vim.api.nvim_command('highlight SignColumn ctermbg=238 guibg=#444444')
+vim.api.nvim_command('highlight WinSeparator guibg=None')
