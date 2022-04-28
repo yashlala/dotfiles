@@ -1,6 +1,6 @@
 require'lualine'.setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
@@ -36,5 +36,10 @@ require'lualine'.setup {
     lualine_y = {},
     lualine_z = {}
   },
-  extensions = {}
+  extensions = {
+    'quickfix', 
+    'fugitive', 
+    'fzf', 
+    'toggleterm', 
+  }
 }
