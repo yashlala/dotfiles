@@ -56,12 +56,9 @@ map m # unset mkdir
 map \;
 map \:
 
-map <c-k> redraw_and_reload
-map <c-l> redraw
+map <c-l> redraw_and_reload
 
 map <space> quit
-map <tab> half-down
-map <backspace2> half-up
 map ; read
 map . set hidden!
 
@@ -70,16 +67,22 @@ map dw $ trash-put "$fx"
 map DW $ trash-put "$f" # only the currently selected one
 map yy copy
 map pp paste
-map u $ trash-restore
 map v toggle
+map u :unselect; clear
+map U $ trash-restore
+
+# Deal with marks
 map m mark-save
 map \' mark-load
+map dm mark-remove
 
+# Rename various parts of filenames
 map r :rename; cmd-word-back; cmd-left # change name
 map cw :rename; cmd-delete-home # change all
 map ce :rename # change extension
 map R $printf "%s\n" "$fx" | vidir - # bulk rename
 
+# Quick teleport
 map gh cd ~
 map gi cd ~/io
 map gp cd ~/pictures
