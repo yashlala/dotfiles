@@ -685,14 +685,16 @@ mouse:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - { key: Paste,                                       action: ReceiveChar }
-  - { key: Copy,                                        action: ReceiveChar }
-  - { key: L,         mods: Control,                    action: ReceiveChar }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"       }
-  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ReceiveChar }
-  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ReceiveChar }
-  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ReceiveChar }
-  - { key: End,       mods: Shift,   mode: ~Alt,        action: ReceiveChar }
+  - { key: Paste,                                       action: ReceiveChar  }
+  - { key: Copy,                                        action: ReceiveChar  }
+    # TODO: Can we set control i to something other than tab? 
+  - { key: I,         mods: Control,                    chars: "\x1b[105;5u" }
+  - { key: L,         mods: Control,                    action: ReceiveChar  }
+  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"        }
+  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
+  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
+  - { key: Home,      mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
+  - { key: End,       mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
 
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: ~Search,    action: ReceiveChar }
@@ -763,11 +765,11 @@ key_bindings:
   - { key: B,              mods: Control|Shift, mode: ~Search,    action: ReceiveChar }
   - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ReceiveChar }
   - { key: Insert,         mods: Shift,                           action: ReceiveChar }
-  - { key: Key0,           mods: Control,                         action: ReceiveChar }
-  - { key: Equals,         mods: Control,                         action: ReceiveChar }
+  - { key: Key0,           mods: Control,                         action: ResetFontSize }
+  - { key: Equals,         mods: Control,                         action: IncreaseFontSize }
   - { key: Plus,           mods: Control,                         action: ReceiveChar }
   - { key: NumpadAdd,      mods: Control,                         action: ReceiveChar }
-  - { key: Minus,          mods: Control,                         action: ReceiveChar }
+  - { key: Minus,          mods: Control,                         action: DecreaseFontSize }
   - { key: NumpadSubtract, mods: Control,                         action: ReceiveChar }
 
   # (Windows only)
