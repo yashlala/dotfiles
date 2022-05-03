@@ -9,7 +9,7 @@ local lspkind = require('lspkind')
 cmp.setup({
   -- TODO: Add more bindings! Control key is easy now.
   -- Ideally we would keep tapping control space and it would work
-  mapping = {
+  mapping = cmp.mapping.preset.insert{
     -- ['<Tab>'] = cmp.mapping(function()
     --   if cmp.visible() then
     --     cmp.select_next_item()
@@ -27,9 +27,9 @@ cmp.setup({
     ['<c-e>'] = cmp.mapping.close(),
     -- Accept the current completion
     ['<c-space>'] = cmp.mapping(function()
-      -- TODO: Expand based on current menu entry somehow. 
+      -- TODO: Expand based on current menu entry somehow.
       -- I don't think this is working right, even with cmp_luasnip?
-      -- Figure out fallback logic. 
+      -- Figure out fallback logic.
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif cmp.visible() then
@@ -74,6 +74,7 @@ cmp.setup({
 
 -- Completion in command mode as well
 require'cmp'.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline{}, 
   sources = {
     { name = 'cmdline' }
   }
