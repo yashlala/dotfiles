@@ -4,6 +4,7 @@
 # convenience variables, for internal use
 zshconfigdir="$HOME/.config/zsh"
 zshdatadir="$HOME/.local/share/zsh"
+mkdir -p "$zshconfigdir" "$zshdatadir" 
 
 # If we're being accessed from a remote machine, change the shell prompt. 
 if [[ -n "$SSH_CLIENT" ]]; then
