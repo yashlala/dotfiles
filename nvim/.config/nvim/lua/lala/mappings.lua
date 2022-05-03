@@ -9,8 +9,9 @@ local M = function()
   vim.keymap.set('', '-', '0')
 
   vim.keymap.set('', ';', ':')
-  vim.keymap.set('n', ':', ':lua ')
-  vim.keymap.set({'n', 'v'}, 'q;', 'q:')
+  vim.keymap.set('n', ':', 'q:')
+  vim.keymap.set('n', 'L', ':lua ')
+
   vim.keymap.set('n', '@;', '@:')
   vim.keymap.set('n', '<bar>', 'K')
   vim.keymap.set('n', 'K', 'kJ')
@@ -71,15 +72,15 @@ local M = function()
     end
   end
 
-  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'))
-  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'))
+  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'), 
+    { desc = 'Toggle quickfix list visibility' })
+  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'), 
+    { desc = 'Toggle location list visibility' })
 
   -- TODO: convert the keys into lua
 
   nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
   nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
-  vim.keymap.set('n', 'Q', '<cmd>cexpr [] | cclose<cr>') -- clear the quickfix list
-  vim.keymap.set('n', 'L', '<cmd>lexpr [] | lclose<cr>') -- clear the location list
 
   vim.keymap.set('n', '<m-space>', '<nop>') -- prevent current mode confusion
   vim.keymap.set('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
@@ -87,8 +88,10 @@ local M = function()
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
 
   -- Simple Leader Keybinds
-  vim.keymap.set('', '<leader>p', '"0p')
-  vim.keymap.set('', '<leader>P', '"0P')
+  vim.keymap.set('', '<leader>y', '"+y')
+  vim.keymap.set('', '<leader>Y', '"+y$')
+  vim.keymap.set('', '<leader>p', '"+p')
+  vim.keymap.set('', '<leader>P', '"+P')
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>')
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
@@ -202,16 +205,22 @@ local M = function()
   -- TODO: Can we define a keybind to kill buffers easily?
   -- We'll use this as our _primary_ method of navigation, so we should make it
   -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
-  vim.keymap.set('n', ',', function()
-    require('telescope.builtin').buffers({
-      preview={hide_on_startup=true},
-      path_display = {'absolute', 'truncate'}
-    })
-  end)
+  vim.keymap.set('n', ',', 
+    function()
+      require('telescope.builtin').buffers({
+        preview={hide_on_startup=true},
+        path_display = {'absolute', 'truncate'}
+      })
+    end, 
+    { desc = 'View buffers' }
+  )
   -- Find old files (recently used)
-  vim.keymap.set('n', '<leader>fo', function()
-    require('telescope.builtin').oldfiles({preview={hide_on_startup=true}})
-  end)
+  vim.keymap.set('n', '<leader>fo', 
+    function()
+      require('telescope.builtin').oldfiles({preview={hide_on_startup=true}})
+    end, 
+    { desc = 'Find old files' }
+  )
   -- Find File
   vim.keymap.set('n', '<leader>ff', function()
     require('telescope.builtin').find_files({
