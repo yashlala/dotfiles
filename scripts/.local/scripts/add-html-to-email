@@ -37,7 +37,7 @@ def add_html(msg):
     if body.get_content_type() == 'text/plain': 
         body.make_alternative()
         text = body.get_payload()[0]
-        body.set_payload([text, to_html(text)])
+        body.set_payload([MIMEText(text.get_content(), 'plain', 'utf-8'), to_html(text)])
 
     return msg
 
