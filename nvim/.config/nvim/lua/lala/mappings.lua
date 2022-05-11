@@ -72,9 +72,9 @@ local M = function()
     end
   end
 
-  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'), 
+  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'),
     { desc = 'Toggle quickfix list visibility' })
-  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'), 
+  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'),
     { desc = 'Toggle location list visibility' })
 
   -- TODO: convert the keys into lua
@@ -205,20 +205,20 @@ local M = function()
   -- TODO: Can we define a keybind to kill buffers easily?
   -- We'll use this as our _primary_ method of navigation, so we should make it
   -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
-  vim.keymap.set('n', ',', 
+  vim.keymap.set('n', ',',
     function()
       require('telescope.builtin').buffers({
         preview={hide_on_startup=true},
         path_display = {'absolute', 'truncate'}
       })
-    end, 
+    end,
     { desc = 'View buffers' }
   )
   -- Find old files (recently used)
-  vim.keymap.set('n', '<leader>fo', 
+  vim.keymap.set('n', '<leader>fo',
     function()
       require('telescope.builtin').oldfiles({preview={hide_on_startup=true}})
-    end, 
+    end,
     { desc = 'Find old files' }
   )
   -- Find File
@@ -279,19 +279,32 @@ local M = function()
   end)
 
   -- LSP Keybinds
-  vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-  vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+  vim.keymap.set('n', 'gd', function()
+    if vim.tbl_isempty(vim.lsp.buf_get_clients()) then
+      vim.cmd('normal! gd')
+    else
+      vim.lsp.buf.definition()
+    end
+  end,
+    { desc = 'Go to definition' }
+  )
+  vim.keymap.set('n', 'gD', function()
+    if vim.tbl_isempty(vim.lsp.buf_get_clients()) then
+      vim.cmd('normal! gD')
+    else
+      vim.lsp.buf.declaration()
+    end
+  end,
+    { desc = 'Go to declaration' }
+  )
   vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-  vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>')
-  vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>')
-  -- TODO: Add keybinds to jump to next and previous lsp diagnostics
-  -- Maybe this should be <c-n> and <c-p>?
-  vim.keymap.set('n', '<leader>tl', '<Plug>(toggle-lsp-diag-default)')
-
-  -- We keep quitting on accident.
-  -- TODO: Make this smarter, maybe? If we have more than a few buffers open,
-  -- then we should not quit.
-  -- vim.cmd("cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>")
+  vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>',
+    { desc = 'Info about the current symbol' }
+  )
+  vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
+    { desc = 'Find the current error'}
+  )
+  -- TODO: Automatic fix keymaps, etc.
 end
 
 return M
