@@ -5,7 +5,7 @@ echo "You'll have to set up a full installation yourself."
 echo 
 echo "What's this machine's install command?"
 echo "(empty => \"don't install anything\")"
-echo "> "
+echo -n "> "
 
 read -r installer
 if [ -n "$installer" ]; then
@@ -15,7 +15,7 @@ if [ -n "$installer" ]; then
     | xargs stow
 else
   mkdir -p ~/.config/
-  cp -r ./zshrc/.config/zsh ~/.config/zsh
+  cp -r ./zsh/.config/zsh ~/.config/zsh
   cp -r ./git/.config/git ~/.config/git
 fi
 
