@@ -39,7 +39,10 @@ setopt nocomplete_aliases completeinword
 zstyle ':completion:*' menu select
 
 # configure jobs
-setopt notify longlistjobs
+setopt nonotify longlistjobs
+if [ tty -s ]; then 
+  stty tostop # suspend bg job on tty output
+fi
 
 # source zle configuration
 source "$zshconfigdir/zshzle"
