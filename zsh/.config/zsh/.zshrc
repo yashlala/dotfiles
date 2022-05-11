@@ -40,7 +40,7 @@ zstyle ':completion:*' menu select
 
 # configure jobs
 setopt nonotify longlistjobs
-if [ tty -s ]; then 
+if tty -s; then 
   stty tostop # suspend bg job on tty output
 fi
 
