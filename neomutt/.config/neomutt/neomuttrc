@@ -56,7 +56,7 @@ set tilde                  # show tildes like in vim
 unset markers              # no ugly plus signs
 set quote_regex = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 auto_view text/html
-alternative_order text/html text/plain text/enriched
+alternative_order text/plain text/html text/enriched
 
 
 # Index View Options ---------------------------------
