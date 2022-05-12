@@ -19,7 +19,7 @@ else
   cp -r ./git/.config/git ~/.config/git
 fi
 
-ln -s ~/.config/zshrc/zshrc ~/.zshrc
+ln -s ~/.config/zsh/zshrc ~/.zshrc
 rm ~/.config/zsh/zshrc.d/fasd.zsh ~/.config/zsh/zshrc.d/keychain.zsh
 
 if [ -e /bin/zsh ]; then 
