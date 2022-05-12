@@ -6,15 +6,17 @@ echo
 echo "What's this machine's install command?"
 echo "(empty => \"don't install anything\")"
 echo -n "> "
-
 read -r installer
 if [ -n "$installer" ]; then
   sudo $installer stow zsh
+fi
+
+mkdir -p ~/.config/
+if command -v stow >/dev/null 2>&1; then
   find . -mindepth 1 -maxdepth 1 -type d -not -name '.git' \
     | xargs -n 1 basename \
     | xargs stow
 else
-  mkdir -p ~/.config/
   cp -r ./zsh/.config/zsh ~/.config/zsh
   cp -r ./git/.config/git ~/.config/git
 fi
@@ -22,7 +24,7 @@ fi
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 rm ~/.config/zsh/zshrc.d/fasd.zsh ~/.config/zsh/zshrc.d/keychain.zsh
 
-if [ -e /bin/zsh ]; then 
+if [ -x /bin/zsh ]; then 
   chsh -s /bin/zsh 
 else
   echo "\nset -o vi" > ~/.bashrc
