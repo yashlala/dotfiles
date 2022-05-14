@@ -98,7 +98,7 @@ require('packer').startup(function()
   use 'kevinhwang91/nvim-bqf'
   -- Better marks
   -- TODO: Make a telescope previewer for the marks in the current buffer.
-  use 'chentau/marks.nvim'
+  use 'chentoast/marks.nvim'
   -- Project-specific file "marks" and terminals
   use 'ThePrimeagen/harpoon'
   -- Use for a generic persistent terminal keybind.
