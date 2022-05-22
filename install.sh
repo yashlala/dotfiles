@@ -30,4 +30,6 @@ else
   echo "\nset -o vi" > ~/.bashrc
 fi
 
+touch ~/.hushlogin
+
 echo "Reload shell to see changes."
