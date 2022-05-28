@@ -5,6 +5,9 @@
 # our files on another user's X session.
 xhost +local:
 
+# Instruct QT apps to honor screen DPI
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
 export XCOMPOSEFILE="$HOME/.config/xorg/xcompose"
 export XCOMPOSECACHE="$HOME/.cache/xorg/compose-cache"
 
