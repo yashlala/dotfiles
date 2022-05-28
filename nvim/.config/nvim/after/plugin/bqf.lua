@@ -17,6 +17,7 @@ require('bqf').setup({
     
     pscrollorig = '=', -- Center the preview window.
     -- We can use <c-f> <c-b> to move around in the preview window too
+    -- TODO: Switch this to c-u and c-d. 
 
     prevhist = '[[', -- Go to the previous qf list
     nexthist = ']]',  -- Go to the next qf list
@@ -47,6 +48,7 @@ require('bqf').setup({
     -- So much trial and error gone with these EX commands!
     -- Anyways, here's FZF.
     fzffilter = '/',
+    -- TODO: Not really true anymore is it? Find out...
     filter = '<c-e>' -- FILTER list based on current selected options
 
   },
@@ -56,7 +58,11 @@ require('bqf').setup({
     fzf = {
       action_for = {['ctrl-s'] = 'split', ['ctrl-v'] = 'vsplit'},
       -- Enter accepts the current entry, <c-s> accepts them all
-      extra_opts = {'--bind', 'ctrl-e:select-all+accept', '--prompt', '> '}
+      extra_opts = {'--bind', 'ctrl-e:select-all+accept,return:accept', '--prompt', '> '}
     }
-  }
+  },
+
+  preview = { 
+    auto_preview = true, -- enable preview window by default
+  }, 
 })

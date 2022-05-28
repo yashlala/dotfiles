@@ -15,6 +15,7 @@ local M = function()
   vim.keymap.set('n', '@;', '@:')
   vim.keymap.set('n', '<bar>', 'K')
   vim.keymap.set('n', 'K', 'kJ')
+  vim.keymap.set('n', 'gK', 'kgJ')
   vim.keymap.set('n', 'U', '<c-r>')
   vim.keymap.set('n', 'V', 'v')
   vim.keymap.set('n', 'v', 'V')
@@ -134,16 +135,16 @@ local M = function()
 
   -- Quick terminal access. Creates terminals if they don't exist yet.
   -- ToggleTerm.lua also provides us with <leader>tt, not shown here.
-  vim.keymap.set('n', '<leader>t1', '<cmd>lua require("harpoon.term").gotoTerminal(1)<cr>')
-  vim.keymap.set('n', '<leader>t2', '<cmd>lua require("harpoon.term").gotoTerminal(2)<cr>')
-  vim.keymap.set('n', '<leader>t3', '<cmd>lua require("harpoon.term").gotoTerminal(3)<cr>')
-  vim.keymap.set('n', '<leader>t4', '<cmd>lua require("harpoon.term").gotoTerminal(4)<cr>')
-  vim.keymap.set('n', '<leader>t5', '<cmd>lua require("harpoon.term").gotoTerminal(5)<cr>')
-  vim.keymap.set('n', '<leader>t6', '<cmd>lua require("harpoon.term").gotoTerminal(6)<cr>')
-  vim.keymap.set('n', '<leader>t7', '<cmd>lua require("harpoon.term").gotoTerminal(7)<cr>')
-  vim.keymap.set('n', '<leader>t8', '<cmd>lua require("harpoon.term").gotoTerminal(8)<cr>')
-  vim.keymap.set('n', '<leader>t9', '<cmd>lua require("harpoon.term").gotoTerminal(9)<cr>')
-  vim.keymap.set('n', '<leader>t0', '<cmd>lua require("harpoon.term").gotoTerminal(10)<cr>')
+  local set_toggleterm_map = function(key, termnum)
+    vim.keymap.set('n', '<leader><leader>' .. key, function()
+        require('harpoon.term').gotoTerminal(termnum)
+        -- vim.cmd('normal! i')
+      end, { desc = 'Go to terminal ' .. key })
+  end
+  for i=1,9 do
+    set_toggleterm_map(tostring(i), i)
+  end
+  set_toggleterm_map('0', 10)
 
   -- Hop Keybindings
   vim.keymap.set('', 'f', '<cmd>HopChar1AC<cr>')
@@ -197,7 +198,7 @@ local M = function()
 
   -- Telescope Keybinds
   -- TODO: Can we use this to find _every_ picker, not just builtin ones?
-  vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope<cr>')
+  -- vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope<cr>')
   -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten". Can just pass
