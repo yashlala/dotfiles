@@ -25,6 +25,7 @@ local M = function()
   vim.keymap.set('n', 'gl', ':%') -- "Global" LMAO
   vim.keymap.set('n', 'gs', ':%s/') -- "Global :s"
   vim.keymap.set('n', 'gG', ':%g/') -- "Global :g"
+  vim.keymap.set('n', 'g/', ':silent grep! ') -- "Global /"
   vim.keymap.set('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
   vim.keymap.set({'n', 'v'}, 'ga', '<Plug>(EasyAlign)') -- "Go align"
 

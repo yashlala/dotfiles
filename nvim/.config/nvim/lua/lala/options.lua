@@ -48,6 +48,8 @@ local M = function()
   vim.o.hlsearch = false
   vim.o.termguicolors = true
 
+  -- TODO: Conditionally set this based on screen size? 
+  vim.o.cursorline = true -- Highlight the line the cursor is on. 
   vim.o.signcolumn = 'yes' -- Always show the sign column.
   vim.o.pumheight = 6 -- Limit the number of completion popup menu options.
   vim.o.modeline = true
