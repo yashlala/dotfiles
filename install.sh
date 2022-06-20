@@ -30,7 +30,7 @@ rm ~/.config/zsh/zshrc.d/fasd.zsh \
 if [ -x /bin/zsh ]; then 
   chsh -s /bin/zsh 
 else
-  echo "\nset -o vi" > ~/.bashrc
+  printf '\nset -o vi\n' > ~/.bashrc
 fi
 
 touch ~/.hushlogin
