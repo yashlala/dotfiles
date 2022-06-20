@@ -23,7 +23,9 @@ fi
 
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
-rm ~/.config/zsh/zshrc.d/fasd.zsh ~/.config/zsh/zshrc.d/keychain.zsh
+rm ~/.config/zsh/zshrc.d/fasd.zsh \
+  ~/.config/zsh/zshrc.d/keychain.zsh \
+  ~/.config/zsh/zshrc.d/miniconda.zsh
 
 if [ -x /bin/zsh ]; then 
   chsh -s /bin/zsh 
