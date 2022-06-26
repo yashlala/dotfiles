@@ -303,11 +303,11 @@ local M = function()
   vim.keymap.set('n', '<leader>xi', vim.lsp.buf.incoming_calls,
     { desc = 'Explore incoming calls to symbol'})
   vim.keymap.set('n', '<leader>xo', vim.lsp.buf.outgoing_calls,
-    { desc = 'Explore outgoing calls'})
+    { desc = 'Explore outgoing calls from symbol'})
   vim.keymap.set('n', '<leader>xa', vim.lsp.buf.references,
     { desc = 'Explore all references to symbol' })
   vim.keymap.set('n', '<leader>xI', vim.lsp.buf.implementation,
-    { desc = 'Explore interface implementations.'})
+    { desc = 'Explore implementations of interface'})
   vim.keymap.set('n', '<leader>xs', function()
       require('telescope.builtin').lsp_dynamic_workspace_symbols()
     end,
@@ -318,13 +318,13 @@ local M = function()
   -- Put it in a wrapper because the command isn't defined at this point in
   -- initialization...
   vim.keymap.set('n', '<leader>xf', function() vim.cmd('CodeActionMenu') end,
-    { desc = 'Fix problems via LSP actions' })
+    { desc = 'Fix problem via LSP actions' })
 
   vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>',
-    { desc = 'Info about the current symbol' })
+    { desc = 'Info about symbol' })
   -- TODO: Alternate between viewing error and fixing it?
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
-    { desc = 'Find the current error'})
+    { desc = 'Info about current error'})
 end
 
 return M
