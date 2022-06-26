@@ -128,6 +128,9 @@ require('packer').startup(function()
   use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', }
   use 'rafamadriz/friendly-snippets'
 
+  -- Better menu for LSP code actions
+  use 'weilbith/nvim-code-action-menu'
+
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
     { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }

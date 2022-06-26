@@ -299,14 +299,33 @@ local M = function()
   end,
     { desc = 'Go to declaration' }
   )
-  vim.keymap.set('n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+
+  -- "<leader>x" := "eXplore". These generally put useful things in quickfix list.
+  vim.keymap.set('n', '<leader>xi', vim.lsp.buf.incoming_calls,
+    { desc = 'Explore incoming calls to symbol'})
+  vim.keymap.set('n', '<leader>xo', vim.lsp.buf.outgoing_calls,
+    { desc = 'Explore outgoing calls'})
+  vim.keymap.set('n', '<leader>xa', vim.lsp.buf.references,
+    { desc = 'Explore all references to symbol' })
+  vim.keymap.set('n', '<leader>xI', vim.lsp.buf.implementation,
+    { desc = 'Explore interface implementations.'})
+  vim.keymap.set('n', '<leader>xs', function()
+      require('telescope.builtin').lsp_dynamic_workspace_symbols()
+    end,
+    { desc = 'Explore all symbols in the workspace' })
+  vim.keymap.set('n', '<leader>xr', vim.lsp.buf.rename,
+    { desc = 'Rename a symbol' })
+  -- "Fix"; command defined in nvim-code-action-menu plugin.
+  -- Put it in a wrapper because the command isn't defined at this point in
+  -- initialization...
+  vim.keymap.set('n', '<leader>xf', function() vim.cmd('CodeActionMenu') end,
+    { desc = 'Fix problems via LSP actions' })
+
   vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>',
-    { desc = 'Info about the current symbol' }
-  )
+    { desc = 'Info about the current symbol' })
+  -- TODO: Alternate between viewing error and fixing it?
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
-    { desc = 'Find the current error'}
-  )
-  -- TODO: Automatic fix keymaps, etc.
+    { desc = 'Find the current error'})
 end
 
 return M
