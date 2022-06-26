@@ -259,8 +259,7 @@ local M = function()
   end)
   -- Find in all known projects.
   vim.keymap.set('n', '<leader>fP', "<cmd>Telescope projects<cr>")
-  -- TODO: Make our file browser even better!
-  -- Can we get the preview window to show the CWD?
+  -- File browser
   vim.keymap.set('n', '<leader>fb', function()
     require('telescope').extensions.file_browser.file_browser({
       preview={hide_on_startup=true}
@@ -275,7 +274,7 @@ local M = function()
   vim.keymap.set('n', '<leader>fS', function()
     require('telescope.builtin').grep_string({hidden = true})
   end)
-    -- Find word in _current buffer only
+    -- Find word in current buffer only
   vim.keymap.set('n', '<leader>fw', function()
     require('telescope.builtin').current_buffer_fuzzy_find({})
   end)

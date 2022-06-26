@@ -89,10 +89,6 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive'
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
-  -- TODO: Try neogit instead
-  -- Looks like neogit just runs out of memory when dealing with large number
-  -- of changes. Eek.
-  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
   -- Better quickfix list.
   use 'kevinhwang91/nvim-bqf'
