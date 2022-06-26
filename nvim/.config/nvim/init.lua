@@ -123,6 +123,7 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
 
   use 'saadparwaiz1/cmp_luasnip'
   use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', }
