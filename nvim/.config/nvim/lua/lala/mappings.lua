@@ -22,7 +22,6 @@ local M = function()
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
 
-  vim.keymap.set('n', 'gl', ':%') -- "Global" LMAO
   vim.keymap.set('n', 'gs', ':%s/') -- "Global :s"
   vim.keymap.set('n', 'gG', ':%g/') -- "Global :g"
   vim.keymap.set('n', 'g/', ':silent grep! ') -- "Global /"
@@ -66,7 +65,8 @@ local M = function()
 
   local get_list_toggler = function(list)
     return function()
-      if vim.fn.empty(vim.fn.filter(vim.fn.getwininfo(), 'v:val.' .. list)) == 1 then
+      local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.' .. list)
+      if vim.fn.empty(win_info) == 1 then
         vim.cmd('copen')
       else
         vim.cmd('cclose')
@@ -90,11 +90,20 @@ local M = function()
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
 
   -- Simple Leader Keybinds
-  vim.keymap.set('', '<leader>y', '"+y')
-  vim.keymap.set('', '<leader>Y', '"+y$')
-  vim.keymap.set('', '<leader>p', '"+p')
-  vim.keymap.set('', '<leader>P', '"+P')
-  vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>')
+  vim.keymap.set('', '<leader>y', '"+y',
+    { desc = 'Yank to clipboard' })
+  vim.keymap.set('', '<leader>Y', '"+y$',
+    { desc = 'Yank end of line to clipboard' })
+  vim.keymap.set('', '<leader>p', '"+p',
+    { desc = 'Paste from clipboard' })
+  vim.keymap.set('', '<leader>P', '"+P',
+    { desc = 'Paste from clipboard behind cursor' })
+  vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',
+    { desc = 'Display Git status window' })
+  -- Kernel repo history is too large for ":G lo". 
+  vim.keymap.set('n', '<leader>gl',
+    '<cmd>G log --abbrev-commit --pretty=oneline -500<cr>',
+    { desc = 'Display the first 500 git commits' })
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator.
@@ -107,8 +116,9 @@ local M = function()
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
   -- Create new tab.
   vim.keymap.set('n', '<leader>o', '<cmd>tab split<cr>')
-  -- Create new window.
-  vim.keymap.set('n', '<leader>O', '<cmd>silent !uwin<cr>')
+  -- Create new window (!= vim windows).
+  vim.keymap.set('n', '<leader>O', '<cmd>silent !uwin<cr>',
+    { desc = 'Open a new terminal window' })
 
   -- Quick Tab Switching Keybindings
   vim.keymap.set('n', '<leader>1', '1gt')
@@ -279,7 +289,7 @@ local M = function()
     require('telescope.builtin').current_buffer_fuzzy_find({})
   end)
 
-  -- LSP Keybinds
+  -- LSP "goto" commands Keybinds
   vim.keymap.set('n', 'gd', function()
     if vim.tbl_isempty(vim.lsp.buf_get_clients()) then
       vim.cmd('normal! gd')
@@ -298,8 +308,11 @@ local M = function()
   end,
     { desc = 'Go to declaration' }
   )
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition,
+    { desc = 'Go to type definition' })
 
   -- "<leader>x" := "eXplore". These generally put useful things in quickfix list.
+  vim.keymap.set('n', '<leader>x', '<nop>')
   vim.keymap.set('n', '<leader>xi', vim.lsp.buf.incoming_calls,
     { desc = 'Explore incoming calls to symbol'})
   vim.keymap.set('n', '<leader>xo', vim.lsp.buf.outgoing_calls,
