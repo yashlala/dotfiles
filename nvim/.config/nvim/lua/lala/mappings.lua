@@ -87,6 +87,7 @@ local M = function()
   vim.keymap.set('n', '<m-space>', '<nop>') -- prevent current mode confusion
   vim.keymap.set('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   vim.keymap.set('t', '<m-space>', '<c-\\><c-n>')
+  vim.keymap.set('n', '<c-space>', '<nop>')
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
 
   -- Simple Leader Keybinds
@@ -98,6 +99,12 @@ local M = function()
     { desc = 'Paste from clipboard' })
   vim.keymap.set('', '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
+  vim.keymap.set('n', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
+    { desc = 'Substitute with clipboard' })
+  vim.keymap.set('n', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',
+    { desc = 'Substitute line with clipboard' })
+  vim.keymap.set('n', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
+    { desc = 'Substitute until end of line with clipboard' })
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',
     { desc = 'Display Git status window' })
   -- Kernel repo history is too large for ":G lo". 
@@ -325,6 +332,10 @@ local M = function()
       require('telescope.builtin').lsp_dynamic_workspace_symbols()
     end,
     { desc = 'Explore all symbols in the workspace' })
+  vim.keymap.set('n', '<leader>xh', function()
+      require('telescope.builtin').lsp_document_symbols()
+    end,
+    { desc = 'Explore all symbols here (buffer)' })
   vim.keymap.set('n', '<leader>xr', vim.lsp.buf.rename,
     { desc = 'Rename a symbol' })
   -- "Fix"; command defined in nvim-code-action-menu plugin.

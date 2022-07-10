@@ -46,8 +46,6 @@ require('packer').startup(function()
 
   -- Colorscheme.
   use 'yashlala/seoul256.vim'
-  use 'overcache/NeoSolarized'
-  use 'nisavid/vim-colors-solarized'
   use 'kyazdani42/nvim-web-devicons'
   use 'tjdevries/colorbuddy.nvim'
 
