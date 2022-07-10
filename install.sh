@@ -25,6 +25,7 @@ ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
 
 sed -iE '/export MANPAGER/d' ~/.config/zsh/zshenv
+sed -i 's/\/code\/bin/\/bin/g' ~/.config/zsh/zshenv
 rm ~/.config/zsh/zshrc.d/fasd.zsh \
   ~/.config/zsh/zshrc.d/keychain.zsh \
   ~/.config/zsh/zshrc.d/miniconda.zsh
