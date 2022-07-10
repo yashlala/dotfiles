@@ -60,21 +60,10 @@ local M = function()
 
   vim.o.mouse = 'a'
 
+  vim.opt.jumpoptions:append('stack')
   -- Ordinarily, "cw" and "cW" are treated like "ce" and "cE" if the cursor is
-  -- on a non-blank.  This is Vi-compatible, but confusing.
-  -- Remove its cpoption (compatibility option) flag below (`_`).
-  vim.o.cpoptions = vim.o.cpoptions:gsub("_", "")
-  -- TODO: Figure this out.
-  --[[ vim.o.formatoptions = vim.o.formatoptions
-    - "a" -- Auto formatting is BAD.
-    - "t" -- Don't auto format my code. I got linters for that.
-    + "c" -- In general, I like it when comments respect textwidth
-    + "q" -- Allow formatting comments w/ gq
-    - "o" -- O and o shouldn't continue comments -- we have Commentary.nvim
-    + "r" -- but we _should_ continue when pressing enter.
-    + "n" -- Indent past the formatlistpat, not underneath it.
-    + "j" -- Auto-remove comments if possible.
-    - "2" -- We don't indent the first line of paragraphs anymore. ]]
+  -- on a non-blank.  This is Vi-compatible, but confusing. Make it consistent. 
+  vim.opt.cpoptions:remove('_')
 end
 
 return M
