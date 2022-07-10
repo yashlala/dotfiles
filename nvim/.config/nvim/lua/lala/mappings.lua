@@ -99,12 +99,6 @@ local M = function()
     { desc = 'Paste from clipboard' })
   vim.keymap.set('', '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
-  vim.keymap.set('n', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
-    { desc = 'Substitute with clipboard' })
-  vim.keymap.set('n', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',
-    { desc = 'Substitute line with clipboard' })
-  vim.keymap.set('n', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
-    { desc = 'Substitute until end of line with clipboard' })
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',
     { desc = 'Display Git status window' })
   -- Kernel repo history is too large for ":G lo". 
