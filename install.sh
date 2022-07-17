@@ -19,6 +19,8 @@ if command -v stow >/dev/null 2>&1; then
 else
   cp -r ./zsh/.config/zsh ~/.config/zsh
   cp -r ./git/.config/git ~/.config/git
+  cp ./readline/.config/readline/inputrc ~/.inputrc
+  cp ./editline/.config/editline/config ~/.editrc
 fi
 
 ln -s ~/.config/zsh/zshrc ~/.zshrc
