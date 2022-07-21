@@ -120,10 +120,10 @@ bindsym $mod+Shift+e exit
 # resize mode keybindings
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    bindsym h resize shrink width 7 px or 7 ppt
-    bindsym j resize grow height 7 px or 7 ppt
-    bindsym k resize shrink height 7 px or 7 ppt
-    bindsym l resize grow width 7 px or 7 ppt
+    bindsym h resize shrink width 20 px or 20 ppt
+    bindsym j resize grow height 20 px or 20 ppt
+    bindsym k resize shrink height 20 px or 20 ppt
+    bindsym l resize grow width 20 px or 20 ppt
 
     bindsym Shift+h resize shrink width 2 px or 2 ppt
     bindsym Shift+j resize grow height 2 px or 2 ppt
