@@ -90,3 +90,18 @@ ma () { cd "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir -p "$1" && cd "$1"; }
 
+# /dev/null
+dn () { 
+  if [ $# -eq 0 ]; then 
+    return
+  fi
+  "$@" >/dev/null 2>&1
+}
+
+# /dev/null asynchronous
+dna () { 
+  if [ $# -eq 0 ]; then 
+    return
+  fi
+  "$@" >/dev/null 2>&1 &
+}
