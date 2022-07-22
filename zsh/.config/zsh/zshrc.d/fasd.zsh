@@ -1,6 +1,7 @@
 # fasd: jump to frequently used files and directories. 
 
 export _FASD_FUZZY=0
+export _FASD_NOCASE=1
 fasd_cache="$HOME/.cache/fasd"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
   fasd --init zsh-hook >| "$fasd_cache"
