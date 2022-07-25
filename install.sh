@@ -11,6 +11,17 @@ if [ -n "$installer" ]; then
   sudo $installer stow zsh
 fi
 
+if ! [ command -v lf >/dev/null 2>&1 ]; then
+  tmp=$(mktemp -d)
+  cd "$tmp"
+  wget 'https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz'
+  tar xzf lf-linux-amd64.tar.gz
+  mkdir -p ~/bin
+  cp lf ~/bin/lf
+  cd - 
+  rm -rf "$tmp"
+fi
+
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
   find . -mindepth 1 -maxdepth 1 -type d -not -name '.git' \
