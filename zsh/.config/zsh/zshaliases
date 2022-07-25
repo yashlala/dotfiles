@@ -95,5 +95,5 @@ dn () {
   if [ $# -eq 0 ]; then 
     return
   fi
-  "$@" >/dev/null 2>&1
+  eval "$@" >/dev/null 2>&1
 }
