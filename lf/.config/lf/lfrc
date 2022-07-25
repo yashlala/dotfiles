@@ -66,7 +66,7 @@ map dd cut
 map dw $ trash-put "$fx"
 map DW $ trash-put "$f" # only the currently selected one
 map yy copy
-map pp paste
+map pp paste; clear
 map v toggle
 map u :unselect; clear
 map U $ trash-restore
