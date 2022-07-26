@@ -48,7 +48,6 @@ require('bqf').setup({
     -- So much trial and error gone with these EX commands!
     -- Anyways, here's FZF.
     fzffilter = '/',
-    -- TODO: Not really true anymore is it? Find out...
     filter = '<c-e>' -- FILTER list based on current selected options
 
   },
