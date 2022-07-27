@@ -9,7 +9,7 @@ local M = function()
   vim.keymap.set('', '-', '0')
 
   vim.keymap.set('', ';', ':')
-  vim.keymap.set('n', ':', 'q:')
+  vim.keymap.set({'n', 'v'}, ':', 'q:')
   vim.keymap.set('n', 'L', ':lua ')
 
   vim.keymap.set('n', '@;', '@:')
