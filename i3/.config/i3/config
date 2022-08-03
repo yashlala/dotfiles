@@ -54,6 +54,7 @@ bindsym $mod+i                        exec --no-startup-id chromium
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
+bindsym Ctrl+Shift+n                  exec --no-startup-id ~/.local/scripts/nice-try
 
 bindsym --release Print               exec --no-startup-id maim -q -s $(xdg-user-dir DOWNLOAD)/$(date +%F+%T).png
 
