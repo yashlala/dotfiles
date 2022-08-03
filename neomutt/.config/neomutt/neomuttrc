@@ -98,6 +98,7 @@ bind index \Cf         half-down
 bind index \Cb         half-up
 bind index i           mail
 bind index s           sync-mailbox
+bind pager R           group-reply
 bind index $           noop
 # "mark" like vim? kinda?
 macro index,pager m "<pipe-message>~/.local/scripts/email-contacts --add-email-quiet<return>" "Add this sender to address book"
