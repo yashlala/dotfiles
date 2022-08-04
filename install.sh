@@ -40,7 +40,7 @@ fi
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
 
-test -e ~/.config/lf/lfrc && sed -iE 's/nvr -s/vim/g'
+test -e ~/.config/lf/lfrc && sed -iE 's/nvr -s/vim/g' ~/.config/lf/lfrc
 sed -iE '/export MANPAGER/d' ~/.config/zsh/zshenv
 sed -i 's/\/code\/bin/\/bin/g' ~/.config/zsh/zshenv
 rm ~/.config/zsh/zshrc.d/fasd.zsh \
