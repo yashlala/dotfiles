@@ -24,6 +24,11 @@ if ! [ command -v lf >/dev/null 2>&1 ]; then
   rm -rf "$tmp"
 fi
 
+# Some sed implementations don't follow symlinks. So do this first. 
+sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
+sed -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
+sed -i 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
+
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
   find . -mindepth 1 -maxdepth 1 -type d -not -name '.git' \
@@ -40,9 +45,6 @@ fi
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
 
-test -e ~/.config/lf/lfrc && sed -iE 's/nvr -s/vim/g' ~/.config/lf/lfrc
-sed -iE '/export MANPAGER/d' ~/.config/zsh/zshenv
-sed -i 's/\/code\/bin/\/bin/g' ~/.config/zsh/zshenv
 rm ~/.config/zsh/zshrc.d/fasd.zsh \
   ~/.config/zsh/zshrc.d/keychain.zsh \
   ~/.config/zsh/zshrc.d/miniconda.zsh
