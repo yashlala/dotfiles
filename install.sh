@@ -39,7 +39,7 @@ else
   cp -r ./git/.config/git ~/.config/git
   cp ./readline/.config/readline/inputrc ~/.inputrc
   cp ./editline/.config/editline/config ~/.editrc
-  mkdir -p ~/.config/lf/lfrc && cp ./lf/.config/lf/lfrc ~/.config/lf/lfrc
+  mkdir -p ~/.config/lf && cp ./lf/.config/lf/lfrc ~/.config/lf/lfrc
 fi
 
 ln -s ~/.config/zsh/zshrc ~/.zshrc
