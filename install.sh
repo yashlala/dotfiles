@@ -26,6 +26,7 @@ fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
 sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
+sed -i 's/trash-put/rm/g' ./lf/.config/lf/lfrc
 sed -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
 sed -i 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
 
