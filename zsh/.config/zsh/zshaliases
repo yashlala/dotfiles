@@ -10,7 +10,7 @@ alias a='fasd -a' # files and directories (all)
 alias j='fasd_cd -d' # jao; go to directory
 alias jj='fasd_cd -di' # interactive jao (menu)
 alias ef="fasd -f -e $EDITOR" # edit any file
-alias eff="fasd -fi -e $EDITOR"
+alias eff="fasd -fi -ee $EDITOR"
 
 alias adoc='asciidoctor'
 alias calc='qalc'
