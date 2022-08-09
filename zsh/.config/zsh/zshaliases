@@ -93,7 +93,7 @@ dn () {
   if [ $# -eq 0 ]; then 
     return
   fi
-  eval "$@" >/dev/null 2>&1
+  eval "$@" </dev/null >/dev/null 2>&1
 }
 
 # /dev/null safe
@@ -101,5 +101,5 @@ dns () {
   if [ $# -eq 0]; then 
     return
   fi
-  eval "$@" >/dev/null
+  eval "$@" </dev/null >/dev/null
 }
