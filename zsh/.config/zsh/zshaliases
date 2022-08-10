@@ -29,7 +29,6 @@ alias q='exit'
 alias rec='asciinema'
 alias spy='isympy --quiet --auto' # sympy, create missing symbols
 alias t='task'
-alias te=   # noop in case we think we're in nvim
 alias tsh='tasksh'
 alias tw='timew'
 alias tag='tmsu'
@@ -102,4 +101,9 @@ dns () {
     return
   fi
   eval "$@" </dev/null >/dev/null
+}
+
+# sometimes we think we're in nvim (:te -> :terminal)
+te () { 
+  nvim -c "te $*"
 }
