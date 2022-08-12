@@ -24,6 +24,15 @@ if ! [ command -v lf >/dev/null 2>&1 ]; then
   rm -rf "$tmp"
 fi
 
+if ! [ command -v fasd >/dev/null 2>&1 ]; then 
+  tmp=$(mktemp -d)
+  cd "$tmp"
+  wget 'https://github.com/clvv/fasd/tarball/1.0.1'
+  tar xzf 1.0.1
+  cd clvv-fasd-4822024
+  env PREFIX="$HOME" make install
+fi
+
 # Some sed implementations don't follow symlinks. So do this first. 
 sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
 sed -i 's/trash-put/rm -r/g' ./lf/.config/lf/lfrc
@@ -46,8 +55,7 @@ fi
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
 
-rm ~/.config/zsh/zshrc.d/fasd.zsh \
-  ~/.config/zsh/zshrc.d/keychain.zsh \
+rm ~/.config/zsh/zshrc.d/keychain.zsh \
   ~/.config/zsh/zshrc.d/miniconda.zsh
 
 if [ -x /bin/zsh ]; then 
