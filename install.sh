@@ -34,16 +34,16 @@ if ! [ command -v fasd >/dev/null 2>&1 ]; then
 fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
-sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
-sed -i 's/trash-put/rm -r/g' ./lf/.config/lf/lfrc
-sed -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
-sed -i 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
+sed --follow-symlinks -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
+sed --follow-symlinks -i 's/trash-put/rm -r/g' ./lf/.config/lf/lfrc
+sed --follow-symlinks -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
+sed --follow-symlinks -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
 
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
-  find . -mindepth 1 -maxdepth 1 -type d -not -name '.git' \
-    | xargs -n 1 basename \
-    | xargs stow
+  find . -mindepth 1 -maxdepth 1 -type d -print0 -not -name '.git' \
+    | xargs -0 -n 1 basename -z \
+    | xargs -0 stow
 else
   cp -r ./zsh/.config/zsh ~/.config/zsh
   cp -r ./git/.config/git ~/.config/git
