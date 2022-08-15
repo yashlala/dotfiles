@@ -37,6 +37,7 @@ fi
 sed --follow-symlinks -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
 sed --follow-symlinks -i 's/trash-put/rm -r/g' ./lf/.config/lf/lfrc
 sed --follow-symlinks -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
+sed --follow-symlinks -i 's/nvim/vim/g' ./zsh/.config/zsh/zshenv
 sed --follow-symlinks -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
 
 mkdir -p ~/.config/
