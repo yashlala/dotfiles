@@ -162,33 +162,31 @@ local M = function()
   -- Hop Keybindings
   vim.keymap.set('', 'f', '<cmd>HopChar1AC<cr>')
   vim.keymap.set('', 'F', '<cmd>HopChar1BC<cr>')
-  vim.keymap.set('n', 't', '<cmd>HopChar2AC<cr>')
-  vim.keymap.set('n', 'T', '<cmd>HopChar2BC<cr>')
   -- In operator-pending mode, these work like ordinary vim.
   vim.keymap.set('o', 'f', function()
-    require('hop').hint_char1({
-      direction = require'hop.hint'.HintDirection.AFTER_CURSOR,
-      inclusive_jump = true
-    })
-  end)
+      require('hop').hint_char1({
+        direction = require'hop.hint'.HintDirection.AFTER_CURSOR,
+        inclusive_jump = true
+      })
+    end, { desc = 'Delete forwards (inclusive)' })
   vim.keymap.set('o', 'F', function()
-    require('hop').hint_char1({
-      direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-      inclusive_jump = true
-    })
-  end)
+      require('hop').hint_char1({
+        direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
+        inclusive_jump = true
+      })
+    end, { desc = 'Delete backwards (inclusive)' })
   vim.keymap.set('o', 't', function()
-    require('hop').hint_char1({
-      direction = require'hop.hint'.HintDirection.AFTER_CURSOR,
-      inclusive_jump = false
-    })
-  end)
+      require('hop').hint_char1({
+        direction = require'hop.hint'.HintDirection.AFTER_CURSOR,
+        hint_offset = -1,
+      })
+    end, { desc = 'Delete backwards (exclusive)' })
   vim.keymap.set('o', 'T', function()
-    require('hop').hint_char1({
-      direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,
-      inclusive_jump = false
-    })
-  end)
+      require('hop').hint_char1({
+        direction = require'hop.hint'.HintDirection.BEFORE_CURSOR,
+        hint_offset = 1,
+      })
+    end, { desc = 'Delete backwards (exclusive)' })
   vim.keymap.set('', '<leader>j', '<cmd>HopLineAC<cr>')
   vim.keymap.set('', '<leader>k', '<cmd>HopLineBC<cr>')
 
