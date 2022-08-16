@@ -97,7 +97,7 @@ dn () {
 
 # /dev/null safe
 dns () { 
-  if [ $# -eq 0]; then 
+  if [ $# -eq 0 ]; then 
     return
   fi
   eval "$@" </dev/null >/dev/null
