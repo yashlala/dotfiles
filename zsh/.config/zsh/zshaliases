@@ -12,11 +12,15 @@ alias jj='fasd_cd -di' # interactive jao (menu)
 alias ef="fasd -f -e $EDITOR" # edit any file
 alias eff="fasd -fi -ee $EDITOR"
 
+alias e='nvr'
+alias ecd='nvr -cc "cd $(pwd -L)"'
+alias egh='nvr -cc "cd $(pwd -L)"'
+
 alias adoc='asciidoctor'
 alias calc='qalc'
 alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
-alias e='nvr'
+alias dm='sudo dmesg --color=always | less +G'
 alias g='git'
 alias h='man'
 alias jn='jupyter-notebook'
@@ -101,6 +105,14 @@ dns () {
     return
   fi
   eval "$@" </dev/null >/dev/null
+}
+
+# /dev/null log (we can `>logfile` and have safe behavior). 
+dns () { 
+  if [ $# -eq 0 ]; then 
+    return
+  fi
+  eval "$@" </dev/null 2>&1
 }
 
 # sometimes we think we're in nvim (:te -> :terminal)
