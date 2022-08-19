@@ -32,6 +32,7 @@ if ! [ command -v fasd >/dev/null 2>&1 ]; then
   cd clvv-fasd-4822024
   env PREFIX="$HOME" make install
   popd
+  rm -rf "$tmp"
 fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
