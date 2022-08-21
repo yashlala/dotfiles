@@ -22,6 +22,10 @@ local M = function()
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
 
+  vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')
+  vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
+  vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
+
   vim.keymap.set('n', 'gs', ':%s/') -- "Global :s"
   vim.keymap.set('n', 'gG', ':%g/') -- "Global :g"
   vim.keymap.set('n', 'g/', ':silent grep! ') -- "Global /"
@@ -91,7 +95,7 @@ local M = function()
   vim.keymap.set('n', '<c-space>', '<nop>')
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
 
-  -- Simple Leader Keybinds
+  -- X11 Clipboard management
   vim.keymap.set('', '<leader>y', '"+y',
     { desc = 'Yank to clipboard' })
   vim.keymap.set('', '<leader>Y', '"+y$',
@@ -100,6 +104,14 @@ local M = function()
     { desc = 'Paste from clipboard' })
   vim.keymap.set('', '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
+  vim.keymap.set('', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
+    { desc = 'Substitute with clipboard' })
+  vim.keymap.set('', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)', 
+    { desc = 'Substitute line with clipboard' })
+  vim.keymap.set('', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
+    { desc = 'Substitute end of line with clipboard' })
+
+  -- Git repository management
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',
     { desc = 'Display Git status window' })
   -- Kernel repo history is too large for ":G lo". 
@@ -109,7 +121,7 @@ local M = function()
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator.
-  vim.keymap.set('n', '<leader>s', '<cmd>Sayonara<cr>')
+  vim.keymap.set('n', '<leader>q', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
   -- Use when we want to delete _buffer_ but preserve everything else.
   vim.keymap.set('n', '<leader>d', '<cmd>Sayonara!<cr>')
@@ -189,10 +201,6 @@ local M = function()
     end, { desc = 'Delete backwards (exclusive)' })
   vim.keymap.set('', '<leader>j', '<cmd>HopLineAC<cr>')
   vim.keymap.set('', '<leader>k', '<cmd>HopLineBC<cr>')
-
-  vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')
-  vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
-  vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 
   -- Diary Keybinds
   vim.keymap.set('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
