@@ -15,23 +15,22 @@ fi
 
 if ! [ command -v lf >/dev/null 2>&1 ]; then
   tmp=$(mktemp -d)
-  pushd "$tmp"
+  cd "$tmp"
   wget -q 'https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz'
   tar xzf lf-linux-amd64.tar.gz
   mkdir -p ~/bin
   cp lf ~/bin/lf
-  popd 
+  cd - 
   rm -rf "$tmp"
 fi
 
 if ! [ command -v fasd >/dev/null 2>&1 ]; then 
   tmp=$(mktemp -d)
-  pushd "$tmp"
+  cd "$tmp"
   wget -q 'https://github.com/clvv/fasd/tarball/1.0.1'
   tar xzf 1.0.1
-  cd clvv-fasd-4822024
-  env PREFIX="$HOME" make install
-  popd
+  env PREFIX="$HOME" make -C clvv-fasd-4822024 install
+  cd - 
   rm -rf "$tmp"
 fi
 
