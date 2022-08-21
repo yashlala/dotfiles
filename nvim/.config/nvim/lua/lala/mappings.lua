@@ -234,6 +234,8 @@ local M = function()
     end,
     { desc = 'View buffers' }
   )
+  vim.keymap.set('n', 't', '<cmd>Telescope termfinder find<cr>',
+    { desc = 'View terminal buffers' })
   -- Find old files (recently used)
   vim.keymap.set('n', '<leader>fo',
     function()

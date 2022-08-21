@@ -51,3 +51,6 @@ require('telescope').load_extension('file_browser')
 
 -- Integrate with `harpoon`
 require('telescope').load_extension('harpoon')
+
+-- integrate with `telescope-toggleterm.nvim`
+require('telescope').load_extension('termfinder')
