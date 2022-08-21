@@ -128,8 +128,8 @@ require('packer').startup(function()
   use 'rafamadriz/friendly-snippets'
 
   -- More discoverable LSP code actions
-  use { 'kosayoda/nvim-lightbulb', 
-    requires = 'antoinemadec/FixCursorHold.nvim' 
+  use { 'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim'
   }
   -- Better menu for LSP code actions
   use 'weilbith/nvim-code-action-menu'
