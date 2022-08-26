@@ -88,6 +88,8 @@ lkj () {
 
 ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
+js () { j "$@" >/dev/stdout && ls; }
+ja () { j "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir -p "$1" && cd "$1"; }
 
