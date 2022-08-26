@@ -155,6 +155,8 @@ require('packer').startup(function()
   use 'tpope/vim-repeat'
 end)
 
+require('yashlala.lsp')
+
 -- TODO: Colorscheme things
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1

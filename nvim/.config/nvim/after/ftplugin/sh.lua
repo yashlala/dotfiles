@@ -7,5 +7,3 @@ vim.bo.textwidth = 79
 
 vim.api.nvim_command("setlocal formatoptions+=cr formatoptions-=o")
 vim.api.nvim_command("setlocal cinoptions+=l1,:n1")
-
-require('lspconfig').bashls.setup({})
