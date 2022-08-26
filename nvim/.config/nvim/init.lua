@@ -151,8 +151,6 @@ require('packer').startup(function()
   use 'stevearc/dressing.nvim' -- Prettify built-in UIs.
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 
-  use 'folke/which-key.nvim'
-
   -- Allow plugins to use the `.` key (if they support it).
   use 'tpope/vim-repeat'
 end)
