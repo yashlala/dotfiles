@@ -22,10 +22,11 @@ local M = function()
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
 
-  vim.keymap.set('n', 's', '<Plug>(SubversiveSubstitute)')
+  vim.keymap.set({'n', 'v'}, 's', '<Plug>(SubversiveSubstitute)')
   vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
   vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 
+  vim.keymap.set('n', 'gl', ':%') -- "Global" LMAO
   vim.keymap.set('n', 'gs', ':%s/') -- "Global :s"
   vim.keymap.set('n', 'gG', ':%g/') -- "Global :g"
   vim.keymap.set('n', 'g/', ':silent grep! ') -- "Global /"
@@ -111,6 +112,14 @@ local M = function()
   vim.keymap.set('', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
     { desc = 'Substitute end of line with clipboard' })
 
+  -- LSP management
+  vim.keymap.set('', '<leader>ls', '<cmd>LspStart<cr>',
+    { desc = 'Start the LSP' })
+  vim.keymap.set('', '<leader>li', '<cmd>LspInfo<cr>',
+    { desc = 'Display LSP status info' })
+  vim.keymap.set('', '<leader>lr', '<cmd>LspRestart<cr>',
+    { desc = 'Restart the running LSP' })
+
   -- Git repository management
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',
     { desc = 'Display Git status window' })
@@ -121,7 +130,7 @@ local M = function()
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator.
-  vim.keymap.set('n', '<leader>q', '<cmd>Sayonara<cr>')
+  vim.keymap.set('n', '<leader>D', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
   -- Use when we want to delete _buffer_ but preserve everything else.
   vim.keymap.set('n', '<leader>d', '<cmd>Sayonara!<cr>')

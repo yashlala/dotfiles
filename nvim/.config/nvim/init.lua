@@ -21,15 +21,15 @@ pcall(require, 'impatient')
 -- Set global variables and lua functions early in our config, so all modules
 -- will see them.
 vim.g.mapleader = ' '
-require('lala.globals')
+require('yashlala.globals')
 
 -- If this is the first time we're running Neovim, install packer.nvim etc.
-require('lala.fresh-install')()
+require('yashlala.fresh-install')()
 
 -- Source basic options and keymaps first.
 -- All more complicated things are in the `after/plugin` dir.
-require('lala.options')()
-require('lala.mappings')()
+require('yashlala.options')()
+require('yashlala.mappings')()
 
 -- Source our plugins
 local use = require('packer').use
