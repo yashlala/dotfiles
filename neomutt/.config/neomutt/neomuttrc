@@ -127,7 +127,7 @@ bind pager \Cd         half-down
 bind pager \Cu         half-up
 bind pager \Cf         half-down
 bind pager \Cb         half-up
-bind pager R           group-reply
+bind index,pager R           group-reply
 
 macro pager \Cm "<pipe-message>urlscan<enter>" "call urlscan to open links"
 bind attach l view-mailcap # View attachments properly.
