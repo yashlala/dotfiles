@@ -44,7 +44,7 @@ sed --follow-symlinks -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
   find . -mindepth 1 -maxdepth 1 \( -type d -not -name '.git' \) -print0 \
-    | xargs -0 -n 1 basename \
+    | xargs -0 -n 1 basename -z \
     | xargs -0 stow
 else
   cp -r ./zsh/.config/zsh ~/.config/zsh
