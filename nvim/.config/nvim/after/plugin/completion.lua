@@ -5,31 +5,15 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
--- TODO: We can fix this using the luasnip API documentation.
 cmp.setup({
-  -- TODO: Add more bindings! Control key is easy now.
-  -- Ideally we would keep tapping control space and it would work
   mapping = cmp.mapping.preset.insert{
-    -- ['<Tab>'] = cmp.mapping(function()
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     return t("<Plug>luasnip-expand-or-jump")
-    --   elseif check_back_space() then
-    --     return t "<Tab>"
-    --   else
-    --   end
-    -- end, { 'i', 's' }),
-
     -- Ask the world for completions
     ['<c-y>'] = cmp.mapping.complete(),
     -- Cancel completion.
     ['<c-e>'] = cmp.mapping.close(),
     -- Accept the current completion
     ['<c-space>'] = cmp.mapping(function()
-      -- TODO: Expand based on current menu entry somehow.
-      -- I don't think this is working right, even with cmp_luasnip?
-      -- Figure out fallback logic.
+      -- TODO: This may be inteferring with luasnip. 
       if luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif cmp.visible() then
@@ -39,12 +23,12 @@ cmp.setup({
   },
 
   sources = {
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'nvim_lsp', keyword_length = 5 },
-    { name = 'luasnip', keyword_length = 5 },
-    { name = 'nvim_lua', keyword_length = 5 }, -- automatically runs only for lua
-    { name = 'buffer', keyword_length = 5 },
-    { name = 'path', keyword_length = 5 }, -- TODO: kw_len not working
+    { name = 'nvim_lsp_signature_help' }, -- LSP function signatures
+    { name = 'nvim_lsp' }, -- Regular LSP suggestions
+    -- { name = 'luasnip' }, -- TODO Tweak
+    { name = 'nvim_lua' }, -- nvim API LSP suggestions
+    { name = 'buffer' }, -- Similar words in the current buffer
+    { name = 'path' }, -- Paths in the local filesystem
   },
 
   snippet = {
@@ -67,8 +51,7 @@ cmp.setup({
   },
 
   experimental = {
-    -- Use the new, fancy menu.
-    native_menu = false,
+    native_menu = false, -- Use the new, fancy menu.
     ghost_text = true,
   }
 })
