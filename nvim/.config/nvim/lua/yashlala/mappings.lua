@@ -85,8 +85,6 @@ local M = function()
   vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'),
     { desc = 'Toggle location list visibility' })
 
-  -- TODO: convert the keys into lua
-
   nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
   nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
 
@@ -107,7 +105,7 @@ local M = function()
     { desc = 'Paste from clipboard behind cursor' })
   vim.keymap.set('', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
     { desc = 'Substitute with clipboard' })
-  vim.keymap.set('', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)', 
+  vim.keymap.set('', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',
     { desc = 'Substitute line with clipboard' })
   vim.keymap.set('', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
     { desc = 'Substitute end of line with clipboard' })
@@ -225,15 +223,12 @@ local M = function()
 
 
   -- Telescope Keybinds
-  -- TODO: Can we use this to find _every_ picker, not just builtin ones?
-  -- vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope<cr>')
-  -- TODO: Can we make this use LRU or frecency?
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten". Can just pass
   --       a function argument...
   -- TODO: Can we define a keybind to kill buffers easily?
-  -- We'll use this as our _primary_ method of navigation, so we should make it
-  -- damn nice. EDIT: Well that turned out to be a lie, harpoon + tabs is great
+  vim.keymap.set('n', '<c-t>', '<cmd>Telescope resume<cr>',
+    { desc = 'Resume the previous telescope search' })
   vim.keymap.set('n', ',',
     function()
       require('telescope.builtin').buffers({
