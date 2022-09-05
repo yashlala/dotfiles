@@ -155,7 +155,8 @@ require('packer').startup(function()
   use 'tpope/vim-repeat'
 end)
 
-require('yashlala.lsp')
+require('yashlala.lsp').setup()
+require('yashlala.autocmds').setup()
 
 -- TODO: Colorscheme things
 -- Load colorscheme *before* other plugins are set up.
