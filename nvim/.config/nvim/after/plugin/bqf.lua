@@ -14,10 +14,10 @@ require('bqf').setup({
 
     ptoggleauto = 'p', -- Toggle previews
     ptoggleitem = 'P', -- Toggle preview for a particular node
-    
+
     pscrollorig = '=', -- Center the preview window.
-    -- We can use <c-f> <c-b> to move around in the preview window too
-    -- TODO: Switch this to c-u and c-d. 
+    pscrolldown = '<c-d>',
+    pscrollup = '<c-u>',
 
     prevhist = '[[', -- Go to the previous qf list
     nexthist = ']]',  -- Go to the next qf list
@@ -61,7 +61,7 @@ require('bqf').setup({
     }
   },
 
-  preview = { 
+  preview = {
     auto_preview = true, -- enable preview window by default
-  }, 
+  },
 })

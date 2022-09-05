@@ -130,10 +130,10 @@ local M = function()
 
   -- Delete the current buffer, close the current window/tab, clear loclist.
   -- Smart command, use it as a generic "get out of my face" inator.
-  vim.keymap.set('n', '<leader>D', '<cmd>Sayonara<cr>')
+  vim.keymap.set('n', '<leader>d', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
   -- Use when we want to delete _buffer_ but preserve everything else.
-  vim.keymap.set('n', '<leader>d', '<cmd>Sayonara!<cr>')
+  vim.keymap.set('n', '<leader>D', '<cmd>Sayonara!<cr>')
   -- Close the current window. Change nothing.
   -- Use when we want to delete window only.
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
