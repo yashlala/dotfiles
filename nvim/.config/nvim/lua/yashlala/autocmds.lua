@@ -23,7 +23,7 @@ M.setup = function()
   })
 
   -- Close netrw buffers (we can't do this by default, for some reason).
-  vim.cmd('autocmd Filetype netrw setl bufhidden=delete')
+  vim.cmd('autocmd Filetype netrw setlocal bufhidden=delete')
 
   vim.cmd('autocmd TermOpen * startinsert')
   vim.cmd('autocmd TermOpen * setlocal signcolumn=no')

@@ -1,9 +1,5 @@
 -- `init.lua`
 
--- Experimental opt in. Report bugs we find to the relevant neovim issue.
--- https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
-vim.g.do_filetype_lua = 1
-
 --[[ TODO TODO:
 Roadmap:
 
