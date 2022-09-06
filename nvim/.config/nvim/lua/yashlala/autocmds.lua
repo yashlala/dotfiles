@@ -6,14 +6,10 @@ M.setup = function()
 
   -- Return to last edit position when opening files.
   vim.api.nvim_create_autocmd('BufReadPost', {
-    pattern = '*',
     callback = function()
-      -- This autocmd misbehaves with bqf.vim, so act only on normal buffers
-      if vim.bo.buftype ~= '' then return end
-
       local line = vim.fn.line("'\"")
-      if 0 < line and line <= vim.fn.line("$") then
-        vim.cmd('exe "normal! g`\""')
+      if 0 < line and line <= vim.fn.line('$') then
+        vim.cmd('normal! g`"')
       end
     end,
     desc = 'Return to the last edit position when opening files.'
