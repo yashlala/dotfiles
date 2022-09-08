@@ -93,6 +93,11 @@ ja () { j "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir -p "$1" && cd "$1"; }
 
+aliases () { 
+  "$EDITOR" ~/.config/zsh/zshaliases
+  source ~/.config/zsh/zshaliases
+}
+
 # /dev/null
 dn () { 
   if [ $# -eq 0 ]; then 
