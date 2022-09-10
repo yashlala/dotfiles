@@ -4,6 +4,7 @@
 -- If they do, you'll probably find them in a dedicated file instead.
 
 local M = function()
+  vim.keymap.set('', '<leader>', '<nop>')
   vim.keymap.set('', "'", '`')
   vim.keymap.set('', '`', '~')
   vim.keymap.set('', '-', '0')
