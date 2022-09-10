@@ -13,14 +13,14 @@ local M = function()
   vim.keymap.set('n', 'L', ':lua ')
 
   vim.keymap.set('n', '@;', '@:')
-  vim.keymap.set('n', '<bar>', 'K')
   vim.keymap.set('n', 'K', 'kJ')
   vim.keymap.set('n', 'gK', 'kgJ')
   vim.keymap.set('n', 'U', '<c-r>')
-  vim.keymap.set('n', 'V', 'v')
-  vim.keymap.set('n', 'v', 'V')
+  vim.keymap.set({'n', 'v', 'o'}, 'V', 'v')
+  vim.keymap.set({'n', 'v', 'o'}, 'v', 'V')
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
+  vim.keymap.set('v', '<c-o>', 'o>')
 
   vim.keymap.set({'n', 'v'}, 's', '<Plug>(SubversiveSubstitute)')
   vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
@@ -355,7 +355,7 @@ local M = function()
     { desc = 'Info about symbol' })
   -- TODO: Alternate between viewing error and fixing it?
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
-    { desc = 'Info about current error'})
+    { desc = 'Info about error'})
 end
 
 return M
