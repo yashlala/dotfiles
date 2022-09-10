@@ -6,8 +6,6 @@ Roadmap:
 1. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
    diagnostics on point.
 2. Remove all `TODO`s from our configs. Too many weird bugs.
-3. Set up the quickfix binds to be smarter (as per comment there)
-4. Set up a grand telescope picker menu (not jus tbuiltins)
 ]]
 
 
@@ -108,9 +106,9 @@ require('packer').startup(function()
 
   -- Highlighting, editing, etc. using incremental parsing.
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter-textobjects' 
 
   -- Autocompletion plugin
-  -- TODO: It's new! set it up!
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
