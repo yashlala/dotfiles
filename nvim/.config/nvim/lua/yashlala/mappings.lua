@@ -21,7 +21,7 @@ local M = function()
   vim.keymap.set({'n', 'v', 'o'}, 'v', 'V')
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
-  vim.keymap.set('v', '<c-o>', 'o>')
+  vim.keymap.set('v', '<c-o>', 'o')
 
   vim.keymap.set({'n', 'v'}, 's', '<Plug>(SubversiveSubstitute)')
   vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
