@@ -18,7 +18,7 @@ vim.g.mapleader = ' '
 require('yashlala.globals')
 
 -- If this is the first time we're running Neovim, install packer.nvim etc.
-require('yashlala.fresh-install')()
+require('yashlala.fresh-install')
 
 -- Source basic options and keymaps first.
 -- All more complicated things are in the `after/plugin` dir.
