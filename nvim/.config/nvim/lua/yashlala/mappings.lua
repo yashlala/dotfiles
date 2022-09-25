@@ -118,6 +118,8 @@ local M = function()
     { desc = 'Display LSP status info' })
   vim.keymap.set('', '<leader>lr', '<cmd>LspRestart<cr>',
     { desc = 'Restart the running LSP' })
+  vim.keymap.set('', '<leader>ll', '<cmd>LspLog<cr>',
+    { desc = 'View LSP logfile' })
 
   -- Git repository management
   vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>',

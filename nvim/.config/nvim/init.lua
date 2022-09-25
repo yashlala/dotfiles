@@ -121,10 +121,6 @@ require('packer').startup(function()
   use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', }
   use 'rafamadriz/friendly-snippets'
 
-  -- More discoverable LSP code actions
-  use { 'kosayoda/nvim-lightbulb',
-    requires = 'antoinemadec/FixCursorHold.nvim'
-  }
   -- Better menu for LSP code actions
   use 'weilbith/nvim-code-action-menu'
 
