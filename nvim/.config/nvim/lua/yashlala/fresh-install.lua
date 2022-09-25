@@ -1,28 +1,15 @@
-local download_packer = function()
-  if vim.fn.input "Download Packer? [y/n]" ~= "y" then
-    return
-  end
-
-  local directory = string.format("%s/site/pack/packer/start/",
-    vim.fn.stdpath "data"
-  )
-
-  vim.fn.mkdir(directory, "p")
-
-  local out = vim.fn.system(
-    string.format("git clone %s %s",
-      "https://github.com/wbthomason/packer.nvim", directory .. "/packer.nvim")
-  )
-
-  print(out)
+if not pcall(require, "packer") then
   print "Downloading packer.nvim..."
-  print "( You'll need to restart now )"
-end
 
-return function()
-  if not pcall(require, "packer") then
-    download_packer()
+  local packer_dir = string.format("%s/site/pack/packer/start/",
+    vim.fn.stdpath("data"))
+  vim.fn.mkdir(packer_dir, 'p')
 
-    return true
-  end
+  local out = vim.fn.system(string.format("git clone %s %s",
+      "https://github.com/wbthomason/packer.nvim",
+      packer_dir .. "/packer.nvim"))
+  print(out)
+
+  vim.fn.input("Exiting now, you'll need to restart. Press <CR> to continue.")
+  vim.cmd('quitall!')
 end
