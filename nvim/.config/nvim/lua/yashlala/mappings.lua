@@ -47,7 +47,6 @@ local M = function()
   vim.keymap.set('n', 'g<c-o>', 'g;') -- <c-o>, but for changelist
   vim.keymap.set('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
 
-  vim.keymap.set('', '&', '<cmd>&&<cr>')
   vim.keymap.set('', '_', '<c-y>')
   vim.keymap.set('', '+', '<c-e>')
 
@@ -85,9 +84,6 @@ local M = function()
     { desc = 'Toggle quickfix list visibility' })
   vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'),
     { desc = 'Toggle location list visibility' })
-
-  nitvmapper('<m-q>', '<cmd>call ToggleQFList()<cr>')
-  nitvmapper('<m-r>', '<cmd>call ToggleLocList()<cr>')
 
   vim.keymap.set('n', '<m-space>', '<nop>') -- prevent current mode confusion
   vim.keymap.set('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
@@ -257,6 +253,14 @@ local M = function()
       hidden = true,
     })
   end)
+  -- Find File
+  vim.keymap.set('n', '<leader>fv', function()
+    require('telescope.builtin').find_files({
+      preview={hide_on_startup=true},
+      cwd = '~/var',
+      hidden = false,
+    })
+  end, { desc = 'Find var file' })
   -- Find Here (Buffer's dir is the CWD)
   vim.keymap.set('n', '<leader>fh', function()
     require('lala.telescope-custom').find_files_bufdir({

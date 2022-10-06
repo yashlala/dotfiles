@@ -10,6 +10,7 @@ require('telescope').setup {
         ['<tab>'] = require('telescope.actions').toggle_selection,
         ['v'] = require('telescope.actions').toggle_selection,
         ['<c-q>'] = require('telescope.actions').smart_send_to_qflist,
+        ['<c-a>'] = require('telescope.actions').smart_add_to_qflist,
         ['<c-r>'] = require('telescope.actions').smart_send_to_loclist,
       }
     },
