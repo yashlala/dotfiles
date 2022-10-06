@@ -2,7 +2,7 @@
 Description=Trim the FreeDesktop.org Trash bin. 
 
 [Timer]
-OnCalendar=daily
+OnCalendar=Sun,Wed
 Persistent=true
 
 [Install]
