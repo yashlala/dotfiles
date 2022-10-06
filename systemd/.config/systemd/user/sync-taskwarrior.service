@@ -1,0 +1,9 @@
+[Unit]
+Description=Sync Taskwarrior with personal website
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/chronic /usr/bin/task sync
+
+[Install]
+WantedBy=default.target
