@@ -1,7 +1,7 @@
 local M = {}
 
-M.setup = function() 
-  require'lspconfig'.clangd.setup{}
+M.setup = function()
+  require('lspconfig').clangd.setup{}
 
   require('lspconfig').bashls.setup({})
 

@@ -3,7 +3,9 @@
 -- The maps here don't really fit into a bigger picture.
 -- If they do, you'll probably find them in a dedicated file instead.
 
-local M = function()
+local M = {}
+
+M.setup = function()
   vim.keymap.set('', '<leader>', '<nop>')
   vim.keymap.set('', "'", '`')
   vim.keymap.set('', '`', '~')
@@ -226,7 +228,7 @@ local M = function()
   --       "truncate" with the selectiveness of "shorten". Can just pass
   --       a function argument...
   -- TODO: Can we define a keybind to kill buffers easily?
-  vim.keymap.set('n', '<c-t>', '<cmd>Telescope resume<cr>',
+  vim.keymap.set('n', '<c-r>', '<cmd>Telescope resume<cr>',
     { desc = 'Resume the previous telescope search' })
   vim.keymap.set('n', ',',
     function()
@@ -263,7 +265,7 @@ local M = function()
   end, { desc = 'Find var file' })
   -- Find Here (Buffer's dir is the CWD)
   vim.keymap.set('n', '<leader>fh', function()
-    require('lala.telescope-custom').find_files_bufdir({
+    require('yashlala.telescope-custom').find_files_bufdir({
       preview={hide_on_startup=true},
       hidden = true,
     })

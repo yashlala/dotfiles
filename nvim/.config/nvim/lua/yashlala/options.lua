@@ -1,6 +1,7 @@
 -- Basic Vim options.
+local M = {}
 
-local M = function()
+M.setup = function()
   vim.o.confirm = true -- Ask before dangerous changes
   vim.o.gdefault = true -- s/.../.../g by default. Might break plugins.
   vim.o.timeout = false -- Don't delay when given ambiguous keymaps

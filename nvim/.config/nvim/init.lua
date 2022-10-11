@@ -15,15 +15,15 @@ pcall(require, 'impatient')
 -- Set global variables and lua functions early in our config, so all modules
 -- will see them.
 vim.g.mapleader = ' '
-require('yashlala.globals')
+require('yashlala.globals').setup()
 
 -- If this is the first time we're running Neovim, install packer.nvim etc.
-require('yashlala.fresh-install')
+require('yashlala.fresh-install').setup()
 
 -- Source basic options and keymaps first.
 -- All more complicated things are in the `after/plugin` dir.
-require('yashlala.options')()
-require('yashlala.mappings')()
+require('yashlala.options').setup()
+require('yashlala.mappings').setup()
 
 -- Source our plugins
 local use = require('packer').use
@@ -106,7 +106,7 @@ require('packer').startup(function()
 
   -- Highlighting, editing, etc. using incremental parsing.
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-textobjects' 
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
 
   -- Autocompletion plugin
   use 'hrsh7th/nvim-cmp'
