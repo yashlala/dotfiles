@@ -101,7 +101,6 @@ require('packer').startup(function()
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
-  use 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
   use 'mfussenegger/nvim-jdtls'
 
   -- Highlighting, editing, etc. using incremental parsing.
@@ -145,7 +144,7 @@ require('packer').startup(function()
   use 'tpope/vim-repeat'
 end)
 
-require('yashlala.lsp').setup()
+require('yashlala.lsp-comp').setup()
 require('yashlala.autocmds').setup()
 
 -- TODO: Colorscheme things
