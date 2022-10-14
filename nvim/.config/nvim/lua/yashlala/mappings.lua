@@ -42,12 +42,29 @@ M.setup = function()
   -- Bring up the Harpoon menu for quick switching.
   vim.keymap.set('n', 'H', function() require('harpoon.ui').toggle_quick_menu() end)
 
-  vim.keymap.set('n', '<c-n>', '<cmd>cnext<cr>')
-  vim.keymap.set('n', '<c-p>', '<cmd>cprev<cr>')
+  vim.keymap.set('n', 't', function()
+    local tagname = vim.fn.input('Tag Name: ')
+    local newtag = {{
+      tagname = tagname,
+      bufnr = vim.fn.bufnr('%'),
+      from = vim.fn.getcurpos(),
+    }}
+    vim.fn.settagstack(vim.fn.winnr(), {items = newtag}, 't')
+  end, { desc = 'Add current position tag stack' })
+
+  vim.api.nvim_create_user_command('Cleartags', function()
+      vim.fn.settagstack(vim.fn.winnr(), {items = {}}, 'r')
+      print('Tag stack cleared.')
+    end,
+    { desc = 'Empty the tag stack of the current window' })
+  vim.keymap.set('n', 'T', '<cmd>Clearjumps<cr>')
+
   vim.keymap.set('n', '<c-]>', 'g<c-]>')
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
   vim.keymap.set('n', 'g<c-o>', 'g;') -- <c-o>, but for changelist
   vim.keymap.set('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
+  vim.keymap.set('n', '<c-n>', vim.diagnostic.goto_next)
+  vim.keymap.set('n', '<c-p>', vim.diagnostic.goto_prev)
 
   vim.keymap.set('', '_', '<c-y>')
   vim.keymap.set('', '+', '<c-e>')
@@ -239,8 +256,6 @@ M.setup = function()
     end,
     { desc = 'View buffers' }
   )
-  vim.keymap.set('n', 't', '<cmd>Telescope termfinder find<cr>',
-    { desc = 'View terminal buffers' })
   -- Find old files (recently used)
   vim.keymap.set('n', '<leader>fo',
     function()

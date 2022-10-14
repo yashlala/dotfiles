@@ -91,10 +91,6 @@ require('packer').startup(function()
   use 'ThePrimeagen/harpoon'
   -- Use for a generic persistent terminal keybind.
   use 'akinsho/toggleterm.nvim'
-  -- Allow searching through custom terminals (names etc)
-  use { 'tknightz/telescope-termfinder.nvim',
-    requires = { "nvim-telescope/telescope.nvim", "akinsho/nvim-toggleterm.lua" }
-  }
   -- Delete a buffer without affecting the window layout.
   use 'yashlala/vim-sayonara'
 
