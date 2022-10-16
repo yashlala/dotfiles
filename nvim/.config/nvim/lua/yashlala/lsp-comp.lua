@@ -129,10 +129,7 @@ end
 
 M.setup = function()
   setup_cmp()
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-  setup_lsp(capabilities)
+  setup_lsp(require('cmp_nvim_lsp').default_capabilities())
 end
 
 return M
