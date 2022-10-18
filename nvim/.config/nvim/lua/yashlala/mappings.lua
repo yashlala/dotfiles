@@ -57,7 +57,7 @@ M.setup = function()
       print('Tag stack cleared.')
     end,
     { desc = 'Empty the tag stack of the current window' })
-  vim.keymap.set('n', 'T', '<cmd>Clearjumps<cr>')
+  vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
 
   vim.keymap.set('n', '<c-]>', 'g<c-]>')
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
