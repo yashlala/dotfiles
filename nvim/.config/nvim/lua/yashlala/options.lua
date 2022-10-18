@@ -43,7 +43,7 @@ M.setup = function()
   vim.o.belloff = 'all'  -- No bells! Whistles are OK.
   vim.o.undofile = true -- persistent undo between sessions
   vim.o.scrollback = 8192 -- lines of terminal mode scrollback
-  vim.o.updatetime = 1000
+  vim.o.updatetime = 3000
 
   vim.o.lazyredraw = true
   vim.o.hlsearch = false

@@ -15,6 +15,9 @@ M.setup = function()
     desc = 'Return to the last edit position when opening files.'
   })
 
+  vim.api.nvim_create_autocmd('CursorHold',
+    { callback = function() print('\n') end })
+
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     pattern = 'neomutt-*',
     callback = function()
