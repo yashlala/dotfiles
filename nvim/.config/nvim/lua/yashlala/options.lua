@@ -1,6 +1,8 @@
 -- Basic Vim options.
 local M = {}
 
+-- TODO: add splitkeep once its merged in. 
+
 M.setup = function()
   vim.o.confirm = true -- Ask before dangerous changes
   vim.o.gdefault = true -- s/.../.../g by default. Might break plugins.

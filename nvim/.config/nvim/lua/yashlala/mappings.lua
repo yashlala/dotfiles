@@ -278,6 +278,8 @@ M.setup = function()
       hidden = false,
     })
   end, { desc = 'Find var file' })
+  -- Find intrusive
+  vim.keymap.set('n', '<leader>fi', '<cmd>e ~/var/intrusive-thought-queue<cr>')
   -- Find Here (Buffer's dir is the CWD)
   vim.keymap.set('n', '<leader>fh', function()
     require('yashlala.telescope-custom').find_files_bufdir({

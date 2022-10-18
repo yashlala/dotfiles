@@ -20,9 +20,7 @@ M.setup = function()
 
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     pattern = 'neomutt-*',
-    callback = function()
-      vim.bo.filetype = 'mail'
-    end
+    callback = function() vim.bo.filetype = 'mail' end
   })
 
   -- Close netrw buffers (we can't do this by default, for some reason).
