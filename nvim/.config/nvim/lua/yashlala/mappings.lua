@@ -42,7 +42,14 @@ M.setup = function()
   -- Bring up the Harpoon menu for quick switching.
   vim.keymap.set('n', 'H', function() require('harpoon.ui').toggle_quick_menu() end)
 
-  vim.keymap.set('n', 't', function()
+  vim.keymap.set('n', 't', '<cmd>tags<cr>')
+  vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
+  vim.api.nvim_create_user_command('Cleartags', function()
+      vim.fn.settagstack(vim.fn.winnr(), {items = {}}, 'r')
+      print('Tag stack cleared.')
+    end,
+    { desc = 'Empty the tag stack of the current window' })
+  vim.keymap.set('n', '<leader>T', function()
     local tagname = vim.fn.input('Tag Name: ')
     local newtag = {{
       tagname = tagname,
@@ -51,13 +58,6 @@ M.setup = function()
     }}
     vim.fn.settagstack(vim.fn.winnr(), {items = newtag}, 't')
   end, { desc = 'Add current position tag stack' })
-
-  vim.api.nvim_create_user_command('Cleartags', function()
-      vim.fn.settagstack(vim.fn.winnr(), {items = {}}, 'r')
-      print('Tag stack cleared.')
-    end,
-    { desc = 'Empty the tag stack of the current window' })
-  vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
 
   vim.keymap.set('n', '<c-]>', 'g<c-]>')
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
@@ -88,27 +88,23 @@ M.setup = function()
   nitvmapper('<m-x>', '<c-w>x') -- X-change
   nitvmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
 
-  local get_list_toggler = function(list)
-    return function()
-      local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.' .. list)
+  vim.keymap.set('n', '<c-q>', function()
+      local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')
       if vim.fn.empty(win_info) == 1 then
         vim.cmd('copen')
       else
         vim.cmd('cclose')
       end
-    end
-  end
-
-  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'),
-    { desc = 'Toggle quickfix list visibility' })
-  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'),
-    { desc = 'Toggle location list visibility' })
+    end, { desc = 'Toggle quickfix list visibility' })
 
   vim.keymap.set('n', '<m-space>', '<nop>') -- prevent current mode confusion
   vim.keymap.set('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   vim.keymap.set('t', '<m-space>', '<c-\\><c-n>')
   vim.keymap.set('n', '<c-space>', '<nop>')
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
+
+  vim.keymap.set('n', '<leader>n', '"_',
+    { desc = 'Use null (black-hole) register' })
 
   -- X11 Clipboard management
   vim.keymap.set('', '<leader>y', '"+y',
@@ -366,7 +362,8 @@ M.setup = function()
   vim.keymap.set('n', '<leader>xI', vim.lsp.buf.implementation,
     { desc = 'Explore implementations of interface'})
   vim.keymap.set('n', '<leader>xs', function()
-      require('telescope.builtin').lsp_dynamic_workspace_symbols()
+      require('telescope.builtin').lsp_dynamic_workspace_symbols(
+        { preview = { hide_on_startup = true }})
     end,
     { desc = 'Explore all symbols in the workspace' })
   vim.keymap.set('n', '<leader>xh', function()
