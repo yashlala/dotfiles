@@ -1,0 +1,188 @@
+# i3 window manager configuration file (see `man i3`)
+
+##################################
+# General
+##################################
+
+font pango:DejaVu Sans Mono 20
+smart_gaps on
+gaps inner 3
+gaps outer 0
+focus_follows_mouse yes
+default_border none
+
+# required for gaps to play nice
+for_window [class="^.*"] border pixel 0
+hide_edge_borders both
+
+# colors
+set $fg 	#a3deac
+set $bg 	#2b303b
+set $shade 	#85939e
+set $light 	#b48ead
+set $urgent 	#ffffff
+
+# workspaces
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# application-specific configuration
+for_window [class="GrafX2"] floating enable
+
+
+##################################
+# Keybindings
+##################################
+
+set $mod Mod4
+floating_modifier $mod
+
+# application keybindings
+bindsym $mod+space                    exec --no-startup-id alacritty
+bindsym $mod+q                        kill
+bindsym $mod+BackSpace                kill
+bindsym $mod+Return                   exec --no-startup-id wofi --show=drun --lines=5 --prompt=""
+bindsym $mod+f                        exec --no-startup-id alacritty -e lf
+bindsym $mod+m                        exec --no-startup-id alacritty --working-directory ~/io -e neomutt
+bindsym $mod+i                        exec --no-startup-id chromium
+bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
+bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
+bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
+bindsym Ctrl+Shift+n                  exec --no-startup-id ~/.local/scripts/nice-try
+
+bindsym --release Print               exec --no-startup-id ~/code/bin/screenshot
+
+bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Shift+XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym Shift+XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
+                                        pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute              exec --no-startup-id amixer -q sset Capture toggle
+
+bindsym XF86MonBrightnessUp           exec --no-startup-id brillo -u 300 -A 1
+bindsym XF86MonBrightnessDown         exec --no-startup-id brillo -u 300 -U 1
+bindsym Shift+XF86MonBrightnessUp     exec --no-startup-id brillo -u 300 -A 7
+bindsym Shift+XF86MonBrightnessDown   exec --no-startup-id brillo -u 300 -U 7
+
+# workspace keybindings
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# focused window keybindings
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split window keybindings
+bindsym $mod+s split h
+bindsym $mod+v split v
+bindsym $mod+b layout toggle split
+
+# floating window keybindings
+bindsym XF86Explorer floating toggle
+
+# i3 server keybindings
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+
+# resize mode keybindings
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 20 px or 20 ppt
+    bindsym j resize grow height 20 px or 20 ppt
+    bindsym k resize shrink height 20 px or 20 ppt
+    bindsym l resize grow width 20 px or 20 ppt
+
+    bindsym Shift+h resize shrink width 2 px or 2 ppt
+    bindsym Shift+j resize grow height 2 px or 2 ppt
+    bindsym Shift+k resize shrink height 2 px or 2 ppt
+    bindsym Shift+l resize grow width 2 px or 2 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+##################################
+# Autostart
+##################################
+
+exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ true
+exec --no-startup-id dex -a -s ~/.config/autostart
+exec --no-startup-id dunst
+exec --no-startup-id ~/.local/scripts/check-battery
+
+input "type:keyboard" { 
+    xkb_options caps:swapescape,altwin:swap_lalt_lwin,ctrl:ralt_rctrl,ctrl:rctrl_ralt
+    repeat_delay 200
+    repeat_rate 30
+}
+
+input "type:touchpad" { 
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
+
+output eDP-1 resolution 3840x2160 position 3840,0 scale 3
+output * bg ~/.local/backgrounds/blue-flower.jpg fill
+
+##################################
+# Bar
+##################################
+bar {
+    position top
+    status_command i3status
+    font pango:DejaVu Sans Mono 11
+    strip_workspace_numbers yes
+
+    colors {
+        background $bg
+        separator $shade
+        statusline $light
+
+        # workspace indicators	border	backgr.	text
+        inactive_workspace	$bg	$bg	$shade
+        focused_workspace	$bg	$bg	$fg
+        urgent_workspace	$bg	$bg	$urgent
+    }
+}
+
+# vim:ft=conf:sw=4:set expandtab:
