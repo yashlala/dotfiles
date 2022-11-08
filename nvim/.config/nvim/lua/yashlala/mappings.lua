@@ -88,27 +88,23 @@ M.setup = function()
   nitvmapper('<m-x>', '<c-w>x') -- X-change
   nitvmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
 
-  local get_list_toggler = function(list)
-    return function()
-      local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.' .. list)
+  vim.keymap.set('n', '<c-q>', function()
+      local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')
       if vim.fn.empty(win_info) == 1 then
         vim.cmd('copen')
       else
         vim.cmd('cclose')
       end
-    end
-  end
-
-  vim.keymap.set('n', '<c-q>', get_list_toggler('quickfix'),
-    { desc = 'Toggle quickfix list visibility' })
-  vim.keymap.set('n', '<c-r>', get_list_toggler('loclist'),
-    { desc = 'Toggle location list visibility' })
+    end, { desc = 'Toggle quickfix list visibility' })
 
   vim.keymap.set('n', '<m-space>', '<nop>') -- prevent current mode confusion
   vim.keymap.set('i', '<m-space>', '<esc>') -- just keep mashing, we'll get to normal
   vim.keymap.set('t', '<m-space>', '<c-\\><c-n>')
   vim.keymap.set('n', '<c-space>', '<nop>')
   vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
+
+  vim.keymap.set('n', '<leader>n', '"_',
+    { desc = 'Use null (black-hole) register' })
 
   -- X11 Clipboard management
   vim.keymap.set('', '<leader>y', '"+y',
@@ -362,7 +358,8 @@ M.setup = function()
   vim.keymap.set('n', '<leader>xI', vim.lsp.buf.implementation,
     { desc = 'Explore implementations of interface'})
   vim.keymap.set('n', '<leader>xs', function()
-      require('telescope.builtin').lsp_dynamic_workspace_symbols()
+      require('telescope.builtin').lsp_dynamic_workspace_symbols(
+        { preview = { hide_on_startup = true }})
     end,
     { desc = 'Explore all symbols in the workspace' })
   vim.keymap.set('n', '<leader>xh', function()
