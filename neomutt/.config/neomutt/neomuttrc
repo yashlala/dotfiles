@@ -27,13 +27,13 @@ set copy = no
 set delete = yes
 set abort_noattach = ask-no
 set quit = yes
-unset confirmappend
+unset confirm_append
 unset mark_old           # read/new is good enough
 set pipe_decode = no
 set wait_key = no
 set query_command = "~/.local/scripts/email-contacts --mutt-query '%s'"
 set display_filter = "pee '~/.local/scripts/email-contacts --add-email-quiet 2>/dev/null 1>/dev/null' 'cat -'"
-set mime_type_query_command = "xdg mime query filetype"
+set mime_type_query_command = "xdg-mime query filetype"
 
 
 set to_chars = "   cf  "
