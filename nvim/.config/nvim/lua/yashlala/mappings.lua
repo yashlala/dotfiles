@@ -229,10 +229,14 @@ M.setup = function()
 
   -- Diary Keybinds
   vim.keymap.set('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
-  vim.keymap.set('n', '<leader>wi', '<cmd>VimwikiDiaryIndex 1<cr>')
+  vim.keymap.set('n', '<leader>wW', '<cmd>VimwikiDiaryIndex 1<cr>')
   vim.keymap.set('n', '<leader>wt', '<cmd>VimwikiMakeTomorrowDiaryNote 1<cr>')
   vim.keymap.set('n', '<leader>wy', '<cmd>VimwikiMakeYesterdayDiaryNote 1<cr>')
+
   vim.keymap.set('n', '<leader>w<leader>w', '<cmd>VimwikiIndex 1<cr>')
+  vim.keymap.set('n', '<leader>wi', '<cmd>e ~/documents/vimwiki/Inbox.md<cr>')
+  vim.keymap.set('n', '<leader>ws', '<cmd>e ~/documents/vimwiki/Someday.md<cr>')
+
   -- Vimwiki uses <tab> to go to the next link, but <c-i> and <tab> are the
   -- same for the terminal. Disable the <tab> keybind by assigning it to
   -- something else before vimwiki is loaded.
