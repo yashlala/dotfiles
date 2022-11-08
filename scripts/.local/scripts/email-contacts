@@ -1,5 +1,6 @@
 #!/bin/sh
 
+mkdir -p ~/.local/share/abook
 exec abook --config ~/.config/abook/abookrc \
   --datafile ~/.local/share/abook/addressbook \
   "$@"
