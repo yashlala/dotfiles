@@ -27,10 +27,10 @@ cmd open ${{
     else
         case $(file --mime-type "$f" -bL) in
             text/*|application/json) nvr -s "$f";;
-            application/pdf) devour zathura "$f";;
-            video/*) devour mpv --force-window=yes "$f";;
-            audio/*) devour mpv --force-window=yes "$f";;
-            image/*) devour feh "$f";;
+            application/pdf) zathura "$f";;
+            video/*) mpv --force-window=yes "$f";;
+            audio/*) mpv --force-window=yes "$f";;
+            image/*) imv "$f";;
             *) xdg-open "$f";;
         esac
     fi
