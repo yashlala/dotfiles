@@ -3,7 +3,7 @@ Description=Warn if battery is low
 
 [Service]
 Type=oneshot
-ExecStart=/home/lala/.local/scripts/check-battery
+ExecStart=/home/yashlala/.local/scripts/check-battery
 
 [Install]
 WantedBy=default.target

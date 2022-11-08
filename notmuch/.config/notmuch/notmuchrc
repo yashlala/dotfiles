@@ -9,7 +9,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/home/lala/.local/mail
+path=/home/yashlala/.local/mail
 
 # User configuration
 #

@@ -3,7 +3,7 @@ Description=Symlink '~/io' to a temporary directory in '/tmp'.
 
 [Service]
 Type=oneshot
-ExecStart=/home/lala/.local/scripts/make-io-a-tmpdir
+ExecStart=/home/yashlala/.local/scripts/make-io-a-tmpdir
 
 [Install]
 WantedBy=default.target
