@@ -42,7 +42,14 @@ M.setup = function()
   -- Bring up the Harpoon menu for quick switching.
   vim.keymap.set('n', 'H', function() require('harpoon.ui').toggle_quick_menu() end)
 
-  vim.keymap.set('n', 't', function()
+  vim.keymap.set('n', 't', '<cmd>tags<cr>')
+  vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
+  vim.api.nvim_create_user_command('Cleartags', function()
+      vim.fn.settagstack(vim.fn.winnr(), {items = {}}, 'r')
+      print('Tag stack cleared.')
+    end,
+    { desc = 'Empty the tag stack of the current window' })
+  vim.keymap.set('n', '<leader>T', function()
     local tagname = vim.fn.input('Tag Name: ')
     local newtag = {{
       tagname = tagname,
@@ -51,13 +58,6 @@ M.setup = function()
     }}
     vim.fn.settagstack(vim.fn.winnr(), {items = newtag}, 't')
   end, { desc = 'Add current position tag stack' })
-
-  vim.api.nvim_create_user_command('Cleartags', function()
-      vim.fn.settagstack(vim.fn.winnr(), {items = {}}, 'r')
-      print('Tag stack cleared.')
-    end,
-    { desc = 'Empty the tag stack of the current window' })
-  vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
 
   vim.keymap.set('n', '<c-]>', 'g<c-]>')
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
