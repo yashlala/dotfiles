@@ -22,15 +22,13 @@ fi
 # Get email count after sync
 new=$(count)
 
-if ! [ -e ~/disable-email-notifs-todo ]; then
-  if [ "$new" -gt "$old" ]; then
-    if [ "$((new - old))" -eq 1 ]; then
-      msg='1 new email'
-    else
-      msg="$((new - old)) new emails"
-    fi
-    notify-send -a 'offlineimap' "$msg"
+if [ "$new" -gt "$old" ]; then
+  if [ "$((new - old))" -eq 1 ]; then
+    msg='1 new email'
+  else
+    msg="$((new - old)) new emails"
   fi
+  notify-send -a 'offlineimap' "$msg"
 fi
 
 # Now that we've downloaded our mail, index it.
