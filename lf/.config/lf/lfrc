@@ -62,9 +62,12 @@ map <space> quit
 map ; read
 map . set hidden!
 
+cmd trash-one %trash-put -- $f
+cmd trash-all %trash-put -- $fx
+
 map dd cut
-map dw $ trash-put "$fx"
-map DW $ trash-put "$f" # only the currently selected one
+map dw trash-all # still has issues if a file has whitespace!
+map dW trash-one
 map yy copy
 map pp paste; clear
 map v toggle
