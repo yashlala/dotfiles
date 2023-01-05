@@ -78,17 +78,20 @@ local function setup_lsp(capabilities)
   lspconfig.util.default_config = vim.tbl_extend('force',
     lspconfig.util.default_config, lsp_defaults)
 
+  lspconfig.bashls.setup({})
+  lspconfig.gopls.setup({})
+  lspconfig.pyright.setup({})
+  lspconfig.texlab.setup({})
+  lspconfig.jedi_language_server.setup({})
+  lspconfig.hls.setup({})
+  lspconfig.clojure_lsp.setup({})
+
   lspconfig.clangd.setup({
     on_attach = function(_, bufnr)
       vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gH',
       '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true })
     end
   })
-  lspconfig.bashls.setup({})
-  lspconfig.gopls.setup({})
-  lspconfig.pyright.setup({})
-  lspconfig.jedi_language_server.setup({})
-  lspconfig.texlab.setup({})
 
   local lua_runtime_path = vim.split(package.path, ';')
   table.insert(lua_runtime_path, 'lua/?.lua')

@@ -140,12 +140,12 @@ M.setup = function()
     '<cmd>G log --abbrev-commit --pretty=oneline -500<cr>',
     { desc = 'Display the first 500 git commits' })
 
-  -- Delete the current buffer, close the current window/tab, clear loclist.
-  -- Smart command, use it as a generic "get out of my face" inator.
-  vim.keymap.set('n', '<leader>d', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
   -- Use when we want to delete _buffer_ but preserve everything else.
-  vim.keymap.set('n', '<leader>D', '<cmd>Sayonara!<cr>')
+  vim.keymap.set('n', '<leader>d', '<cmd>Sayonara!<cr>')
+  -- Delete the current buffer, close the current window/tab, clear loclist.
+  -- Smart command, use it as a generic "get out of my face" inator.
+  vim.keymap.set('n', '<leader>q', '<cmd>Sayonara<cr>')
   -- Close the current window. Change nothing.
   -- Use when we want to delete window only.
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
@@ -153,44 +153,28 @@ M.setup = function()
   vim.keymap.set('n', '<leader>o', '<cmd>tab split<cr>')
   -- Create new window (!= vim windows).
   vim.keymap.set('n', '<leader>O', '<cmd>silent !uwin<cr>',
-    { desc = 'Open a new terminal window' })
+    { desc = 'Open a new WM terminal window' })
+  vim.keymap.set('n', '<leader>e', ':e %:h/',
+    { desc = 'Edit a sibling file in the current directory' })
 
-  -- Quick Tab Switching Keybindings
-  vim.keymap.set('n', '<leader>1', '1gt')
-  vim.keymap.set('n', '<leader>2', '2gt')
-  vim.keymap.set('n', '<leader>3', '3gt')
-  vim.keymap.set('n', '<leader>4', '4gt')
-  vim.keymap.set('n', '<leader>5', '5gt')
-  vim.keymap.set('n', '<leader>6', '6gt')
-  vim.keymap.set('n', '<leader>7', '7gt')
-  vim.keymap.set('n', '<leader>8', '8gt')
-  vim.keymap.set('n', '<leader>9', '9gt')
-  vim.keymap.set('n', '<leader>0', '10gt')
+  vim.api.nvim_create_user_command('SyntaxReload', 'syntax sync fromstart',
+    { desc = 'Reload highlighting from beginning of file' })
 
-  -- Quick Harpooned file access.
-  vim.keymap.set('n', '<leader>h1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>')
-  vim.keymap.set('n', '<leader>h2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>')
-  vim.keymap.set('n', '<leader>h3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>')
-  vim.keymap.set('n', '<leader>h4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>')
-  vim.keymap.set('n', '<leader>h5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>')
-  vim.keymap.set('n', '<leader>h6', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>')
-  vim.keymap.set('n', '<leader>h7', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>')
-  vim.keymap.set('n', '<leader>h8', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>')
-  vim.keymap.set('n', '<leader>h9', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>')
-  vim.keymap.set('n', '<leader>h0', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>')
+  for i=1,10 do
+    local key = i % 10
 
-  -- Quick terminal access. Creates terminals if they don't exist yet.
-  -- ToggleTerm.lua also provides us with <leader>tt, not shown here.
-  local set_toggleterm_map = function(key, termnum)
-    vim.keymap.set('n', '<leader><leader>' .. key, function()
-        require('harpoon.term').gotoTerminal(termnum)
-        -- vim.cmd('normal! i')
-      end, { desc = 'Go to terminal ' .. key })
+    -- Quick Tab Switching
+    vim.keymap.set('n', '<leader>'..key , i..'gt')
+    -- Quick Harpoon file access.
+    vim.keymap.set('n', '<leader>h'..key,
+      string.format("<cmd>lua require('harpoon.ui').nav_file(%d)<cr>", i),
+      { desc = 'Go to Harpoon file '..key })
+    -- Quick terminal access. Creates terminals if they don't exist yet.
+    -- ToggleTerm.lua also provides us with <leader>tt, not shown here.
+    vim.keymap.set('n', '<leader><leader>'..key,
+      string.format("<cmd>lua require('harpoon.term').gotoTerminal(%d)<cr>", i),
+      { desc = 'Go to terminal ' .. key })
   end
-  for i=1,9 do
-    set_toggleterm_map(tostring(i), i)
-  end
-  set_toggleterm_map('0', 10)
 
   -- Hop Keybindings
   vim.keymap.set('', 'f', '<cmd>HopChar1AC<cr>')
@@ -231,7 +215,8 @@ M.setup = function()
 
   vim.keymap.set('n', '<leader>w<leader>w', '<cmd>VimwikiIndex 1<cr>')
   vim.keymap.set('n', '<leader>wi', '<cmd>e ~/documents/vimwiki/Inbox.md<cr>')
-  vim.keymap.set('n', '<leader>ws', '<cmd>e ~/documents/vimwiki/Someday.md<cr>')
+  vim.keymap.set('n', '<leader>ws', '<cmd>e ~/documents/vimwiki/Status.md<cr>')
+  vim.keymap.set('n', '<leader>wS', '<cmd>e ~/documents/vimwiki/Someday.md<cr>')
 
   -- Vimwiki uses <tab> to go to the next link, but <c-i> and <tab> are the
   -- same for the terminal. Disable the <tab> keybind by assigning it to
@@ -278,8 +263,6 @@ M.setup = function()
       hidden = false,
     })
   end, { desc = 'Find var file' })
-  -- Find intrusive
-  vim.keymap.set('n', '<leader>fi', '<cmd>e ~/var/intrusive-thought-queue<cr>')
   -- Find Here (Buffer's dir is the CWD)
   vim.keymap.set('n', '<leader>fh', function()
     require('yashlala.telescope-custom').find_files_bufdir({

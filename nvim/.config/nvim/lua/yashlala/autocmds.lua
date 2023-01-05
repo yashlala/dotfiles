@@ -31,12 +31,14 @@ M.setup = function()
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     group = groupid,
     pattern = 'neomutt-*',
-    callback = function() vim.bo.filetype = 'mail' end,
+    command = 'setlocal filetype=mail',
   })
 
-  -- TODO: Add these to the yashlala augroup. 
-  -- Close netrw buffers (we can't do this by default, for some reason).
-  vim.cmd('autocmd Filetype netrw setlocal bufhidden=delete')
+  -- Close netrw buffers (can't do this by default, for some reason).
+  vim.api.nvim_create_autocmd('FileType', {
+    group = groupid, pattern = 'netrw',
+    command = 'setlocal bufhidden=delete',
+  })
 
   vim.api.nvim_create_autocmd('TermOpen', {
     group = groupid,

@@ -14,6 +14,8 @@ M.setup = function()
     RELOAD(name)
     return require(name)
   end
+
+  v = vim
 end
 
 return M

@@ -1,14 +1,5 @@
 -- `init.lua`
 
---[[ TODO TODO:
-Roadmap:
-
-1. Improve the highlighting (treesitter) using colorbuddy. Get the LSP
-   diagnostics on point.
-2. Remove all `TODO`s from our configs. Too many weird bugs.
-]]
-
-
 -- Cache our compiled config modules.
 pcall(require, 'impatient')
 
@@ -143,9 +134,15 @@ end)
 require('yashlala.lsp-comp').setup()
 require('yashlala.autocmds').setup()
 
--- TODO: Colorscheme things
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
+-- TODO: Set treesitter highlight groups in coloscheme. Mod it up. 
 vim.api.nvim_command('colorscheme seoul256')
 -- TODO: Highlight the signs column like we do in gitsigns.
 vim.api.nvim_command('highlight WinSeparator guibg=None')
+
+-- Disable legacy language providers (doesn't affect remote plugins)
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
