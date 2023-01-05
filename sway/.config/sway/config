@@ -161,8 +161,11 @@ input "type:touchpad" {
     middle_emulation enabled
 }
 
-output eDP-1 resolution 3840x2160 position 3840,0 scale 3
 output * bg ~/.local/backgrounds/blue-flower.jpg fill
+# Laptop Monitor
+output eDP-1 resolution 3840x2160 position 310,1080 scale 3
+# home desk monitor
+output DP-3 resolution 1920x1080 position 0,0 scale 1
 
 ##################################
 # Bar
