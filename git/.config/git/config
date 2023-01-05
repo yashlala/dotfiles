@@ -89,6 +89,7 @@
 	uig = update-index --no-skip-worktree # unignore a file
 	ust = restore --staged # unstage
 	ustp = restore --staged --patch # unstage --patch
+	wt = worktree
 [apply]
 	whitespace = nowarn
 [core]
