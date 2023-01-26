@@ -117,3 +117,8 @@
 	defaultBranch = main
 [pager]
 	branch = false
+[sendemail]
+	sendmailcmd = msmtp
+	smtpserveroption = -a
+	smtpserveroption = personal
+	annotate = yes

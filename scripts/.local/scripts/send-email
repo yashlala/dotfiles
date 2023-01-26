@@ -4,5 +4,5 @@
 #       we keep losing emails to this
 #
 #       for now we'll just strip them before send
-backup_copy=$(mktemp -p "$(xdg-user-dir DOWNLOAD)" sent-email.XXX)
+backup_copy="$(mktemp -p "$(xdg-user-dir DOWNLOAD)" sent-email.XXX)"
 tee "$backup_copy" | tr -cd '\000-\177' | ~/.local/scripts/add-html-to-email | ifne msmtp "$@"
