@@ -105,6 +105,8 @@ M.setup = function()
 
   vim.keymap.set('n', '<leader>n', '"_',
     { desc = 'Use null (black-hole) register' })
+  vim.keymap.set('n', '<leader><c-g>', '1<c-g>',
+    { desc = 'Print full path of current buffer' })
 
   -- X11 Clipboard management
   vim.keymap.set('', '<leader>y', '"+y',
@@ -139,13 +141,16 @@ M.setup = function()
   vim.keymap.set('n', '<leader>gl',
     '<cmd>G log --abbrev-commit --pretty=oneline -500<cr>',
     { desc = 'Display the first 500 git commits' })
+  vim.keymap.set('n', '<leader>gL',
+    '<cmd>G log --abbrev-commit --pretty=oneline --first-parent -500<cr>',
+    { desc = 'Display the first 500 git commits (first parent only)' })
 
+  -- Smart command, use it as a generic "get out of my face" inator.
+  vim.keymap.set('n', '<leader>q', '<cmd>Sayonara<cr>')
   -- Delete the current buffer, preserve the window layout (smarter :bd)
   -- Use when we want to delete _buffer_ but preserve everything else.
   vim.keymap.set('n', '<leader>d', '<cmd>Sayonara!<cr>')
   -- Delete the current buffer, close the current window/tab, clear loclist.
-  -- Smart command, use it as a generic "get out of my face" inator.
-  vim.keymap.set('n', '<leader>q', '<cmd>Sayonara<cr>')
   -- Close the current window. Change nothing.
   -- Use when we want to delete window only.
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
@@ -209,7 +214,7 @@ M.setup = function()
 
   -- Diary Keybinds
   vim.keymap.set('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
-  vim.keymap.set('n', '<leader>wW', '<cmd>VimwikiDiaryIndex 1<cr>')
+  vim.keymap.set('n', '<leader>wI', '<cmd>VimwikiDiaryIndex 1<cr>')
   vim.keymap.set('n', '<leader>wt', '<cmd>VimwikiMakeTomorrowDiaryNote 1<cr>')
   vim.keymap.set('n', '<leader>wy', '<cmd>VimwikiMakeYesterdayDiaryNote 1<cr>')
 

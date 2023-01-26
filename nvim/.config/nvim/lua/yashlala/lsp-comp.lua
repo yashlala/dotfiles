@@ -59,6 +59,7 @@ local function setup_cmp()
   })
 
   -- Completion in command mode as well
+  -- TODO: Handle '%:h' correctly via https://github.com/hrsh7th/cmp-cmdline/issues/33
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline{},
     sources = {
