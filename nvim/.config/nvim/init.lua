@@ -45,9 +45,7 @@ require('packer').startup(function()
   -- Strip trailing whitespace on lines we've modified. May cause issues.
   use 'thirtythreeforty/lessspace.vim'
 
-  -- Vim motions that don't require counts.
-  -- TODO: Why do all of these suck?
-  -- use 'easymotion/vim-easymotion'
+  -- Vim motions that don't require counts. TODO: Why do all of these suck?
   use 'phaazon/hop.nvim'
 
   -- Automatic table alignment.
