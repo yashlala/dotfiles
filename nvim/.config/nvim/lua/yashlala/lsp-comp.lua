@@ -97,7 +97,7 @@ local function setup_lsp(capabilities)
   local lua_runtime_path = vim.split(package.path, ';')
   table.insert(lua_runtime_path, 'lua/?.lua')
   table.insert(lua_runtime_path, 'lua/?/init.lua')
-  lspconfig.sumneko_lua.setup {
+  lspconfig.lua_ls.setup {
     capabilities = capabilities,
     cmd = { '/usr/bin/lua-language-server' },
     settings = {
