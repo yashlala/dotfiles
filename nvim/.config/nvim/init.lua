@@ -42,11 +42,8 @@ require('packer').startup(function()
   use 'tpope/vim-sleuth'
   -- Automatically respect `.editorconfig` files. 
   use 'gpanders/editorconfig.nvim'
-  -- Strip trailing whitespace on lines we've modified.
-  -- This plugin can only keep track of about 95 changed lines
-  -- before it runs out of stack space and defaults to "strip the entire file".
-  -- May cause issues for us later.
-  -- use 'axelf4/vim-strip-trailing-whitespace'
+  -- Strip trailing whitespace on lines we've modified. May cause issues.
+  use 'thirtythreeforty/lessspace.vim'
 
   -- Vim motions that don't require counts.
   -- TODO: Why do all of these suck?
