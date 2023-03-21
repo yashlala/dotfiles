@@ -86,6 +86,7 @@ local function setup_lsp(capabilities)
   lspconfig.jedi_language_server.setup({})
   lspconfig.hls.setup({})
   lspconfig.clojure_lsp.setup({})
+  lspconfig.rust_analyzer.setup({})
 
   lspconfig.clangd.setup({
     on_attach = function(_, bufnr)
