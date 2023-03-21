@@ -55,6 +55,7 @@ export PYLINTHOME="$XDG_DATA_HOME/pylint/"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 # needed for openssl-rand PRNG
 export RANDFILE="$XDG_DATA_HOME/openssl/rnd"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 # needed for ~/.zoom folder
 export SSB_HOME="$XDG_DATA_HOME/zoom/"
