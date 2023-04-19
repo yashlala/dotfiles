@@ -55,8 +55,6 @@ require('nvim-treesitter.configs').setup({
 -- Define "incremental selection". When we already have a visual selection, 
 -- we can use keybinds to expand or shrink the selection based on nearby
 -- syntax. 
--- TODO: Verify if we actually need or use this. Might use it to replace
--- things...but probably not. Map something to `V`? 
 require('nvim-treesitter.configs').setup({
   incremental_selection = {
     enable = true,

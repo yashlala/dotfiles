@@ -45,7 +45,7 @@ require('packer').startup(function()
   -- Strip trailing whitespace on lines we've modified. May cause issues.
   use 'thirtythreeforty/lessspace.vim'
 
-  -- Vim motions that don't require counts. TODO: Why do all of these suck?
+  -- Vim motions that don't require counts.
   use 'phaazon/hop.nvim'
 
   -- Automatic table alignment.
@@ -117,7 +117,6 @@ require('packer').startup(function()
   -- Automatically `cd` to project root. Integrates with Telescope.
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
-  -- TODO: Not working for some reason.
   use 'ahmedkhalf/project.nvim'
   use 'stevearc/dressing.nvim' -- Prettify built-in UIs.
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup

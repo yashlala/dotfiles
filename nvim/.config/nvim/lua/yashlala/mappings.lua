@@ -368,7 +368,6 @@ M.setup = function()
 
   vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>',
     { desc = 'Info about symbol' })
-  -- TODO: Alternate between viewing error and fixing it?
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { desc = 'Info about error'})
 end
