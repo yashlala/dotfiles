@@ -1,0 +1,4 @@
+[Unit]
+ConditionEnvironment=WAYLAND_DISPLAY
+Description=Sway User Session
+Requires=graphical-session.target
