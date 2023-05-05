@@ -26,7 +26,12 @@ cmd open ${{
         mpv --no-audio-display "$f"
     else
         case $(file --mime-type "$f" -bL) in
-            text/*|application/json) nvr -s "$f";;
+            text/*|application/json)
+                if [ -z ${NVIM+x} ]; then
+                    nvim "$f"
+                else
+                    nvr -s "$f"
+                fi;;
             application/pdf) zathura --fork "$f";;
             video/*) fork mpv --force-window=yes "$f";;
             audio/*) fork mpv --force-window=yes "$f";;
