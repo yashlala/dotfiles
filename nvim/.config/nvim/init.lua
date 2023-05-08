@@ -40,8 +40,6 @@ require('packer').startup(function()
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense.
   use 'tpope/vim-sleuth'
-  -- Automatically respect `.editorconfig` files. 
-  use 'gpanders/editorconfig.nvim'
   -- Strip trailing whitespace on lines we've modified. May cause issues.
   use 'thirtythreeforty/lessspace.vim'
 
