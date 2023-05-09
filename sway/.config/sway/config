@@ -1,5 +1,3 @@
-# i3 window manager configuration file (see `man i3`)
-
 ##################################
 # General
 ##################################
@@ -52,7 +50,7 @@ bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id wofi --show=drun --lines=5 --prompt=""
 bindsym $mod+f                        exec --no-startup-id alacritty -e lf
 bindsym $mod+m                        exec --no-startup-id alacritty --working-directory ~/io -e neomutt
-bindsym $mod+i                        exec --no-startup-id chromium
+bindsym $mod+i                        exec --no-startup-id chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 # bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
