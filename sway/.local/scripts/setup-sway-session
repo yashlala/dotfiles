@@ -1,22 +1,26 @@
 #!/bin/sh
 
-# We need this because reasons.
-# sway doesn't export its control variables to dbus. and that's a problem
-# for anything that needs dbus.
-
+# sway doesn't export its control variables to dbus or systemd. That's a
+# problem for 'systemd --user' services or dbus-activated services, because
+# they can't find the current DISPLAY.
+#
+# Here, we manually export some useful variables into dbus + systemd.
 if hash dbus-update-activation-environment 2>/dev/null; then
   dbus-update-activation-environment --systemd \
     DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
 fi
 systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
-# Stop running services, so they receive new env vars
-# TODO: make these depend on sway session.target so we don't have to restart.
-# Also -- how do we get different systemd unit instances for each session?
-# looks like all sessions share a systemd --user?
-systemctl --user stop pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+# TODO: make these depend on sway-session.target so we don't have to restart.
+systemctl --user stop pipewire wireplumber
 systemctl --user start wireplumber
 
+# Now that systemd and dbus have the env vars they need, autostart the units we
+# need for our session.
+#
+# Notes:
+# - I haven't learned how systemd-logind works yet -- this setup may misbehave
+#   when running multiple graphical sessions at once.
+# - Remember to add a dependency on i3-session.target if you want the units
+#   to run on Xorg as well.
 systemctl --no-block --user start sway-session.target
-
-

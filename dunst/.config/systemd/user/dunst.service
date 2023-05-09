@@ -1,0 +1,9 @@
+[Unit]
+Description=Dunst daemon
+Documentation=man:dunst(1)
+PartOf=sway-session.target i3-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.Notifications
+ExecStart=/usr/bin/dunst

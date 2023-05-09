@@ -144,10 +144,7 @@ bindsym $mod+r mode "resize"
 # Autostart
 ##################################
 
-exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ true
-exec --no-startup-id dex -a -s ~/.config/autostart
-exec --no-startup-id dunst
-exec --no-startup-id ~/.local/scripts/check-battery
+exec --no-startup-id ~/.local/scripts/setup-sway-session
 
 input "type:keyboard" { 
     xkb_options caps:swapescape,altwin:swap_lalt_lwin,ctrl:ralt_rctrl,ctrl:rctrl_ralt

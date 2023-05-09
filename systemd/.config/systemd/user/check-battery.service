@@ -1,9 +1,12 @@
 [Unit]
-Description=Warn if battery is low
+Description=Battery watching daemon
+PartOf=sway-session.target i3-session.target
 
 [Service]
-Type=oneshot
-ExecStart=/home/yashlala/.local/scripts/check-battery
+Type=simple
+ExecStart=%h/.local/scripts/check-battery
+Restart=always
+RestartSec=1s
 
 [Install]
-WantedBy=default.target
+WantedBy=sway-session.target i3-session.target

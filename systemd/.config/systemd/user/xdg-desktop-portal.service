@@ -1,0 +1,10 @@
+# /home/yashlala/.config/systemd/user/xdg-desktop-portal.service
+[Unit]
+Description=Portal service
+PartOf=sway-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.portal.Desktop
+ExecStart=/usr/lib/xdg-desktop-portal
+Slice=session.slice

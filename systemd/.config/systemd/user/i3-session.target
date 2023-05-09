@@ -1,0 +1,4 @@
+[Unit]
+ConditionEnvironment=DISPLAY
+Description=i3 User Session
+Requires=graphical-session.target

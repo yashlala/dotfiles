@@ -1,0 +1,11 @@
+[Unit]
+Description=Portal service (wlroots implementation)
+PartOf=sway-session.target
+After=sway-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.impl.portal.desktop.wlr
+ExecStart=/usr/lib/xdg-desktop-portal-wlr
+Restart=on-failure
