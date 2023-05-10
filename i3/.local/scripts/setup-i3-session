@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# We need this because reasons.
+# i3 doesn't export its control variables to dbus. and that's a problem
+# for anything that needs dbus.
+
+if hash dbus-update-activation-environment 2>/dev/null; then
+  dbus-update-activation-environment --systemd \
+    DISPLAY XDG_CURRENT_DESKTOP=i3
+fi
+systemctl --user import-environment DISPLAY XDG_CURRENT_DESKTOP
+
+# Stop running services, so they receive new env vars
+# TODO: make these depend on i3 session.target so we don't have to restart.
+# Also -- how do we get different systemd unit instances for each session?
+# looks like all sessions share a systemd --user?
+systemctl --user stop pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+systemctl --user start wireplumber
+
+systemctl --no-block --user start i3-session.target
