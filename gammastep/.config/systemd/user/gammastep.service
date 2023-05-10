@@ -1,0 +1,14 @@
+[Unit]
+Description=Display colour temperature adjustment
+PartOf=sway-session.target i3-session.target
+After=sway-session.target i3-session.target
+ConditionEnvironment=DISPLAY
+#ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gammastep
+Restart=on-failure
+
+[Install]
+WantedBy=sway-session.target i3-session.target

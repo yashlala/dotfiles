@@ -2,6 +2,7 @@
 Description=Dunst daemon
 Documentation=man:dunst(1)
 PartOf=sway-session.target i3-session.target
+# TODO: is "After=" needed here?
 
 [Service]
 Type=dbus
