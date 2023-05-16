@@ -1,2 +1,4 @@
 vim.g.lessspace_normal = 0
-vim.g.lesspace_whitelist = { 'text', 'mail', 'vimwiki', 'markdown' }
+
+-- LessSpace causes problem with VimWiki's bulleted lists. 
+vim.g.lesspace_whitelist = { 'text', 'mail', 'markdown' }
