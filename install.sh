@@ -60,6 +60,8 @@ ln -s ~/.config/zsh/zshenv ~/.zshenv
 rm ~/.config/zsh/zshrc.d/keychain.zsh \
   ~/.config/zsh/zshrc.d/miniconda.zsh
 
+touch ~/.hushlogin
+
 if [ -x /bin/zsh ]; then 
   echo 'Changing shell to /bin/zsh'
   chsh -s /bin/zsh 
@@ -67,7 +69,5 @@ else
   echo '/bin/zsh not available, sticking with bash :('
   printf '\nset -o vi\n' > ~/.bashrc
 fi
-
-touch ~/.hushlogin
 
 echo 'Reload shell to see changes.'
