@@ -159,9 +159,11 @@ input "type:touchpad" {
 
 output * bg ~/.local/backgrounds/blue-flower.jpg fill
 # Laptop Monitor
-output eDP-1 resolution 3840x2160 position 310,1080 scale 3
+output "California Institute of Technology 0x1400 Unknown" \
+    resolution 3840x2160 position 310,1080 scale 3
 # home desk monitor
-output DP-3 resolution 1920x1080 position 0,0 scale 1
+output "Dell Inc. DELL U2414H R9F1P4C53FDL" \
+    resolution 1920x1080 position 0,0 scale 1
 
 ##################################
 # Bar
