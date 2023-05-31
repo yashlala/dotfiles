@@ -96,6 +96,29 @@ bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
+# TODO verify this works. The num pad can cause difficulties with sway and i3. See:
+# https://unix.stackexchange.com/questions/566566/binding-numpad-keys-on-i3-dont-work.
+bindsym $mod+KP_1 workspace $workspace1
+bindsym $mod+KP_2 workspace $workspace2
+bindsym $mod+KP_3 workspace $workspace3
+bindsym $mod+KP_4 workspace $workspace4
+bindsym $mod+KP_5 workspace $workspace5
+bindsym $mod+KP_6 workspace $workspace6
+bindsym $mod+KP_7 workspace $workspace7
+bindsym $mod+KP_8 workspace $workspace8
+bindsym $mod+KP_9 workspace $workspace9
+bindsym $mod+KP_0 workspace $workspace10
+bindsym $mod+Shift+KP_1 move container to workspace $workspace1
+bindsym $mod+Shift+KP_2 move container to workspace $workspace2
+bindsym $mod+Shift+KP_3 move container to workspace $workspace3
+bindsym $mod+Shift+KP_4 move container to workspace $workspace4
+bindsym $mod+Shift+KP_5 move container to workspace $workspace5
+bindsym $mod+Shift+KP_6 move container to workspace $workspace6
+bindsym $mod+Shift+KP_7 move container to workspace $workspace7
+bindsym $mod+Shift+KP_8 move container to workspace $workspace8
+bindsym $mod+Shift+KP_9 move container to workspace $workspace9
+bindsym $mod+Shift+KP_0 move container to workspace $workspace10
+
 # focused window keybindings
 bindsym $mod+h focus left
 bindsym $mod+j focus down

@@ -68,6 +68,7 @@ export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 
 
