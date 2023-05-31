@@ -117,6 +117,10 @@ M.setup = function()
     { desc = 'Paste from clipboard' })
   vim.keymap.set('', '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
+  vim.keymap.set('i', '<c-r><space>', '<c-r>+',
+    { desc = 'Insert from clipboard' })
+  vim.keymap.set('i', '<c-r><c-r><space>', '<c-r><c-r>+',
+    { desc = 'Insert literally from clipboard' })
   vim.keymap.set('', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
     { desc = 'Substitute with clipboard' })
   vim.keymap.set('', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',

@@ -1,5 +1,11 @@
 -- `init.lua`
 
+-- TODO:
+--
+-- create vimrc (not nvim) for sshing. case sensitivity bad, bell is bad, etc.
+-- set highlighting for just a "Q:" in vimwiki files so we can do topical
+-- trees
+
 -- Cache our compiled config modules.
 pcall(require, 'impatient')
 
@@ -29,8 +35,11 @@ require('packer').startup(function()
   -- Fancier statusline.
   use 'nvim-lualine/lualine.nvim'
 
-  -- Colorscheme.
+  -- Colorscheme. TODO: The latter two themes can be greatly customized.
+  --                    Let's get a colorscheme that listens to Treesitter.
   use 'yashlala/seoul256.vim'
+  use 'projekt0n/github-nvim-theme'
+  use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
   use 'kyazdani42/nvim-web-devicons'
   use 'tjdevries/colorbuddy.nvim'
 
@@ -129,7 +138,7 @@ require('yashlala.autocmds').setup()
 -- Load colorscheme *before* other plugins are set up.
 vim.g.seoul256_srgb = 1
 -- TODO: Set treesitter highlight groups in coloscheme. Mod it up. 
-vim.api.nvim_command('colorscheme seoul256')
+vim.api.nvim_command('colorscheme zenburned')
 -- TODO: Highlight the signs column like we do in gitsigns.
 vim.api.nvim_command('highlight WinSeparator guibg=None')
 

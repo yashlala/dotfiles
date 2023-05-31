@@ -54,7 +54,11 @@ local function setup_cmp()
 
     experimental = {
       native_menu = false, -- Use the new, fancy menu.
-      ghost_text = true,
+
+      -- TODO: change line to ghost_text = true when:
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1565
+      -- is resolved.
+      ghost_text = { enabled = true }
     }
   })
 
