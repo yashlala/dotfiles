@@ -1,4 +1,7 @@
-#!/bin/sh -e
+#!/bin/sh
+
+set -e # exit upon error
+set -o xtrace # print script contents
 
 echo "This script installs a portable subset of the dotfiles."
 echo "You'll have to set up full installations yourself."
