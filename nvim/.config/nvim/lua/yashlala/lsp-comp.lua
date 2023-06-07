@@ -28,6 +28,7 @@ local function setup_cmp()
       { name = 'nvim_lsp_signature_help' }, -- LSP function signatures
       { name = 'nvim_lsp' }, -- Regular LSP suggestions
       -- { name = 'luasnip' }, -- TODO Tweak
+      { name = 'orgmode' },
       { name = 'nvim_lua' }, -- nvim API LSP suggestions
       { name = 'buffer' }, -- Similar words in the current buffer
       { name = 'path' }, -- Paths in the local filesystem

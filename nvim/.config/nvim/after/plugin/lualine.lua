@@ -1,7 +1,7 @@
 require'lualine'.setup {
   options = {
     icons_enabled = false,
-    theme = 'auto',
+    theme = 'zenbones',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
@@ -37,9 +37,9 @@ require'lualine'.setup {
     lualine_z = {}
   },
   extensions = {
-    'quickfix', 
-    'fugitive', 
-    'fzf', 
-    'toggleterm', 
+    'quickfix',
+    'fugitive',
+    'fzf',
+    'toggleterm',
   }
 }

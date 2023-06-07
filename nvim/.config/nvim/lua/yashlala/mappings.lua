@@ -23,7 +23,7 @@ M.setup = function()
   vim.keymap.set({'n', 'v', 'o'}, 'v', 'V')
 
   vim.keymap.set('v', '<c-g>', 'g<c-g>')
-  vim.keymap.set('v', '<c-o>', 'o')
+  vim.keymap.set('v', 'y', 'ygv<esc>') -- keep cursor at selection end
 
   vim.keymap.set({'n', 'v'}, 's', '<Plug>(SubversiveSubstitute)')
   vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
@@ -168,6 +168,10 @@ M.setup = function()
 
   vim.api.nvim_create_user_command('SyntaxReload', 'syntax sync fromstart',
     { desc = 'Reload highlighting from beginning of file' })
+  vim.api.nvim_create_user_command('Rnlist', 'VimwikiRenumberList',
+    { desc = 'Renumber a Vimwiki List' })
+  vim.api.nvim_create_user_command('Rnlistall', 'VimwikiRenumberAllLists',
+    { desc = 'Renumber all Vimwiki Lists in the buffer' })
 
   for i=1,10 do
     local key = i % 10

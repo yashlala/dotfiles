@@ -43,8 +43,6 @@ require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'
   use 'tjdevries/colorbuddy.nvim'
 
-  -- Diary + Wiki
-  use 'vimwiki/vimwiki'
 
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense.
@@ -111,6 +109,12 @@ require('packer').startup(function()
 
   -- Better menu for LSP code actions
   use 'weilbith/nvim-code-action-menu'
+
+  -- Diary + Wiki
+  use 'vimwiki/vimwiki'
+  use { 'nvim-orgmode/orgmode', after = 'nvim-treesitter',
+      config = function() require('orgmode').setup() end
+  }
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {

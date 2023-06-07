@@ -49,6 +49,31 @@ M.setup = function()
     group = groupid,
     command = 'setlocal signcolumn=no',
   })
+
+  -- Many of our ordinary keybinds fail in the command window.
+  -- We disable or fix these maps via this autocommand.
+  vim.api.nvim_create_autocmd('CmdWinEnter', {
+    group = groupid,
+    callback = function ()
+      local set = function(mode, lhs, rhs)
+        vim.keymap.set(mode, lhs, rhs, { buffer = true })
+      end
+
+      local to_unmap = {
+        '<cr>', '<bs>', -- mapped to nvim treesitter textobjs
+        'f', 't', 'F', 'T', -- mapped to hop.nvim
+      }
+      for _, key in to_unmap do
+        set({'n', 'v'}, key, key)
+      end
+
+      -- Fix window navigation keybinds
+      for _, lhs in pairs({ '<m-h>', '<m-j>', '<m-k>', '<m-l>'}) do
+        set({'n', 'i', 'v'}, lhs, '<cmd>quit<cr>')
+      end
+    end,
+    desc = 'Set keybinds for command window',
+  })
 end
 
 return M

@@ -28,12 +28,13 @@ require('nvim-treesitter.configs').setup({
     'make',
     'nix',
     'ocaml',
+    'org',
     'python',
     'regex',
     'rst',
     'rust',
-    'scheme',
     'scala',
+    'scheme',
     'vim',
     'yaml'
   },
@@ -42,34 +43,29 @@ require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
     disable = { },  -- list of languages 
-    additional_vim_regex_highlighting = false,
+    -- Required since TS highlighter doesn't support all syntax features (conceal)
+    additional_vim_regex_highlighting = { 'org' }
   },
-})
 
--- Don't use Treesitter to implement the `=` indentation operator yet. 
--- It's still pretty buggy, looks like. 
-require('nvim-treesitter.configs').setup({
-  indent = { enable = false }
-})
+  -- Don't use Treesitter to implement the `=` indentation operator yet. 
+  -- It's still pretty buggy, looks like. 
+  indent = { enable = false },
 
 -- Define "incremental selection". When we already have a visual selection, 
 -- we can use keybinds to expand or shrink the selection based on nearby
 -- syntax. 
-require('nvim-treesitter.configs').setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      node_incremental = "o",
-      node_decremental = "O",
+      init_selection = '<enter>',
+      node_incremental = "<enter>",
+      node_decremental = "<bs>",
     },
   },
-})
 
-require('nvim-treesitter.configs').setup({
   textobjects = {
     select = {
       enable = true,
-
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
 
