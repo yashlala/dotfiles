@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+if ! mpc status >/dev/null 2>&1; then
+  mkdir -p ~/.local/share/mpd/
+  mpd &
+fi
+
+wait && exec ario

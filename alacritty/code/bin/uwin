@@ -1,0 +1,4 @@
+#!/bin/sh
+unset NVIM_LISTEN_ADDRESS
+nohup alacritty --working-directory "$(pwd -L)" >/dev/null 2>&1 &
+disown %1

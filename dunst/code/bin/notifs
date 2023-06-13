@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ "$#" -eq 0 ]; then 
+  out="$(dunstctl is-paused)"
+  if [ "$out" = 'true' ]; then 
+    echo notifs are off
+  elif [ "$out" = 'false' ]; then 
+    echo notifs are on
+  else
+    echo "unknown dunstctl output:"
+    echo "$out"
+    exit 1
+  fi
+  exit 0
+fi
+
+if [ "$1" = 'off' ]; then
+  dunstctl set-paused true
+elif [ "$1" = 'on' ]; then
+  dunstctl set-paused false
+else
+  echo 'incorrect usage'
+  exit 1
+fi
