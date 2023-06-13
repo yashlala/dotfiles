@@ -63,7 +63,7 @@ M.setup = function()
         '<cr>', '<bs>', -- mapped to nvim treesitter textobjs
         'f', 't', 'F', 'T', -- mapped to hop.nvim
       }
-      for _, key in to_unmap do
+      for _, key in pairs(to_unmap) do
         set({'n', 'v'}, key, key)
       end
 
