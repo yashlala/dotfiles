@@ -5,5 +5,5 @@
 # debug LeechBlock, LOL. 
 
 exec notify-send -u normal -t 8500 -a 'Snail' \
-	-i /home/lala/pictures/profile-photos/snail-largeborder.png \
+	-i ~/pictures/profile-photos/snail-largeborder.png \
 	$'"Notice the urge, and resist it. What are you feeling right now?"'
