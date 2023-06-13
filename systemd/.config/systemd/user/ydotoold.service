@@ -1,0 +1,13 @@
+[Unit]
+Description=ydotool daemon for key input simulation
+PartOf=sway-session.target i3-session.target
+
+# This service is only used by nerd-dictation. Could try socket activation?
+[Service]
+Type=simple
+ExecStart=/usr/bin/ydotoold
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=sway-session.target i3-session.target

@@ -1,0 +1,86 @@
+# Cancel sentence
+# For example, "four down no five down" would just do "five down".
+@cancel no:
+
+# Transcribe a sentence
+# For example, "scribe please type this".
+@transcribe transcribe: set numen_fmt echo normal \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+
+# Transcribe a sentence formatted...
+
+# With the first letter uppercase
+@transcribe scribe: set numen_fmt echo sentence \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# With the first letter uppercase, period at the end
+@transcribe dot scribe: set numen_fmt echo dot \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# With the first letter uppercase, question at the end
+@transcribe question scribe: set numen_fmt echo question \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# With the first letter uppercase, bang at the end
+@transcribe bang scribe: set numen_fmt echo bang \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# With the first letter uppercase, comma at the end
+@transcribe comma scribe: set numen_fmt echo comma \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# With the first letter uppercase, semicolon at the end
+@transcribe semi scribe: set numen_fmt echo semicolon \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+
+# With Each First Letter Uppercase
+@transcribe title scribe: set numen_fmt echo title \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# with_underscores_inbetween
+@transcribe snake scribe: set numen_fmt echo snake \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/script/transcripts | head -n 1
+# with-dashes-inbetween
+@transcribe dash scribe: set numen_fmt echo dash \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# with.dots.inbetween
+@transcribe middle dot scribe: set numen_fmt echo middle_dot \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# with, commas, inbetween
+@transcribe list scribe: set numen_fmt echo list \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# with/slashes/inbetween
+@transcribe path scribe: set numen_fmt echo path \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# allsmashedtogether
+@transcribe scrunch scribe: set numen_fmt echo smash \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# camelCase
+@transcribe camel scribe: set numen_fmt echo camel \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# PascalCase
+@transcribe class scribe: set numen_fmt echo pascal \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# dot.camelCase
+@transcribe dot camel scribe: set numen_fmt echo dotcamel \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# dot.PascalCase
+@transcribe dot pascal scribe: set numen_fmt echo dotpascal \
+	pen /home/yashlala/.config/numen/scripts/tweak; /home/yashlala/.config/numen/scripts/transcripts | head -n 1
+# (You can also do "shout scribe" etc.)
+
+# Erase the transcription
+ditch: eval /home/yashlala/.config/numen/scripts/transcripts | sed 's/./ BackSpace/g \
+	s/^/press/ \
+	q'
+
+# Go to the start of the transcription
+trudge: eval /home/yashlala/.config/numen/scripts/transcripts | sed 's/./ Left/g \
+	s/^/press/ \
+	q'
+
+# Menus to type or choose another transcription result
+# They use the dmenu command (only works in X11) or the command specified
+# by $NUMEN_DMENU or $DMENU (you could use wmenu if you're on Wayland).
+transcripts: run /home/yashlala/.config/numen/scripts/menu | numenc & \
+	run sleep 0.1
+change: run /home/yashlala/.config/numen/scripts/menu change | numenc & \
+	run sleep 0.1
+
+
+# Ignore this, vosk-model-small-en-us-0.15 can output huh after a long silence.
+huh:

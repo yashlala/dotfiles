@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+pidfile=$(xdg-user-dir RUNTIME)/numen.pid
+
+if [[ $# -ne 1 ]]; then
+  echo 'Wrong number of arguments.'
+  exit 1
+fi
+
+cmd=$1
+shift
+
+case $cmd in
+  'begin')
+    if [[ -e $pidfile ]]; then exit 0; fi
+    touch $pidfile
+
+    nohup numen "$@" </dev/null &>/dev/null &
+    echo $!>$pidfile
+    disown
+
+    notify-send -u normal -t 1500 -a 'diamond' \
+      -i ~/pictures/profile-photos/snail-largeborder.png \
+      'Beginning numen voice input.'
+    ;;
+  'end')
+    if ! [[ -e $pidfile ]]; then exit 0; fi
+    pid=$(cat $pidfile)
+    if [[ -z $pid ]]; then exit 0; fi
+
+    kill $pid
+    if [[ $? -ne 0 ]]; then
+      echo "Couldn't kill numen. Check pidfile $pidfile."
+      exit 1
+    fi
+    notify-send -u normal -t 1000 -a 'diamond' \
+      -i ~/pictures/profile-photos/snail-largeborder.png \
+      'Ending numen voice input.'
+    rm -f $pidfile
+    ;;
+esac

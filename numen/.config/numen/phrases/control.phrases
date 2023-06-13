@@ -1,0 +1,86 @@
+space: press space
+yes: press Return
+return: press Return
+enter: press Return
+tab: press Tab
+escape: stick off \
+	press Escape
+scape: stick off \
+	press Escape
+
+# Enable a modifier for the next press
+# (The Super modifier is also known as the "Windows key")
+shy: mod shift
+shift: mod shift
+troy: mod ctrl
+control: mod ctrl
+hype: mod alt
+alternate: mod alt
+shock: mod super \
+	stick off
+super: mod super \
+	stick off
+# Clear modifiers
+cleanse: mod clear \
+	caps off \
+	stick off
+clear: mod clear \
+	caps off \
+	stick off
+
+# Enable Caps Lock until the end of the sentence or you say "cleanse"
+shout: caps on
+<complete>: caps off
+
+# Start holding down each pressed key, and stop by saying "cleanse"
+squeeze: run notify-send STICKING & \
+	stick off \
+	stick on
+
+back: press BackSpace
+hack: press BackSpace
+mince: press BackSpace BackSpace
+delete: press Delete
+smite: press Delete Delete
+raze: press BackSpace BackSpace BackSpace BackSpace
+# Delete a word (depending on the program)
+swipe: press ctrl+BackSpace
+
+left: press Left
+right: press Right
+up: press Up
+down: press Down
+lunge: press Left Left
+rush: press Right Right
+leave: press Left Left Left Left
+charge: press Right Right Right Right
+
+# PageDown, PageUp
+forward: press Next
+page: press Next
+backward: press Prior
+reel: press Prior
+
+# Paste the clipboard (depending on the program)
+paste: stick off \
+	press XF86Paste
+
+# Repeat the previous press etc.
+more: repeat 1
+bunch: repeat 2
+handful: repeat 4
+fistful: repeat 8
+plateful: repeat 12
+
+function one: press F1
+function two: press F2
+function three: press F3
+function four: press F4
+function five: press F5
+function six: press F6
+function seven: press F7
+function eight: press F8
+function nine: press F9
+function one zero: press F10
+function one one: press F11
+function one two: press F12

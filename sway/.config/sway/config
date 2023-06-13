@@ -58,6 +58,12 @@ bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass
 
 bindsym --release Print               exec --no-startup-id ~/code/bin/screenshot
 
+bindsym XF86Display exec --no-startup-id nwg-displays
+bindsym XF86Go exec --no-startup-id ~/code/bin/voice nerd-dictation
+bindsym XF86Messenger exec --no-startup-id ~/code/bin/voice numen
+bindsym Cancel exec --no-startup-id ~/code/bin/voice end
+bindsym Shift+Cancel exec --no-startup-id ~/code/bin/voice cancel
+
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
                                         pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \

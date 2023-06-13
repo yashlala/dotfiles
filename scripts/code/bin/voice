@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+if [[ $# -ne 1 ]]; then
+  $binpath -h
+  exit 1
+fi
+
+cmd=$1
+shift
+
+case $cmd in
+  'numen')
+    numen-wrapper begin
+    ;;
+  'nerd-dictation')
+    nerd-dictation-wrapper begin
+    ;;
+  'end')
+    numen-wrapper end
+    nerd-dictation-wrapper end
+    ;;
+  'cancel')
+    numen-wrapper end
+    nerd-dictation-wrapper cancel
+    ;;
+esac
+
+

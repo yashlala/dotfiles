@@ -1,0 +1,45 @@
+#!/bin/zsh
+
+binpath=/home/yashlala/code/nerd-dictation/nerd-dictation
+lockfile=$(xdg-user-dir RUNTIME)/nerd-dictation.lock
+
+if [[ $# -ne 1 ]]; then
+  $binpath -h
+  exit 1
+fi
+
+cmd=$1
+shift
+
+case $cmd in
+  'begin')
+    if [[ -e $lockfile ]]; then exit 0; fi
+    touch $lockfile
+
+    nohup $binpath $cmd \
+      --numbers-as-digits --numbers-min-value 2 \
+      --simulate-input-tool YDOTOOL "$@" \
+      </dev/null &>/dev/null & disown
+
+    notify-send -u normal -t 1500 -a 'diamond' \
+      -i ~/pictures/profile-photos/snail-largeborder.png \
+      'Beginning voice input.'
+    ;;
+  'end')
+    if ! [[ -e $lockfile ]]; then exit 0; fi
+    $binpath $cmd "$@"
+    sleep 0.05
+    notify-send -u normal -t 1000 -a 'diamond' \
+      -i ~/pictures/profile-photos/snail-largeborder.png \
+      'Ending voice input.'
+    rm -f $lockfile
+    ;;
+  'cancel')
+    if ! [[ -e $lockfile ]]; then exit 0; fi
+    $binpath $cmd "$@"
+    notify-send -u normal -t 1000 -a 'diamond' \
+      -i ~/pictures/profile-photos/snail-largeborder.png \
+      'Cancelling voice input.'
+    rm -f $lockfile
+    ;;
+esac
