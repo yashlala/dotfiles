@@ -687,6 +687,9 @@ key_bindings:
   - { key: Home,      mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
   - { key: End,       mods: Shift,   mode: ~Alt,        action: ReceiveChar  }
 
+  - { key: PageUp,   mods: Shift,   action: ScrollPageUp   }
+  - { key: PageDown, mods: Shift,   action: ScrollPageDown }
+
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: ~Search,    action: ReceiveChar }
   - { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ReceiveChar }
