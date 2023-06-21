@@ -112,9 +112,7 @@ require('packer').startup(function()
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
-  use { 'nvim-orgmode/orgmode', after = 'nvim-treesitter',
-      config = function() require('orgmode').setup() end
-  }
+  use { 'nvim-orgmode/orgmode', after = 'nvim-treesitter' }
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
