@@ -27,10 +27,10 @@ require('gitsigns').setup {
     local gsa = require('gitsigns.actions')
 
     map('n', ']c', function()
-      if vim.o.diff then return ']c' else gsa.next_hunk() end
+      if vim.wo.diff then return ']c' else gsa.next_hunk() end
     end)
     map('n', '[c', function()
-      if vim.o.diff then return '[c' else gsa.prev_hunk() end
+      if vim.wo.diff then return '[c' else gsa.prev_hunk() end
     end)
 
     -- Text objects; "in git change", or "all git change"
