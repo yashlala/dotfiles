@@ -1,26 +1,42 @@
 require('gitsigns').setup {
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    ['n ]c'] = { expr = true,
-      "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"
-    },
-    ['n [c'] = { expr = true,
-      "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"
-    },
-    ['n <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>gs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    ['n <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    ['v <leader>gr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-    ['n <leader>gR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
-    ['n <leader>gp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    ['n <leader>gb'] = '<cmd>lua require"gitsigns".blame_line({full=true, ignore_whitespace=true})<CR>',
-    ['n <leader>tgb'] = '<cmd>lua require"gitsigns".toggle_current_line_blame()<CR>',
-    -- Text objects
-    ['o ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    ['x ic'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  },
+  on_attach = function (bufnr)
+    local gs = package.loaded.gitsigns
+
+    local map = function(mode, lhs, rhs, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
+
+    map('n', '<leader>gs', function() gs.stage_hunk() end)
+    map('v', '<leader>gs', function()
+      gs.stage_hunk({vim.fn.line("."), vim.fn.line("v")})
+    end)
+    map('n', '<leader>gu', function() gs.undo_stage_hunk() end)
+    map('n', '<leader>gr', function() gs.reset_hunk() end)
+    map('v', '<leader>gr', function()
+      gs.reset_hunk({vim.fn.line("."), vim.fn.line("v")})
+    end)
+    map('n', '<leader>gR', function() gs.reset_buffer() end)
+    map('n', '<leader>gp', function() gs.preview_hunk() end)
+    map('n', '<leader>gb', function()
+      gs.blame_line({full=true, ignore_whitespace=true})
+    end)
+    map('n', '<leader>gB', function() gs.toggle_current_line_blame() end)
+
+    local gsa = require('gitsigns.actions')
+
+    map('n', ']c', function()
+      if vim.o.diff then return ']c' else gsa.next_hunk() end
+    end)
+    map('n', '[c', function()
+      if vim.o.diff then return '[c' else gsa.prev_hunk() end
+    end)
+
+    -- Text objects; "in git change", or "all git change"
+    map({'o', 'x'}, 'igc', function() gsa.select_hunk() end )
+    map({'o', 'x'}, 'agc', function() gsa.select_hunk() end )
+  end,
   current_line_blame_opts = { virt_text_pos = 'eol', delay = 500 },
   diff_opts = { internal = true },
 }
