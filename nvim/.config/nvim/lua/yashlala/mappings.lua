@@ -159,9 +159,9 @@ M.setup = function()
   -- Use when we want to delete window only.
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
   -- Create new tab.
-  vim.keymap.set('n', '<leader>o', '<cmd>tab split<cr>')
+  vim.keymap.set('n', '<leader>t', '<cmd>tab split<cr>')
   -- Create new window (!= vim windows).
-  vim.keymap.set('n', '<leader>O', '<cmd>silent !uwin<cr>',
+  vim.keymap.set('n', '<leader>T', '<cmd>silent !uwin<cr>',
     { desc = 'Open a new WM terminal window' })
   vim.keymap.set('n', '<leader>e', ':e %:h/',
     { desc = 'Edit a sibling file in the current directory' })
@@ -188,6 +188,17 @@ M.setup = function()
       string.format("<cmd>lua require('harpoon.term').gotoTerminal(%d)<cr>", i),
       { desc = 'Go to terminal ' .. key })
   end
+
+  vim.keymap.set('n', '<leader>0',
+    function()
+      local bufpath = vim.api.nvim_buf_get_name(0)
+      local dir_arg = ''
+      if bufpath ~= '' and vim.fn.filereadable(bufpath) == 1 then
+        dir_arg = 'dir=' .. vim.fn.fnameescape(vim.fs.dirname(bufpath))
+      end
+      vim.cmd('ToggleTerm ' .. dir_arg)
+    end,
+    { desc = "Open a ToggleTerm split at the current buffer" })
 
   -- Hop Keybindings
   vim.keymap.set('', 'f', '<cmd>HopChar1AC<cr>')
