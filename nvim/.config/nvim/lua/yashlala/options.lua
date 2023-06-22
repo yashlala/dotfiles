@@ -33,8 +33,6 @@ M.setup = function()
     vim.o.shellredir = '>%s 2>&1'
   end
   vim.o.tagfunc = 'v:lua.vim.lsp.tagfunc'
-  vim.o.cscopetag = true -- <c-]> should try cscope first instead of ctags
-  vim.o.cscopequickfix = 's-,g-,d-,c-,t-,e-,f-,i-,a-' -- cscope should use the qflist
 
   vim.o.wrap = true
   vim.o.breakindent = true -- A line's wrap should be indented the same
