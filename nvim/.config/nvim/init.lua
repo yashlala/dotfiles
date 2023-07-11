@@ -127,7 +127,10 @@ require('packer').startup(function()
   -- Use this to quickly return to old projects (as opposed to searching *in*
   -- a project, which we do with the regular telescope builtins.
   use 'ahmedkhalf/project.nvim'
-  use 'stevearc/dressing.nvim' -- Prettify built-in UIs.
+  -- Prettify built-in UIs.
+  use { 'stevearc/dressing.nvim',
+    config = function () require('dressing').setup() end
+  }
   use 'AckslD/nvim-neoclip.lua' -- TODO: Setup
 
   -- Allow plugins to use the `.` key (if they support it).
