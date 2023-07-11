@@ -54,6 +54,7 @@ else
   cp -r ./git/.config/git ~/.config/git
   cp ./readline/.config/readline/inputrc ~/.inputrc
   cp ./editline/.config/editline/config ~/.editrc
+  cp ./vim/.vimrc ~/.vimrc
   mkdir -p ~/.config/lf && cp ./lf/.config/lf/lfrc ~/.config/lf/lfrc
 fi
 
