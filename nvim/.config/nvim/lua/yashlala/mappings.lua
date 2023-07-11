@@ -183,7 +183,6 @@ M.setup = function()
       string.format("<cmd>lua require('harpoon.ui').nav_file(%d)<cr>", i),
       { desc = 'Go to Harpoon file '..key })
     -- Quick terminal access. Creates terminals if they don't exist yet.
-    -- ToggleTerm.lua also provides us with <leader>tt, not shown here.
     vim.keymap.set('n', '<leader><leader>'..key,
       string.format("<cmd>lua require('harpoon.term').gotoTerminal(%d)<cr>", i),
       { desc = 'Go to terminal ' .. key })
