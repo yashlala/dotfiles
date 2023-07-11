@@ -51,7 +51,7 @@ require('packer').startup(function()
   use 'thirtythreeforty/lessspace.vim'
 
   -- Vim motions that don't require counts.
-  use 'phaazon/hop.nvim'
+  use 'smoka7/hop.nvim'
 
   -- Automatic table alignment.
   use 'junegunn/vim-easy-align'
