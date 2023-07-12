@@ -3,6 +3,16 @@
 -- The maps here don't really fit into a bigger picture.
 -- If they do, you'll probably find them in a dedicated file instead.
 
+-- NOTE: LuaSnip uses select-mode to highlight fields prior to replacing
+-- them. Eg ([X] := "X is highlighted, visually):
+--
+--    for (int [varNameHere]; ...)
+--
+-- Mappings defined with `v(nore)map` apply to visual _and_ select modes. So
+-- `vnoremap s <Plug>(SubversiveSubstitute)` will make it impossible to type
+-- variable names starting with "s". Always use `xmap` instead of `vmap`
+-- while we have LuaSnip installed.
+
 local M = {}
 
 M.setup = function()
@@ -12,7 +22,7 @@ M.setup = function()
   vim.keymap.set('', '-', '0')
 
   vim.keymap.set('', ';', ':')
-  vim.keymap.set({'n', 'v'}, ':', 'q:')
+  vim.keymap.set({'n', 'x'}, ':', 'q:')
   vim.keymap.set('n', 'L', ':lua ')
 
   vim.keymap.set('n', '@;', '@:')
@@ -21,13 +31,13 @@ M.setup = function()
   vim.keymap.set('n', 'U', '<c-r>')
   vim.keymap.set('n', '<c-r>', -- "Refresh screen".
     '<cmd>nohlsearch|diffupdate|normal! <c-l><cr>')
-  vim.keymap.set({'n', 'v', 'o'}, 'V', 'v')
-  vim.keymap.set({'n', 'v', 'o'}, 'v', 'V')
+  vim.keymap.set({'n', 'x', 'o'}, 'V', 'v')
+  vim.keymap.set({'n', 'x', 'o'}, 'v', 'V')
 
-  vim.keymap.set('v', '<c-g>', 'g<c-g>')
-  vim.keymap.set('v', 'y', 'ygv<esc>') -- keep cursor at selection end
+  vim.keymap.set('x', '<c-g>', 'g<c-g>')
+  vim.keymap.set('x', 'y', 'ygv<esc>') -- keep cursor at selection end
 
-  vim.keymap.set({'n', 'v'}, 's', '<Plug>(SubversiveSubstitute)')
+  vim.keymap.set({'n', 'x'}, 's', '<Plug>(SubversiveSubstitute)')
   vim.keymap.set('n', 'ss', '<Plug>(SubversiveSubstituteLine)')
   vim.keymap.set('n', 'S', '<Plug>(SubversiveSubstituteToEndOfLine)')
 
@@ -37,7 +47,7 @@ M.setup = function()
   vim.keymap.set('n', 'g/', ':silent grep! ') -- "Global /"
   vim.keymap.set('n', 'g?', ':silent grep!  %<left><left>') -- "Global /, better"
   vim.keymap.set('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
-  vim.keymap.set({'n', 'v'}, 'ga', '<Plug>(EasyAlign)') -- "Go align"
+  vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)') -- "Go align"
 
   vim.keymap.set('n', 'm',  function() require('marker').create_bookmark() end)
   vim.keymap.set('n', "'", function() require('marker').goto_bookmark() end)
@@ -75,7 +85,7 @@ M.setup = function()
     vim.keymap.set('n', lhs, rhs)
     vim.keymap.set('i', lhs, '<esc>' .. rhs)
     vim.keymap.set('t', lhs, '<c-\\><c-n>' .. rhs)
-    vim.keymap.set('v', lhs, '<esc>' .. rhs)
+    vim.keymap.set('x', lhs, '<esc>' .. rhs)
   end
 
   nitvmapper('<m-h>', '<c-w>h') -- Easy movement
