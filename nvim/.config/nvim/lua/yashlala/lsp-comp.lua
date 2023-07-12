@@ -1,6 +1,14 @@
 local M = {}
 
 local function setup_cmp()
+  vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+  })
+
   local luasnip = require('luasnip')
   local cmp = require('cmp')
   local lspkind = require('lspkind')
@@ -9,29 +17,65 @@ local function setup_cmp()
 
   cmp.setup({
     mapping = cmp.mapping.preset.insert{
-      -- Ask the world for completions
-      ['<c-y>'] = cmp.mapping.complete({}),
-      -- Cancel completion.
-      ['<c-e>'] = cmp.mapping.close(),
-      -- Accept the current completion
+      -- Accept the topmost completion immediately.
       ['<c-space>'] = cmp.mapping(function()
-        -- TODO: This may be inteferring with luasnip. 
+        if cmp.visible() then
+          cmp.confirm {
+            select = true, -- auto select the first entry in the list
+            behavior = cmp.ConfirmBehavior.Insert, -- insert text, don't replace
+          }
+        end
+      end, { 'i', 'c' }),
+
+      -- Narrow down ambiguity in the completions
+      ['<c-j>'] = cmp.mapping(function()
+        if cmp.visible() then
+          return cmp.complete_common_string {
+            behavior = cmp.ConfirmBehavior.Insert,
+          }
+        end
+      end, { 'i', 'c' }),
+
+      -- TODO: Make this work well for luasnip. jumps and all that
+      ['<c-l>'] = cmp.mapping(function()
         if luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
-        elseif cmp.visible() then
-          cmp.confirm { behavior = cmp.ConfirmBehavior.insert, select = true }
         end
-      end, { 'i', 'v', 'n', 'c' }),
+      end, { 'i', 'n', 'c' })
     },
 
+    -- TODO: Only enable LSP for coding buffers
     sources = {
-      { name = 'nvim_lsp_signature_help' }, -- LSP function signatures
-      { name = 'nvim_lsp' }, -- Regular LSP suggestions
-      -- { name = 'luasnip' }, -- TODO Tweak
-      { name = 'orgmode' },
-      { name = 'nvim_lua' }, -- nvim API LSP suggestions
-      { name = 'buffer' }, -- Similar words in the current buffer
-      { name = 'path' }, -- Paths in the local filesystem
+      { name = 'nvim_lsp', group_index = 1 }, -- Regular LSP suggestions
+      { name = 'nvim_lsp_signature_help', group_index = 1 }, -- LSP function signatures
+      { name = 'nvim_lua', group_index = 1 }, -- nvim API LSP suggestions
+      { name = 'luasnip' }, -- TODO Fix, luasnips aren't working
+      { name = 'orgmode', group_index = 2 },
+      { name = 'buffer' , priority = 0.5, group_index = 2 }, -- Similar words in the current buffer
+      { name = 'path', group_index = 2 }, -- Paths in the local filesystem
+    },
+
+    -- This block is copied from TJDevries' config. Don't trust it yet.
+    sorting = {
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.recently_used,
+        -- Copied from cmp-under. I don't think I need the plugin for this.
+        function(entry1, entry2)
+          local _, entry1_under = entry1.completion_item.label:find "^_+"
+          local _, entry2_under = entry2.completion_item.label:find "^_+"
+          entry1_under = entry1_under or 0
+          entry2_under = entry2_under or 0
+          if entry1_under > entry2_under then
+            return false
+          elseif entry1_under < entry2_under then
+            return true
+          end
+        end,
+        cmp.config.compare.kind,
+      },
     },
 
     snippet = {
@@ -72,11 +116,24 @@ local function setup_cmp()
     }
   })
 
+  cmp.setup.cmdline('/', {
+    sources = cmp.config.sources({ -- priority; "buffer" not used so long as doc symbol is
+      { name = 'nvim_lsp_document_symbol' }
+    }, {
+      { name = 'buffer' }
+    })
+  })
+
   -- Load all snippets provided by `friendly-snippets`.
   require('luasnip.loaders.from_vscode').lazy_load()
 end
 
 local function setup_lsp(capabilities)
+  -- These must be run _BEFORE_ lspconfig setup!
+  -- See :h mason-lspconfig-quickstart.
+  require('mason').setup()
+  require('mason-lspconfig').setup()
+
   local lspconfig = require('lspconfig')
   local lsp_defaults = {
     capabilities = capabilities,
@@ -133,13 +190,6 @@ local function setup_lsp(capabilities)
     },
   }
 
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    severity_sort = true,
-  })
 end
 
 M.setup = function()

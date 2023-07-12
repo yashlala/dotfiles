@@ -19,6 +19,8 @@ M.setup = function()
   vim.keymap.set('n', 'K', 'kJ')
   vim.keymap.set('n', 'gK', 'kgJ')
   vim.keymap.set('n', 'U', '<c-r>')
+  vim.keymap.set('n', '<c-r>', -- "Refresh screen".
+    '<cmd>nohlsearch|diffupdate|normal! <c-l><cr>')
   vim.keymap.set({'n', 'v', 'o'}, 'V', 'v')
   vim.keymap.set({'n', 'v', 'o'}, 'v', 'V')
 

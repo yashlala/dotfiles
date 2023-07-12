@@ -2,7 +2,9 @@
 
 -- TODO:
 --
--- create vimrc (not nvim) for sshing. case sensitivity bad, bell is bad, etc.
+-- set nvim-cmp so it'll replace the ends of words. and so it'll only complete
+-- till the ambiguity instead of for the longest match (wtf?).
+--
 -- set highlighting for just a "Q:" in vimwiki files so we can do topical
 -- trees
 
@@ -86,11 +88,25 @@ require('packer').startup(function()
   use 'akinsho/toggleterm.nvim'
   -- Delete a buffer without affecting the window layout.
   use 'yashlala/vim-sayonara'
+  -- TODO: Make a telescope previewer for the marks in the current buffer.
 
   -- Collection of configurations for built-in LSP client
-  use 'neovim/nvim-lspconfig'
+  use {
+    -- Setup in this order for mason and nvim-lspconfig to play nice.
+    -- See mason-lspconfig.nvim README.
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig'
+  }
+  -- Pretty icons for LSP windows
   use 'onsails/lspkind-nvim'
-  use 'mfussenegger/nvim-jdtls'
+
+  -- Edit remote files, even if LSP is only installed on this computer
+  use { 'chipsenkbeil/distant.nvim', branch = 'v0.2' }
+
+  -- Debugger integration
+  use 'mfussenegger/nvim-dap'
+  use { 'mfussenegger/nvim-dap-python', after = 'nvim-dap' }
 
   -- Highlighting, editing, etc. using incremental parsing.
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -104,13 +120,17 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lua' -- Includes Neovim API!
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'hrsh7th/cmp-nvim-lsp-document-symbol'
 
+  use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp',
+    tag = 'v1.*', run = 'make install_jsregexp' }
   use 'saadparwaiz1/cmp_luasnip'
-  use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', }
-  use 'rafamadriz/friendly-snippets'
+  use 'rafamadriz/friendly-snippets' -- Prepopulated list of snippets for LuaSnip
 
   -- Better menu for LSP code actions
   use 'weilbith/nvim-code-action-menu'
+  -- Easier indentation guides
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
