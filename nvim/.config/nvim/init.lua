@@ -75,10 +75,12 @@ require('packer').startup(function()
 
   -- Better quickfix list.
   use 'kevinhwang91/nvim-bqf'
-  -- Better marks
-  -- TODO: Make a telescope previewer for the marks in the current buffer.
-  use 'chentoast/marks.nvim'
-  -- Project-specific file "marks" and terminals
+  -- Marks with longer names
+  use { 'yashlala/marker.nvim',
+    config = function() require('marker').setup() end
+  }
+
+  -- Project-specific terminals
   use 'ThePrimeagen/harpoon'
   -- Use for a generic persistent terminal keybind.
   use 'akinsho/toggleterm.nvim'

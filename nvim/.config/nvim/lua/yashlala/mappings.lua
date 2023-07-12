@@ -37,10 +37,9 @@ M.setup = function()
   vim.keymap.set('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
   vim.keymap.set({'n', 'v'}, 'ga', '<Plug>(EasyAlign)') -- "Go align"
 
-  -- Mark the entire file with Harpoon.
-  vim.keymap.set('n', 'M',  function() require('harpoon.mark').add_file() end)
-  -- Bring up the Harpoon menu for quick switching.
-  vim.keymap.set('n', 'H', function() require('harpoon.ui').toggle_quick_menu() end)
+  vim.keymap.set('n', 'm',  function() require('marker').create_bookmark() end)
+  vim.keymap.set('n', "'", function() require('marker').goto_bookmark() end)
+  vim.keymap.set('n', 'dm', function() require('marker').del_bookmark() end)
 
   vim.keymap.set('n', 't', '<cmd>tags<cr>')
   vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
