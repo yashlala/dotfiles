@@ -28,20 +28,13 @@ local function setup_cmp()
       end, { 'i', 'c' }),
 
       -- Narrow down ambiguity in the completions
-      ['<c-j>'] = cmp.mapping(function()
+      ['<c-e>'] = cmp.mapping(function()
         if cmp.visible() then
           return cmp.complete_common_string {
             behavior = cmp.ConfirmBehavior.Insert,
           }
         end
       end, { 'i', 'c' }),
-
-      -- TODO: Make this work well for luasnip. jumps and all that
-      ['<c-l>'] = cmp.mapping(function()
-        if luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        end
-      end, { 'i', 'n', 'c' })
     },
 
     -- TODO: Only enable LSP for coding buffers
@@ -49,9 +42,8 @@ local function setup_cmp()
       { name = 'nvim_lsp', group_index = 1 }, -- Regular LSP suggestions
       { name = 'nvim_lsp_signature_help', group_index = 1 }, -- LSP function signatures
       { name = 'nvim_lua', group_index = 1 }, -- nvim API LSP suggestions
-      { name = 'luasnip' }, -- TODO Fix, luasnips aren't working
       { name = 'orgmode', group_index = 2 },
-      { name = 'buffer' , priority = 0.5, group_index = 2 }, -- Similar words in the current buffer
+      { name = 'buffer', group_index = 2 }, -- Similar words in the current buffer
       { name = 'path', group_index = 2 }, -- Paths in the local filesystem
     },
 
@@ -124,8 +116,29 @@ local function setup_cmp()
     })
   })
 
-  -- Load all snippets provided by `friendly-snippets`.
-  require('luasnip.loaders.from_vscode').lazy_load()
+
+  -- LuaSnip
+
+  vim.keymap.set('i', '<c-s>', function()
+    require'cmp'.complete { config = {
+      sources = {{ name = 'luasnip' }}
+    }}
+  end)
+  -- TODO: For some reason, <c-l> is often sent twice (even in non luasnip
+  -- contexts. This completely breaks using it for snippet expansions.
+  -- Figure out why, and fix the behavior.
+  -- TODO: Also, <c-space> from nvim-cmp doesn't work either. It's double-sent
+  -- or something. God knows why.
+  vim.keymap.set('i', '<c-j>', function()
+    if luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
+    end
+  end)
+  -- vim.keymap.set('i', '<c-k>', function()
+  --   require('luasnip.extras.select_choice')()
+  -- end)
+
+  require('yashlala.snippet-list')
 end
 
 local function setup_lsp(capabilities)

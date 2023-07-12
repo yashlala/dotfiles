@@ -11,17 +11,20 @@
 -- Mappings defined with `v(nore)map` apply to visual _and_ select modes. So
 -- `vnoremap s <Plug>(SubversiveSubstitute)` will make it impossible to type
 -- variable names starting with "s". Always use `xmap` instead of `vmap`
--- while we have LuaSnip installed.
+-- while we have LuaSnip installed. And always use {'n', 'v', 'o'} instead of
+-- map('', ...).
 
 local M = {}
 
 M.setup = function()
-  vim.keymap.set('', '<leader>', '<nop>')
-  vim.keymap.set('', "'", '`')
-  vim.keymap.set('', '`', '~')
-  vim.keymap.set('', '-', '0')
+  vim.keymap.del('', '<c-l>') -- Remove nvim default binding (we replace it)
 
-  vim.keymap.set('', ';', ':')
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>', '<nop>')
+  vim.keymap.set({'n', 'v', 'o'}, "'", '`')
+  vim.keymap.set({'n', 'v', 'o'}, '`', '~')
+  vim.keymap.set({'n', 'v', 'o'}, '-', '0')
+
+  vim.keymap.set({'n', 'v', 'o'}, ';', ':')
   vim.keymap.set({'n', 'x'}, ':', 'q:')
   vim.keymap.set('n', 'L', ':lua ')
 
@@ -49,9 +52,12 @@ M.setup = function()
   vim.keymap.set('n', 'gh', '<cmd>cd %:h<cr>') -- "Go Here"
   vim.keymap.set({'n', 'x'}, 'ga', '<Plug>(EasyAlign)') -- "Go align"
 
-  vim.keymap.set('n', 'm',  function() require('marker').create_bookmark() end)
-  vim.keymap.set('n', "'", function() require('marker').goto_bookmark() end)
-  vim.keymap.set('n', 'dm', function() require('marker').del_bookmark() end)
+  vim.keymap.set('n', '<leader>m',  function() require('marker').create_bookmark() end,
+    { desc = 'Create bookmark' })
+  vim.keymap.set('n', "<leader>'", function() require('marker').goto_bookmark() end,
+    { desc = 'Goto bookmark' })
+  vim.keymap.set('n', 'dm', function() require('marker').del_bookmark() end,
+    { desc = 'Delete bookmark' })
 
   vim.keymap.set('n', 't', '<cmd>tags<cr>')
   vim.keymap.set('n', 'T', '<cmd>Cleartags<cr>')
@@ -77,8 +83,8 @@ M.setup = function()
   vim.keymap.set('n', '<c-n>', vim.diagnostic.goto_next)
   vim.keymap.set('n', '<c-p>', vim.diagnostic.goto_prev)
 
-  vim.keymap.set('', '_', '<c-y>')
-  vim.keymap.set('', '+', '<c-e>')
+  vim.keymap.set({'n', 'v', 'o'}, '_', '<c-y>')
+  vim.keymap.set({'n', 'v', 'o'}, '+', '<c-e>')
 
   -- Use Meta for easy window operations
   local nitvmapper = function(lhs, rhs)
@@ -120,33 +126,33 @@ M.setup = function()
     { desc = 'Print full path of current buffer' })
 
   -- X11 Clipboard management
-  vim.keymap.set('', '<leader>y', '"+y',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>y', '"+y',
     { desc = 'Yank to clipboard' })
-  vim.keymap.set('', '<leader>Y', '"+y$',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>Y', '"+y$',
     { desc = 'Yank end of line to clipboard' })
-  vim.keymap.set('', '<leader>p', '"+p',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>p', '"+p',
     { desc = 'Paste from clipboard' })
-  vim.keymap.set('', '<leader>P', '"+P',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
   vim.keymap.set('i', '<c-r><space>', '<c-r>+',
     { desc = 'Insert from clipboard' })
   vim.keymap.set('i', '<c-r><c-r><space>', '<c-r><c-r>+',
     { desc = 'Insert literally from clipboard' })
-  vim.keymap.set('', '<leader>s', '"+<Plug>(SubversiveSubstitute)',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>s', '"+<Plug>(SubversiveSubstitute)',
     { desc = 'Substitute with clipboard' })
-  vim.keymap.set('', '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>ss', '"+<Plug>(SubversiveSubstituteLine)',
     { desc = 'Substitute line with clipboard' })
-  vim.keymap.set('', '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>S', '"+<Plug>(SubversiveSubstituteToEndOfLine)',
     { desc = 'Substitute end of line with clipboard' })
 
   -- LSP management
-  vim.keymap.set('', '<leader>ls', '<cmd>LspStart<cr>',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>ls', '<cmd>LspStart<cr>',
     { desc = 'Start the LSP' })
-  vim.keymap.set('', '<leader>li', '<cmd>LspInfo<cr>',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>li', '<cmd>LspInfo<cr>',
     { desc = 'Display LSP status info' })
-  vim.keymap.set('', '<leader>lr', '<cmd>LspRestart<cr>',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>lr', '<cmd>LspRestart<cr>',
     { desc = 'Restart the running LSP' })
-  vim.keymap.set('', '<leader>ll', '<cmd>LspLog<cr>',
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>ll', '<cmd>LspLog<cr>',
     { desc = 'View LSP logfile' })
 
   -- Git repository management
@@ -211,8 +217,8 @@ M.setup = function()
     { desc = "Open a ToggleTerm split at the current buffer" })
 
   -- Hop Keybindings
-  vim.keymap.set('', 'f', '<cmd>HopChar1AC<cr>')
-  vim.keymap.set('', 'F', '<cmd>HopChar1BC<cr>')
+  vim.keymap.set({'n', 'v', 'o'}, 'f', '<cmd>HopChar1AC<cr>')
+  vim.keymap.set({'n', 'v', 'o'}, 'F', '<cmd>HopChar1BC<cr>')
   -- In operator-pending mode, these work like ordinary vim.
   vim.keymap.set('o', 'f', function()
       require('hop').hint_char1({
@@ -238,8 +244,8 @@ M.setup = function()
         hint_offset = 1,
       })
     end, { desc = 'Delete backwards (exclusive)' })
-  vim.keymap.set('', '<leader>j', '<cmd>HopLineAC<cr>')
-  vim.keymap.set('', '<leader>k', '<cmd>HopLineBC<cr>')
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>j', '<cmd>HopLineAC<cr>')
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>k', '<cmd>HopLineBC<cr>')
 
   -- Diary Keybinds
   vim.keymap.set('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
