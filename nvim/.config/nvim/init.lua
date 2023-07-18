@@ -132,7 +132,7 @@ require('packer').startup(function()
   -- `vnoremap s <Plug>(SubversiveSubstitute)` will make it impossible to type
   -- variable names starting with "s". Always use `xmap` instead of `vmap`
   -- while we have LuaSnip installed.
-  use { 'L3MON4D3/LuaSnip', after = { 'nvim-cmp', 'rafamadriz/friendly-snippets' },
+  use { 'L3MON4D3/LuaSnip', after = { 'nvim-cmp', 'friendly-snippets' },
     tag = 'v1.*', run = 'make install_jsregexp' }
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets' -- Prepopulated list of snippets for LuaSnip
