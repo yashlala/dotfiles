@@ -142,18 +142,8 @@ bindsym $mod+r mode "resize"
 # Autostart
 ##################################
 
-# TODO: move x configuration over to xmodmap files, etc to be dealt with by
-# Xprofile instead of wm if it should be done; think what should go where.
-exec --no-startup-id ~/.local/scripts/xorg-input-tweaks
-exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ true
+exec --no-startup-id ~/.local/scripts/setup-i3-session
 exec --no-startup-id ~/.local/scripts/set-desktop-background
-
-exec --no-startup-id dex -a -s ~/.config/autostart
-exec --no-startup-id redshift
-exec --no-startup-id xbanish
-exec --no-startup-id picom --daemon
-exec --no-startup-id dunst
-exec --no-startup-id ~/.local/scripts/check-battery
 
 
 ##################################
