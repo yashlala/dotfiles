@@ -53,6 +53,7 @@ require('packer').startup(function()
   use 'thirtythreeforty/lessspace.vim'
 
   -- Vim motions that don't require counts.
+  -- TODO: switch to https://github.com/folke/flash.nvim
   use 'smoka7/hop.nvim'
 
   -- Automatic table alignment.

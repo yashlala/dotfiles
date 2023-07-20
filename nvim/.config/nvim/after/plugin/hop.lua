@@ -1,3 +1,4 @@
+-- TODO: switch to https://github.com/folke/flash.nvim
 vim.schedule(function()
   vim.cmd[[
   highlight HopNextKey  guifg=#00dfff gui=bold ctermfg=45 cterm=bold
