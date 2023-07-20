@@ -3,6 +3,7 @@ set smartcase
 set ignoredia
 set noanchorfind
 set promptfmt "\033[34;1m%w\033[0m %f"
+set shell "zsh"
 
 # ================
 # Functions
@@ -41,6 +42,30 @@ cmd open ${{
     fi
 }}
 
+cmd fasd_cd ${{
+    printf "\nJump To: "
+    read input
+    dest="$(fasd -e 'printf %s' -d "$input")"
+    [ -z "$dest" ] && exit
+    if [ -d "$dest" ]; then
+        lf -remote "send $id cd $dest"
+    else
+        echo "$dest"
+    fi
+}}
+
+cmd fasd_cd_interactive ${{
+    printf "\nJump To: "
+    read input
+    dest="$(fasd -e 'printf %s' -di "$input")"
+    [ -z "$dest" ] && exit
+    if [ -d "$dest" ]; then
+        lf -remote "send $id cd $dest"
+    else
+        echo "$dest"
+    fi
+}}
+
 cmd redraw_and_reload :{{
    redraw
    reload
@@ -60,6 +85,9 @@ map c # unset clear
 map m # unset mkdir
 map \;
 map \:
+
+map f fasd_cd
+map F fasd_cd_interactive
 
 map <c-l> redraw_and_reload
 
@@ -83,10 +111,12 @@ map v toggle
 map u :unselect; clear
 map U $ trash-restore
 
-# Deal with marks
+# marks and jumps
 map m mark-save
 map \' mark-load
 map dm mark-remove
+map <c-i> jump-next
+map <c-o> jump-prev
 
 # Rename various parts of filenames
 map r :rename; cmd-word-back; cmd-left # change name
@@ -97,7 +127,6 @@ map R $printf "%s\n" "$fx" | vidir - # bulk rename
 # Quick teleport
 map gh cd ~
 map gi cd ~/io
-map gp cd ~/pictures
 map gp cd ~/pictures
 map gd cd ~/documents
 map gc cd ~/code
