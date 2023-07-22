@@ -47,10 +47,13 @@ floating_modifier $mod
 bindsym $mod+space                    exec --no-startup-id alacritty
 bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
-bindsym $mod+Return                   exec --no-startup-id wofi --show=drun --lines=5 --prompt=""
+bindsym $mod+Return                   exec --no-startup-id fuzzel \
+                                        --log-no-syslog --log-level=warning
 bindsym $mod+f                        exec --no-startup-id alacritty -e lf
-bindsym $mod+m                        exec --no-startup-id alacritty --working-directory ~/io -e neomutt
-bindsym $mod+i                        exec --no-startup-id chromium --enable-features=UseOzonePlatform --ozone-platform=wayland
+bindsym $mod+m                        exec --no-startup-id alacritty \
+                                        --working-directory ~/io -e neomutt
+bindsym $mod+i                        exec --no-startup-id chromium \
+                                        --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 # bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
