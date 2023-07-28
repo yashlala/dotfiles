@@ -5,6 +5,7 @@
 # aliases
 
 alias f='fasd -f' # files
+alias ff='fasd -fi' # files (interactive)
 alias d='fasd -d' # directories
 alias a='fasd -a' # files and directories (all)
 alias j='fasd_cd -d' # jao; go to directory
