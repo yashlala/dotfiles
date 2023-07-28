@@ -1,4 +1,6 @@
 [Unit]
 ConditionEnvironment=WAYLAND_DISPLAY
 Description=Sway User Session
+# TODO: maybe this should want graphical-session and not require?
 Requires=graphical-session.target
+Wants=xdg-desktop-autostart.target

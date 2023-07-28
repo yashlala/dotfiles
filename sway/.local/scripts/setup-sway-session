@@ -12,6 +12,8 @@ fi
 systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # TODO: make these depend on sway-session.target so we don't have to restart.
+# TODO: figure out how session.slice works so we can properly have session
+# based vars
 systemctl --user stop pipewire wireplumber
 systemctl --user start wireplumber
 
