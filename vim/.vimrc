@@ -15,7 +15,6 @@ set foldlevelstart=99
 
 set wrap
 set breakindent
-set showbreak
 set linebreak
 
 set belloff=all
@@ -34,7 +33,6 @@ set noshowmode
 set noequalalways
 set splitright
 set nosplitbelow
-set splitkeep=screen
 
 set cpoptions-=_
 
