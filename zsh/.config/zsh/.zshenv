@@ -17,6 +17,7 @@ export ESCDELAY=15 # used by ncurses
 export LESS='-i -R -M -c -z-5'
 export GPG_TTY="$(tty)"
 export WATCH_INTERVAL=1 # used by `watch`
+export FONTCONFIG_PATH=/etc/fonts # see https://askubuntu.com/a/708541
 
 # Use Neovim as a pager. Allows for section overviews. 
 export MANPAGER='nvim +Man!'
