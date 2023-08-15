@@ -10,7 +10,6 @@ export VISUAL=nvim
 export PAGER=less
 export BROWSER=chromium
 
-
 # set application environment variables
 
 export CONDA_CHANGEPS1='false'
@@ -69,8 +68,6 @@ export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
 export WEECHAT_HOME="$XDG_CONFIG_HOME/weechat"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
-
-
 
 # set PATH
 
