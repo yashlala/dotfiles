@@ -77,8 +77,12 @@ cmd redraw_and_reload :{{
 
 cmd md % mkdir -p "$@"
 cmd mkdir % mkdir -p "$@"
-cmd trash % trash-put -- "$f"
-cmd trash-all % trash-put -- $fx
+cmd trash % trash-put -f "$f"
+
+# THIS BREAKS WHEN FILENAMES INCUDE A filesep ('\n')!
+# We can't fix this here -- the problem is w/ `lf` upstream.
+# TODO file issue and try to fix this.
+cmd trash-all % trash-put -f $fx
 
 # ================
 # Key Bindings
