@@ -4,6 +4,7 @@ set ignoredia
 set noanchorfind
 set promptfmt "\033[34;1m%w\033[0m %f"
 set shell "zsh"
+set filesep '\n' # newline-delimit $fs and $fx
 
 # ================
 # Functions
@@ -46,8 +47,7 @@ cmd open ${{
     fi
 }}
 
-cmd fasd_cd ${{
-    printf "\nJump To: "
+cmd fasd_cd %{{
     read input
     dest="$(fasd -e 'printf %s' -d "$input")"
     [ -z "$dest" ] && exit
@@ -75,8 +75,10 @@ cmd redraw_and_reload :{{
    reload
 }}
 
-cmd md % mkdir "$@"
-cmd mkdir % mkdir "$@"
+cmd md % mkdir -p "$@"
+cmd mkdir % mkdir -p "$@"
+cmd trash % trash-put -- "$f"
+cmd trash-all % trash-put -- $fx
 
 # ================
 # Key Bindings
@@ -99,16 +101,9 @@ map <space> quit
 map ; read
 map . set hidden!
 
-cmd trash-one %trash-put -- "$f"
-
-# Ugly hack. This will fail if a file name contains a newline!!!
-# First, we tell the shell to split variables on newlines instead of spaces.
-set ifs "\n"
-cmd trash-all %trash-put -- $fx
-
 map dd cut
-map dw trash-all # issues if a file has a \n in its name
-map dW trash-one
+map dw trash-all
+map dW trash
 map yy copy
 map pp paste; clear
 map v toggle
