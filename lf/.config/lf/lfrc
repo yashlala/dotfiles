@@ -28,10 +28,14 @@ cmd open ${{
     else
         case $(file --mime-type "$f" -bL) in
             text/*|application/json)
-                if [ -z ${NVIM+x} ]; then
-                    nvim "$f"
+                if command -v nvim >/dev/null 2>&1; then
+                    if [ -z "$NVIM" ]; then
+                        nvim "$f"
+                    else
+                        nvr -s "$f"
+                    fi
                 else
-                    nvr -s "$f"
+                    vim "$f"
                 fi;;
             application/pdf) zathura --fork "$f";;
             video/*) fork mpv --force-window=yes "$f";;
