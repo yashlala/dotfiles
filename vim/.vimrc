@@ -22,7 +22,7 @@ set undofile
 set updatetime=3000
 
 set lazyredraw
-set nohlsearch
+set hlsearch
 set termguicolors
 
 set signcolumn=yes
@@ -42,6 +42,9 @@ noremap <leader> <nop>
 noremap ', `
 noremap ` ~
 noremap - 0
+
+nnoremap <c-l> <cmd>nohlsearch|diffupdate|normal! <c-l><cr>
+nnoremap <c-r> <cmd>nohlsearch|diffupdate|normal! <c-l><cr>
 
 noremap ; :
 nnoremap : q:

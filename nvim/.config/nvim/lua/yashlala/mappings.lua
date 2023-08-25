@@ -32,6 +32,7 @@ M.setup = function()
   vim.keymap.set('n', 'K', 'kJ')
   vim.keymap.set('n', 'gK', 'kgJ')
   vim.keymap.set('n', 'U', '<c-r>')
+  -- TODO: vim-repeat overrides this like a dummy. Don't let it.
   vim.keymap.set('n', '<c-r>', -- "Refresh screen".
     '<cmd>nohlsearch|diffupdate|normal! <c-l><cr>')
   vim.keymap.set({'n', 'x', 'o'}, 'V', 'v')
