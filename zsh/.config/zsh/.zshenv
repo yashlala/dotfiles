@@ -12,6 +12,7 @@ export BROWSER=chromium
 
 # set application environment variables
 
+export SUDO_ASKPASS='/usr/local/bin/ssh-askpass'
 export CONDA_CHANGEPS1='false'
 export ESCDELAY=15 # used by ncurses
 export LESS='-i -R -M -c -z-5'
