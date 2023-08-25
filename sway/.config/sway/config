@@ -188,12 +188,15 @@ input "type:touchpad" {
     middle_emulation enabled
 }
 
+set $laptop_display "California Institute of Technology 0x1400 Unknown"
+set $home_desk_monitor "Dell Inc. DELL U2414H R9F1P4C53FDL"
+bindswitch --reload --locked lid:on output $laptop_display disable
+bindswitch --reload --locked lid:off output $laptop_display enable
 output * bg ~/.local/backgrounds/blue-flower.jpg fill
-# Laptop Monitor
-output "California Institute of Technology 0x1400 Unknown" \
+output $laptop_display \
     resolution 3840x2160 position 310,1080 scale 3
 # home desk monitor
-output "Dell Inc. DELL U2414H R9F1P4C53FDL" \
+output $home_desk_monitor \
     resolution 1920x1080 position 0,0 scale 1
 
 ##################################
