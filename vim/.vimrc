@@ -36,8 +36,10 @@ set cpoptions-=_
 
 
 " Mappings
+let g:mapleader = ' '
+
 noremap <leader> <nop>
-noremap ', `
+noremap ' `
 noremap ` ~
 noremap - 0
 
