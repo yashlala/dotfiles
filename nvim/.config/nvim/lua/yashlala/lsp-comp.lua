@@ -162,6 +162,7 @@ local function setup_lsp(capabilities)
   lspconfig.hls.setup({})
   lspconfig.clojure_lsp.setup({})
   lspconfig.rust_analyzer.setup({})
+  lspconfig.dafny.setup({})
 
   lspconfig.clangd.setup({
     on_attach = function(_, bufnr)
