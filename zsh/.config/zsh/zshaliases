@@ -138,6 +138,10 @@ dns () {
   "$@" </dev/null 2>&1
 }
 
+quote () {
+  printf %q "$*"
+}
+
 # sometimes we think we're in nvim (:te -> :terminal)
 te () { 
   nvim -c "te $*"
