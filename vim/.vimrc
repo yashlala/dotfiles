@@ -23,9 +23,7 @@ set updatetime=3000
 
 set lazyredraw
 set hlsearch
-set termguicolors
 
-set signcolumn=yes
 set pumheight=6
 set modeline
 set noshowmode
