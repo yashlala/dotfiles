@@ -52,7 +52,9 @@ M.setup = function()
   vim.o.pumheight = 6 -- Limit the number of completion popup menu options.
   vim.o.modeline = true
   vim.o.showmode = false -- Don't write VISUAL on the last line.
-  vim.o.laststatus = 3 -- One global statusline. 
+  -- TODO every window should have statusline that shows its OWN buffer
+  -- (not the currently selected one). make it easy to switch.
+  vim.o.laststatus = 3 -- each window has statusline
 
   vim.o.equalalways = false
   vim.o.splitright = true
