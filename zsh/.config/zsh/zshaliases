@@ -113,6 +113,10 @@ aliases () {
   "$EDITOR" ~/.config/zsh/zshaliases
   source ~/.config/zsh/zshaliases
 }
+vars () {
+  "$EDITOR" ~/.config/zsh/zshenv
+  source ~/.config/zsh/zshenv
+}
 
 # /dev/null
 dn () { 
