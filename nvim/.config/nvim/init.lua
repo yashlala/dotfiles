@@ -45,6 +45,10 @@ require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons'
   use 'tjdevries/colorbuddy.nvim'
 
+  -- Dim unfocused nvim windows.
+  -- This uses window local highlights -- so it must run last (after existing
+  -- highlights are defined).
+  use 'levouh/tint.nvim'
 
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense.
