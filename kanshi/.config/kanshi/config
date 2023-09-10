@@ -1,0 +1,18 @@
+# Internal Monitor Only
+profile { 
+	output "California Institute of Technology 0x1400 Unknown" resolution 3840x2160 scale 3 adaptive_sync on
+}
+
+# Internal + Yale Lab Monitor
+profile { 
+	output "Samsung Electric Company LS32A80 HCPR801450" position 0,0 scale 1 adaptive_sync on
+	output "California Institute of Technology 0x1400 Unknown" position 137,1050 resolution 3840x2160 scale 3 adaptive_sync on
+	exec swaymsg workspace 6, move workspace to "Samsung Electric Company LS32A80 HCPR801450"
+}
+
+# Palo Alto desk monitor
+profile { 
+	output "California Institute of Technology 0x1400 Unknown" resolution 3840x2160 position 310,1080 scale 3 adaptive_sync on
+	output "Dell Inc. DELL U2414H R9F1P4C53FDL" resolution 1920x1080 position 0,0 scale 1 adaptive_sync on
+	exec swaymsg workspace 6, move workspace to "Samsung Electric Company LS32A80 HCPR801450"
+}
