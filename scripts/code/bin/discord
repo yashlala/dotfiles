@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+set -euo pipefail
+
+name=discord
+
+# There is a bug in a previous version of electron that causes discord to
+# crash.
+#
+# See https://aur.archlinux.org/packages/discord_arch_electron .
+#
+# Until that bug is fixed I have changed this to use electron22-bin only.
+# Remember to install the default electron from the official repositories once
+# this bug is fixed.
+
+electron=electron22
+flags_file="${XDG_CONFIG_HOME:-$HOME/.config}/${name}-flags.conf"
+
+declare -a flags
+
+if [[ -f "${flags_file}" ]]; then
+    mapfile -t < "${flags_file}"
+fi
+
+for line in "${MAPFILE[@]}"; do
+    if [[ ! "${line}" =~ ^[[:space:]]*#.* ]]; then
+        flags+=("${line}")
+    fi
+done
+
+exec /usr/bin/${electron} /usr/lib/${name}/app.asar "${flags[@]}" "$@"
