@@ -82,5 +82,6 @@ function prepend_path {
 
 prepend_path "$HOME/code/bin"
 prepend_path "$HOME/.local/share/npm/bin"
+prepend_path "$CARGO_HOME/bin"
 prepend_path "$GOPATH/bin"
 unset prepend_path 

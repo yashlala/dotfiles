@@ -35,6 +35,8 @@ M.setup = function()
   vim.o.tagfunc = 'v:lua.vim.lsp.tagfunc'
 
   vim.o.wrap = true
+  -- TODO enable in 0.10
+  -- vim.o.smoothscroll = true -- scroll screen lines, not file lines (gj vs j)
   vim.o.breakindent = true -- A line's wrap should be indented the same
   vim.o.showbreak = '↳' -- Display arrow symbol for wrapped lines
   vim.o.linebreak = true

@@ -25,3 +25,6 @@ vim.cmd([[
     xnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>gv
     snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
 ]])
+
+-- Raise GUI font menu to pick a new font
+vim.api.nvim_create_user_command('GuiFontChange', 'set guifont=*', {})
