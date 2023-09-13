@@ -137,7 +137,7 @@ dns () {
 }
 
 # /dev/null log (we can `>logfile` and have safe behavior). 
-dns () { 
+dnl () { 
   if [ $# -eq 0 ]; then 
     return
   fi
