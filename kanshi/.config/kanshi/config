@@ -1,18 +1,24 @@
 # Internal Monitor Only
-profile { 
-	output "California Institute of Technology 0x1400 Unknown" scale 3 adaptive_sync on
+profile Standalone {
+	output "California Institute of Technology 0x1400 Unknown" enable position 0,0 scale 3 adaptive_sync on
 }
 
 # Internal + Yale Lab Monitor
-profile { 
-	output "Samsung Electric Company LS32A80 HCPR801450" position 0,0 scale 1 adaptive_sync on
-	output "California Institute of Technology 0x1400 Unknown" position 137,1050 scale 3 adaptive_sync on
-	# exec swaymsg workspace 6, move workspace to "Samsung Electric Company LS32A80 HCPR801450"
+profile YaleLab {
+	output "Samsung Electric Company LS32A80 HCPR801450" enable mode 2560x1440@59.951Hz position 0,0 scale 1.5 adaptive_sync on
+	output "California Institute of Technology 0x1400 Unknown" enable position 188,960 scale 3 adaptive_sync on
+	exec swaymsg workspace 6, move workspace to '"Samsung Electric Company LS32A80 HCPR801450"'
+}
+
+profile YaleApartment {
+	output "HP Inc. HP 27f 3CM01106Z1   " enable mode 1920x1080@60.000Hz position 0,0 scale 1 adaptive_sync on
+	output "California Institute of Technology 0x1400 Unknown" enable position 258,1080 scale 3 adaptive_sync on
+	exec swaymsg workspace 6, move workspace to '"HP Inc. HP 27f 3CM01106Z1   "'
+
 }
 
 # Palo Alto desk monitor
-profile { 
-	output "California Institute of Technology 0x1400 Unknown" position 310,1080 scale 3 adaptive_sync on
+profile PaloAltoDesk {
+	output "California Institute of Technology 0x1400 Unknown" mode 3840x2160@60.000Hz position 310,1080 scale 3 adaptive_sync on
 	output "Dell Inc. DELL U2414H R9F1P4C53FDL" position 0,0 scale 1 adaptive_sync on
-	# exec swaymsg workspace 6, move workspace to "Samsung Electric Company LS32A80 HCPR801450"
 }
