@@ -1,0 +1,13 @@
+[Unit]
+Description=kanshi daemon for wayland autorandr equivalent
+PartOf=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kanshi
+ExecReload=/usr/bin/kanshictl reload
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=sway-session.target
