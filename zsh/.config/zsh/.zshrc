@@ -8,7 +8,7 @@ mkdir -p "$zshconfigdir" "$zshdatadir"
 
 # If we're being accessed from a remote machine, change the shell prompt. 
 if [[ -n "$SSH_CLIENT" ]]; then
-  hostname='%m '
+  hostname='%F{blue}%m%F{fg} '
 else
   hostname=
 fi
