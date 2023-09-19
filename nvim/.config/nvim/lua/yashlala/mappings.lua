@@ -87,24 +87,25 @@ M.setup = function()
   vim.keymap.set({'n', 'v', 'o'}, '_', '<c-y>')
   vim.keymap.set({'n', 'v', 'o'}, '+', '<c-e>')
 
-  -- Use Meta for easy window operations
-  local nitvmapper = function(lhs, rhs)
-    vim.keymap.set('n', lhs, rhs)
-    vim.keymap.set('i', lhs, '<esc>' .. rhs)
-    vim.keymap.set('t', lhs, '<c-\\><c-n>' .. rhs)
-    vim.keymap.set('x', lhs, '<esc>' .. rhs)
+  -- Use Meta for easy window movement operations
+  local directions = { h='left', j='lower', k='upper', l='right' }
+  for key, direction in pairs(directions) do
+    local lhs = string.format('<m-%s>', key)
+    local desc = string.format('Move to %s window', direction)
+    vim.keymap.set({'n', 'i', 't', 'x'}, lhs, function()
+      vim.cmd('wincmd ' .. key)
+      if vim.o.buftype == 'terminal' then
+        vim.fn.feedkeys('i') -- https://github.com/neovim/neovim/issues/4895
+      else
+        vim.cmd('stopinsert')
+      end
+    end, { desc = desc })
   end
 
-  nitvmapper('<m-h>', '<c-w>h') -- Easy movement
-  nitvmapper('<m-j>', '<c-w>j')
-  nitvmapper('<m-k>', '<c-w>k')
-  nitvmapper('<m-l>', '<c-w>l')
-
-  nitvmapper('<m-s>', '<c-w>s') -- Split
-  nitvmapper('<m-v>', '<c-w>v') -- Vertical
-  nitvmapper('<m-c>', '<c-w>c') -- Close
-  nitvmapper('<m-x>', '<c-w>x') -- X-change
-  nitvmapper('<m-t>', '<cmd>tab split<cr>') -- Tab
+  local nitx = { 'n', 'i', 't', 'x' }
+  vim.keymap.set(nitx, '<m-s>', '<cmd>wincmd s<cr>', { desc = 'Split horizontally' })
+  vim.keymap.set(nitx, '<m-v>', '<cmd>wincmd v<cr>', { desc = 'Split vertically' })
+  vim.keymap.set(nitx, '<m-x>', '<cmd>wincmd x<cr>', { desc = 'Exchange window' })
 
   vim.keymap.set('n', '<c-q>', function()
       local win_info = vim.fn.filter(vim.fn.getwininfo(), 'v:val.quickfix')
