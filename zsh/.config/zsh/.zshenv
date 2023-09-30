@@ -36,6 +36,7 @@ export CGDB_DIR="$XDG_DATA_HOME/cgdb"
 export EDITRC="$XDG_CONFIG_HOME/editline/config"
 export ELINKS_CONFDIR="$XDG_DATA_HOME/elinks"
 export _FASD_DATA="$XDG_DATA_HOME/fasd"
+export GHCUP_USE_XDG_DIRS=true
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
@@ -65,6 +66,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 # needed for ~/.zoom folder
 export SSB_HOME="$XDG_DATA_HOME/zoom/"
+export STACK_ROOT="$XDG_DATA_HOME/stack"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite"
 export TIMEWARRIORDB="$XDG_DATA_HOME/timewarrior"
 export VSCODE_PORTABLE="$XDG_DATA_HOME/vscode-oss"
@@ -81,6 +83,7 @@ function prepend_path {
 }
 
 prepend_path "$HOME/code/bin"
+prepend_path "$HOME/.local/bin"
 prepend_path "$HOME/.local/share/npm/bin"
 prepend_path "$CARGO_HOME/bin"
 prepend_path "$GOPATH/bin"

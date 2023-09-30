@@ -25,7 +25,7 @@ alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 alias cm='connmanctl'
 alias dm='sudo dmesg --color=always | less +G'
-alias dr='docker'
+alias dk='docker'
 alias ehist="$EDITOR ~/.local/share/zsh/histfile"
 alias g='git'
 alias h='man'
@@ -58,7 +58,6 @@ alias hibernate='systemctl hibernate'
 alias quit='exit'
 alias unstow='stow -D'
 
-alias sudo='sudo '
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
 alias cgdb='cgdb -q'
 alias cp='cp -i'
@@ -71,9 +70,11 @@ alias newsboat='newsboat -C ~/.config/newsboat/config -u ~/.config/newsboat/urls
 alias R='R -q'
 # Trailing space => aliases after sudo are expanded as well.
 # See: https://askubuntu.com/q/22037
+alias sudo='sudo '
 alias tor='tor -f ~/.config/tor/torrc'
 alias units='units --history ""'
 alias manim='manim -v WARNING'
+alias watch='watch '
 alias wget='wget --hsts-file /dev/null'
 
 alias grep='grep --color=auto'
@@ -119,6 +120,8 @@ vars () {
   "$EDITOR" ~/.config/zsh/zshenv
   source ~/.config/zsh/zshenv
 }
+alias hist="$EDITOR ~/.local/share/zsh/histfile"
+alias apps="cd ~/.local/share/applications"
 
 # /dev/null
 dn () { 

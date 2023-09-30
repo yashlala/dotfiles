@@ -49,7 +49,6 @@ bindsym $mod+q                        kill
 bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id fuzzel \
                                         --log-no-syslog --log-level=warning
-bindsym $mod+f                        exec --no-startup-id alacritty -e lf
 bindsym $mod+m                        exec --no-startup-id alacritty \
                                         --working-directory ~/io -e neomutt
 bindsym $mod+i                        exec --no-startup-id chromium \
@@ -138,13 +137,13 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split window keybindings
-bindsym $mod+s split h
-bindsym $mod+v split v
-bindsym $mod+b layout toggle split
+# split window keybindings. Copy from vim
+bindsym $mod+v split h
+bindsym $mod+s split v
+bindsym $mod+x layout toggle split
 
 # floating window keybindings
-bindsym XF86Explorer floating toggle
+bindsym $mod+f floating toggle
 
 # i3 server keybindings
 bindsym $mod+Shift+r restart
