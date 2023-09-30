@@ -94,7 +94,8 @@ M.setup = function()
     local desc = string.format('Move to %s window', direction)
     vim.keymap.set({'n', 'i', 't', 'x'}, lhs, function()
       vim.cmd('wincmd ' .. key)
-      if vim.o.buftype == 'terminal' then
+      -- TODO this is still broken.
+      if vim.o.buftype == 'terminal' and vim.fn.mode('x') == 'n' then
         vim.fn.feedkeys('i') -- https://github.com/neovim/neovim/issues/4895
       else
         vim.cmd('stopinsert')
@@ -402,6 +403,8 @@ M.setup = function()
   -- initialization...
   vim.keymap.set('n', '<leader>xf', function() vim.cmd('CodeActionMenu') end,
     { desc = 'Fix problem via LSP actions' })
+  vim.keymap.set('n', '<leader>xl', vim.lsp.codelens.run,
+    { desc = 'Run CodeLens' })
 
   vim.keymap.set('n', '<bslash>', '<cmd>lua vim.lsp.buf.hover()<cr>',
     { desc = 'Info about symbol' })

@@ -27,4 +27,4 @@ vim.cmd([[
 ]])
 
 -- Raise GUI font menu to pick a new font
-vim.api.nvim_create_user_command('GuiFontChange', 'set guifont=*', {})
+vim.api.nvim_create_user_command('ChangeFont', 'set guifont=*', {})

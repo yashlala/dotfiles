@@ -147,6 +147,10 @@ local function setup_lsp(capabilities)
   require('mason').setup()
   require('mason-lspconfig').setup()
 
+  -- Must be run before lspconfig
+  require('neodev').setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true }})
+
   local lspconfig = require('lspconfig')
   local lsp_defaults = {
     capabilities = capabilities,
@@ -159,7 +163,6 @@ local function setup_lsp(capabilities)
   lspconfig.pyright.setup({})
   lspconfig.texlab.setup({})
   lspconfig.jedi_language_server.setup({})
-  lspconfig.hls.setup({})
   lspconfig.clojure_lsp.setup({})
   lspconfig.rust_analyzer.setup({})
   lspconfig.dafny.setup({})

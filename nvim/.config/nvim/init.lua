@@ -95,14 +95,6 @@ require('packer').startup(function()
   use 'yashlala/vim-sayonara'
   -- TODO: Make a telescope previewer for the marks in the current buffer.
 
-  -- Collection of configurations for built-in LSP client
-  use {
-    -- Setup in this order for mason and nvim-lspconfig to play nice.
-    -- See mason-lspconfig.nvim README.
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig'
-  }
   -- Pretty icons for LSP windows
   use 'onsails/lspkind-nvim'
 
@@ -112,6 +104,7 @@ require('packer').startup(function()
   -- Debugger integration
   use 'mfussenegger/nvim-dap'
   use { 'mfussenegger/nvim-dap-python', after = 'nvim-dap' }
+  use 'mfussenegger/nvim-dap-ui'
 
   -- Highlighting, editing, etc. using incremental parsing.
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -127,6 +120,16 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'hrsh7th/cmp-nvim-lsp-document-symbol'
 
+  -- Collection of configurations for built-in LSP client
+  use {
+    -- Setup in this order for mason and nvim-lspconfig to play nice.
+    -- See mason-lspconfig.nvim README.
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'folke/neodev.nvim',
+    'neovim/nvim-lspconfig'
+  }
+  use 'mrcjkb/haskell-tools.nvim'
 
   -- NOTE: LuaSnip uses select-mode to highlight fields prior to replacing
   -- them. Eg ([X] := "X is highlighted, visually):
