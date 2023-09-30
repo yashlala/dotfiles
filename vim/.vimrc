@@ -18,7 +18,7 @@ set breakindent
 set linebreak
 
 set belloff=all
-set undofile
+set noundofile
 set updatetime=3000
 
 set lazyredraw
