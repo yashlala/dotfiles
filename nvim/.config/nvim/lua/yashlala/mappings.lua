@@ -180,9 +180,6 @@ M.setup = function()
   vim.keymap.set('n', '<leader>c', '<cmd>close<cr>')
   -- Create new tab.
   vim.keymap.set('n', '<leader>t', '<cmd>tab split<cr>')
-  -- Create new window (!= vim windows).
-  vim.keymap.set('n', '<leader>T', '<cmd>silent !uwin<cr>',
-    { desc = 'Open a new WM terminal window' })
   vim.keymap.set('n', '<leader>e', ':e %:h/',
     { desc = 'Edit a sibling file in the current directory' })
 
