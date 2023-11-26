@@ -47,6 +47,7 @@ alias sc='systemctl'
 alias scu='systemctl --user'
 alias spy='isympy --quiet --auto' # sympy, create missing symbols
 alias t='task'
+alias todo='task add'
 alias tsh='tasksh'
 alias tw='timew'
 alias tag='tmsu'
@@ -72,7 +73,8 @@ alias R='R -q'
 # See: https://askubuntu.com/q/22037
 alias sudo='sudo '
 alias tor='tor -f ~/.config/tor/torrc'
-alias units='units --history ""'
+alias units='units --history "" -o "%.19g"'
+alias eunits='units --history ""'
 alias manim='manim -v WARNING'
 alias watch='watch '
 alias wget='wget --hsts-file /dev/null'
@@ -154,4 +156,17 @@ quote () {
 # sometimes we think we're in nvim (:te -> :terminal)
 te () { 
   nvim -c "te $*"
+}
+
+ding () {
+  echo "TODO make this colored and easily visible"
+  echo "####################################################"
+  echo "#                                                  #"
+  echo "#  # ##   #####  #   #   ####                   #  #"
+  echo "#  #   #    #    ##  #  #    #    DING DING     #  #"
+  echo "#  #   #    #    # # #  #         DING DING     #  #"
+  echo "#  #  #     #    #  ##  #   ##    DING DING        #"
+  echo "#  ##     #####  #   #   ### #    !!!! !!!!     #  #"
+  echo "#                                                  #"
+  echo "####################################################"
 }
