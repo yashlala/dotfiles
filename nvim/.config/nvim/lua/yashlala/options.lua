@@ -61,7 +61,7 @@ M.setup = function()
   vim.o.equalalways = false
   vim.o.splitright = true
   vim.o.splitbelow = false
-  vim.o.splitkeep = 'screen' -- lines shouldn't move during window resize
+  vim.o.splitkeep = 'cursor' -- lines shouldn't move during window resize
 
   vim.o.mouse = 'a'
 
