@@ -51,11 +51,13 @@ if command -v stow >/dev/null 2>&1; then
     | xargs -0 -n 1 basename -z \
     | xargs -0 stow
 else
+  mkdir -p ~/.config
   cp -r ./zsh/.config/zsh ~/.config/zsh
   cp -r ./git/.config/git ~/.config/git
   cp ./readline/.config/readline/inputrc ~/.inputrc
   cp ./editline/.config/editline/config ~/.editrc
   cp ./vim/.vimrc ~/.vimrc
+  cp -r ./tmux/.config/tmux/ ~/.config/tmux/
   mkdir -p ~/.config/lf && cp ./lf/.config/lf/lfrc ~/.config/lf/lfrc
 fi
 
