@@ -25,8 +25,9 @@ M.setup = function()
   vim.keymap.set({'n', 'v', 'o'}, '-', '0')
 
   vim.keymap.set({'n', 'v', 'o'}, ';', ':')
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>;', ':lua ')
+  vim.keymap.set({'n', 'v', 'o'}, '<leader>:', ':lua =')
   vim.keymap.set({'n', 'x'}, ':', 'q:')
-  vim.keymap.set('n', 'L', ':lua ')
 
   vim.keymap.set('n', '@;', '@:')
   vim.keymap.set('n', 'K', 'kJ')
@@ -264,7 +265,6 @@ M.setup = function()
   vim.keymap.set('n', '<leader>wn',  '<Plug>VimwikiNextLink')
   vim.keymap.set('n', '<leader>wp',  '<Plug>VimwikiNextLink')
 
-
   -- Telescope Keybinds
   -- TODO: Define a custom path displayer that combines the smartness of
   --       "truncate" with the selectiveness of "shorten". Can just pass
@@ -407,6 +407,10 @@ M.setup = function()
     { desc = 'Info about symbol' })
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { desc = 'Info about error'})
+
+  -- Cmdline mode: make files easy
+  vim.keymap.set('c', '<c-j>', '',
+    { desc = 'Use shell "j"ao command to complete dir' })
 end
 
 return M
