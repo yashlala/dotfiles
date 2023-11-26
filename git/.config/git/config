@@ -109,6 +109,7 @@
 [push]
 	gpgSign = false
 	followTags = true
+	autoSetupRemote = true
 [tag]
 	forceSignAnnotated = true
 [fetch]
