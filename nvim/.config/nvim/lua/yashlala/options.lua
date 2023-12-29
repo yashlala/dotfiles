@@ -12,6 +12,9 @@ M.setup = function()
   vim.o.ignorecase = true -- Ignore case when searching (use \C to undo)
   vim.o.smartcase = true -- unless we see a capital letter
 
+  -- Load `.nvim.lua`, `.nvimrc`, and `.exrc` files in dir.
+  vim.o.exrc = true
+
   -- TODO: We briefly got a ballin fold thing going.
   -- Now that we have treesitter, this could become a real game changer in
   -- terms of quickly parsing code.

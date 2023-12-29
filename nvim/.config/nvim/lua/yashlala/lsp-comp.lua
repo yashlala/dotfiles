@@ -162,7 +162,9 @@ local function setup_lsp(capabilities)
   lspconfig.gopls.setup({})
   lspconfig.pyright.setup({})
   lspconfig.texlab.setup({})
-  lspconfig.jedi_language_server.setup({})
+  -- TODO: jedi also runs for python files! so I have 2 lsps that both respond
+  -- every time I make a request. Figure out how they can coexist, OK?
+  -- lspconfig.jedi_language_server.setup({})
   lspconfig.clojure_lsp.setup({})
   lspconfig.rust_analyzer.setup({})
   lspconfig.dafny.setup({})

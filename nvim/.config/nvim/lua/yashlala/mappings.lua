@@ -138,6 +138,7 @@ M.setup = function()
     { desc = 'Paste from clipboard' })
   vim.keymap.set({'n', 'v', 'o'}, '<leader>P', '"+P',
     { desc = 'Paste from clipboard behind cursor' })
+  -- TODO set up mapping to paste default buffer too.
   vim.keymap.set('i', '<c-r><space>', '<c-r>+',
     { desc = 'Insert from clipboard' })
   vim.keymap.set('i', '<c-r><c-r><space>', '<c-r><c-r>+',

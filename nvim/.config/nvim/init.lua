@@ -154,6 +154,9 @@ require('packer').startup(function()
   use 'vimwiki/vimwiki'
   use { 'nvim-orgmode/orgmode', after = 'nvim-treesitter' }
 
+  -- Typesetting
+  use { 'kaarmu/typst.vim', ft = { 'typst' } }
+
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {
     { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
