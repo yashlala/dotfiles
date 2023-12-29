@@ -38,7 +38,7 @@ cmd open ${{
                 else
                     vim "$f"
                 fi;;
-            application/pdf) fork okular "$f";;
+            application/pdf) fork zathura "$f";;
             video/*) fork mpv --force-window=yes "$f";;
             audio/*) fork mpv --force-window=yes "$f";;
             image/*) fork ristretto "$f";;
