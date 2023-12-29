@@ -46,13 +46,11 @@ floating_modifier $mod
 # application keybindings
 bindsym $mod+space                    exec --no-startup-id alacritty
 bindsym $mod+q                        kill
-bindsym $mod+BackSpace                kill
 bindsym $mod+Return                   exec --no-startup-id fuzzel \
                                         --log-no-syslog --log-level=warning
 bindsym $mod+m                        exec --no-startup-id alacritty \
                                         --working-directory ~/io -e neomutt
-bindsym $mod+i                        exec --no-startup-id chromium \
-                                        --enable-features=UseOzonePlatform --ozone-platform=wayland
+bindsym $mod+i                        exec --no-startup-id firefox
 bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
 bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
 # bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
@@ -66,6 +64,7 @@ bindsym XF86Messenger exec --no-startup-id ~/code/bin/voice numen
 bindsym Cancel exec --no-startup-id ~/code/bin/voice end
 bindsym Shift+Cancel exec --no-startup-id ~/code/bin/voice cancel
 
+# Play/Pause Playing music.
 bindsym XF86Favorites exec --no-startup-id mpc --quiet toggle
 
 bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
@@ -146,6 +145,12 @@ bindsym $mod+x layout toggle split
 
 # floating window keybindings
 bindsym $mod+f floating toggle
+
+# move window to scratchpad.
+bindsym $mod+BackSpace move scratchpad
+# Show the next next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+backslash scratchpad show
 
 # i3 server keybindings
 bindsym $mod+Shift+r restart
