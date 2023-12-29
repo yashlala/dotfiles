@@ -8,6 +8,11 @@ if vim.fn.exists(':GuiFont') then
     vim.cmd('GuiFont DejaVu Sans Mono:h11')
 end
 
+-- vim-ezguifont plugin
+vim.keymap.set('n', '<C-=>', '<cmd>IncreaseFont<cr>')
+vim.keymap.set('n', '<C-+>', '<cmd>IncreaseFont<cr>')
+vim.keymap.set('n', '<C-->', '<cmd>DecreaseFont<cr>')
+
 -- Disable GUI Tabline
 if vim.fn.exists(':GuiTabline') then
     vim.cmd('GuiTabline 0')

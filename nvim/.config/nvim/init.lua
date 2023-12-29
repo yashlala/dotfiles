@@ -56,6 +56,8 @@ require('packer').startup(function()
   -- Strip trailing whitespace on lines we've modified. May cause issues.
   use 'thirtythreeforty/lessspace.vim'
 
+  use 'mkropat/vim-ezguifont'
+
   -- Vim motions that don't require counts.
   -- TODO: switch to https://github.com/folke/flash.nvim
   use 'smoka7/hop.nvim'
