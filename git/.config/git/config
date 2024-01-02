@@ -20,7 +20,8 @@
 	ad = add
 	adi = add --interactive
 	adp = add --patch
-	bl = blame -s
+	bl = blame --date=short
+	bls = blame -s
 	bra = branch --all
 	br = branch
 	brd = branch --delete
