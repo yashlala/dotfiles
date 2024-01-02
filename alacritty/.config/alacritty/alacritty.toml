@@ -1,0 +1,676 @@
+live_config_reload = false
+working_directory = "None"
+
+[bell]
+animation = "Linear"
+color = "#cccccc"
+command = "None"
+duration = 0
+
+[colors]
+indexed_colors = []
+
+[colors.bright]
+black = "#626262"
+blue = "#add4fb"
+cyan = "#87d7d7"
+green = "#87af87"
+magenta = "#ffafaf"
+red = "#d75f87"
+white = "#e4e4e4"
+yellow = "#ffd787"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.hints.end]
+background = "#1d1f21"
+foreground = "#e9ff5e"
+
+[colors.hints.start]
+background = "#e9ff5e"
+foreground = "#1d1f21"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "#4e4e4e"
+blue = "#85add4"
+cyan = "#87afaf"
+green = "#5f865f"
+magenta = "#d7afaf"
+red = "#d68787"
+white = "#d0d0d0"
+yellow = "#d8af5f"
+
+[colors.primary]
+background = "#3a3a3a"
+bright_foreground = "#eaeaea"
+dim_foreground = "#828482"
+foreground = "#d0d0d0"
+
+# [colors.search.colors.footer_bar]
+# background = "#c5c8c6"
+# foreground = "#1d1f21"
+
+[colors.search.focused_match]
+background = "#000000"
+foreground = "#ffffff"
+
+[colors.search.matches]
+background = "#ffffff"
+foreground = "#000000"
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[cursor]
+blink_interval = 750
+thickness = 0.15
+unfocused_hollow = true
+vi_mode_style = "None"
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+COLORTERM = "truecolor"
+TERM = "alacritty"
+
+[font]
+size = 11.0
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Oblique"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+style = "Oblique"
+
+[font.normal]
+family = "DejaVuSansM Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Paste"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Copy"
+
+[[keyboard.bindings]]
+chars = "\u001B[105;5u"
+key = "I"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mode = "~Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "PageUp"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "PageDown"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Home"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "End"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Space"
+mode = "~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Space"
+mode = "Vi|~Search"
+mods = "Shift|Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Escape"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "I"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "I"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Y"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "E"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "G"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "G"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "B"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "F"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "U"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "D"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Y"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Y"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Copy"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mode = "Vi|~Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mode = "Vi|~Search"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Return"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "K"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "J"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "H"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "L"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Up"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Down"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Left"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Right"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Key0"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Key4"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Key6"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "H"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "M"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "L"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "B"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "W"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "E"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "B"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "W"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "E"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Key5"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Slash"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Slash"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "N"
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "N"
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Return"
+mode = "Search|Vi"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Escape"
+mode = "Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mode = "Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "U"
+mode = "Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "W"
+mode = "Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "P"
+mode = "Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "N"
+mode = "Search"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Up"
+mode = "Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Down"
+mode = "Search"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Return"
+mode = "Search|~Vi"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Return"
+mode = "Search|~Vi"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mode = "~Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "F"
+mode = "~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "B"
+mode = "~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mode = "Vi|~Search"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "NumpadAdd"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "NumpadSubtract"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Return"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "K"
+mode = "~Vi|~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "K"
+mode = "~Vi|~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Key0"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Equals"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Plus"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "NumpadAdd"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Minus"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "NumpadSubtract"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "V"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "C"
+mode = "Vi|~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "H"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "H"
+mods = "Command|Alt"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "M"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "F"
+mods = "Command|Control"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "F"
+mode = "~Search"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ReceiveChar"
+key = "B"
+mode = "~Search"
+mods = "Command"
+
+[mouse]
+hide_when_typing = false
+
+# [mouse.double_click]
+# threshold = 300
+
+# [mouse.triple_click]
+# threshold = 300
+
+[selection]
+save_to_clipboard = false
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
