@@ -31,7 +31,8 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   -- Utility functions used by other plugins.
   use 'nvim-lua/plenary.nvim'
-  -- Caches lua modules. Will eventually be merged into mainline.
+  -- Caches lua modules. This has already been merged into mainline, TODO
+  -- replace it.
   use 'lewis6991/impatient.nvim'
 
   -- Fancier statusline.
