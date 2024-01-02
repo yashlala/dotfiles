@@ -57,6 +57,7 @@ alias asudo='sudo '
 alias battery='acpi -b'
 alias connect-to='sudo netctl-auto switch-to'
 alias hibernate='systemctl hibernate'
+alias hyperctl='hyprctl'
 alias quit='exit'
 alias unstow='stow -D'
 
@@ -125,7 +126,8 @@ vars () {
   source ~/.config/zsh/zshenv
 }
 alias hist="$EDITOR ~/.local/share/zsh/histfile"
-alias apps="cd ~/.local/share/applications"
+alias apps="cd ~/.local/share/applications && ls"
+alias sshc="$EDITOR ~/.ssh/hostconf"
 
 # /dev/null
 dn () { 
