@@ -1,0 +1,48 @@
+/* TODO set bar to our ancient i3 theme */
+@import url("./colors.css");
+* {
+    border: none;
+    border-radius: 0;
+    font-family: DejaVu Sans Mono;
+    font-size: 11pt;
+    min-height: 0;
+}
+window#waybar {
+    background: @background-darker;
+    color: @foreground;
+}
+#workspaces button {
+    padding: 0 5px;
+    background: @background;
+    color: @foreground;
+}
+#workspaces button.active {
+    background: @selection;
+}
+#workspaces button.urgent {
+    background: @red;
+}
+#taskbar button.active {
+    background-image: linear-gradient(0deg, @selection, @background-darker);
+}
+
+#tray {
+    padding: 0 5px;
+    background: @background-darker;
+}
+#pulseaudio {
+    padding: 0 5px;
+    background: @background-darker;
+}
+#battery {
+    padding: 0 5px;
+    background: @background-darker;
+}
+#backlight {
+    padding: 0 5px;
+    background: @background-darker;
+}
+#clock {
+    padding: 0 5px;
+    background: @background-darker;
+}

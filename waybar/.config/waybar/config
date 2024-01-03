@@ -1,0 +1,57 @@
+{
+    "layer": "top",
+    "position": "top",
+    // Automatically set based on modules if left blank
+    // "height": 20,
+    "spacing": 0,
+
+    "modules-left": [ "hyprland/workspaces" ],
+    "modules-center": [],
+    "modules-right": ["tray", "pulseaudio", "battery", "clock"],
+    "tray": {
+        "icon-size": 20,
+        "spacing": 0
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate" 
+    },
+    "clock": {
+        "format": "{:%a %Y-%m-%d %I:%M %p}",
+    },
+    "backlight": {
+        "format": "{percent}%",
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity}%",
+        "format-charging": "{capacity}%(+)",
+        "format-plugged": "{capacity}%(=)",
+        "format-alt": "{time} {icon}",
+    },
+    "network": {
+        "interval": 30,
+        "interface": "wlp0s20f3",
+        "format-wifi": "{essid} ({signalStrength}%)",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "exec alacritty -e sudo nmtui",
+    },
+    "pulseaudio": {
+        "format": "{volume}%",
+        "format-bluetooth": "{volume}% ",
+        "format-bluetooth-muted": "{format_source} ",
+        "format-muted": "--",
+        "format-source": "{volume}%",
+        "format-source-muted": "--",
+        "on-click": "pavucontrol"
+    },
+}
+
