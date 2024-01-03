@@ -26,23 +26,29 @@ window#waybar {
     background-image: linear-gradient(0deg, @selection, @background-darker);
 }
 
-#tray {
-    padding: 0 5px;
-    background: @background-darker;
-}
-#pulseaudio {
-    padding: 0 5px;
-    background: @background-darker;
-}
-#battery {
-    padding: 0 5px;
-    background: @background-darker;
-}
-#backlight {
-    padding: 0 5px;
-    background: @background-darker;
-}
+#tray,
+#pulseaudio,
+#battery,
+#backlight,
 #clock {
     padding: 0 5px;
     background: @background-darker;
+}
+
+/* Low battery should flash */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 10;
+    animation-direction: alternate;
 }

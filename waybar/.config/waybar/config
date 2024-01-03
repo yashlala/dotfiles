@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     // Automatically set based on modules if left blank
-    // "height": 20,
+    "height": 20,
     "spacing": 0,
 
     "modules-left": [ "hyprland/workspaces" ],
