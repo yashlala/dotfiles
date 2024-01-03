@@ -51,10 +51,6 @@ bindsym $mod+Return                   exec --no-startup-id fuzzel \
 bindsym $mod+m                        exec --no-startup-id alacritty \
                                         --working-directory ~/io -e neomutt
 bindsym $mod+i                        exec --no-startup-id firefox
-bindsym $mod+p                        exec --no-startup-id ~/.local/scripts/pass-rofi
-bindsym $mod+Shift+p                  exec --no-startup-id ~/.local/scripts/pass-rofi --clip
-# bindsym Ctrl+Shift+a                  exec --no-startup-id ~/.local/scripts/nice-try
-# bindsym Ctrl+Shift+n                  exec --no-startup-id ~/.local/scripts/nice-try
 
 bindsym --release Print               exec --no-startup-id ~/code/bin/screenshot
 
@@ -67,14 +63,10 @@ bindsym Shift+Cancel exec --no-startup-id ~/code/bin/voice cancel
 # Play/Pause Playing music.
 bindsym XF86Favorites exec --no-startup-id mpc --quiet toggle
 
-bindsym XF86AudioRaiseVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
-                                        pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume          exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
-                                        pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym Shift+XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
-                                        pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym Shift+XF86AudioLowerVolume    exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false && \
-                                        pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioRaiseVolume          exec --no-startup-id ~/code/bin/volume +5
+bindsym XF86AudioLowerVolume          exec --no-startup-id ~/code/bin/volume -5
+bindsym Shift+XF86AudioRaiseVolume    exec --no-startup-id ~/code/bin/volume +1
+bindsym Shift+XF86AudioLowerVolume    exec --no-startup-id ~/code/bin/volume -1
 bindsym XF86AudioMute                 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute              exec --no-startup-id amixer -q sset Capture toggle
 

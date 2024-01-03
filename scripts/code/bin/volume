@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+if [ $# -ne 1 ]; then
+  echo "$0 <delta percent (eg: +5, -3)>"
+  exit 1
+fi
+
+if [ "$1" = "toggle-mute" ]; then
+  exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+  exit 0
+fi
+
+pactl set-sink-mute @DEFAULT_SINK@ false \
+  && pactl set-sink-volume @DEFAULT_SINK@ "${1}%"
