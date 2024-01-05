@@ -71,6 +71,7 @@ alias gdb='gdb -q'
 alias info='info --vi-keys'
 alias mv='mv -i'
 alias newsboat='newsboat -C ~/.config/newsboat/config -u ~/.config/newsboat/urls -c ~/.cache/newsboat'
+alias rm='rm --one-file-system'
 alias R='R -q'
 # Trailing space => aliases after sudo are expanded as well.
 # See: https://askubuntu.com/q/22037
