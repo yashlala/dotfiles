@@ -18,7 +18,7 @@ require'lualine'.setup {
       function()
         local abs_cwd = vim.fn.getcwd()
         local abs_home = vim.fn.expand('~')
-        return string.gsub(abs_cwd, abs_home, '~')
+        return string.gsub(abs_cwd, abs_home, '~', 1)
       end
     }},
     lualine_x = {'branch', 'filetype'},
