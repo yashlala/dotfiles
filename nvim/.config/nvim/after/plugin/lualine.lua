@@ -10,10 +10,15 @@ require'lualine'.setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'filename'},
+    lualine_b = {{
+      'filename',
+      path = 3 -- Absolute path, with tilde as the home directory
+    }},
     lualine_c = {{
       function()
-        return vim.fn.getcwd()
+        local abs_cwd = vim.fn.getcwd()
+        local abs_home = vim.fn.expand('~')
+        return string.gsub(abs_cwd, abs_home, '~')
       end
     }},
     lualine_x = {'branch', 'filetype'},
@@ -29,7 +34,10 @@ require'lualine'.setup {
     lualine_z = {}
   },
   tabline = {
-    lualine_a = {'tabs'},
+    lualine_a = {{
+      'tabs',
+      show_modified_status = false,
+    }},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
