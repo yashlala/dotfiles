@@ -10,10 +10,7 @@ require'lualine'.setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {{
-      'filename',
-      path = 3 -- Absolute path, with tilde as the home directory
-    }},
+    lualine_b = {{ 'filename', }},
     lualine_c = {{
       function()
         local abs_cwd = vim.fn.getcwd()
