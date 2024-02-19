@@ -15,14 +15,15 @@
 # Kludge 100. 
 
 function conda {
-  __conda_setup="$('/home/lala/.local/share/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  local miniconda_root="$HOME/.local/share/miniconda"
+  __conda_setup="$("$miniconda_root/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
   else
-      if [ -f "/home/lala/.local/share/miniconda/etc/profile.d/conda.sh" ]; then
-          . "/home/lala/.local/share/miniconda/etc/profile.d/conda.sh"
+      if [ -f "$miniconda_root/etc/profile.d/conda.sh" ]; then
+          . "$miniconda_root/etc/profile.d/conda.sh"
       else
-          export PATH="/home/lala/.local/share/miniconda/bin:$PATH"
+          export PATH="$miniconda_root/bin:$PATH"
       fi
   fi
   unset __conda_setup
