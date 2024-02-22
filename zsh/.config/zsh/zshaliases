@@ -164,7 +164,7 @@ te () {
 }
 
 ding () {
-  echo "TODO make this colored and easily visible"
+  echo "\a"
   echo "####################################################"
   echo "#                                                  #"
   echo "#  # ##   #####  #   #   ####                   #  #"
@@ -174,4 +174,5 @@ ding () {
   echo "#  ##     #####  #   #   ### #    !!!! !!!!     #  #"
   echo "#                                                  #"
   echo "####################################################"
+  echo "TODO make this colored and easily visible"
 }

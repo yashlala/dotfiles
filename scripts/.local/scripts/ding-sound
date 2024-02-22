@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec paplay ~/.local/sounds/mouse-click.mp3

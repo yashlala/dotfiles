@@ -3,9 +3,12 @@ working_directory = "None"
 
 [bell]
 animation = "Linear"
-color = "#cccccc"
-command = "None"
-duration = 0
+color = "#aaaaaa"
+duration = 100
+
+[bell.command]
+program = "notify-send"
+args = [ "-a",  "bell",  "-t",  "1000", "Ding Ding" ]
 
 [colors]
 indexed_colors = []

@@ -204,7 +204,7 @@
     # * close_current: Close current notification.
     # * close_all: Close all notifications.
     mouse_left_click = do_action
-    mouse_middle_click = close_all
+    mouse_middle_click = close_current
     mouse_right_click = close_current
 
 # Experimental features that may or may not work correctly. Do not expect them
@@ -333,6 +333,10 @@
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
+
+[play_sound]
+    summary = "*"
+    script = ~/.local/scripts/ding-sound
 
 #[script-test]
 #    summary = "*script*"
