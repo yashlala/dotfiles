@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+# Firefox refuses to run as root.
+# This causes problems with browser based authentication via `openconnect`, as
+# `openconnect` needs root to set up the VPN.
+# This script works around that problem. Openconnect will run this script
+# instead of `/usr/bin/firefox`. And
+
+# Note: Firefox needs to know the current DISPLAY to start. So remember to run
+# this script with `sudo -E`. (and be careful with it! maybe instead you want
+# to just pass in the needed env vars via sudo.)
+
+exec su --preserve-environment yashlala $HOME/code/bin/firefox "$@"

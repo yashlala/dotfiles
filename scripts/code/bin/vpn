@@ -1,0 +1,6 @@
+#!/bin/sh
+
+exec sudo -E /usr/bin/openconnect \
+  --useragent=AnyConnect \
+  --external-browser="$HOME/code/bin/chromium-no-sandbox" \
+  access.yale.edu

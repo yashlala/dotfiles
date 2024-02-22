@@ -8,14 +8,14 @@ export LANGUAGE=en_US.UTF-8
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=chromium
+export BROWSER=firefox
 
 # set application environment variables
 
 export SUDO_ASKPASS='/usr/local/bin/ssh-askpass'
 export CONDA_CHANGEPS1='false'
 export ESCDELAY=15 # used by ncurses
-export LESS='-i -R -M -c -z-5'
+export LESS='-i -R -M -c -z-5 -Q'
 export GPG_TTY="$(tty)"
 export WATCH_INTERVAL=1 # used by `watch`
 export FONTCONFIG_PATH=/etc/fonts # see https://askubuntu.com/a/708541
