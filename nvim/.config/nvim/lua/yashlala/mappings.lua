@@ -128,6 +128,8 @@ M.setup = function()
     { desc = 'Use null (black-hole) register' })
   vim.keymap.set('n', '<leader><c-g>', '1<c-g>',
     { desc = 'Print full path of current buffer' })
+  vim.keymap.set({'n', 'x'}, '<leader>.', '@:',
+    { desc = 'Repeat the last Ex command.' })
 
   -- X11 Clipboard management
   vim.keymap.set({'n', 'v', 'o'}, '<leader>y', '"+y',

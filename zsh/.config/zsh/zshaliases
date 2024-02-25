@@ -25,7 +25,7 @@ alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
 alias cm='connmanctl'
 alias dm='sudo dmesg --color=always | less +G'
-alias dk='docker'
+alias dk='docker --config="~/.config/docker"'
 alias ehist="$EDITOR ~/.local/share/zsh/histfile"
 alias g='git'
 alias h='man'
@@ -39,7 +39,8 @@ alias nca='netctl-auto'
 alias o='xdg-open'
 alias py='python3 -q'
 alias ipy='ipython'
-alias pwro='poweroff'
+alias poweroff='echo "please use pwroff"'
+alias pwroff='command poweroff'
 alias q='exit'
 alias rec='asciinema'
 alias s='sudo ' # trailing space => later aliases are expanded
@@ -63,6 +64,7 @@ alias unstow='stow -D'
 
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
 alias cgdb='cgdb -q'
+alias chromium='exit'
 alias cp='cp -i'
 alias docker='docker --config="~/.config/docker"'
 alias elinks='elinks -config-dir .local/share/elinks'
@@ -114,6 +116,7 @@ lkj () {
 ms () { cd "$@" >/dev/stdout && ls; }
 ma () { cd "$@" >/dev/stdout && ls -A; }
 js () { j "$@" >/dev/stdout && ls; }
+jsp () { j "$@" >/dev/stdout && pwd && ls; }
 ja () { j "$@" >/dev/stdout && ls -A; }
 
 md () { mkdir -p "$1" && cd "$1"; }
