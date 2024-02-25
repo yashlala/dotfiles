@@ -79,6 +79,7 @@ require('packer').startup(function()
   use 'tpope/vim-eunuch'
 
   -- Git commands + Status page.
+  use 'tpope/vim-rhubarb'
   use 'tpope/vim-fugitive'
   -- Git related info in signs column and popups.
   use { 'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim' }
