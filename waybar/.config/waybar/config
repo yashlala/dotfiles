@@ -15,8 +15,6 @@
     "hyprland/workspaces": {
         "format": "{icon}",
         "on-click": "activate" 
-	"on-scroll-up": "hyprctl dispatch workspace r-1", 
-	"on-scroll-down": "hyprctl dispatch workspace r+1", 
     },
     "clock": {
         "format": "{:%a %Y-%m-%d %I:%M %p}",
