@@ -84,6 +84,8 @@ M.setup = function()
   vim.keymap.set('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
   vim.keymap.set('n', '<c-n>', vim.diagnostic.goto_next)
   vim.keymap.set('n', '<c-p>', vim.diagnostic.goto_prev)
+  vim.keymap.set('n', '<c-N>', vim.diagnostic.goto_next) -- caps lock
+  vim.keymap.set('n', '<c-P>', vim.diagnostic.goto_prev)
 
   vim.keymap.set({'n', 'v', 'o'}, '_', '<c-y>')
   vim.keymap.set({'n', 'v', 'o'}, '+', '<c-e>')
