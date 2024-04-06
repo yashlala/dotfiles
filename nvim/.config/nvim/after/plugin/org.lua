@@ -1,6 +1,5 @@
 local org = require('orgmode')
 
-org.setup_ts_grammar()
 -- There are some treesitter hooks, so remember to clear those. TODO?
 
 vim.keymap.set('n', '<leader>o', '<nop>') -- clean aborts to keymaps
