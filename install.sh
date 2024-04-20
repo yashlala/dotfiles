@@ -35,6 +35,7 @@ if ! [ command -v fasd >/dev/null 2>&1 ]; then
   env PREFIX="$HOME" make -C clvv-fasd-4822024 install
   cd - 
   rm -rf "$tmp"
+  mkdir -p ~/.cache/fasd
 fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
