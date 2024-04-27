@@ -8,8 +8,7 @@ alias f='fasd -f' # files
 alias ff='fasd -fi' # files (interactive)
 alias d='fasd -d' # directories
 alias a='fasd -a' # files and directories (all)
-alias j='fasd_cd -d' # jao; go to directory
-alias jj='fasd_cd -di' # interactive jao (menu)
+# many other fasd aliases are in the function section below
 alias ef="fasd -f -e $EDITOR" # edit any file
 alias eff="fasd -fi -ee $EDITOR"
 alias pud="pushd"
@@ -113,11 +112,20 @@ lkj () {
   eval sudo "$(fc -ln -1)"
 }
 
-ms () { cd "$@" >/dev/stdout && ls; }
-ma () { cd "$@" >/dev/stdout && ls -A; }
-js () { j "$@" >/dev/stdout && ls; }
-jsp () { j "$@" >/dev/stdout && pwd && ls; }
-ja () { j "$@" >/dev/stdout && ls -A; }
+# Mnemonic: first letter is the real command. Eg: "c" for a "cd" style alias.
+# - s suffix: "ls", "la".
+# - f suffix: "lf"
+# - repeated suffix (eg: 'jj'): interactive version
+cs () { cd "$@" >/dev/stdout && ls; }
+ca () { cd "$@" >/dev/stdout && ls -A; }
+cf () { cd "$@" >/dev/stdout && lf; }
+
+# jao; go to directory
+j  () { fasd_cd -d "$@" >/dev/stdout && pwd; }
+js () { fasd_cd -d "$@" >/dev/stdout && ls; }
+ja () { fasd_cd -d "$@" >/dev/stdout && ls -A; }
+jf () { fasd_cd -d "$@" >/dev/stdout && lf; }
+jj () { fasd_cd -di "$@" && pwd; }
 
 md () { mkdir -p "$1" && cd "$1"; }
 
