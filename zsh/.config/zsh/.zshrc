@@ -44,6 +44,8 @@ if tty -s; then
   stty tostop # suspend bg job on tty output
 fi
 
+setopt pipefail
+
 # source zle configuration
 source "$zshconfigdir/zshzle"
 
