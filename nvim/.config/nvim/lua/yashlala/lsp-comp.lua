@@ -170,6 +170,7 @@ local function setup_lsp(capabilities)
   -- lspconfig.svls.setup({})
 
   lspconfig.clangd.setup({
+    -- cmd = require('lspcontainers').command('clangd'),
     on_attach = function(_, bufnr)
       vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gH',
       '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true })

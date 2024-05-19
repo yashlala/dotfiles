@@ -29,6 +29,10 @@ M.setup = function()
   vim.keymap.set({'n', 'v', 'o'}, '<leader>:', ':lua =')
   vim.keymap.set({'n', 'x'}, ':', 'q:')
 
+  vim.keymap.set('n', 'H', '<cmd>setl hlsearch | echo "HLS on."<cr>',
+    { desc = 'Set hls' })
+  vim.keymap.set('n', 'L', '<cmd>setl nohlsearch | echo "HLS off."<cr>',
+    { desc = 'Set lolight (no hls)' })
   vim.keymap.set('n', '@;', '@:')
   vim.keymap.set('n', 'K', 'kJ')
   vim.keymap.set('n', 'gK', 'kgJ')
@@ -82,10 +86,14 @@ M.setup = function()
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
   vim.keymap.set('n', 'g<c-o>', 'g;') -- <c-o>, but for changelist
   vim.keymap.set('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
-  vim.keymap.set('n', '<c-n>', vim.diagnostic.goto_next)
-  vim.keymap.set('n', '<c-p>', vim.diagnostic.goto_prev)
-  vim.keymap.set('n', '<c-N>', vim.diagnostic.goto_next) -- caps lock
-  vim.keymap.set('n', '<c-P>', vim.diagnostic.goto_prev)
+  vim.keymap.set('n', '<c-n>', '<cmd>cnext<cr>',
+    { desc = 'Next quickfix entry' })
+  vim.keymap.set('n', '<c-p>', '<cmd>cprev<cr>',
+    { desc = 'Prev quickfix entry' })
+  vim.keymap.set('n', '<c-N>', '<cmd>cnext<cr>',
+    { desc = 'Next quickfix entry' })
+  vim.keymap.set('n', '<c-P>', '<cmd>cprev<cr>',
+    { desc = 'Prev quickfix entry' })
 
   vim.keymap.set({'n', 'v', 'o'}, '_', '<c-y>')
   vim.keymap.set({'n', 'v', 'o'}, '+', '<c-e>')
@@ -413,9 +421,31 @@ M.setup = function()
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { desc = 'Info about error'})
 
-  -- Cmdline mode: make files easy
+  -- Cmdline mode: make files easy (TODO)
   vim.keymap.set('c', '<c-j>', '',
     { desc = 'Use shell "j"ao command to complete dir' })
+
+
+  vim.cmd([[
+    function! JumpToNextBufferInJumplist(dir) " 1=forward, -1=backward
+      let jl = getjumplist() | let jumplist = jl[0] | let curjump = jl[1]
+      let jumpcmdstr = a:dir > 0 ? '<C-O>' : '<C-I>'
+      let jumpcmdchr = a:dir > 0 ? '^O' : '^I'    " <C-I> or <C-O>
+      let searchrange = a:dir > 0 ? range(curjump+1,len(jumplist))
+      \ : range(curjump-1,0,-1)
+      for i in searchrange
+        if jumplist[i]["bufnr"] != bufnr('%')
+          let n = (i - curjump) * a:dir
+          echo "Executing ".jumpcmdstr." ".n." times."
+          execute "silent normal! ".n.jumpcmdchr
+          break
+        endif
+      endfor
+    endfunction
+    nnoremap <C-S-I> :call JumpToNextBufferInJumplist(-1)<CR>
+    nnoremap <C-S-O> :call JumpToNextBufferInJumplist( 1)<CR>
+  ]])
+
 end
 
 return M

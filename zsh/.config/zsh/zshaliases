@@ -19,6 +19,7 @@ alias ecd='nvr -cc "cd $(pwd -L)"'
 alias egh='nvr -cc "cd $(pwd -L)"'
 
 alias adoc='asciidoctor'
+alias c='chronic'
 alias calc='qalc'
 alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
@@ -62,11 +63,11 @@ alias quit='exit'
 alias unstow='stow -D'
 
 alias abook='abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/addressbook'
+alias bc='bc -q'
 alias cgdb='cgdb -q'
 alias chromium='exit'
 alias cp='cp -i'
 alias docker='docker --config="~/.config/docker"'
-alias elinks='elinks -config-dir .local/share/elinks'
 alias fork='fork '
 alias gdb='gdb -q'
 alias info='info --vi-keys'
@@ -122,10 +123,10 @@ cf () { cd "$@" >/dev/stdout && lf; }
 
 # jao; go to directory
 j  () { fasd_cd -d "$@" >/dev/stdout && pwd; }
-js () { fasd_cd -d "$@" >/dev/stdout && ls; }
-ja () { fasd_cd -d "$@" >/dev/stdout && ls -A; }
+js () { fasd_cd -d "$@" >/dev/stdout && pwd && ls; }
+ja () { fasd_cd -d "$@" >/dev/stdout && pwd && ls -A; }
 jf () { fasd_cd -d "$@" >/dev/stdout && lf; }
-jj () { fasd_cd -di "$@" && pwd; }
+jj () { fasd_cd -di "$@"; }
 
 md () { mkdir -p "$1" && cd "$1"; }
 

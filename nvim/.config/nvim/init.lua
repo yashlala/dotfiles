@@ -131,7 +131,8 @@ require('packer').startup(function()
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'folke/neodev.nvim',
-    'neovim/nvim-lspconfig'
+    'neovim/nvim-lspconfig',
+    'lspcontainers/lspcontainers.nvim',
   }
   use 'mrcjkb/haskell-tools.nvim'
 
