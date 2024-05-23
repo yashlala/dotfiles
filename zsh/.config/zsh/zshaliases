@@ -19,7 +19,10 @@ alias ecd='nvr -cc "cd $(pwd -L)"'
 alias egh='nvr -cc "cd $(pwd -L)"'
 
 alias adoc='asciidoctor'
+# reveal stdout/err only on exit code failure
 alias c='chronic'
+# `c`, but now "failure" := "program printed to stderr"
+alias ce='chronic -e'
 alias calc='qalc'
 alias clin='xclip -in -selection clipboard'
 alias clout='xclip -out -selection clipboard'
