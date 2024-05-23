@@ -387,7 +387,7 @@ M.setup = function()
     { desc = 'Go to definition' }
   )
   vim.keymap.set('n', 'gD', function()
-    if vim.tbl_isempty(vim.lsp.buf_get_clients()) then
+    if vim.tbl_isempty(vim.lsp.get_clients({bufnr = 0})) then
       vim.cmd('normal! gD')
     else
       vim.lsp.buf.declaration()
@@ -432,7 +432,7 @@ M.setup = function()
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { desc = 'Info about error'})
   vim.keymap.set('n', '<leader><bslash>',
-    function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+    function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end,
     { desc = 'Toggle LSP inlay hints' })
 
   -- Cmdline mode: make files easy (TODO)
