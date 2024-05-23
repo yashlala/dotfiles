@@ -220,10 +220,10 @@ M.setup = function()
 
     -- Quick Tab Switching
     vim.keymap.set('n', '<leader>'..key , i..'gt')
-    -- Quick Harpoon file access.
-    vim.keymap.set('n', '<leader>h'..key,
-      string.format("<cmd>lua require('harpoon.ui').nav_file(%d)<cr>", i),
-      { desc = 'Go to Harpoon file '..key })
+    vim.keymap.set(nitx, string.format('<m-%d>',  key),
+      string.format('<cmd>%dtabnext<cr>', key),
+      { desc = 'Go to tab ' .. key })
+
     -- Quick terminal access. Creates terminals if they don't exist yet.
     vim.keymap.set('n', '<leader><leader>'..key,
       string.format("<cmd>lua require('harpoon.term').gotoTerminal(%d)<cr>", i),
