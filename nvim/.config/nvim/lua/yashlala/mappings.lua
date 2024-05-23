@@ -95,12 +95,13 @@ M.setup = function()
 
   vim.keymap.set('n', '<c-]>', 'g<c-]>')
   vim.keymap.set('n', 'g<c-]>', '<c-]>')
-  vim.keymap.set('n', 'g<c-o>', 'g;') -- <c-o>, but for changelist
-  vim.keymap.set('n', 'g<c-i>', 'g,') -- <c-i>, but for changelist
+  vim.keymap.set('n', '<m-o>', 'g;') -- <c-o>, but for changelist
+  vim.keymap.set('n', '<m-i>', 'g,') -- <c-i>, but for changelist
   vim.keymap.set('n', '<c-n>', '<cmd>cnext<cr>',
     { desc = 'Next quickfix entry' })
   vim.keymap.set('n', '<c-p>', '<cmd>cprev<cr>',
     { desc = 'Prev quickfix entry' })
+  -- Sometimes we accidentally press caps lock...
   vim.keymap.set('n', '<c-N>', '<cmd>cnext<cr>',
     { desc = 'Next quickfix entry' })
   vim.keymap.set('n', '<c-P>', '<cmd>cprev<cr>',

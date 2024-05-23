@@ -169,6 +169,7 @@ local function setup_lsp(capabilities)
   lspconfig.rust_analyzer.setup({})
   -- lspconfig.svls.setup({})
 
+  -- TODO: inlay hints here once 0.10 comes out.
   lspconfig.clangd.setup({
     -- cmd = require('lspcontainers').command('clangd'),
     on_attach = function(_, bufnr)
