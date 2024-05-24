@@ -42,8 +42,6 @@ alias nca='netctl-auto'
 alias o='xdg-open'
 alias py='python3 -q'
 alias ipy='ipython'
-alias poweroff='echo "please use pwroff"'
-alias pwroff='command poweroff'
 alias q='exit'
 alias rec='asciinema'
 alias s='sudo ' # trailing space => later aliases are expanded
