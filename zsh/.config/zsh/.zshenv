@@ -39,6 +39,7 @@ export GHCUP_USE_XDG_DIRS=true
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GOPATH="$XDG_DATA_HOME/go"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtkrc-2.0"
 # needed for bash, sh, etc.
 export HISTFILE="$XDG_DATA_HOME/zsh/histfile"
 # needed for GNU Readline

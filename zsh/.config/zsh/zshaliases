@@ -47,6 +47,7 @@ alias rec='asciinema'
 alias s='sudo ' # trailing space => later aliases are expanded
 alias sc='systemctl'
 alias scu='systemctl --user'
+alias sp='sponge'
 alias spy='isympy --quiet --auto' # sympy, create missing symbols
 alias t='task'
 alias todo='task add'

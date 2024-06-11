@@ -22,18 +22,9 @@ M.setup = function()
   vim.keymap.set({'n', 'x', 'o'}, '<leader>', '<nop>')
   vim.keymap.set({'n', 'x', 'o'}, '`', '~')
   vim.keymap.set({'n', 'x', 'o'}, '"', '`')
+  vim.keymap.set({'n', 'x', 'o'}, '""', "`'")
   vim.keymap.set({'n', 'x', 'o'}, "'", '"')
   vim.keymap.set({'n', 'x', 'o'}, '-', '0')
-
-  -- Swap "word" and "WORD" motions. 
-  local nxo_swap = function(map1, map2)
-    vim.keymap.set({'n', 'x', 'o'}, map1, map2)
-    vim.keymap.set({'n', 'x', 'o'}, map2, map1)
-  end
-  nxo_swap('w', 'W')
-  nxo_swap('b', 'B')
-  nxo_swap('e', 'E')
-  nxo_swap('ge', 'gE')
 
   vim.keymap.set({'n', 'x', 'o'}, ';', ':')
   vim.keymap.set({'n', 'x', 'o'}, '<leader>;', ':lua ')
@@ -423,7 +414,8 @@ M.setup = function()
   -- "Fix"; command defined in nvim-code-action-menu plugin.
   -- Put it in a wrapper because the command isn't defined at this point in
   -- initialization...
-  vim.keymap.set('n', '<leader>xf', function() vim.cmd('CodeActionMenu') end,
+  vim.keymap.set('n', '<leader>xf',
+    function() require('actions-preview').code_actions() end,
     { desc = 'Fix problem via LSP actions' })
   vim.keymap.set('n', '<leader>xl', vim.lsp.codelens.run,
     { desc = 'Run CodeLens' })
@@ -432,8 +424,15 @@ M.setup = function()
     { desc = 'Info about symbol' })
   vim.keymap.set('n', '<bar>', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { desc = 'Info about error'})
-  vim.keymap.set('n', '<leader><bslash>',
-    function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end,
+  vim.keymap.set('n', '<c-bslash>',
+    function()
+      if vim.lsp.inlay_hint.is_enabled({}) then
+        print('Disabling LSP inlay hints.')
+      else
+        print('Enabling LSP inlay hints.')
+      end
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+    end,
     { desc = 'Toggle LSP inlay hints' })
 
   -- Cmdline mode: make files easy (TODO)

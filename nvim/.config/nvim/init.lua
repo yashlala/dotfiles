@@ -134,7 +134,7 @@ require('packer').startup(function()
     'neovim/nvim-lspconfig',
     'lspcontainers/lspcontainers.nvim',
   }
-  use 'mrcjkb/haskell-tools.nvim'
+  use 'zbirenbaum/copilot.lua'
 
   -- NOTE: LuaSnip uses select-mode to highlight fields prior to replacing
   -- them. Eg ([X] := "X is highlighted, visually):
@@ -151,16 +151,12 @@ require('packer').startup(function()
   use 'rafamadriz/friendly-snippets' -- Prepopulated list of snippets for LuaSnip
 
   -- Better menu for LSP code actions
-  use 'weilbith/nvim-code-action-menu'
+  use 'aznhe21/actions-preview.nvim'
   -- Easier indentation guides
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- Diary + Wiki
   use 'vimwiki/vimwiki'
-  use { 'nvim-orgmode/orgmode', after = 'nvim-treesitter' }
-
-  -- Typesetting
-  use { 'kaarmu/typst.vim', ft = { 'typst' } }
 
   -- Global Menu and Fuzzy Finder.
   use { 'nvim-telescope/telescope.nvim', requires = {

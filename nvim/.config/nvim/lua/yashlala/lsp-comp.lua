@@ -95,7 +95,7 @@ local function setup_cmp()
       -- TODO: change line to ghost_text = true when:
       -- https://github.com/hrsh7th/nvim-cmp/issues/1565
       -- is resolved.
-      ghost_text = { enabled = true }
+      ghost_text = false,
     }
   })
 
