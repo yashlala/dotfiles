@@ -40,6 +40,7 @@ set to_chars = "   cf  "
 set status_chars  = " *%A"
 set status_format = " %f %?d? (%d to delete)?"
 set folder_format = "%i"
+set beep = no
 
 ignore *
 unignore from: to: cc: date: subject:   # show only these,
