@@ -33,3 +33,6 @@ vim.cmd([[
 
 -- Raise GUI font menu to pick a new font
 vim.api.nvim_create_user_command('ChangeFont', 'set guifont=*', {})
+
+-- Hack: avoid https://github.com/equalsraf/neovim-qt/issues/728
+vim.keymap.set('t', '<c-space>', '<c-\\><c-n>')
