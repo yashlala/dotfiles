@@ -52,6 +52,12 @@ source "$zshconfigdir/zshzle"
 # source zsh aliases, functions, and function definitions
 source "$zshconfigdir/zshaliases"
 
+# source temporary zsh aliases, functions, and function definitions.
+#
+# these aliases aren't tracked by git, and fluctuate based on our
+# current project.
+source "$zshconfigdir/zsh_tmp_aliases"
+
 # source all drop-in config files.
 # all files should use the convenience variables provided
 # above ($zshconfigdir, etc) when required.

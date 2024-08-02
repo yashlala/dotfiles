@@ -136,6 +136,11 @@ aliases () {
   "$EDITOR" ~/.config/zsh/zshaliases
   source ~/.config/zsh/zshaliases
 }
+# tmp aliases; not tracked by git. fleeting, often project specific.
+taliases () {
+  "$EDITOR" ~/.config/zsh/zsh_tmp_aliases
+  source ~/.config/zsh/zsh_tmp_aliases
+}
 vars () {
   "$EDITOR" ~/.config/zsh/zshenv
   source ~/.config/zsh/zshenv
