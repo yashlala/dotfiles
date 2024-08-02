@@ -95,7 +95,7 @@
 ## IPython: an enhanced interactive Python shell.
 
 ## Whether to create profile dir if it doesn't exist
-#c.BaseIPythonApplication.auto_create = False
+c.BaseIPythonApplication.auto_create = True
 
 ## Whether to install the default config files into the profile dir. If a new
 #  profile is being created, and IPython contains config files for that profile,
@@ -165,7 +165,7 @@ c.TerminalIPythonApp.display_banner = False
 #  it is not applied if there are no more arguments on the line, and '2' for
 #  'full' autocall, where all callable objects are automatically called (even if
 #  no arguments are present).
-#c.InteractiveShell.autocall = 0
+c.InteractiveShell.autocall = 1
 
 ## Autoindent IPython code entered interactively.
 #c.InteractiveShell.autoindent = True
@@ -305,7 +305,7 @@ c.TerminalInteractiveShell.editing_mode = 'vi'
 # From what I understand, it's a hack. If you're reading this in the future,
 # check to see if they've resolved the issue by now. 
 c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode = False
-c.TerminalInteractiveShell.timeoutlen = 0.25
+c.TerminalInteractiveShell.timeoutlen = 0.01
 
 ## Set the editor used by IPython (default to $EDITOR/vi/notepad).
 c.TerminalInteractiveShell.editor = 'nvim'

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Silence bell (from python-prompt-toolkit)
+# https://github.com/prompt-toolkit/python-prompt-toolkit/pull/1333
+export PROMPT_TOOLKIT_BELL=false
+/usr/bin/ipython
