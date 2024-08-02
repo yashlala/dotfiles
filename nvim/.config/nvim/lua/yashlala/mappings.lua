@@ -23,6 +23,7 @@ M.setup = function()
   vim.keymap.set({'n', 'x', 'o'}, '`', '~')
   vim.keymap.set({'n', 'x', 'o'}, '"', '`')
   vim.keymap.set({'n', 'x', 'o'}, '""', "`'")
+  vim.keymap.set({'n', 'x', 'o'}, "''", "`'")
   vim.keymap.set({'n', 'x', 'o'}, "'", '"')
   vim.keymap.set({'n', 'x', 'o'}, '-', '0')
 
@@ -62,7 +63,9 @@ M.setup = function()
 
   vim.keymap.set('n', '<leader>m',  function() require('marker').create_bookmark() end,
     { desc = 'Create bookmark' })
-  vim.keymap.set('n', '<leader>"', function() require('marker').goto_bookmark() end,
+  -- Yes, this is inconsistent; " is usually for marks and ' is usually for
+  -- registers. Inconsistency chosen for ergonomics.
+  vim.keymap.set('n', "<leader>'", function() require('marker').goto_bookmark() end,
     { desc = 'Goto bookmark' })
   vim.keymap.set('n', 'dm', function() require('marker').del_bookmark() end,
     { desc = 'Delete bookmark' })
@@ -265,12 +268,12 @@ M.setup = function()
   vim.keymap.set({'n', 'x', 'o'}, '<leader>k', '<cmd>HopLineBC<cr>')
 
   -- Diary Keybinds
-  vim.keymap.set('n', '<leader>ww', '<cmd>VimwikiMakeDiaryNote 1<cr>')
   vim.keymap.set('n', '<leader>wI', '<cmd>VimwikiDiaryIndex 1<cr>')
   vim.keymap.set('n', '<leader>wt', '<cmd>VimwikiMakeTomorrowDiaryNote 1<cr>')
   vim.keymap.set('n', '<leader>wy', '<cmd>VimwikiMakeYesterdayDiaryNote 1<cr>')
 
   vim.keymap.set('n', '<leader>w<leader>w', '<cmd>VimwikiIndex 1<cr>')
+  vim.keymap.set('n', '<leader>ww', '<cmd>e ~/documents/vimwiki/Lab Stack.md<cr>')
   vim.keymap.set('n', '<leader>wi', '<cmd>e ~/documents/vimwiki/Inbox.md<cr>')
   vim.keymap.set('n', '<leader>ws', '<cmd>e ~/documents/vimwiki/Status.md<cr>')
   vim.keymap.set('n', '<leader>wS', '<cmd>e ~/documents/vimwiki/Someday.md<cr>')
