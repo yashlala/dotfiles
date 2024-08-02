@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export DISPLAY=':0'
 exec sudo -E /usr/bin/openconnect \
   --useragent=AnyConnect \
   --external-browser="$HOME/code/bin/chromium-no-sandbox" \
