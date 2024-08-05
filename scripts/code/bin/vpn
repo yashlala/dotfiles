@@ -1,7 +1,12 @@
 #!/bin/sh
 
-export DISPLAY=':0'
+# start chromium as non-root. Then, our openconnect-initiated
+# chromium tab will open in the existing window, which didn't run as root :)
+
+dex ~/.local/share/applications/chromium.desktop
+sleep 2s
+
 exec sudo -E /usr/bin/openconnect \
   --useragent=AnyConnect \
-  --external-browser="$HOME/code/bin/chromium-no-sandbox" \
+  --external-browser="$HOME/.local/scripts/chromium-no-sandbox" \
   access.yale.edu
