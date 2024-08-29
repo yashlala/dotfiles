@@ -13,7 +13,7 @@ echo "(empty => \"don't install anything\")"
 echo -n "> "
 read -r installer
 if [ -n "$installer" ]; then
-  sudo $installer stow zsh
+  sudo $installer stow zsh make
 fi
 
 if ! [ command -v lf >/dev/null 2>&1 ]; then
