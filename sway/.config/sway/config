@@ -51,6 +51,7 @@ bindsym $mod+Return                   exec --no-startup-id fuzzel \
 bindsym $mod+m                        exec --no-startup-id alacritty \
                                         --working-directory ~/io -e neomutt
 bindsym $mod+i                        exec --no-startup-id firefox
+bindsym Ctrl+Shift+p                  exec --no-start--id true
 
 bindsym --release Print               exec --no-startup-id ~/code/bin/screenshot
 
