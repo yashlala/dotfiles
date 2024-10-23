@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=pavucontrol
+GenericName=Audio Control
+Comment=Control Audio with Pulseaudio
+Exec=pavucontrol
+Terminal=false
+Type=Application
+Categories=Audio;
