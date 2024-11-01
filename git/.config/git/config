@@ -64,6 +64,8 @@
 	puf = pull --force
 	pum = pull --merge # pull-merge; *usually* default pull behavior
 	pur = pull --rebase
+	P = push
+	PF = push --force
 	re = restore
 	res = restore --staged
 	resp = restore --staged --patch
@@ -71,6 +73,8 @@
 	rbi = rebase --interactive
 	rb = rebase
 	rms = remove --cached # should be remove --staged for consistency >:(
+	R = reset
+	RH = reset --hard
 	sh = show
 	stdr = stash drop
 	stli = stash list
