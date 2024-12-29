@@ -19,7 +19,7 @@ fi
 if ! [ command -v lf >/dev/null 2>&1 ]; then
   tmp=$(mktemp -d)
   cd "$tmp"
-  wget -q 'https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz'
+  wget -q 'https://github.com/gokcehan/lf/releases/download/r32/lf-linux-amd64.tar.gz'
   tar xzf lf-linux-amd64.tar.gz
   mkdir -p ~/bin
   cp lf ~/bin/lf
