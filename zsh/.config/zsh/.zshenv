@@ -19,6 +19,7 @@ export LESS='-i -R -M -c -z-5 -Q'
 export GPG_TTY="$(tty)"
 export WATCH_INTERVAL=1 # used by `watch`
 export FONTCONFIG_PATH=/etc/fonts # see https://askubuntu.com/a/708541
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Use Neovim as a pager. Allows for section overviews. 
 export MANPAGER='nvim +Man!'
@@ -77,12 +78,14 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 # add entries to PATH if they're not there already
 function prepend_path {
-  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)"; then
+  if ! echo "$PATH" | grep -Eq "(^|:)$1($|:)"; then
     export PATH="$1:$PATH"
   fi
 }
 
-prepend_path "$HOME/code/bin"
+prepend_path "/opt/homebrew/bin"
+prepend_path "$HOME/bin"
+prepend_path "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/"
 prepend_path "$HOME/.local/bin"
 prepend_path "$HOME/.local/share/npm/bin"
 prepend_path "$CARGO_HOME/bin"
