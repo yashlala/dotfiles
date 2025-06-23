@@ -22,12 +22,6 @@ M.setup = function()
     desc = 'Return to the last edit position when opening files.',
   })
 
-  vim.api.nvim_create_autocmd('CursorHold', {
-    group = groupid,
-    callback = function() print('\n') end,
-    desc = 'Clear the message bar from time to time',
-  })
-
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     group = groupid,
     pattern = 'neomutt-*',

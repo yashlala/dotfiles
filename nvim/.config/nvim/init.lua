@@ -38,26 +38,11 @@ require('packer').startup(function()
   -- Fancier statusline.
   use 'nvim-lualine/lualine.nvim'
 
-  -- Colorscheme. TODO: The latter two themes can be greatly customized.
-  --                    Let's get a colorscheme that listens to Treesitter.
-  use 'yashlala/seoul256.vim'
-  use 'projekt0n/github-nvim-theme'
-  use { 'mcchrish/zenbones.nvim', requires = 'rktjmp/lush.nvim' }
-  use 'kyazdani42/nvim-web-devicons'
-  use 'tjdevries/colorbuddy.nvim'
-
-  -- Dim unfocused nvim windows.
-  -- This uses window local highlights -- so it must run last (after existing
-  -- highlights are defined).
-  use 'levouh/tint.nvim'
-
  -- Automatically match file format/indentation.
  -- TODO: Rewrite this so defaults make sense.
   use 'tpope/vim-sleuth'
   -- Strip trailing whitespace on lines we've modified. May cause issues.
   use 'thirtythreeforty/lessspace.vim'
-
-  use 'mkropat/vim-ezguifont'
 
   -- Vim motions that don't require counts.
   -- TODO: switch to https://github.com/folke/flash.nvim
@@ -104,15 +89,6 @@ require('packer').startup(function()
 
   -- Edit remote files, even if LSP is only installed on this computer
   use { 'chipsenkbeil/distant.nvim', branch = 'v0.2' }
-
-  -- Debugger integration
-  use 'mfussenegger/nvim-dap'
-  use { 'mfussenegger/nvim-dap-python', after = 'nvim-dap' }
-  use 'mfussenegger/nvim-dap-ui'
-
-  -- Highlighting, editing, etc. using incremental parsing.
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
 
   -- Autocompletion plugin
   use 'hrsh7th/nvim-cmp'
@@ -184,10 +160,6 @@ end)
 require('yashlala.lsp-comp').setup()
 require('yashlala.autocmds').setup()
 
--- Load colorscheme *before* other plugins are set up.
-vim.g.seoul256_srgb = 1
--- TODO: Set treesitter highlight groups in coloscheme. Mod it up. 
-vim.api.nvim_command('colorscheme zenburned')
 -- TODO: Highlight the signs column like we do in gitsigns.
 vim.api.nvim_command('highlight WinSeparator guibg=None')
 
