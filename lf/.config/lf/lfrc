@@ -23,28 +23,22 @@ set filesep '\n' # newline-delimit $fs and $fx
 }}
 
 cmd open ${{
-    # Sometimes mp3s are labeled as octet streams.
-    if [ "${f##*.}" = "mp3" ]; then
-        mpv --no-audio-display "$f"
-    else
-        case $(file --mime-type "$f" -bL) in
-            text/*|application/json)
-                if command -v nvim >/dev/null 2>&1; then
-                    if [ -z "$NVIM" ]; then
-                        nvim "$f"
-                    else
-                        nvr -s "$f"
-                    fi
-                else
-                    vim "$f"
-                fi;;
-            application/pdf) fork zathura "$f";;
-            video/*) fork mpv --force-window=yes "$f";;
-            audio/*) fork mpv --force-window=yes "$f";;
-            image/*) fork ristretto "$f";;
-            *) xdg-open "$f";;
-        esac
-    fi
+	if [ "$TERM_PROGRAM" = 'vscode' ] && command -v code >/dev/null 2>&1; then 
+		code "$f"
+	else
+		case $(file --mime-type "$f" -bL) in
+			text/*|application/json)
+			      if command -v nvim >/dev/null 2>&1; then
+				      if [ -z "$NVIM" ]; then
+					      nvim "$f"
+				      else
+					      vim "$f"
+				      fi
+			      else
+				      vim "$f"
+			      fi;;
+		esac
+      fi
 }}
 
 cmd fasd_cd %{{
@@ -77,12 +71,12 @@ cmd redraw_and_reload :{{
 
 cmd md % mkdir -p "$@"
 cmd mkdir % mkdir -p "$@"
-cmd trash % trash-put -f "$f"
+cmd trash % trash "$f"
 
 # THIS BREAKS WHEN FILENAMES INCUDE A filesep ('\n')!
 # We can't fix this here -- the problem is w/ `lf` upstream.
 # TODO file issue and try to fix this.
-cmd trash-all % trash-put -f $fx
+cmd trash-all % trash $fx
 
 # ================
 # Key Bindings

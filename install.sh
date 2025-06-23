@@ -39,11 +39,11 @@ if ! [ command -v fasd >/dev/null 2>&1 ]; then
 fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
-sed --follow-symlinks -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
-sed --follow-symlinks -i 's/trash-put/rm -r/g' ./lf/.config/lf/lfrc
-sed --follow-symlinks -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
-sed --follow-symlinks -i 's/nvim/vim/g' ./zsh/.config/zsh/zshenv
-sed --follow-symlinks -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
+sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
+sed -i 's/trash-put/trash/g' ./lf/.config/lf/lfrc
+sed -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
+sed -i 's/nvim/vim/g' ./zsh/.config/zsh/zshenv
+sed -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
 
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
@@ -75,7 +75,7 @@ if [ -x /bin/zsh ]; then
   chsh -s /bin/zsh 
 else
   echo '/bin/zsh not available, sticking with bash :('
-  printf '\nset -o vi\n' > ~/.bashrc
+  printf '\nset -o vi\n' >> ~/.bashrc
 fi
 
 echo 'Reload shell to see changes.'
