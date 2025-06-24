@@ -39,18 +39,19 @@ if ! [ command -v fasd >/dev/null 2>&1 ]; then
 fi
 
 # Some sed implementations don't follow symlinks. So do this first. 
-sed -i 's/nvr -s/vim/g' ./lf/.config/lf/lfrc
-sed -i 's/trash-put/trash/g' ./lf/.config/lf/lfrc
-sed -i '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
-sed -i 's/nvim/vim/g' ./zsh/.config/zsh/zshenv
-sed -iE 's/\/code\/bin/\/bin/g' ./zsh/.config/zsh/zshenv
+sed -iE 's/nvr -s/nvim/g' ./lf/.config/lf/lfrc
+sed -iE 's/trash-put/trash/g' ./lf/.config/lf/lfrc
+#sed -iE '/export MANPAGER/d' ./zsh/.config/zsh/zshenv
+#sed -i 's/nvim/vim/g' ./zsh/.config/zsh/zshenv
+# can't run `sed -i` on symlinks w/ MacOS. 
+sed -iE 's/\/code\/bin/\/bin/g' $(realpath ./zsh/.config/zsh/zshenv)
 
 mkdir -p ~/.config/
 if command -v stow >/dev/null 2>&1; then
-  mkdir -p ~/.ssh
+  mkdir -p ~/.ssh ~/.config/nvim ~/.config/lf
   find . -mindepth 1 -maxdepth 1 \( -type d -not -name '.git' \) -print0 \
-    | xargs -0 -n 1 basename -z \
-    | xargs -0 stow
+    | xargs -0 -n 1 basename \
+    | xargs stow
 else
   mkdir -p ~/.config
   cp -r ./zsh/.config/zsh ~/.config/zsh
@@ -64,9 +65,6 @@ fi
 
 ln -s ~/.config/zsh/zshrc ~/.zshrc
 ln -s ~/.config/zsh/zshenv ~/.zshenv
-
-rm ~/.config/zsh/zshrc.d/keychain.zsh \
-  ~/.config/zsh/zshrc.d/miniconda.zsh
 
 touch ~/.hushlogin
 
