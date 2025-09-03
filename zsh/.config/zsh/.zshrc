@@ -72,3 +72,7 @@ compinit
 # unset convenience variables
 unset -v zshconfigdir
 unset -v zshdatadir
+
+if [[ $TERM_PROGRAM != 'vscode' ]]; then 
+	cd ~/Documents
+fi
