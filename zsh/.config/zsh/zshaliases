@@ -55,6 +55,11 @@ alias todo='task add'
 alias tsh='tasksh'
 alias tw='timew'
 alias tag='tmsu'
+# `tsp` is an Arch Linux command...normally `ts` maps to both task-spooler and
+# moreutils projects, so Arch changed it. Keep the alias for muscle memory.
+if ! command -v tsp >/dev/null 2>&1; then
+  alias tsp='ts'
+fi
 
 alias rboot='reboot'
 alias asudo='sudo '
@@ -82,8 +87,8 @@ alias scp='scp -r'
 # See: https://askubuntu.com/q/22037
 alias sudo='sudo '
 alias tor='tor -f ~/.config/tor/torrc'
-alias units='units --history "" -o "%.19g"'
-alias eunits='units --history ""'
+alias units='gunits --history "" -o "%.19g"'
+alias eunits='gunits --history ""'
 alias manim='manim -v WARNING'
 alias watch='watch '
 alias wget='wget --hsts-file /dev/null'
