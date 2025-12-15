@@ -37,6 +37,8 @@ cmd open ${{
 			      else
 				      vim "$f"
 			      fi;;
+			*)
+				open "$f";; 
 		esac
       fi
 }}
