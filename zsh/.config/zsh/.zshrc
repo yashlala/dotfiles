@@ -66,6 +66,7 @@ for file in "$zshconfigdir/zshrc.d/"*; do
 done
 
 # *lastly*, enable zsh completion module
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 

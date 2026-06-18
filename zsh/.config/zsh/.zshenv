@@ -20,6 +20,8 @@ export GPG_TTY="$(tty)"
 export WATCH_INTERVAL=1 # used by `watch`
 export FONTCONFIG_PATH=/etc/fonts # see https://askubuntu.com/a/708541
 export HOMEBREW_NO_ENV_HINTS=1
+# MacOS zsh has per-session history for some reason. 
+export SHELL_SESSIONS_DISABLE=1
 
 # Use Neovim as a pager. Allows for section overviews. 
 export MANPAGER='nvim +Man!'
