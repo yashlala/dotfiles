@@ -3,13 +3,6 @@ local M = {}
 M.setup = function()
   local groupid = vim.api.nvim_create_augroup('yashlala', {})
 
-  -- Re-compile packer after any edits to our config file.
-  vim.api.nvim_create_autocmd('BufWritePost', {
-    group = groupid,
-    pattern = 'init.lua',
-    command = 'PackerCompile',
-  })
-
   -- Return to last edit position when opening files.
   vim.api.nvim_create_autocmd('BufReadPost', {
     group = groupid,
