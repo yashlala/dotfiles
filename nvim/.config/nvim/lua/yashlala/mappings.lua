@@ -373,7 +373,7 @@ M.setup = function()
 
   -- LSP "goto" commands Keybinds
   vim.keymap.set('n', 'gd', function()
-    if vim.tbl_isempty(vim.lsp.buf_get_clients()) then
+    if vim.tbl_isempty(vim.lsp.get_clients({bufnr = 0})) then
       vim.cmd('normal! gd')
     else
       vim.lsp.buf.definition()

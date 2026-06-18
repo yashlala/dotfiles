@@ -78,7 +78,7 @@ local function setup_cmp()
 
     formatting = {
       format = lspkind.cmp_format {
-        with_text = true,
+        mode = 'text_symbol',
         menu = {
           buffer = "[buf]",
           nvim_lsp = "[lsp]",
@@ -142,75 +142,59 @@ local function setup_cmp()
 end
 
 local function setup_lsp(capabilities)
-  -- These must be run _BEFORE_ lspconfig setup!
-  -- See :h mason-lspconfig-quickstart.
   require('mason').setup()
   require('mason-lspconfig').setup()
 
-  -- Must be run before lspconfig
-  require('neodev').setup({
-    library = { plugins = { "nvim-dap-ui" }, types = true }})
+  require('lazydev').setup({})
 
-  local lspconfig = require('lspconfig')
-  local lsp_defaults = {
-    capabilities = capabilities,
-  }
-  lspconfig.util.default_config = vim.tbl_extend('force',
-    lspconfig.util.default_config, lsp_defaults)
+  -- Set capabilities on all servers
+  vim.lsp.config('*', { capabilities = capabilities })
 
-  lspconfig.bashls.setup({})
-  lspconfig.gopls.setup({})
-  lspconfig.pyright.setup({})
-  lspconfig.texlab.setup({})
+  vim.lsp.config('bashls', {})
+  vim.lsp.config('gopls', {})
+  vim.lsp.config('pyright', {})
+  vim.lsp.config('texlab', {})
   -- TODO: jedi also runs for python files! so I have 2 lsps that both respond
   -- every time I make a request. Figure out how they can coexist, OK?
-  -- lspconfig.jedi_language_server.setup({})
-  lspconfig.clojure_lsp.setup({})
-  lspconfig.rust_analyzer.setup({})
-  -- lspconfig.svls.setup({})
+  -- vim.lsp.config('jedi_language_server', {})
+  vim.lsp.config('clojure_lsp', {})
+  vim.lsp.config('rust_analyzer', {})
+  -- vim.lsp.config('svls', {})
 
-  -- TODO: inlay hints here once 0.10 comes out.
-  lspconfig.clangd.setup({
-    -- cmd = require('lspcontainers').command('clangd'),
+  vim.lsp.config('clangd', {
     on_attach = function(_, bufnr)
       vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gH',
-      '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true })
-    end
+        '<cmd>ClangdSwitchSourceHeader<cr>', { noremap = true })
+    end,
   })
 
   local lua_runtime_path = vim.split(package.path, ';')
   table.insert(lua_runtime_path, 'lua/?.lua')
   table.insert(lua_runtime_path, 'lua/?/init.lua')
-  lspconfig.lua_ls.setup {
-    capabilities = capabilities,
+  vim.lsp.config('lua_ls', {
     cmd = { '/usr/bin/lua-language-server' },
     settings = {
       Lua = {
         runtime = {
-          -- Tell the language server which version of Lua you're using (most
-          -- likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
-          -- Setup your lua path
           path = lua_runtime_path,
         },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-          -- Disable annoying error message
+          library = vim.api.nvim_get_runtime_file('', true),
           checkThirdParty = false,
         },
-        -- Send telemetry data containing a randomized but unique identifier
         telemetry = {
           enable = true,
         },
       },
     },
-  }
+  })
 
+  vim.lsp.enable({ 'bashls', 'gopls', 'pyright', 'texlab', 'clojure_lsp',
+    'rust_analyzer', 'clangd', 'lua_ls' })
 end
 
 M.setup = function()
