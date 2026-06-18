@@ -1,4 +1,4 @@
-require('project_nvim').setup({
+require('project').setup({
   -- Manual mode doesn't automatically change your root directory, so you have
   -- the option to manually do so using `:ProjectRoot` command.
   manual_mode = false,
@@ -13,9 +13,9 @@ require('project_nvim').setup({
   -- detection_methods
   patterns = { ".project-root", ".project-root", ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json" },
 
-  -- Table of lsp clients to ignore by name
-  -- eg: { "efm", ... }
-  ignore_lsp = {},
+  lsp = {
+    ignore = {},
+  },
 
   -- Don't calculate root dir on specific directories
   -- Ex: { "~/.cargo/*", ... }
@@ -28,9 +28,9 @@ require('project_nvim').setup({
   -- directory.
   silent_chdir = true,
 
-  -- Path where project.nvim will store the project history for use in
-  -- telescope
-  datapath = vim.fn.stdpath("data"),
+  history = {
+    save_dir = vim.fn.stdpath("data"),
+  },
 })
 
 require('telescope').load_extension('projects')
